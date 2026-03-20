@@ -5,6 +5,11 @@ Todos los cambios notables del skill bizuit-sdd se documentan en este archivo.
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 Versionamiento según [Semantic Versioning](https://semver.org/lang/es/).
 
+## 1.5.3 — Enforced Version Check
+
+### Fixed
+- Version check remoto ahora es OBLIGATORIO en startup (Claude lo ejecuta siempre)
+
 ## 1.5.2 — Auto-update Notification
 
 ### Added
