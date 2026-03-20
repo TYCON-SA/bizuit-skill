@@ -5,6 +5,11 @@ Todos los cambios notables del skill bizuit-sdd se documentan en este archivo.
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 Versionamiento según [Semantic Versioning](https://semver.org/lang/es/).
 
+## 1.5.4 — Test Release
+
+### Changed
+- Release de prueba para validar detección de nueva versión
+
 ## 1.5.3 — Enforced Version Check
 
 ### Fixed

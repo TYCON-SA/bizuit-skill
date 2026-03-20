@@ -1,4 +1,4 @@
-# bizuit-sdd v1.5.3 — Manifest
+# bizuit-sdd v1.5.4 — Manifest
 
 Generado: 2026-03-20T00:12:36Z
 
