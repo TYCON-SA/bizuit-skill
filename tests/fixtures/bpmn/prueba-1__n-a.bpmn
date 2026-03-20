@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_0eiuhcc">
+    <bpmn2:participant id="Patricia" name="Patricia" processRef="Process_1" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:participant id="Participant_124fak0" processRef="Process_1qbvhzl" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_1" name="Prueba 1" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="n/a">
+    <bpmn2:extensionElements>
+      <bizuit:processParameters>
+        <bizuit:parameter name="Hora" description="" type="Escalar" direction="In" scalarDataType="date" defaultValue="hoy" />
+      </bizuit:processParameters>
+    </bpmn2:extensionElements>
+    <bpmn2:laneSet id="LaneSet_0ovvaaw">
+      <bpmn2:lane id="Lane_1ujsb9c">
+        <bpmn2:flowNodeRef>Event_0qjd9m1</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Sacar_el_Perro</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:startEvent id="Event_0qjd9m1">
+      <bpmn2:outgoing>Flow_11zaaa5</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="Flow_11zaaa5" sourceRef="Event_0qjd9m1" targetRef="Sacar_el_Perro" />
+    <bpmn2:task id="Sacar_el_Perro" name="Sacar el Perro" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_11zaaa5</bpmn2:incoming>
+    </bpmn2:task>
+  </bpmn2:process>
+  <bpmn2:process id="Process_1qbvhzl" bizuit:ProcessLevel="1">
+    <bpmn2:laneSet id="LaneSet_0pa3n2b">
+      <bpmn2:lane id="Lane_12di8oz" />
+    </bpmn2:laneSet>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0eiuhcc">
+      <bpmndi:BPMNShape id="Participant_1x7e38d_di" bpmnElement="Patricia" isHorizontal="true">
+        <dc:Bounds x="-400" y="-91" width="1420" height="281" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1ujsb9c_di" bpmnElement="Lane_1ujsb9c" isHorizontal="true">
+        <dc:Bounds x="-370" y="-91" width="1390" height="281" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0qjd9m1_di" bpmnElement="Event_0qjd9m1" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="-338" y="-8" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_115js6m_di" bpmnElement="Sacar_el_Perro">
+        <dc:Bounds x="-80" y="-30" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_11zaaa5_di" bpmnElement="Flow_11zaaa5">
+        <di:waypoint x="-302" y="10" />
+        <di:waypoint x="-80" y="10" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_124fak0_di" bpmnElement="Participant_124fak0" isHorizontal="true">
+        <dc:Bounds x="-400" y="190" width="1420" height="600" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_12di8oz_di" bpmnElement="Lane_12di8oz" isHorizontal="true">
+        <dc:Bounds x="-370" y="190" width="1390" height="600" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_1ps214p">
+    <bpmn2:documentation>Documentación del proceso Comprar Materia Prima</bpmn2:documentation>
+    <bpmn2:participant id="Participant_1kxd2nu" name="Proceso Comprar Materia Prima" processRef="ProcB1BE5D97" bizuit:AttachmentsCollection="[{&#34;type&#34;:&#34;file&#34;,&#34;fileName&#34;:&#34;ElevarLegales.xlsx&#34;,&#34;content&#34;:&#34;__LAZY_LOAD_PLACEHOLDER__&#34;,&#34;mimeType&#34;:&#34;application/octet-stream&#34;}]">
+      <bpmn2:documentation>Éste elemento representa el Proceso de Compras de MP.</bpmn2:documentation>
+    </bpmn2:participant>
+  </bpmn2:collaboration>
+  <bpmn2:process id="ProcB1BE5D97" name="Proceso Comprar Materia Prima" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="TYCON-UES21">
+    <bpmn2:documentation>El objetivo del proceso es comprar materia prima al proveedor que mejor condiciones recomienda.</bpmn2:documentation>
+    <bpmn2:laneSet id="LaneSet_1bpw46g">
+      <bpmn2:lane id="Responsable_de_Compras" name="Responsable de Compras" bizuit:Performers="Responsable de Compras" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:documentation>Éste rol es clave ya que debe asegurar que la empresa adquiera la materia prima necesarias de manera eficiente, oportuna y al mejor costo posible.</bpmn2:documentation>
+        <bpmn2:flowNodeRef>Event_04zgaie</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>EVENTODEINICIO</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SubprocesoEvaluacionProveedor</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Subprocesodepedidodemateriaprima</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1qqd8gf</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0m4zjot</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_03ladun</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>EsperaCotizacion</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="Asistente_de_Compras" name="Asistente de Compras" bizuit:Performers="Asistente de Compras">
+        <bpmn2:documentation>El Asistente de Compra debe garantizar que los bienes adquiridos sean recibidos, almacenados, controlados y distribuidos adecuadamente dentro de la empresa. Aunque no decide qué comprar, su labor es fundamental para cerrar correctamente el ciclo de compras y asegurar la operatividad del negocio.</bpmn2:documentation>
+        <bpmn2:flowNodeRef>Gateway_0jz8vkp</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1jlivsp</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SubprocesoIngresoDeMaterial</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0txqiig</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1e4vs7u</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="Administracion" name="Administración" bizuit:Performers="Administración">
+        <bpmn2:documentation>El rol de Administración tiene la función de gestionar, controlar y validar los aspectos financieros, contables y documentales relacionados con las compras. Aunque no se encarga directamente de comprar ni de almacenar, su participación es clave para garantizar que las operaciones sean legales, transparentes y correctamente registradas</bpmn2:documentation>
+        <bpmn2:flowNodeRef>Activity_0s2asb9</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_08xi8al</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:sequenceFlow id="Flow_0yptu8u" sourceRef="EsperaCotizacion" targetRef="SubprocesoEvaluacionProveedor" />
+    <bpmn2:sequenceFlow id="Flow_1e1fkiy" sourceRef="SubprocesoEvaluacionProveedor" targetRef="Activity_1qqd8gf" />
+    <bpmn2:sequenceFlow id="Flow_1vl3h6p" sourceRef="Activity_1qqd8gf" targetRef="Activity_03ladun" />
+    <bpmn2:sequenceFlow id="Flow_02pk9nh" sourceRef="Activity_03ladun" targetRef="Event_04zgaie" />
+    <bpmn2:sequenceFlow id="Flow_043fiv2" sourceRef="Event_04zgaie" targetRef="Activity_0txqiig" />
+    <bpmn2:sequenceFlow id="Flow_0g10hu0" sourceRef="Activity_0txqiig" targetRef="Activity_1e4vs7u" />
+    <bpmn2:exclusiveGateway id="Gateway_0jz8vkp" name="Diferencias">
+      <bpmn2:documentation>Compuerta que define el resultado de la comparación</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1y52up7</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_09t0fsj</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_0ey41am</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_1y52up7" sourceRef="Activity_1e4vs7u" targetRef="Gateway_0jz8vkp" />
+    <bpmn2:sequenceFlow id="Flow_09t0fsj" name="Si" sourceRef="Gateway_0jz8vkp" targetRef="Activity_0m4zjot" />
+    <bpmn2:sequenceFlow id="Flow_0ey41am" name="No" sourceRef="Gateway_0jz8vkp" targetRef="Gateway_1jlivsp" />
+    <bpmn2:sequenceFlow id="Flow_132vuzv" sourceRef="Activity_0m4zjot" targetRef="Gateway_1jlivsp" />
+    <bpmn2:exclusiveGateway id="Gateway_1jlivsp" name="Resultado">
+      <bpmn2:documentation>Compuerta de unión.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0ey41am</bpmn2:incoming>
+      <bpmn2:incoming>Flow_132vuzv</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0hqecb1</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_1nkyv04" sourceRef="Activity_0s2asb9" targetRef="Event_08xi8al" />
+    <bpmn2:dataObjectReference id="DataObjectReference_0ytvrfe" name="Orden de Compra" dataObjectRef="DataObject_1rtszsd">
+      <bpmn2:documentation>Formulario de Orden de Compra, el cual tiene número, fecha, cantidad y nombre de material. Condiciones de compra pautados con el proveedor.</bpmn2:documentation>
+    </bpmn2:dataObjectReference>
+    <bpmn2:dataObject id="DataObject_1rtszsd" />
+    <bpmn2:intermediateCatchEvent id="Event_04zgaie" name="En espera de pedido" bizuit:Performers="Responsable de Compras">
+      <bpmn2:documentation>Éste evento representa el tiempo que transcurre entre el envío de la OC al proveedor y la entrega del producto por parte del proveedor</bpmn2:documentation>
+      <bpmn2:incoming>Flow_02pk9nh</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_043fiv2</bpmn2:outgoing>
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_1x0eloz" />
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:dataStoreReference id="DataStoreReference_1a0pc0v" name="Compras">
+      <bpmn2:documentation>Almacenamiento Compras</bpmn2:documentation>
+    </bpmn2:dataStoreReference>
+    <bpmn2:sequenceFlow id="Flow_0hqecb1" sourceRef="Gateway_1jlivsp" targetRef="SubprocesoIngresoDeMaterial" />
+    <bpmn2:subProcess id="SubprocesoIngresoDeMaterial" name="Ingresar materia prima" bizuit:Performers="Asistente de Compras">
+      <bpmn2:documentation>Subproceso de registro de materia prima.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0hqecb1</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_14bswv7</bpmn2:outgoing>
+      <bpmn2:sequenceFlow id="Flow_08ik21l" sourceRef="Activity_036aix5" targetRef="Activity_1t48pkb" />
+      <bpmn2:sequenceFlow id="Flow_0dwtw8c" sourceRef="Activity_1t48pkb" targetRef="Activity_10nsqhl" />
+      <bpmn2:manualTask id="Activity_036aix5" name="Ingresar mercadería recibida" bizuit:Performers="Asistente de Compras">
+        <bpmn2:documentation>Se ingresa manualmente la mercadería.</bpmn2:documentation>
+        <bpmn2:outgoing>Flow_08ik21l</bpmn2:outgoing>
+      </bpmn2:manualTask>
+      <bpmn2:userTask id="Activity_1t48pkb" name="Actualizar stock en sistema" bizuit:Performers="Asistente de Compras">
+        <bpmn2:documentation>Registra y documenta la entrada de materiales o productos al sistema de inventario.</bpmn2:documentation>
+        <bpmn2:incoming>Flow_08ik21l</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0dwtw8c</bpmn2:outgoing>
+      </bpmn2:userTask>
+      <bpmn2:manualTask id="Activity_10nsqhl" name="Guardar materia prima en depósito" bizuit:Performers="Asistente de Compras">
+        <bpmn2:documentation>Se guarda la MP en las góndolas asignadas.</bpmn2:documentation>
+        <bpmn2:incoming>Flow_0dwtw8c</bpmn2:incoming>
+      </bpmn2:manualTask>
+    </bpmn2:subProcess>
+    <bpmn2:sequenceFlow id="Flow_14bswv7" sourceRef="SubprocesoIngresoDeMaterial" targetRef="Activity_0s2asb9" />
+    <bpmn2:dataStoreReference id="DataStoreReference_1es56ex" name="Pagos">
+      <bpmn2:documentation>Almacenamiento Pagos</bpmn2:documentation>
+    </bpmn2:dataStoreReference>
+    <bpmn2:dataObjectReference id="DataObjectReference_0xpvxqc" name="Comprobante de transferencia" dataObjectRef="DataObject_17d36wh">
+      <bpmn2:documentation>Comprobante de transferencia en cual tiene, Fecha, monto, cuenta de transferencia.</bpmn2:documentation>
+    </bpmn2:dataObjectReference>
+    <bpmn2:dataObject id="DataObject_17d36wh" />
+    <bpmn2:startEvent id="EVENTODEINICIO" name="Solicitud" bizuit:AttachmentsCollection="[{&#34;type&#34;:&#34;file&#34;,&#34;fileName&#34;:&#34;StatsHasta30 días.xlsx&#34;,&#34;content&#34;:&#34;__LAZY_LOAD_PLACEHOLDER__&#34;,&#34;mimeType&#34;:&#34;application/octet-stream&#34;}]" bizuit:Performers="Responsable de Compras">
+      <bpmn2:documentation>El proceso inicia cuando se recibe un pedido de reposición de materia prima</bpmn2:documentation>
+      <bpmn2:outgoing>Flow_0g4ub5n</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="Flow_0g4ub5n" sourceRef="EVENTODEINICIO" targetRef="Subprocesodepedidodemateriaprima" />
+    <bpmn2:sequenceFlow id="Flow_1nyiqe3" sourceRef="Subprocesodepedidodemateriaprima" targetRef="EsperaCotizacion" />
+    <bpmn2:subProcess id="SubprocesoEvaluacionProveedor" name="Evaluacion proveedor" bizuit:Performers="Responsable de Compras">
+      <bpmn2:documentation>Éste subproceso considera el macro proceso de análisis de propuestas de proveedores para la materia prima a comprar</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0yptu8u</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1e1fkiy</bpmn2:outgoing>
+      <bpmn2:sequenceFlow id="Flow_0ate1dg" sourceRef="Activity_0bb2fm8" targetRef="Activity_1521ga9" />
+      <bpmn2:sequenceFlow id="Flow_0bijol8" sourceRef="Activity_1521ga9" targetRef="Activity_1bfna2a" />
+      <bpmn2:sequenceFlow id="Flow_03uxw7f" sourceRef="Activity_0r6y5tg" targetRef="Activity_0bb2fm8" />
+      <bpmn2:userTask id="Activity_0r6y5tg" name="Recibir cotizacion">
+        <bpmn2:documentation>Se recibe las cotizaciones de los distintos proveedores</bpmn2:documentation>
+        <bpmn2:outgoing>Flow_03uxw7f</bpmn2:outgoing>
+      </bpmn2:userTask>
+      <bpmn2:userTask id="Activity_0bb2fm8" name="Evaluar Proveedor">
+        <bpmn2:documentation>Se evalua proveedor para analizar el mas conveniente.</bpmn2:documentation>
+        <bpmn2:incoming>Flow_03uxw7f</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0ate1dg</bpmn2:outgoing>
+      </bpmn2:userTask>
+      <bpmn2:userTask id="Activity_1bfna2a" name="Acordar cantidad y precio con proveedor">
+        <bpmn2:documentation>Se pacta cantidad y precio para cada proveedor. </bpmn2:documentation>
+        <bpmn2:incoming>Flow_0bijol8</bpmn2:incoming>
+      </bpmn2:userTask>
+      <bpmn2:sendTask id="Activity_1521ga9" name="Comunicar proveedor seleccionado">
+        <bpmn2:documentation>Se informa el proveedor elegido.</bpmn2:documentation>
+        <bpmn2:incoming>Flow_0ate1dg</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0bijol8</bpmn2:outgoing>
+      </bpmn2:sendTask>
+    </bpmn2:subProcess>
+    <bpmn2:subProcess id="Subprocesodepedidodemateriaprima" name="Solicitud de Materia prima" bizuit:Performers="Responsable de Compras">
+      <bpmn2:documentation>Éste subproceso refleja las actividades relacionadas del pedido de mp. </bpmn2:documentation>
+      <bpmn2:incoming>Flow_0g4ub5n</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1nyiqe3</bpmn2:outgoing>
+      <bpmn2:dataStoreReference id="DataStoreReference_03f6bpk" name="Proveedores">
+        <bpmn2:documentation>Almacenamiento Proveedores</bpmn2:documentation>
+      </bpmn2:dataStoreReference>
+      <bpmn2:dataStoreReference id="DataStoreReference_17q6y3p" name="Productos">
+        <bpmn2:documentation>Almacenamiento Productos</bpmn2:documentation>
+      </bpmn2:dataStoreReference>
+      <bpmn2:sequenceFlow id="Flow_0zxv8ku" sourceRef="Activity_1stgvzz" targetRef="Activity_0gyekdu" />
+      <bpmn2:sequenceFlow id="Flow_0clkx9k" sourceRef="Activity_0gyekdu" targetRef="Activity_1si2heg" />
+      <bpmn2:dataStoreReference id="DataStoreReference_0pjwva5" name="Cotizaciones">
+        <bpmn2:documentation>Almacenamiento Cotizaciones</bpmn2:documentation>
+      </bpmn2:dataStoreReference>
+      <bpmn2:dataObjectReference id="DataObjectReference_1cdr76z" name="Pedido de Cotización" dataObjectRef="DataObject_16ysdtr">
+        <bpmn2:documentation>Formulario Pedido de Cotizacion</bpmn2:documentation>
+      </bpmn2:dataObjectReference>
+      <bpmn2:dataObject id="DataObject_16ysdtr" />
+      <bpmn2:sequenceFlow id="Flow_1dk62us" sourceRef="Activity_1si2heg" targetRef="Activity_0sam39w" />
+      <bpmn2:manualTask id="Activity_0gyekdu" name="Identificar Insumos" bizuit:Performers="Responsable de Compras">
+        <bpmn2:documentation>Se define que materia prima es necesaria</bpmn2:documentation>
+        <bpmn2:incoming>Flow_0zxv8ku</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0clkx9k</bpmn2:outgoing>
+      </bpmn2:manualTask>
+      <bpmn2:userTask id="Activity_1stgvzz" name="Recibir Solicitud de Compras">
+        <bpmn2:documentation>Aquí se recibe el pedido de faltante. Tipo de material y cantidad</bpmn2:documentation>
+        <bpmn2:outgoing>Flow_0zxv8ku</bpmn2:outgoing>
+      </bpmn2:userTask>
+      <bpmn2:userTask id="Activity_1si2heg" name="Buscar Proveedores">
+        <bpmn2:documentation>Se realiza la búsqueda de proveedores para los productos necesarios.</bpmn2:documentation>
+        <bpmn2:incoming>Flow_0clkx9k</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1dk62us</bpmn2:outgoing>
+        <bpmn2:property id="Property_0rzzdg2" name="__targetRef_placeholder" />
+        <bpmn2:dataInputAssociation id="DataInputAssociation_1mwhp0a">
+          <bpmn2:sourceRef>DataStoreReference_03f6bpk</bpmn2:sourceRef>
+          <bpmn2:targetRef>Property_0rzzdg2</bpmn2:targetRef>
+        </bpmn2:dataInputAssociation>
+        <bpmn2:dataInputAssociation id="DataInputAssociation_1f56e3y">
+          <bpmn2:sourceRef>DataStoreReference_17q6y3p</bpmn2:sourceRef>
+          <bpmn2:targetRef>Property_0rzzdg2</bpmn2:targetRef>
+        </bpmn2:dataInputAssociation>
+      </bpmn2:userTask>
+      <bpmn2:userTask id="Activity_0sam39w" name="Solicitar Cotizacion">
+        <bpmn2:documentation>Se pide cotización de cada producto.</bpmn2:documentation>
+        <bpmn2:incoming>Flow_1dk62us</bpmn2:incoming>
+        <bpmn2:dataOutputAssociation id="DataOutputAssociation_1uvhn93">
+          <bpmn2:targetRef>DataStoreReference_0pjwva5</bpmn2:targetRef>
+        </bpmn2:dataOutputAssociation>
+        <bpmn2:dataOutputAssociation id="DataOutputAssociation_01lauck">
+          <bpmn2:targetRef>DataObjectReference_1cdr76z</bpmn2:targetRef>
+        </bpmn2:dataOutputAssociation>
+      </bpmn2:userTask>
+    </bpmn2:subProcess>
+    <bpmn2:manualTask id="Activity_0txqiig" name="Recibir Materia Prima y Factura" bizuit:Performers="Asistente de Compras">
+      <bpmn2:documentation>El responsable de almacén recibe la MP y la factura por parte del proveedor</bpmn2:documentation>
+      <bpmn2:incoming>Flow_043fiv2</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0g10hu0</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:userTask id="Activity_1qqd8gf" name="Confeccionar Orden de Compra" bizuit:Performers="Responsable de Compras">
+      <bpmn2:documentation>Actividad en la que se crea el documento comercial de Orden de Compra, Se guarda los datos en el almacenamiento Compras y se emite Orden de Compra en original y duplicado.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1e1fkiy</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1vl3h6p</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1w58bom">
+        <bpmn2:targetRef>DataStoreReference_1a0pc0v</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_09uvsml">
+        <bpmn2:targetRef>DataObjectReference_0ytvrfe</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Activity_0m4zjot" name="Realizar reclamo por no coincidencias" bizuit:Performers="Responsable de Compras">
+      <bpmn2:documentation>Se efectua el reclamo al proveedor por la diferencias.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_09t0fsj</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_132vuzv</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Activity_1e4vs7u" name="Comparar estado y cantidad con Orden de Compra" bizuit:Performers="Asistente de Compras">
+      <bpmn2:documentation>Revisa físicamente los productos para detectar daños, defectos o diferencias respecto a lo solicitado.
+
+Coordina con el área de calidad si es necesario realizar una inspección más técnica o específica.
+Verifica que los productos entregados por los proveedores coincidan con la orden de compra (cantidad, calidad, especificaciones).</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0g10hu0</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1y52up7</bpmn2:outgoing>
+      <bpmn2:property id="Property_1y14wgm" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0mkmlfo">
+        <bpmn2:sourceRef>DataStoreReference_1a0pc0v</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1y14wgm</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:manualTask id="Activity_03ladun" name="Enviar OC a proveedor" bizuit:Performers="Responsable de Compras">
+      <bpmn2:documentation>Se envía el formulario OC por email a cada proveedor con los productos solicitados.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1vl3h6p</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_02pk9nh</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:userTask id="Activity_0s2asb9" name="Realizar pago a proveedor" bizuit:Performers="Administración">
+      <bpmn2:documentation>Administración 
+Programa y realiza los pagos a los proveedores de acuerdo con las condiciones pactadas (plazos, formas de pago, descuentos).
+Registra el pago en el almacenamiento Pagos y emite un comprobante de transferencia.
+
+Controla el flujo de caja relacionado con las compras.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_14bswv7</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1nkyv04</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1ihruay">
+        <bpmn2:targetRef>DataStoreReference_1es56ex</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1r7ccfm">
+        <bpmn2:targetRef>DataObjectReference_0xpvxqc</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:endEvent id="Event_08xi8al" name="Materia Prima almacenada" bizuit:Performers="Administración">
+      <bpmn2:incoming>Flow_1nkyv04</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:intermediateCatchEvent id="EsperaCotizacion" name="En espera cotización" bizuit:Performers="Responsable de Compras">
+      <bpmn2:documentation>Evento de espera de 2 días</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1nyiqe3</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0yptu8u</bpmn2:outgoing>
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_0ktrb36" />
+    </bpmn2:intermediateCatchEvent>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1ps214p">
+      <bpmndi:BPMNShape id="Participant_1kxd2nu_di" bpmnElement="Participant_1kxd2nu" isHorizontal="true">
+        <dc:Bounds x="-650" y="-170" width="1820" height="1090" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1vf4gba_di" bpmnElement="Administracion" isHorizontal="true">
+        <dc:Bounds x="-620" y="660" width="1790" height="260" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1i55qb8_di" bpmnElement="Asistente_de_Compras" isHorizontal="true">
+        <dc:Bounds x="-620" y="380" width="1790" height="280" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1gq6upe_di" bpmnElement="Responsable_de_Compras" isHorizontal="true">
+        <dc:Bounds x="-620" y="-170" width="1790" height="550" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0jz8vkp_di" bpmnElement="Gateway_0jz8vkp" isMarkerVisible="true" bioc:stroke="#000000" bioc:fill="#ffff00" color:background-color="#ffff00" color:border-color="#000000">
+        <dc:Bounds x="25" y="485" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="23" y="542" width="55" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1jlivsp_di" bpmnElement="Gateway_1jlivsp" isMarkerVisible="true" bioc:stroke="#000000" bioc:fill="#ffff00" color:background-color="#ffff00" color:border-color="#000000">
+        <dc:Bounds x="375" y="485" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="375" y="542" width="50" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0ytvrfe_di" bpmnElement="DataObjectReference_0ytvrfe">
+        <dc:Bounds x="742" y="115" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="716" y="172" width="88" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ah8crb_di" bpmnElement="Event_04zgaie">
+        <dc:Bounds x="952" y="182" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="997" y="186" width="67" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1a0pc0v_di" bpmnElement="DataStoreReference_1a0pc0v">
+        <dc:Bounds x="585" y="115" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="587" y="172" width="46" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_101p731_di" bpmnElement="SubprocesoIngresoDeMaterial" bioc:stroke="#000000" bioc:fill="#ffa500" color:background-color="#ffa500" color:border-color="#000000">
+        <dc:Bounds x="570" y="470" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1es56ex_di" bpmnElement="DataStoreReference_1es56ex">
+        <dc:Bounds x="485" y="795" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="494" y="852" width="32" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0xpvxqc_di" bpmnElement="DataObjectReference_0xpvxqc">
+        <dc:Bounds x="692" y="795" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="669" y="852" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="EVENTODEINICIO" bioc:stroke="#000000" bioc:fill="#008000" color:background-color="#008000" color:border-color="#000000">
+        <dc:Bounds x="-538" y="2" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-540" y="45" width="43" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0oj8olv_di" bpmnElement="SubprocesoEvaluacionProveedor" bioc:stroke="#000000" bioc:fill="#ffa500" color:background-color="#ffa500" color:border-color="#000000">
+        <dc:Bounds x="240" y="-20" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0qv0uqm_di" bpmnElement="Subprocesodepedidodemateriaprima" isExpanded="false" bioc:stroke="#000000" bioc:fill="#ffa500" color:background-color="#ffa500" color:border-color="#000000">
+        <dc:Bounds x="-320" y="-20" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1bo4pth_di" bpmnElement="Activity_0txqiig">
+        <dc:Bounds x="-510" y="470" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_17smol7_di" bpmnElement="Activity_1qqd8gf" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="640" y="-20" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1m0ep3z_di" bpmnElement="Activity_0m4zjot" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="170" y="280" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1jizia9_di" bpmnElement="Activity_1e4vs7u" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="-120" y="470" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0p5oeem_di" bpmnElement="Activity_03ladun" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="920" y="-20" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_01v0ztc_di" bpmnElement="Activity_0s2asb9" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="570" y="690" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1uwcuqh_di" bpmnElement="Event_08xi8al" bioc:stroke="#000000" bioc:fill="#ff0000" color:background-color="#ff0000" color:border-color="#000000">
+        <dc:Bounds x="972" y="712" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="954" y="755" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1jxff8w_di" bpmnElement="EsperaCotizacion">
+        <dc:Bounds x="-78" y="2" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-85" y="45" width="52" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0yptu8u_di" bpmnElement="Flow_0yptu8u">
+        <di:waypoint x="-42" y="20" />
+        <di:waypoint x="240" y="20" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1e1fkiy_di" bpmnElement="Flow_1e1fkiy">
+        <di:waypoint x="340" y="20" />
+        <di:waypoint x="640" y="20" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vl3h6p_di" bpmnElement="Flow_1vl3h6p">
+        <di:waypoint x="740" y="20" />
+        <di:waypoint x="920" y="20" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02pk9nh_di" bpmnElement="Flow_02pk9nh">
+        <di:waypoint x="970" y="60" />
+        <di:waypoint x="970" y="182" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_043fiv2_di" bpmnElement="Flow_043fiv2">
+        <di:waypoint x="970" y="218" />
+        <di:waypoint x="970" y="250" />
+        <di:waypoint x="-460" y="250" />
+        <di:waypoint x="-460" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0g10hu0_di" bpmnElement="Flow_0g10hu0">
+        <di:waypoint x="-410" y="510" />
+        <di:waypoint x="-120" y="510" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1y52up7_di" bpmnElement="Flow_1y52up7">
+        <di:waypoint x="-20" y="510" />
+        <di:waypoint x="25" y="510" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09t0fsj_di" bpmnElement="Flow_09t0fsj">
+        <di:waypoint x="50" y="485" />
+        <di:waypoint x="50" y="320" />
+        <di:waypoint x="170" y="320" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="61" y="400" width="9" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ey41am_di" bpmnElement="Flow_0ey41am">
+        <di:waypoint x="75" y="510" />
+        <di:waypoint x="375" y="510" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="218" y="492" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_132vuzv_di" bpmnElement="Flow_132vuzv">
+        <di:waypoint x="270" y="320" />
+        <di:waypoint x="400" y="320" />
+        <di:waypoint x="400" y="485" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1nkyv04_di" bpmnElement="Flow_1nkyv04">
+        <di:waypoint x="670" y="730" />
+        <di:waypoint x="972" y="730" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hqecb1_di" bpmnElement="Flow_0hqecb1">
+        <di:waypoint x="425" y="510" />
+        <di:waypoint x="570" y="510" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14bswv7_di" bpmnElement="Flow_14bswv7">
+        <di:waypoint x="620" y="550" />
+        <di:waypoint x="620" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0g4ub5n_di" bpmnElement="Flow_0g4ub5n">
+        <di:waypoint x="-502" y="20" />
+        <di:waypoint x="-320" y="20" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1nyiqe3_di" bpmnElement="Flow_1nyiqe3">
+        <di:waypoint x="-220" y="20" />
+        <di:waypoint x="-78" y="20" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1w58bom_di" bpmnElement="DataOutputAssociation_1w58bom">
+        <di:waypoint x="662" y="60" />
+        <di:waypoint x="623" y="115" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_09uvsml_di" bpmnElement="DataOutputAssociation_09uvsml">
+        <di:waypoint x="713" y="60" />
+        <di:waypoint x="744" y="115" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0mkmlfo_di" bpmnElement="DataInputAssociation_0mkmlfo">
+        <di:waypoint x="585" y="145" />
+        <di:waypoint x="-20" y="270" />
+        <di:waypoint x="-80" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1ihruay_di" bpmnElement="DataOutputAssociation_1ihruay">
+        <di:waypoint x="574" y="768" />
+        <di:waypoint x="535" y="800" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1r7ccfm_di" bpmnElement="DataOutputAssociation_1r7ccfm">
+        <di:waypoint x="664" y="769" />
+        <di:waypoint x="692" y="797" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_13p6dps">
+    <bpmndi:BPMNPlane id="BPMNPlane_1104yg7" bpmnElement="SubprocesoEvaluacionProveedor">
+      <bpmndi:BPMNShape id="Activity_0iryc3y_di" bpmnElement="Activity_0r6y5tg" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="180" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_149zrbw_di" bpmnElement="Activity_0bb2fm8" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="350" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1izzqqi_di" bpmnElement="Activity_1bfna2a" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="690" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1q49wn8_di" bpmnElement="Activity_1521ga9" bioc:stroke="#008b8b" bioc:fill="#e0ffff" color:background-color="#e0ffff" color:border-color="#008b8b">
+        <dc:Bounds x="520" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_10xuq45" bpmnElement="Flow_0ate1dg">
+        <di:waypoint x="450" y="200" />
+        <di:waypoint x="520" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_1gzdfej" bpmnElement="Flow_0bijol8">
+        <di:waypoint x="620" y="200" />
+        <di:waypoint x="690" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03uxw7f_di" bpmnElement="Flow_03uxw7f">
+        <di:waypoint x="280" y="200" />
+        <di:waypoint x="350" y="200" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1s0hpgg">
+    <bpmndi:BPMNPlane id="BPMNPlane_0nng5g3" bpmnElement="SubprocesoIngresoDeMaterial">
+      <bpmndi:BPMNShape id="Activity_1elxmc7_di" bpmnElement="Activity_036aix5">
+        <dc:Bounds x="240" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1bdm6bn_di" bpmnElement="Activity_1t48pkb" bioc:stroke="#000000" bioc:fill="#8de194" color:background-color="#8de194" color:border-color="#000000">
+        <dc:Bounds x="450" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1obwl4d_di" bpmnElement="Activity_10nsqhl">
+        <dc:Bounds x="660" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_0qkj108" bpmnElement="Flow_08ik21l">
+        <di:waypoint x="340" y="180" />
+        <di:waypoint x="450" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_08wb564" bpmnElement="Flow_0dwtw8c">
+        <di:waypoint x="550" y="180" />
+        <di:waypoint x="660" y="180" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_0f4ht1z">
+    <bpmndi:BPMNPlane id="BPMNPlane_10jbet9" bpmnElement="Subprocesodepedidodemateriaprima">
+      <bpmndi:BPMNShape id="BPMNShape_0i52hrc" bpmnElement="DataStoreReference_03f6bpk">
+        <dc:Bounds x="475" y="275" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="469" y="332" width="63" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1fucbss" bpmnElement="DataStoreReference_17q6y3p">
+        <dc:Bounds x="585" y="275" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="585" y="332" width="50" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0ta8rp5" bpmnElement="DataStoreReference_0pjwva5">
+        <dc:Bounds x="735" y="285" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="728" y="342" width="64" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0xexune" bpmnElement="DataObjectReference_1cdr76z">
+        <dc:Bounds x="902" y="275" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="894" y="332" width="52" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vjo2vl_di" bpmnElement="Activity_0gyekdu">
+        <dc:Bounds x="340" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_09intay_di" bpmnElement="Activity_1stgvzz" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="180" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0pet2w9_di" bpmnElement="Activity_1si2heg" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="500" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1oyzjfc_di" bpmnElement="Activity_0sam39w" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="770" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_0cx7hhm" bpmnElement="Flow_0zxv8ku">
+        <di:waypoint x="280" y="200" />
+        <di:waypoint x="340" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0kqv60c" bpmnElement="Flow_0clkx9k">
+        <di:waypoint x="440" y="200" />
+        <di:waypoint x="500" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1dk62us_di" bpmnElement="Flow_1dk62us">
+        <di:waypoint x="600" y="200" />
+        <di:waypoint x="770" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0ji5du7" bpmnElement="DataInputAssociation_1mwhp0a">
+        <di:waypoint x="518" y="275" />
+        <di:waypoint x="543" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_1s7nz0i" bpmnElement="DataInputAssociation_1f56e3y">
+        <di:waypoint x="599" y="275" />
+        <di:waypoint x="584" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_0ndn9bc" bpmnElement="DataOutputAssociation_1uvhn93">
+        <di:waypoint x="793" y="240" />
+        <di:waypoint x="769" y="285" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_1lsqt3g" bpmnElement="DataOutputAssociation_01lauck">
+        <di:waypoint x="854" y="240" />
+        <di:waypoint x="904" y="275" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

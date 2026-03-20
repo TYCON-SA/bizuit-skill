@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_1dhtuen">
+    <bpmn2:participant id="Evaluacion_de_Credito_Bancario" name="Evaluación de Crédito Bancario" processRef="Process_1" bizuit:AttachmentsCollection="[]" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_1" name="Evaluación de Crédito Bancario" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="Judith UTN">
+    <bpmn2:laneSet id="LaneSet_108jn9q">
+      <bpmn2:lane id="cliente" name="cliente" bizuit:Performers="cliente" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Necesidad_de_credito_bancario</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Preparar_carpeta_con_documentos</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="CoordinadorDeCreditos" name="CoordinadorDeCréditos" bizuit:Performers="CoordinadorDeCréditos" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Resultado_aprobacion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1uoabdn</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Evaluar_solicitud_de_aprobacion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Notificar_monto_aprobado</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Notificar_motivo_de_rechazo</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Cerrar_solicitud_de_credito</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Fin_solicitud</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Recibir_documentos_faltantes</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:startEvent id="Necesidad_de_credito_bancario" name="Necesidad de crédito bancario" bizuit:Performers="cliente" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:outgoing>Flow_0tfmz4w</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="Flow_0tfmz4w" sourceRef="Necesidad_de_credito_bancario" targetRef="Preparar_carpeta_con_documentos" />
+    <bpmn2:sequenceFlow id="Flow_1ia00cc" sourceRef="Preparar_carpeta_con_documentos" targetRef="Recibir_documentos_faltantes" />
+    <bpmn2:subProcess id="Recibir_documentos_faltantes" name="Recibir documentos faltantes" bizuit:Performers="CoordinadorDeCréditos" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_1ia00cc</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1y1v2jz</bpmn2:outgoing>
+      <bpmn2:standardLoopCharacteristics />
+      <bpmn2:task id="Verficar_conformidad_de_documentos" name="Verficar conformidad de documentos">
+        <bpmn2:outgoing>Flow_0tfkpbf</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0tfkpbf" sourceRef="Verficar_conformidad_de_documentos" targetRef="_3_dias_habiles" />
+      <bpmn2:intermediateCatchEvent id="_3_dias_habiles" name="3 días hábiles" bizuit:AttachmentsCollection="[]" bizuit:TimerConfiguration="{&#34;type&#34;:&#34;fixed&#34;,&#34;delay&#34;:{&#34;days&#34;:0,&#34;hours&#34;:0,&#34;minutes&#34;:0,&#34;seconds&#34;:0}}">
+        <bpmn2:incoming>Flow_0tfkpbf</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1syv6km</bpmn2:outgoing>
+        <bpmn2:timerEventDefinition id="TimerEventDefinition_1yswmtc" />
+      </bpmn2:intermediateCatchEvent>
+      <bpmn2:exclusiveGateway id="resultado_conformidad" name="resultado conformidad" bizuit:AttachmentsCollection="[]">
+        <bpmn2:incoming>Flow_1syv6km</bpmn2:incoming>
+        <bpmn2:outgoing>Faltan_documentos</bpmn2:outgoing>
+        <bpmn2:outgoing>documentos_ok</bpmn2:outgoing>
+      </bpmn2:exclusiveGateway>
+      <bpmn2:task id="Notificar_documentos_faltantes_1" name="Notificar documentos faltantes" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+        <bpmn2:incoming>Faltan_documentos</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Faltan_documentos" name="Faltan documentos" sourceRef="resultado_conformidad" targetRef="Notificar_documentos_faltantes_1" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+      <bpmn2:task id="Confirmar_documentos_ok" name="Confirmar documentos ok" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+        <bpmn2:incoming>documentos_ok</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="documentos_ok" name="documentos ok" sourceRef="resultado_conformidad" targetRef="Confirmar_documentos_ok" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+      <bpmn2:sequenceFlow id="Flow_1syv6km" sourceRef="_3_dias_habiles" targetRef="resultado_conformidad" />
+    </bpmn2:subProcess>
+    <bpmn2:sequenceFlow id="Flow_1y1v2jz" sourceRef="Recibir_documentos_faltantes" targetRef="Evaluar_solicitud_de_aprobacion" />
+    <bpmn2:exclusiveGateway id="Resultado_aprobacion" name="Resultado aprobación" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1juc5ex</bpmn2:incoming>
+      <bpmn2:outgoing>Monto_aprobado</bpmn2:outgoing>
+      <bpmn2:outgoing>Monto_rechazado</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_1juc5ex" sourceRef="Evaluar_solicitud_de_aprobacion" targetRef="Resultado_aprobacion" />
+    <bpmn2:sequenceFlow id="Monto_aprobado" name="Monto aprobado" sourceRef="Resultado_aprobacion" targetRef="Notificar_monto_aprobado" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Monto_rechazado" name="Monto rechazado" sourceRef="Resultado_aprobacion" targetRef="Notificar_motivo_de_rechazo" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:exclusiveGateway id="Gateway_1uoabdn">
+      <bpmn2:incoming>Flow_0d1vub1</bpmn2:incoming>
+      <bpmn2:incoming>Flow_1k83kcv</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1112t3s</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_0d1vub1" sourceRef="Notificar_monto_aprobado" targetRef="Gateway_1uoabdn" />
+    <bpmn2:sequenceFlow id="Flow_1k83kcv" sourceRef="Notificar_motivo_de_rechazo" targetRef="Gateway_1uoabdn" />
+    <bpmn2:sequenceFlow id="Flow_1112t3s" sourceRef="Gateway_1uoabdn" targetRef="Cerrar_solicitud_de_credito" />
+    <bpmn2:sequenceFlow id="Flow_0pcay39" sourceRef="Cerrar_solicitud_de_credito" targetRef="Fin_solicitud" />
+    <bpmn2:userTask id="Preparar_carpeta_con_documentos" name="Preparar carpeta con documentos" bizuit:Performers="cliente">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" showInList="true" order="0" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" showInList="true" order="1" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" showInList="true" order="2" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" showInList="true" order="3" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" showInList="true" order="4" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0tfmz4w</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1ia00cc</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Evaluar_solicitud_de_aprobacion" name="Evaluar solicitud de aprobación" bizuit:Performers="CoordinadorDeCréditos">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" showInList="true" order="0" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" showInList="true" order="1" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" showInList="true" order="2" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" showInList="true" order="3" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" showInList="true" order="4" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_1y1v2jz</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1juc5ex</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sendTask id="Notificar_monto_aprobado" name="Notificar monto aprobado" bizuit:Performers="CoordinadorDeCréditos">
+      <bpmn2:incoming>Monto_aprobado</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0d1vub1</bpmn2:outgoing>
+    </bpmn2:sendTask>
+    <bpmn2:sendTask id="Notificar_motivo_de_rechazo" name="Notificar motivo de rechazo" bizuit:Performers="CoordinadorDeCréditos">
+      <bpmn2:incoming>Monto_rechazado</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1k83kcv</bpmn2:outgoing>
+    </bpmn2:sendTask>
+    <bpmn2:userTask id="Cerrar_solicitud_de_credito" name="Cerrar solicitud de crédito" bizuit:Performers="CoordinadorDeCréditos">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" showInList="true" order="0" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" showInList="true" order="1" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" showInList="true" order="2" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" showInList="true" order="3" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" showInList="true" order="4" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_1112t3s</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0pcay39</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:endEvent id="Fin_solicitud" name="Fin solicitud" bizuit:Performers="CoordinadorDeCréditos" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0pcay39</bpmn2:incoming>
+    </bpmn2:endEvent>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1dhtuen">
+      <bpmndi:BPMNShape id="Participant_0nm6pii_di" bpmnElement="Evaluacion_de_Credito_Bancario" isHorizontal="true">
+        <dc:Bounds x="-28" y="10" width="1408" height="560" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1khh3ow_di" bpmnElement="cliente" isHorizontal="true">
+        <dc:Bounds x="2" y="10" width="1378" height="230" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0h6vey1_di" bpmnElement="CoordinadorDeCreditos" isHorizontal="true">
+        <dc:Bounds x="2" y="240" width="1378" height="330" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="Necesidad_de_credito_bancario" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="62" y="82" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="38" y="125" width="84" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1ew3k5t_di" bpmnElement="Resultado_aprobacion" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="635" y="335" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="631" y="305" width="59" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1uoabdn_di" bpmnElement="Gateway_1uoabdn" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="1035" y="335" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0qivobj_di" bpmnElement="Preparar_carpeta_con_documentos" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="150" y="60" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0gpf3ws_di" bpmnElement="Evaluar_solicitud_de_aprobacion" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="470" y="320" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1m0n7qz_di" bpmnElement="Notificar_monto_aprobado" bioc:stroke="#008b8b" bioc:fill="#e0ffff" color:background-color="#e0ffff" color:border-color="#008b8b">
+        <dc:Bounds x="810" y="320" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1mof4ue_di" bpmnElement="Notificar_motivo_de_rechazo" bioc:stroke="#008b8b" bioc:fill="#e0ffff" color:background-color="#e0ffff" color:border-color="#008b8b">
+        <dc:Bounds x="810" y="430" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0hbg3iq_di" bpmnElement="Cerrar_solicitud_de_credito" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="1120" y="320" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_19u5amt_di" bpmnElement="Fin_solicitud" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="1262" y="342" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1250" y="385" width="60" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ea8phr_di" bpmnElement="Recibir_documentos_faltantes" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="310" y="320" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0tfmz4w_di" bpmnElement="Flow_0tfmz4w">
+        <di:waypoint x="98" y="100" />
+        <di:waypoint x="150" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ia00cc_di" bpmnElement="Flow_1ia00cc">
+        <di:waypoint x="250" y="100" />
+        <di:waypoint x="280" y="100" />
+        <di:waypoint x="280" y="360" />
+        <di:waypoint x="310" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1y1v2jz_di" bpmnElement="Flow_1y1v2jz">
+        <di:waypoint x="410" y="360" />
+        <di:waypoint x="470" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1juc5ex_di" bpmnElement="Flow_1juc5ex">
+        <di:waypoint x="570" y="360" />
+        <di:waypoint x="635" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gba628_di" bpmnElement="Monto_aprobado">
+        <di:waypoint x="685" y="360" />
+        <di:waypoint x="810" y="360" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="704" y="342" width="87" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fyxfw8_di" bpmnElement="Monto_rechazado">
+        <di:waypoint x="660" y="385" />
+        <di:waypoint x="660" y="470" />
+        <di:waypoint x="810" y="470" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="630" y="425" width="90" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0d1vub1_di" bpmnElement="Flow_0d1vub1">
+        <di:waypoint x="910" y="360" />
+        <di:waypoint x="1035" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1k83kcv_di" bpmnElement="Flow_1k83kcv">
+        <di:waypoint x="910" y="470" />
+        <di:waypoint x="1060" y="470" />
+        <di:waypoint x="1060" y="385" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1112t3s_di" bpmnElement="Flow_1112t3s">
+        <di:waypoint x="1085" y="360" />
+        <di:waypoint x="1120" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0pcay39_di" bpmnElement="Flow_0pcay39">
+        <di:waypoint x="1220" y="360" />
+        <di:waypoint x="1262" y="360" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_0q76d2g">
+    <bpmndi:BPMNPlane id="BPMNPlane_1isshmq" bpmnElement="Recibir_documentos_faltantes">
+      <bpmndi:BPMNShape id="Activity_17pdac1_di" bpmnElement="Verficar_conformidad_de_documentos">
+        <dc:Bounds x="90" y="170" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0lipulh_di" bpmnElement="Notificar_documentos_faltantes_1">
+        <dc:Bounds x="690" y="50" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1w22fkp_di" bpmnElement="Confirmar_documentos_ok">
+        <dc:Bounds x="690" y="280" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0e6y2u7_di" bpmnElement="resultado_conformidad" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="485" y="185" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="557" y="200" width="66" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1h7hrvj_di" bpmnElement="_3_dias_habiles">
+        <dc:Bounds x="292" y="192" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="276" y="235" width="69" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0tfkpbf_di" bpmnElement="Flow_0tfkpbf">
+        <di:waypoint x="190" y="210" />
+        <di:waypoint x="292" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04u1chw_di" bpmnElement="Faltan_documentos">
+        <di:waypoint x="510" y="185" />
+        <di:waypoint x="510" y="90" />
+        <di:waypoint x="690" y="90" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="568" y="56" width="64" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0cke6qw_di" bpmnElement="documentos_ok">
+        <di:waypoint x="510" y="235" />
+        <di:waypoint x="510" y="320" />
+        <di:waypoint x="690" y="320" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="540" y="333" width="79" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1syv6km_di" bpmnElement="Flow_1syv6km">
+        <di:waypoint x="328" y="210" />
+        <di:waypoint x="485" y="210" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_17i4smx">
+    <bpmn2:participant id="Proceso_de_compra_de_materias_primas" name="Proceso de compra de materias primas" processRef="Process_1" bizuit:AttachmentsCollection="[]" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_1" name="Sales &#38; Deco" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="SPN">
+    <bpmn2:extensionElements>
+      <bizuit:processParameters>
+        <bizuit:parameter name="ExceptionParameter" description="System parameter for exception handling" type="XML" direction="Optional">
+          <bizuit:xmlSchemaDefinition>{"name":"Exception","type":"root","children":[{"name":"Message","type":"element","dataType":"string"},{"name":"Type","type":"element","dataType":"string"},{"name":"StackTrace","type":"element","dataType":"string"},{"name":"FaultingActivity","type":"element","dataType":"string"}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:parameter>
+        <bizuit:parameter name="OutputParameter" description="System parameter for workflow output" type="Escalar" direction="Out" scalarDataType="string" defaultValue="" />
+      </bizuit:processParameters>
+      <bizuit:processVariables>
+        <bizuit:variable name="InstanceId" description="System variable for workflow instance ID" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+        <bizuit:variable name="LoggedUser" description="System variable for logged user information" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+      </bizuit:processVariables>
+    </bpmn2:extensionElements>
+    <bpmn2:laneSet id="LaneSet_1qw80ef">
+      <bpmn2:lane id="Responsable_de_Compras" name="Responsable de Compras" bizuit:Performers="Responsable de Compras" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Pedido_de_reposicion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Recibir_nota_de_reposicion_de_materias_primas</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Confeccionar_solicitud_de_Cotizacion_para_proveedores</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Enviar_Solicitud_de_Cotizacion_a_Proveedores</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Esperar_respuesta_de_Proveedores</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Recibir_cotizacion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Analizar_precios_y_elegir_proveedor</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Confeccionar_Orden_de_Compra</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Enviar_Orden_de_Compra_al_Proveedor</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Esperar_mercaderia_de_el_proveedor</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="Responsable_de_Ingresos" name="Responsable de Ingresos" bizuit:Performers="Responsable de Ingresos" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+        <bpmn2:flowNodeRef>Recibir_Mercaderia_Factura_y_Remito_del_Proveedor</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Comparar_mercaderia_con_Orden_de_Compra_y_Factura</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Devolver_el_pedido_al_proveedor_con_factura_y_remito</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Cargar_Mercaderia_ingresada_en_el_sistema</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Enviar_factura_y_remito_al_Area_de_Contabilidad</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Esperar_las_registraciones_correspondientes</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Enviar_el_Pedido_a_Almacen</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Mercaderia_no_ingresada</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Mercaderia_compradas_almaced_nadas_y_disponible_para_la_produccion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Estado_de_la_Mercaderia</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:startEvent id="Pedido_de_reposicion" name="Pedido de reposición" bizuit:Performers="Responsable de Compras" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:outgoing>Flow_16g3g4e</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:task id="Recibir_nota_de_reposicion_de_materias_primas" name="Recibir nota de reposición de materias primas" bizuit:Performers="Responsable de Compras" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_16g3g4e</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0kd3ubf</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Confeccionar_solicitud_de_Cotizacion_para_proveedores" name="Confeccionar solicitud de Cotización para proveedores" bizuit:Performers="Responsable de Compras" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0kd3ubf</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1lf5ajr</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0us2vrr">
+        <bpmn2:targetRef>Solicitud_de_Cotizacion</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:dataObjectReference id="Solicitud_de_Cotizacion" name="Solicitud de Cotización" dataObjectRef="DataObject_1qrnsgs" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_1qrnsgs" />
+    <bpmn2:task id="Enviar_Solicitud_de_Cotizacion_a_Proveedores" name="Enviar Solicitud de Cotización a Proveedores" bizuit:Performers="Responsable de Compras" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1lf5ajr</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_08ihwas</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:intermediateThrowEvent id="Esperar_respuesta_de_Proveedores" name="Esperar respuesta de Proveedores" bizuit:Performers="Responsable de Compras" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_08ihwas</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1jo40nw</bpmn2:outgoing>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:task id="Recibir_cotizacion" name="Recibir cotización" bizuit:Performers="Responsable de Compras">
+      <bpmn2:incoming>Flow_1jo40nw</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0xf1diy</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Analizar_precios_y_elegir_proveedor" name="Analizar precios y elegir proveedor" bizuit:Performers="Responsable de Compras" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0xf1diy</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1lmqsa7</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Confeccionar_Orden_de_Compra" name="Confeccionar Orden de Compra" bizuit:Performers="Responsable de Compras">
+      <bpmn2:incoming>Flow_1lmqsa7</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_07d7z0q</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_11ng6ro">
+        <bpmn2:targetRef>Orden_de_Compra</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:dataObjectReference id="Orden_de_Compra" name="Orden de Compra" dataObjectRef="DataObject_168fq82" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_168fq82" />
+    <bpmn2:task id="Enviar_Orden_de_Compra_al_Proveedor" name="Enviar Orden de Compra al Proveedor" bizuit:Performers="Responsable de Compras">
+      <bpmn2:incoming>Flow_07d7z0q</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1j9lntn</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:intermediateThrowEvent id="Esperar_mercaderia_de_el_proveedor" name="Esperar mercadería de el proveedor" bizuit:Performers="Responsable de Compras" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1j9lntn</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_07s5ntx</bpmn2:outgoing>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:task id="Recibir_Mercaderia_Factura_y_Remito_del_Proveedor" name="Recibir Mercadería, Factura y Remito del Proveedor" bizuit:Performers="Responsable de Ingresos" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_07s5ntx</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_08ioqxd</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Comparar_mercaderia_con_Orden_de_Compra_y_Factura" name="Comparar mercadería con Orden de Compra y Factura" bizuit:Performers="Responsable de Ingresos" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_08ioqxd</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1dr5ndt</bpmn2:outgoing>
+      <bpmn2:property id="Property_1ddyy05" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_07f5byd">
+        <bpmn2:sourceRef>Orden_de_Compra_1</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1ddyy05</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:dataStoreReference id="Sistema_de_Almacenamiento" name="Sistema de Almacenamiento" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:task id="Devolver_el_pedido_al_proveedor_con_factura_y_remito" name=" Devolver el pedido al proveedor con factura y remito" bizuit:Performers="Responsable de Ingresos" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Incumplimiento_de_la_Mercaderia</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1fijzbe</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Cargar_Mercaderia_ingresada_en_el_sistema" name="Cargar Mercadería ingresada en el sistema" bizuit:Performers="Responsable de Ingresos" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Mercaderia_en_estado_optimo</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_154zmse</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_03rv75z">
+        <bpmn2:targetRef>Sistema_de_Almacenamiento</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:task id="Enviar_factura_y_remito_al_Area_de_Contabilidad" name="Enviar factura y remito al Área de Contabilidad" bizuit:Performers="Responsable de Ingresos" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_154zmse</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0s2tur3</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:intermediateThrowEvent id="Esperar_las_registraciones_correspondientes" name="Esperar las registraciones correspondientes" bizuit:Performers="Responsable de Ingresos" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0s2tur3</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1o8rucg</bpmn2:outgoing>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:dataObjectReference id="Orden_de_Compra_1" name="Orden de Compra" dataObjectRef="DataObject_19kagf6" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_19kagf6" />
+    <bpmn2:task id="Enviar_el_Pedido_a_Almacen" name="Enviar el Pedido a Almacén" bizuit:Performers="Responsable de Ingresos" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1o8rucg</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1q0im3v</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:endEvent id="Mercaderia_no_ingresada" name="Mercadería no ingresada" bizuit:Performers="Responsable de Ingresos">
+      <bpmn2:incoming>Flow_1fijzbe</bpmn2:incoming>
+      <bpmn2:errorEventDefinition id="ErrorEventDefinition_1mah7my" />
+    </bpmn2:endEvent>
+    <bpmn2:endEvent id="Mercaderia_compradas_almaced_nadas_y_disponible_para_la_produccion" name="Mercadería compradas, almaced¿nadas y disponible para la producción" bizuit:Performers="Responsable de Ingresos">
+      <bpmn2:incoming>Flow_1q0im3v</bpmn2:incoming>
+      <bpmn2:terminateEventDefinition id="TerminateEventDefinition_1bikt3f" />
+    </bpmn2:endEvent>
+    <bpmn2:inclusiveGateway id="Estado_de_la_Mercaderia" name="Estado de la Mercaderia">
+      <bpmn2:incoming>Flow_1dr5ndt</bpmn2:incoming>
+      <bpmn2:outgoing>Incumplimiento_de_la_Mercaderia</bpmn2:outgoing>
+      <bpmn2:outgoing>Mercaderia_en_estado_optimo</bpmn2:outgoing>
+    </bpmn2:inclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_16g3g4e" sourceRef="Pedido_de_reposicion" targetRef="Recibir_nota_de_reposicion_de_materias_primas" />
+    <bpmn2:sequenceFlow id="Flow_0kd3ubf" sourceRef="Recibir_nota_de_reposicion_de_materias_primas" targetRef="Confeccionar_solicitud_de_Cotizacion_para_proveedores" />
+    <bpmn2:sequenceFlow id="Flow_1lf5ajr" sourceRef="Confeccionar_solicitud_de_Cotizacion_para_proveedores" targetRef="Enviar_Solicitud_de_Cotizacion_a_Proveedores" />
+    <bpmn2:sequenceFlow id="Flow_08ihwas" sourceRef="Enviar_Solicitud_de_Cotizacion_a_Proveedores" targetRef="Esperar_respuesta_de_Proveedores" />
+    <bpmn2:sequenceFlow id="Flow_1jo40nw" sourceRef="Esperar_respuesta_de_Proveedores" targetRef="Recibir_cotizacion" />
+    <bpmn2:sequenceFlow id="Flow_0xf1diy" sourceRef="Recibir_cotizacion" targetRef="Analizar_precios_y_elegir_proveedor" />
+    <bpmn2:sequenceFlow id="Flow_1lmqsa7" sourceRef="Analizar_precios_y_elegir_proveedor" targetRef="Confeccionar_Orden_de_Compra" />
+    <bpmn2:sequenceFlow id="Flow_07d7z0q" sourceRef="Confeccionar_Orden_de_Compra" targetRef="Enviar_Orden_de_Compra_al_Proveedor" />
+    <bpmn2:sequenceFlow id="Flow_1j9lntn" sourceRef="Enviar_Orden_de_Compra_al_Proveedor" targetRef="Esperar_mercaderia_de_el_proveedor" />
+    <bpmn2:sequenceFlow id="Flow_07s5ntx" sourceRef="Esperar_mercaderia_de_el_proveedor" targetRef="Recibir_Mercaderia_Factura_y_Remito_del_Proveedor" />
+    <bpmn2:sequenceFlow id="Flow_08ioqxd" sourceRef="Recibir_Mercaderia_Factura_y_Remito_del_Proveedor" targetRef="Comparar_mercaderia_con_Orden_de_Compra_y_Factura" />
+    <bpmn2:sequenceFlow id="Flow_1dr5ndt" sourceRef="Comparar_mercaderia_con_Orden_de_Compra_y_Factura" targetRef="Estado_de_la_Mercaderia" />
+    <bpmn2:sequenceFlow id="Incumplimiento_de_la_Mercaderia" name="Incumplimiento de la Mercaderia" sourceRef="Estado_de_la_Mercaderia" targetRef="Devolver_el_pedido_al_proveedor_con_factura_y_remito" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:sequenceFlow id="Flow_1fijzbe" sourceRef="Devolver_el_pedido_al_proveedor_con_factura_y_remito" targetRef="Mercaderia_no_ingresada" />
+    <bpmn2:sequenceFlow id="Mercaderia_en_estado_optimo" name="Mercadería en estado optimo" sourceRef="Estado_de_la_Mercaderia" targetRef="Cargar_Mercaderia_ingresada_en_el_sistema" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Flow_154zmse" sourceRef="Cargar_Mercaderia_ingresada_en_el_sistema" targetRef="Enviar_factura_y_remito_al_Area_de_Contabilidad" />
+    <bpmn2:sequenceFlow id="Flow_0s2tur3" sourceRef="Enviar_factura_y_remito_al_Area_de_Contabilidad" targetRef="Esperar_las_registraciones_correspondientes" />
+    <bpmn2:sequenceFlow id="Flow_1o8rucg" sourceRef="Esperar_las_registraciones_correspondientes" targetRef="Enviar_el_Pedido_a_Almacen" />
+    <bpmn2:sequenceFlow id="Flow_1q0im3v" sourceRef="Enviar_el_Pedido_a_Almacen" targetRef="Mercaderia_compradas_almaced_nadas_y_disponible_para_la_produccion" />
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_17i4smx">
+      <bpmndi:BPMNShape id="Participant_0g9aw75_di" bpmnElement="Proceso_de_compra_de_materias_primas" isHorizontal="true">
+        <dc:Bounds x="105" y="-63" width="2660" height="798" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1l4vhjx_di" bpmnElement="Responsable_de_Compras" isHorizontal="true">
+        <dc:Bounds x="135" y="-63" width="2630" height="388" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1ukbqqq_di" bpmnElement="Responsable_de_Ingresos" isHorizontal="true">
+        <dc:Bounds x="135" y="325" width="2630" height="410" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="Pedido_de_reposicion" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="202" y="64" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="194" y="107" width="53" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0pn6wyy_di" bpmnElement="Recibir_nota_de_reposicion_de_materias_primas">
+        <dc:Bounds x="290" y="42" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13me273_di" bpmnElement="Confeccionar_solicitud_de_Cotizacion_para_proveedores">
+        <dc:Bounds x="450" y="42" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_186pg2l_di" bpmnElement="Solicitud_de_Cotizacion">
+        <dc:Bounds x="522" y="-43" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="560" y="-32" width="59" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0tygvfm_di" bpmnElement="Enviar_Solicitud_de_Cotizacion_a_Proveedores">
+        <dc:Bounds x="610" y="42" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1kd2jjq_di" bpmnElement="Esperar_respuesta_de_Proveedores">
+        <dc:Bounds x="772" y="64" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="757" y="107" width="66" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0bynr6j_di" bpmnElement="Recibir_cotizacion">
+        <dc:Bounds x="870" y="42" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vvuj21_di" bpmnElement="Analizar_precios_y_elegir_proveedor">
+        <dc:Bounds x="1040" y="42" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1w6f9bu_di" bpmnElement="Confeccionar_Orden_de_Compra">
+        <dc:Bounds x="1210" y="42" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0jnkpby_di" bpmnElement="Orden_de_Compra">
+        <dc:Bounds x="1232" y="-43" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1276" y="-32" width="48" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0l0dhlb_di" bpmnElement="Enviar_Orden_de_Compra_al_Proveedor">
+        <dc:Bounds x="1380" y="42" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0eb2kaf_di" bpmnElement="Esperar_mercaderia_de_el_proveedor">
+        <dc:Bounds x="1552" y="64" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1526" y="14" width="87" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0cvmonv_di" bpmnElement="Recibir_Mercaderia_Factura_y_Remito_del_Proveedor">
+        <dc:Bounds x="1520" y="395" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_053i4zv_di" bpmnElement="Comparar_mercaderia_con_Orden_de_Compra_y_Factura">
+        <dc:Bounds x="1680" y="395" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_16p08e7_di" bpmnElement="Sistema_de_Almacenamiento">
+        <dc:Bounds x="2040" y="610" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2022" y="667" width="87" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1449d2j_di" bpmnElement="Devolver_el_pedido_al_proveedor_con_factura_y_remito">
+        <dc:Bounds x="2015" y="335" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0y90e6f_di" bpmnElement="Cargar_Mercaderia_ingresada_en_el_sistema">
+        <dc:Bounds x="2015" y="505" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0smbftd_di" bpmnElement="Enviar_factura_y_remito_al_Area_de_Contabilidad">
+        <dc:Bounds x="2205" y="505" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1qmeabs_di" bpmnElement="Esperar_las_registraciones_correspondientes">
+        <dc:Bounds x="2387" y="527" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2361" y="570" width="89" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_012hk1m_di" bpmnElement="Orden_de_Compra_1">
+        <dc:Bounds x="1672" y="510" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1716" y="521" width="48" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0qsq5wv_di" bpmnElement="Enviar_el_Pedido_a_Almacen">
+        <dc:Bounds x="2505" y="505" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0h6piwh_di" bpmnElement="Mercaderia_no_ingresada" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="2207" y="357" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2188" y="400" width="75" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_09z0zex_di" bpmnElement="Mercaderia_compradas_almaced_nadas_y_disponible_para_la_produccion" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="2687" y="527" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2661" y="582" width="89" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1cvo5cm_di" bpmnElement="Estado_de_la_Mercaderia" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="1855" y="410" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1915" y="421" width="64" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_16g3g4e_di" bpmnElement="Flow_16g3g4e">
+        <di:waypoint x="238" y="82" />
+        <di:waypoint x="290" y="82" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0kd3ubf_di" bpmnElement="Flow_0kd3ubf">
+        <di:waypoint x="390" y="82" />
+        <di:waypoint x="450" y="82" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lf5ajr_di" bpmnElement="Flow_1lf5ajr">
+        <di:waypoint x="550" y="82" />
+        <di:waypoint x="610" y="82" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08ihwas_di" bpmnElement="Flow_08ihwas">
+        <di:waypoint x="710" y="82" />
+        <di:waypoint x="772" y="82" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jo40nw_di" bpmnElement="Flow_1jo40nw">
+        <di:waypoint x="808" y="82" />
+        <di:waypoint x="870" y="82" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0xf1diy_di" bpmnElement="Flow_0xf1diy">
+        <di:waypoint x="970" y="82" />
+        <di:waypoint x="1040" y="82" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lmqsa7_di" bpmnElement="Flow_1lmqsa7">
+        <di:waypoint x="1140" y="82" />
+        <di:waypoint x="1210" y="82" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07d7z0q_di" bpmnElement="Flow_07d7z0q">
+        <di:waypoint x="1310" y="82" />
+        <di:waypoint x="1380" y="82" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1j9lntn_di" bpmnElement="Flow_1j9lntn">
+        <di:waypoint x="1480" y="82" />
+        <di:waypoint x="1552" y="82" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07s5ntx_di" bpmnElement="Flow_07s5ntx">
+        <di:waypoint x="1570" y="100" />
+        <di:waypoint x="1570" y="395" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08ioqxd_di" bpmnElement="Flow_08ioqxd">
+        <di:waypoint x="1620" y="435" />
+        <di:waypoint x="1680" y="435" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1dr5ndt_di" bpmnElement="Flow_1dr5ndt">
+        <di:waypoint x="1780" y="435" />
+        <di:waypoint x="1855" y="435" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1seemcj_di" bpmnElement="Incumplimiento_de_la_Mercaderia">
+        <di:waypoint x="1880" y="410" />
+        <di:waypoint x="1880" y="375" />
+        <di:waypoint x="2015" y="375" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1869" y="341" width="87" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fijzbe_di" bpmnElement="Flow_1fijzbe">
+        <di:waypoint x="2115" y="375" />
+        <di:waypoint x="2207" y="375" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0cxbxbf_di" bpmnElement="Mercaderia_en_estado_optimo">
+        <di:waypoint x="1880" y="460" />
+        <di:waypoint x="1880" y="545" />
+        <di:waypoint x="2015" y="545" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1902" y="531" width="75" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_154zmse_di" bpmnElement="Flow_154zmse">
+        <di:waypoint x="2115" y="545" />
+        <di:waypoint x="2205" y="545" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0s2tur3_di" bpmnElement="Flow_0s2tur3">
+        <di:waypoint x="2305" y="545" />
+        <di:waypoint x="2387" y="545" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1o8rucg_di" bpmnElement="Flow_1o8rucg">
+        <di:waypoint x="2423" y="545" />
+        <di:waypoint x="2505" y="545" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1q0im3v_di" bpmnElement="Flow_1q0im3v">
+        <di:waypoint x="2605" y="545" />
+        <di:waypoint x="2687" y="545" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0us2vrr_di" bpmnElement="DataOutputAssociation_0us2vrr">
+        <di:waypoint x="518" y="42" />
+        <di:waypoint x="533" y="7" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_11ng6ro_di" bpmnElement="DataOutputAssociation_11ng6ro">
+        <di:waypoint x="1230" y="42" />
+        <di:waypoint x="1241" y="7" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_07f5byd_di" bpmnElement="DataInputAssociation_07f5byd">
+        <di:waypoint x="1690" y="510" />
+        <di:waypoint x="1690" y="475" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_03rv75z_di" bpmnElement="DataOutputAssociation_03rv75z">
+        <di:waypoint x="2065" y="585" />
+        <di:waypoint x="2065" y="610" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

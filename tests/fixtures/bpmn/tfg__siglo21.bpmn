@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_1gezdmb">
+    <bpmn2:participant id="Participant_1wzmef8" processRef="Process_1" />
+    <bpmn2:textAnnotation id="CAE_Start">
+      <bpmn2:text>CAE_Start</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_16esxr1" associationDirection="None" sourceRef="Proceso_CAE" targetRef="CAE_Start" />
+    <bpmn2:textAnnotation id="TFG" name="TFG" bizuit:AttachmentsCollection="[]">
+      <bpmn2:text>TFG</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_1om5djk" associationDirection="None" sourceRef="Visado" targetRef="TFG" />
+    <bpmn2:textAnnotation id="TFG_DOStart">
+      <bpmn2:text>TFG_DOStart</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_0tqre4p" associationDirection="None" sourceRef="Defensa_Oral" targetRef="TFG_DOStart" />
+    <bpmn2:textAnnotation id="GestionDeTitulos">
+      <bpmn2:text>GestionDeTitulos</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_05c4lul" associationDirection="None" sourceRef="Titulacion" targetRef="GestionDeTitulos" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_1" name="TFG" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="Siglo21">
+    <bpmn2:extensionElements>
+      <bizuit:processParameters>
+        <bizuit:parameter name="ExceptionParameter" description="System parameter for exception handling" type="XML" direction="Optional">
+          <bizuit:xmlSchemaDefinition>{"name":"Exception","type":"root","children":[{"name":"Message","type":"element","dataType":"string"},{"name":"Type","type":"element","dataType":"string"},{"name":"StackTrace","type":"element","dataType":"string"},{"name":"FaultingActivity","type":"element","dataType":"string"}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:parameter>
+        <bizuit:parameter name="OutputParameter" description="System parameter for workflow output" type="Escalar" direction="Out" scalarDataType="string" defaultValue="" />
+      </bizuit:processParameters>
+      <bizuit:processVariables>
+        <bizuit:variable name="InstanceId" description="System variable for workflow instance ID" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+        <bizuit:variable name="LoggedUser" description="System variable for logged user information" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+      </bizuit:processVariables>
+    </bpmn2:extensionElements>
+    <bpmn2:laneSet id="LaneSet_0lv6vsc">
+      <bpmn2:lane id="Lane_0beruml">
+        <bpmn2:flowNodeRef>StartEvent_1</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Cursado_de_materias</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_0v3ogev</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Planificacion_de_catedras</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Proceso_CAE</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Visado</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Defensa_Oral</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Titulacion</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:startEvent id="StartEvent_1">
+      <bpmn2:outgoing>Flow_0wghcgr</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="Flow_0wghcgr" sourceRef="StartEvent_1" targetRef="Planificacion_de_catedras" />
+    <bpmn2:subProcess id="Planificacion_de_catedras" name="Planificación de cátedras" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0wghcgr</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1xd7dn0</bpmn2:outgoing>
+    </bpmn2:subProcess>
+    <bpmn2:sequenceFlow id="Flow_1xd7dn0" sourceRef="Planificacion_de_catedras" targetRef="Cursado_de_materias" />
+    <bpmn2:manualTask id="Cursado_de_materias" name="Cursado de materias" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1xd7dn0</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1tv3epd</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:sequenceFlow id="Flow_1tv3epd" sourceRef="Cursado_de_materias" targetRef="Proceso_CAE" />
+    <bpmn2:subProcess id="Proceso_CAE" name="Proceso CAE" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1tv3epd</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_17vqywt</bpmn2:outgoing>
+    </bpmn2:subProcess>
+    <bpmn2:sequenceFlow id="Flow_17vqywt" sourceRef="Proceso_CAE" targetRef="Visado" />
+    <bpmn2:subProcess id="Visado" name="Visado" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_17vqywt</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_02j9f9l</bpmn2:outgoing>
+    </bpmn2:subProcess>
+    <bpmn2:sequenceFlow id="Flow_02j9f9l" sourceRef="Visado" targetRef="Defensa_Oral" />
+    <bpmn2:subProcess id="Defensa_Oral" name="Defensa Oral" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_02j9f9l</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0i1owwr</bpmn2:outgoing>
+    </bpmn2:subProcess>
+    <bpmn2:sequenceFlow id="Flow_0i1owwr" sourceRef="Defensa_Oral" targetRef="Titulacion" />
+    <bpmn2:subProcess id="Titulacion" name="Titulación" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0i1owwr</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0k5xrsc</bpmn2:outgoing>
+    </bpmn2:subProcess>
+    <bpmn2:endEvent id="Event_0v3ogev">
+      <bpmn2:incoming>Flow_0k5xrsc</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_0k5xrsc" sourceRef="Titulacion" targetRef="Event_0v3ogev" />
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1gezdmb">
+      <bpmndi:BPMNShape id="Participant_1wzmef8_di" bpmnElement="Participant_1wzmef8" isHorizontal="true">
+        <dc:Bounds x="-132" y="46" width="1250" height="370" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0beruml_di" bpmnElement="Lane_0beruml" isHorizontal="true">
+        <dc:Bounds x="-102" y="46" width="1220" height="370" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="-68" y="162" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0z4k3lo_di" bpmnElement="Cursado_de_materias" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="180" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0v3ogev_di" bpmnElement="Event_0v3ogev" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="982" y="162" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1lm436h_di" bpmnElement="Planificacion_de_catedras" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="20" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_10djxm4_di" bpmnElement="Proceso_CAE" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="340" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0z4r5ri_di" bpmnElement="Visado" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="500" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0k27270_di" bpmnElement="Defensa_Oral" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="660" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1crv29p_di" bpmnElement="Titulacion" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="820" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0wghcgr_di" bpmnElement="Flow_0wghcgr">
+        <di:waypoint x="-32" y="180" />
+        <di:waypoint x="20" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xd7dn0_di" bpmnElement="Flow_1xd7dn0">
+        <di:waypoint x="120" y="180" />
+        <di:waypoint x="180" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1tv3epd_di" bpmnElement="Flow_1tv3epd">
+        <di:waypoint x="280" y="180" />
+        <di:waypoint x="340" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17vqywt_di" bpmnElement="Flow_17vqywt">
+        <di:waypoint x="440" y="180" />
+        <di:waypoint x="500" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02j9f9l_di" bpmnElement="Flow_02j9f9l">
+        <di:waypoint x="600" y="180" />
+        <di:waypoint x="660" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0i1owwr_di" bpmnElement="Flow_0i1owwr">
+        <di:waypoint x="760" y="180" />
+        <di:waypoint x="820" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0k5xrsc_di" bpmnElement="Flow_0k5xrsc">
+        <di:waypoint x="920" y="180" />
+        <di:waypoint x="982" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_16esxr1_di" bpmnElement="Association_16esxr1">
+        <di:waypoint x="390" y="140" />
+        <di:waypoint x="390" y="91" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1om5djk_di" bpmnElement="Association_1om5djk">
+        <di:waypoint x="552" y="140" />
+        <di:waypoint x="555" y="65" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0tqre4p_di" bpmnElement="Association_0tqre4p">
+        <di:waypoint x="710" y="140" />
+        <di:waypoint x="710" y="101" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_05c4lul_di" bpmnElement="Association_05c4lul">
+        <di:waypoint x="870" y="140" />
+        <di:waypoint x="870" y="101" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_1msogo0_di" bpmnElement="CAE_Start">
+        <dc:Bounds x="340" y="60" width="100" height="31" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1vaq0az_di" bpmnElement="TFG">
+        <dc:Bounds x="545" y="51" width="21" height="14" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0l0arvv_di" bpmnElement="TFG_DOStart">
+        <dc:Bounds x="660" y="51" width="100" height="50" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1todpg2_di" bpmnElement="GestionDeTitulos">
+        <dc:Bounds x="820" y="51" width="120" height="50" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_0qnxtxo">
+    <bpmndi:BPMNPlane id="BPMNPlane_07j4ogd" bpmnElement="Planificacion_de_catedras" />
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_13q7k7q">
+    <bpmndi:BPMNPlane id="BPMNPlane_00oe41b" bpmnElement="Proceso_CAE" />
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1b2wgat">
+    <bpmndi:BPMNPlane id="BPMNPlane_1k075rs" bpmnElement="Visado" />
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1igy7at">
+    <bpmndi:BPMNPlane id="BPMNPlane_1l0dyqr" bpmnElement="Defensa_Oral" />
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_048j8zu">
+    <bpmndi:BPMNPlane id="BPMNPlane_1d3sifj" bpmnElement="Titulacion" />
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

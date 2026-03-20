@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_1lwlxo7">
+    <bpmn2:participant id="Participant_1k84v0g" processRef="Process_1" />
+    <bpmn2:participant id="Participant_0yu5pa2" processRef="Process_1m31nag" />
+    <bpmn2:textAnnotation id="Vacaciones2" name="Vacaciones2" bizuit:AttachmentsCollection="[{&#34;type&#34;:&#34;file&#34;,&#34;content&#34;:&#34;UmVjbGFtbyBkZSBSZWVtYm9sc28KCkNvcnJlbyBlbGVjdHLDs25pY286IGFyaWVsQHR5Y29uLmNvbS5hcgpEZXNjcmlwY2nDs24gZGVsIHJlY2xhbW86IENlbmEgY29uIGFtaWdvcwpNb250byBhIHJlY2xhbWFyOiAkMTAwCg==&#34;,&#34;fileName&#34;:&#34;Reclamo_Reembolso_Cena.txt&#34;,&#34;descriptiveName&#34;:&#34;Reembolsol Cena&#34;,&#34;mimeType&#34;:&#34;text/plain&#34;,&#34;size&#34;:127},{&#34;type&#34;:&#34;url&#34;,&#34;url&#34;:&#34;https://www.google.com&#34;,&#34;name&#34;:&#34;www.google.com&#34;,&#34;descriptiveName&#34;:&#34;buscador&#34;}]">
+      <bpmn2:text>Vacaciones2</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_0t73p0l" associationDirection="None" sourceRef="Activity_0cwzcwg" targetRef="Vacaciones2" />
+    <bpmn2:textAnnotation id="Se_aprueba_si_al_gerente_le_da_la_gana">
+      <bpmn2:text>Se aprueba si al gerente le da la gana</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_0ujzft1" associationDirection="None" sourceRef="Gateway_0sr3yyh" targetRef="Se_aprueba_si_al_gerente_le_da_la_gana" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_1" name="DiagramaVacaciones" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="UES21-AreaProcesos">
+    <bpmn2:laneSet id="LaneSet_1hdhjgl" />
+    <bpmn2:sequenceFlow id="Flow_0k3ycor" sourceRef="EvaluarSolicitudVacaciones" targetRef="Gateway_0sr3yyh" />
+    <bpmn2:sequenceFlow id="Flow_05pcvpr" sourceRef="StartEvent_1" targetRef="EvaluarSolicitudVacaciones" />
+    <bpmn2:startEvent id="StartEvent_1">
+      <bpmn2:outgoing>Flow_05pcvpr</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:userTask id="EvaluarSolicitudVacaciones" name="EvaluarSolicitudVacaciones" bizuit:Performers="BPN_ACMEROL1" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" showInList="true" order="0" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" showInList="true" order="1" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" showInList="true" order="2" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" showInList="true" order="3" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" showInList="true" order="4" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_05pcvpr</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0k3ycor</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_0xgu9rf" sourceRef="Gateway_0sr3yyh" targetRef="Activity_0cwzcwg" />
+    <bpmn2:sequenceFlow id="NoAprobado" name="NoAprobado" sourceRef="Gateway_0sr3yyh" targetRef="EnvioRechazoVacaciones" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}">
+      <bpmn2:documentation>ddfdfdfdfdf</bpmn2:documentation>
+    </bpmn2:sequenceFlow>
+    <bpmn2:endEvent id="Fin" name="Fin" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0k943ib</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sendTask id="EnvioRechazoVacaciones" name="EnvioRechazoVacaciones" bizuit:Performers="BPN_ACMEROL1" bizuit:emailServiceType="SMTP" bizuit:emailHost="" bizuit:emailPort="25" bizuit:emailUser="" bizuit:emailPassword="" bizuit:emailRequireAuth="true" bizuit:emailDisableSSL="false" bizuit:emailGoogleClientId="" bizuit:emailGoogleClientSecret="" bizuit:emailGoogleAccessToken="" bizuit:emailGoogleRefreshToken="" bizuit:emailFrom="" bizuit:emailTo="" bizuit:emailCc="" bizuit:emailBcc="" bizuit:emailSubject="" bizuit:emailBody="jdsjsjdsjdjsd" bizuit:emailBackgroundSend="false" bizuit:emailMultipleExecution="false" bizuit:emailAdvancedSettings="" bizuit:activityTracking="Both" bizuit:selectedInputSources="{&#34;parameters&#34;:[],&#34;variables&#34;:[],&#34;activities&#34;:[]}" bizuit:selectedOutputTargets="{&#34;parameters&#34;:[],&#34;variables&#34;:[]}" bizuit:inputSchema="&#60;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&#62;&#10;&#60;xs:schema xmlns:xs=&#34;http://www.w3.org/2001/XMLSchema&#34; elementFormDefault=&#34;qualified&#34;&#62;&#10;  &#60;xs:element name=&#34;Email Input&#34;&#62;&#10;    &#60;xs:complexType&#62;&#10;      &#60;xs:sequence&#62;&#10;        &#60;xs:element name=&#34;EmailFields&#34;&#62;&#10;          &#60;xs:complexType&#62;&#10;            &#60;xs:sequence&#62;&#10;              &#60;xs:element name=&#34;From&#34; type=&#34;xs:string&#34;/&#62;&#10;              &#60;xs:element name=&#34;To&#34; type=&#34;xs:string&#34;/&#62;&#10;              &#60;xs:element name=&#34;ReplyTo&#34; type=&#34;xs:string&#34;/&#62;&#10;              &#60;xs:element name=&#34;CC&#34; type=&#34;xs:string&#34;/&#62;&#10;              &#60;xs:element name=&#34;BCC&#34; type=&#34;xs:string&#34;/&#62;&#10;              &#60;xs:element name=&#34;Subject&#34; type=&#34;xs:string&#34;/&#62;&#10;              &#60;xs:element name=&#34;Body&#34; type=&#34;xs:string&#34;/&#62;&#10;            &#60;/xs:sequence&#62;&#10;          &#60;/xs:complexType&#62;&#10;        &#60;/xs:element&#62;&#10;        &#60;xs:element name=&#34;Authentication&#34;&#62;&#10;          &#60;xs:complexType&#62;&#10;            &#60;xs:sequence&#62;&#10;              &#60;xs:element name=&#34;GoogleAPI&#34;&#62;&#10;                &#60;xs:complexType&#62;&#10;                  &#60;xs:sequence&#62;&#10;                    &#60;xs:element name=&#34;ClientId&#34; type=&#34;xs:string&#34;/&#62;&#10;                    &#60;xs:element name=&#34;ClientSecret&#34; type=&#34;xs:string&#34;/&#62;&#10;                    &#60;xs:element name=&#34;GoogleAccessToken&#34; type=&#34;xs:string&#34;/&#62;&#10;                    &#60;xs:element name=&#34;GoogleRefreshToken&#34; type=&#34;xs:string&#34;/&#62;&#10;                  &#60;/xs:sequence&#62;&#10;                &#60;/xs:complexType&#62;&#10;              &#60;/xs:element&#62;&#10;              &#60;xs:element name=&#34;SMTP&#34;&#62;&#10;                &#60;xs:complexType&#62;&#10;                  &#60;xs:sequence&#62;&#10;                    &#60;xs:element name=&#34;SmtpHost&#34; type=&#34;xs:string&#34;/&#62;&#10;                    &#60;xs:element name=&#34;Port&#34; type=&#34;xs:string&#34;/&#62;&#10;                    &#60;xs:element name=&#34;UserName&#34; type=&#34;xs:string&#34;/&#62;&#10;                    &#60;xs:element name=&#34;Password&#34; type=&#34;xs:string&#34;/&#62;&#10;                    &#60;xs:element name=&#34;RequireAuth&#34; type=&#34;xs:string&#34;/&#62;&#10;                    &#60;xs:element name=&#34;DisableSSL&#34; type=&#34;xs:string&#34;/&#62;&#10;                  &#60;/xs:sequence&#62;&#10;                &#60;/xs:complexType&#62;&#10;              &#60;/xs:element&#62;&#10;            &#60;/xs:sequence&#62;&#10;          &#60;/xs:complexType&#62;&#10;        &#60;/xs:element&#62;&#10;        &#60;xs:element name=&#34;Documents&#34;&#62;&#10;          &#60;xs:complexType&#62;&#10;            &#60;xs:sequence&#62;&#10;              &#60;xs:element name=&#34;Document&#34; maxOccurs=&#34;unbounded&#34;&#62;&#10;                &#60;xs:complexType&#62;&#10;                  &#60;xs:sequence&#62;&#10;                    &#60;xs:element name=&#34;IdDocument&#34; type=&#34;xs:string&#34;/&#62;&#10;                    &#60;xs:element name=&#34;Version&#34; type=&#34;xs:string&#34;/&#62;&#10;                  &#60;/xs:sequence&#62;&#10;                &#60;/xs:complexType&#62;&#10;              &#60;/xs:element&#62;&#10;            &#60;/xs:sequence&#62;&#10;          &#60;/xs:complexType&#62;&#10;        &#60;/xs:element&#62;&#10;        &#60;xs:element name=&#34;Attachments&#34;&#62;&#10;          &#60;xs:complexType&#62;&#10;            &#60;xs:sequence&#62;&#10;              &#60;xs:element name=&#34;Attachment&#34; maxOccurs=&#34;unbounded&#34;&#62;&#10;                &#60;xs:complexType&#62;&#10;                  &#60;xs:sequence&#62;&#10;                    &#60;xs:element name=&#34;Path&#34; type=&#34;xs:string&#34;/&#62;&#10;                    &#60;xs:element name=&#34;NombreCliente&#34; type=&#34;xs:string&#34;/&#62;&#10;                  &#60;/xs:sequence&#62;&#10;                &#60;/xs:complexType&#62;&#10;              &#60;/xs:element&#62;&#10;            &#60;/xs:sequence&#62;&#10;          &#60;/xs:complexType&#62;&#10;        &#60;/xs:element&#62;&#10;      &#60;/xs:sequence&#62;&#10;    &#60;/xs:complexType&#62;&#10;  &#60;/xs:element&#62;&#10;&#60;/xs:schema&#62;" bizuit:inputSchemaJson="{&#34;id&#34;:&#34;emailInput&#34;,&#34;name&#34;:&#34;Email Input&#34;,&#34;displayName&#34;:&#34;Entrada Email&#34;,&#34;isRoot&#34;:true,&#34;level&#34;:0,&#34;children&#34;:[{&#34;id&#34;:&#34;EmailFields&#34;,&#34;name&#34;:&#34;EmailFields&#34;,&#34;displayName&#34;:&#34;Campos de Email&#34;,&#34;fullPath&#34;:&#34;EmailFields&#34;,&#34;level&#34;:0,&#34;children&#34;:[{&#34;id&#34;:&#34;From&#34;,&#34;name&#34;:&#34;From&#34;,&#34;displayName&#34;:&#34;De (From)&#34;,&#34;fullPath&#34;:&#34;EmailFields.From&#34;,&#34;level&#34;:1},{&#34;id&#34;:&#34;To&#34;,&#34;name&#34;:&#34;To&#34;,&#34;displayName&#34;:&#34;Para (To)&#34;,&#34;fullPath&#34;:&#34;EmailFields.To&#34;,&#34;level&#34;:1},{&#34;id&#34;:&#34;ReplyTo&#34;,&#34;name&#34;:&#34;ReplyTo&#34;,&#34;displayName&#34;:&#34;Responder A&#34;,&#34;fullPath&#34;:&#34;EmailFields.ReplyTo&#34;,&#34;level&#34;:1},{&#34;id&#34;:&#34;CC&#34;,&#34;name&#34;:&#34;CC&#34;,&#34;displayName&#34;:&#34;CC (Copia)&#34;,&#34;fullPath&#34;:&#34;EmailFields.CC&#34;,&#34;level&#34;:1},{&#34;id&#34;:&#34;BCC&#34;,&#34;name&#34;:&#34;BCC&#34;,&#34;displayName&#34;:&#34;BCC (Copia Oculta)&#34;,&#34;fullPath&#34;:&#34;EmailFields.BCC&#34;,&#34;level&#34;:1},{&#34;id&#34;:&#34;Subject&#34;,&#34;name&#34;:&#34;Subject&#34;,&#34;displayName&#34;:&#34;Asunto&#34;,&#34;fullPath&#34;:&#34;EmailFields.Subject&#34;,&#34;level&#34;:1},{&#34;id&#34;:&#34;Body&#34;,&#34;name&#34;:&#34;Body&#34;,&#34;displayName&#34;:&#34;Cuerpo del Mensaje&#34;,&#34;fullPath&#34;:&#34;EmailFields.Body&#34;,&#34;level&#34;:1}]},{&#34;id&#34;:&#34;Authentication&#34;,&#34;name&#34;:&#34;Authentication&#34;,&#34;displayName&#34;:&#34;Autenticación&#34;,&#34;fullPath&#34;:&#34;Authentication&#34;,&#34;level&#34;:0,&#34;children&#34;:[{&#34;id&#34;:&#34;GoogleAPI&#34;,&#34;name&#34;:&#34;GoogleAPI&#34;,&#34;displayName&#34;:&#34;Google API&#34;,&#34;fullPath&#34;:&#34;Authentication.GoogleAPI&#34;,&#34;level&#34;:1,&#34;children&#34;:[{&#34;id&#34;:&#34;ClientId&#34;,&#34;name&#34;:&#34;ClientId&#34;,&#34;displayName&#34;:&#34;Client ID&#34;,&#34;fullPath&#34;:&#34;Authentication.GoogleAPI.ClientId&#34;,&#34;level&#34;:2},{&#34;id&#34;:&#34;ClientSecret&#34;,&#34;name&#34;:&#34;ClientSecret&#34;,&#34;displayName&#34;:&#34;Client Secret&#34;,&#34;fullPath&#34;:&#34;Authentication.GoogleAPI.ClientSecret&#34;,&#34;level&#34;:2},{&#34;id&#34;:&#34;GoogleAccessToken&#34;,&#34;name&#34;:&#34;GoogleAccessToken&#34;,&#34;displayName&#34;:&#34;Access Token&#34;,&#34;fullPath&#34;:&#34;Authentication.GoogleAPI.GoogleAccessToken&#34;,&#34;level&#34;:2},{&#34;id&#34;:&#34;GoogleRefreshToken&#34;,&#34;name&#34;:&#34;GoogleRefreshToken&#34;,&#34;displayName&#34;:&#34;Refresh Token&#34;,&#34;fullPath&#34;:&#34;Authentication.GoogleAPI.GoogleRefreshToken&#34;,&#34;level&#34;:2}]},{&#34;id&#34;:&#34;SMTP&#34;,&#34;name&#34;:&#34;SMTP&#34;,&#34;displayName&#34;:&#34;Configuración SMTP&#34;,&#34;fullPath&#34;:&#34;Authentication.SMTP&#34;,&#34;level&#34;:1,&#34;children&#34;:[{&#34;id&#34;:&#34;SmtpHost&#34;,&#34;name&#34;:&#34;SmtpHost&#34;,&#34;displayName&#34;:&#34;Servidor SMTP&#34;,&#34;fullPath&#34;:&#34;Authentication.SMTP.SmtpHost&#34;,&#34;level&#34;:2},{&#34;id&#34;:&#34;Port&#34;,&#34;name&#34;:&#34;Port&#34;,&#34;displayName&#34;:&#34;Puerto SMTP&#34;,&#34;fullPath&#34;:&#34;Authentication.SMTP.Port&#34;,&#34;level&#34;:2},{&#34;id&#34;:&#34;UserName&#34;,&#34;name&#34;:&#34;UserName&#34;,&#34;displayName&#34;:&#34;Usuario SMTP&#34;,&#34;fullPath&#34;:&#34;Authentication.SMTP.UserName&#34;,&#34;level&#34;:2},{&#34;id&#34;:&#34;Password&#34;,&#34;name&#34;:&#34;Password&#34;,&#34;displayName&#34;:&#34;Contraseña SMTP&#34;,&#34;fullPath&#34;:&#34;Authentication.SMTP.Password&#34;,&#34;level&#34;:2},{&#34;id&#34;:&#34;RequireAuth&#34;,&#34;name&#34;:&#34;RequireAuth&#34;,&#34;displayName&#34;:&#34;Requiere Autenticación&#34;,&#34;fullPath&#34;:&#34;Authentication.SMTP.RequireAuth&#34;,&#34;level&#34;:2},{&#34;id&#34;:&#34;DisableSSL&#34;,&#34;name&#34;:&#34;DisableSSL&#34;,&#34;displayName&#34;:&#34;Deshabilitar SSL&#34;,&#34;fullPath&#34;:&#34;Authentication.SMTP.DisableSSL&#34;,&#34;level&#34;:2}]}]},{&#34;id&#34;:&#34;Documents&#34;,&#34;name&#34;:&#34;Documents&#34;,&#34;displayName&#34;:&#34;Documentos&#34;,&#34;fullPath&#34;:&#34;Documents&#34;,&#34;level&#34;:0,&#34;type&#34;:&#34;collection&#34;,&#34;isCollection&#34;:true,&#34;children&#34;:[{&#34;id&#34;:&#34;Document&#34;,&#34;name&#34;:&#34;Document&#34;,&#34;displayName&#34;:&#34;Documento&#34;,&#34;fullPath&#34;:&#34;Documents.Document&#34;,&#34;level&#34;:1,&#34;isRepeatableItem&#34;:true,&#34;children&#34;:[{&#34;id&#34;:&#34;IdDocument&#34;,&#34;name&#34;:&#34;IdDocument&#34;,&#34;displayName&#34;:&#34;ID del Documento&#34;,&#34;fullPath&#34;:&#34;Documents.Document.IdDocument&#34;,&#34;level&#34;:2},{&#34;id&#34;:&#34;Version&#34;,&#34;name&#34;:&#34;Version&#34;,&#34;displayName&#34;:&#34;Versión&#34;,&#34;fullPath&#34;:&#34;Documents.Document.Version&#34;,&#34;level&#34;:2}]}]},{&#34;id&#34;:&#34;Attachments&#34;,&#34;name&#34;:&#34;Attachments&#34;,&#34;displayName&#34;:&#34;Adjuntos&#34;,&#34;fullPath&#34;:&#34;Attachments&#34;,&#34;level&#34;:0,&#34;type&#34;:&#34;collection&#34;,&#34;isCollection&#34;:true,&#34;children&#34;:[{&#34;id&#34;:&#34;Attachment&#34;,&#34;name&#34;:&#34;Attachment&#34;,&#34;displayName&#34;:&#34;Adjunto&#34;,&#34;fullPath&#34;:&#34;Attachments.Attachment&#34;,&#34;level&#34;:1,&#34;isRepeatableItem&#34;:true,&#34;children&#34;:[{&#34;id&#34;:&#34;Path&#34;,&#34;name&#34;:&#34;Path&#34;,&#34;displayName&#34;:&#34;Ruta del Archivo&#34;,&#34;fullPath&#34;:&#34;Attachments.Attachment.Path&#34;,&#34;level&#34;:2},{&#34;id&#34;:&#34;NombreCliente&#34;,&#34;name&#34;:&#34;NombreCliente&#34;,&#34;displayName&#34;:&#34;Nombre del Cliente&#34;,&#34;fullPath&#34;:&#34;Attachments.Attachment.NombreCliente&#34;,&#34;level&#34;:2}]}]}]}">
+      <bpmn2:documentation>se le envia al usuario un mail indicia.s.a.sa..sa</bpmn2:documentation>
+      <bpmn2:incoming>NoAprobado</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0b2x0jo</bpmn2:outgoing>
+    </bpmn2:sendTask>
+    <bpmn2:serviceTask id="Activity_0cwzcwg" bizuit:serviceTaskType="sql">
+      <bpmn2:incoming>Flow_0xgu9rf</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0a0wtrr</bpmn2:outgoing>
+    </bpmn2:serviceTask>
+    <bpmn2:exclusiveGateway id="Gateway_0sr3yyh">
+      <bpmn2:incoming>Flow_0k3ycor</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0xgu9rf</bpmn2:outgoing>
+      <bpmn2:outgoing>NoAprobado</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_0a0wtrr" sourceRef="Activity_0cwzcwg" targetRef="Gateway_14vg9qe" />
+    <bpmn2:exclusiveGateway id="Gateway_14vg9qe">
+      <bpmn2:incoming>Flow_0a0wtrr</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0b2x0jo</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0k943ib</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_0b2x0jo" sourceRef="EnvioRechazoVacaciones" targetRef="Gateway_14vg9qe" />
+    <bpmn2:sequenceFlow id="Flow_0k943ib" sourceRef="Gateway_14vg9qe" targetRef="Fin" />
+  </bpmn2:process>
+  <bpmn2:process id="Process_1m31nag" bizuit:ProcessLevel="1">
+    <bpmn2:laneSet id="LaneSet_0msyg9g">
+      <bpmn2:lane id="Lane_1dw1bb1" />
+    </bpmn2:laneSet>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1lwlxo7">
+      <bpmndi:BPMNShape id="Participant_1k84v0g_di" bpmnElement="Participant_1k84v0g" isHorizontal="true">
+        <dc:Bounds x="201" y="-21" width="1347" height="630" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="312" y="222" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1cmku0q_di" bpmnElement="EvaluarSolicitudVacaciones" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="500" y="440" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_16bpf1o_di" bpmnElement="Fin" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="1412" y="132" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1422" y="108" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0gg8swx_di" bpmnElement="EnvioRechazoVacaciones" bioc:stroke="#008b8b" bioc:fill="#e0ffff" color:background-color="#e0ffff" color:border-color="#008b8b">
+        <dc:Bounds x="1120" y="490" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0qzhp50_di" bpmnElement="Activity_0cwzcwg" bioc:stroke="#ffb300" bioc:fill="#fff9c4" color:background-color="#fff9c4" color:border-color="#ffb300">
+        <dc:Bounds x="920" y="120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0sr3yyh_di" bpmnElement="Gateway_0sr3yyh" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="845" y="355" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_14vg9qe_di" bpmnElement="Gateway_14vg9qe" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="1145" y="225" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0k3ycor_di" bpmnElement="Flow_0k3ycor">
+        <di:waypoint x="600" y="480" />
+        <di:waypoint x="870" y="480" />
+        <di:waypoint x="870" y="405" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05pcvpr_di" bpmnElement="Flow_05pcvpr">
+        <di:waypoint x="348" y="240" />
+        <di:waypoint x="384" y="240" />
+        <di:waypoint x="384" y="480" />
+        <di:waypoint x="500" y="480" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0xgu9rf_di" bpmnElement="Flow_0xgu9rf">
+        <di:waypoint x="870" y="355" />
+        <di:waypoint x="870" y="160" />
+        <di:waypoint x="920" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00odt0x_di" bpmnElement="NoAprobado">
+        <di:waypoint x="895" y="380" />
+        <di:waypoint x="950" y="380" />
+        <di:waypoint x="950" y="530" />
+        <di:waypoint x="1120" y="530" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="932" y="453" width="66" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0a0wtrr_di" bpmnElement="Flow_0a0wtrr">
+        <di:waypoint x="1020" y="160" />
+        <di:waypoint x="1170" y="160" />
+        <di:waypoint x="1170" y="225" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0b2x0jo_di" bpmnElement="Flow_0b2x0jo">
+        <di:waypoint x="1170" y="490" />
+        <di:waypoint x="1170" y="275" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0k943ib_di" bpmnElement="Flow_0k943ib">
+        <di:waypoint x="1195" y="250" />
+        <di:waypoint x="1430" y="250" />
+        <di:waypoint x="1430" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_0yu5pa2_di" bpmnElement="Participant_0yu5pa2" isHorizontal="true">
+        <dc:Bounds x="240" y="690" width="600" height="370" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1dw1bb1_di" bpmnElement="Lane_1dw1bb1" isHorizontal="true">
+        <dc:Bounds x="270" y="690" width="570" height="370" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0t73p0l_di" bpmnElement="Association_0t73p0l">
+        <di:waypoint x="1000" y="120" />
+        <di:waypoint x="1072" y="24" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0ujzft1_di" bpmnElement="Association_0ujzft1">
+        <di:waypoint x="845" y="380" />
+        <di:waypoint x="770" y="380" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0eposis_di" bpmnElement="Vacaciones2">
+        <dc:Bounds x="1048" y="10" width="65" height="14" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1ccnxoj_di" bpmnElement="Se_aprueba_si_al_gerente_le_da_la_gana">
+        <dc:Bounds x="670" y="365" width="100" height="89" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

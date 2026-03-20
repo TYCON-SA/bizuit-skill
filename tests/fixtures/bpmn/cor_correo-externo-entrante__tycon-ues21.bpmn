@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_19i6vcq">
+    <bpmn2:participant id="Correo_Externo_Entrante" name="Correo Externo Entrante" processRef="Process_1" bizuit:AttachmentsCollection="[]" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_1" name="COR_Correo Externo Entrante" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="TYCON-UES21">
+    <bpmn2:extensionElements>
+      <bizuit:processParameters>
+        <bizuit:parameter name="Datos" description="" type="XML" direction="In">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Remitente","type":"complex","children":[{"name":"Apellido","type":"element","dataType":"string"},{"name":"Nombre","type":"element","dataType":"string"},{"name":"TipoDoc","type":"element","dataType":"string"},{"name":"NroDoc","type":"element","dataType":"string"},{"name":"Direccion","type":"element","dataType":"string"},{"name":"CodPostal","type":"element","dataType":"string"},{"name":"EnvioANombreInst","type":"element","dataType":"string"},{"name":"Responsables","type":"complex","isCollection":true,"itemName":"Responsable","children":[{"name":"Responsable","type":"complex","isRepeatableItem":true,"children":[{"name":"UserDisplayName","type":"element","dataType":"string"},{"name":"UserNames","type":"element","dataType":"string"}]}]},{"name":"DisplayName","type":"element","dataType":"string"},{"name":"Provincias","type":"complex","isCollection":true,"itemName":"Provincia","children":[{"name":"Provincia","type":"complex","isRepeatableItem":true,"children":[{"name":"Cod","type":"element","dataType":"string"},{"name":"Desc","type":"element","dataType":"string"},{"name":"Codiio","type":"element","dataType":"string"},{"name":"Codi","type":"element","dataType":"string"}]}]},{"name":"Localidades","type":"complex","isCollection":true,"itemName":"Localidad","children":[{"name":"Localidad","type":"complex","isRepeatableItem":true,"children":[{"name":"Cod","type":"element","dataType":"string"},{"name":"Desc","type":"element","dataType":"string"},{"name":"Codigo","type":"element","dataType":"string"}]}]},{"name":"DireccionCompleta","type":"element","dataType":"string"},{"name":"Paises","type":"complex","isCollection":true,"itemName":"Pais","children":[{"name":"Pais","type":"complex","isRepeatableItem":true,"children":[{"name":"Cod","type":"element","dataType":"string"},{"name":"Desc","type":"element","dataType":"string"}]}]}]},{"name":"Destinatarios","type":"complex","children":[{"name":"Apellido","type":"element","dataType":"string"},{"name":"Nombre","type":"element","dataType":"string"},{"name":"Dirección","type":"element","dataType":"string"},{"name":"CodPostal","type":"element","dataType":"string"},{"name":"Email","type":"element","dataType":"string"},{"name":"Celular","type":"element","dataType":"string"},{"name":"ProveedorCorreo","type":"complex","children":[{"name":"Cod","type":"element","dataType":"string"},{"name":"Desc","type":"element","dataType":"string"}]},{"name":"DisplayName","type":"element","dataType":"string"},{"name":"Provincia","type":"complex","children":[]},{"name":"Localidad","type":"complex","children":[]}]}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:parameter>
+      </bizuit:processParameters>
+      <bizuit:processVariables>
+        <bizuit:variable name="Call21" description="" type="XML">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Call21","type":"complex","children":[{"name":"UserName","type":"element","dataType":"string"},{"name":"UserDisplayName","type":"element","dataType":"string"},{"name":"Email","type":"element","dataType":"string"}]}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:variable>
+        <bizuit:variable name="DatosDevolucion" description="" type="XML">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Usuario","type":"complex","children":[{"name":"UserName","type":"element","dataType":"string"},{"name":"UserDisplayName","type":"element","dataType":"string"}]},{"name":"Devuelto","type":"element","dataType":"string"},{"name":"FechaDevolucion","type":"element","dataType":"string"},{"name":"MotivoDevolucion","type":"element","dataType":"string"}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:variable>
+        <bizuit:variable name="DatosRetro" description="" type="XML">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Usuario","type":"complex","children":[{"name":"UserName","type":"element","dataType":"string"},{"name":"UserDisplayName","type":"element","dataType":"string"}]},{"name":"RecibidoPor","type":"element","dataType":"string"},{"name":"Firma","type":"element","dataType":"string"}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:variable>
+        <bizuit:variable name="DatosValidacion" description="" type="XML">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Destinatario","type":"complex","children":[{"name":"Apellido","type":"element","dataType":"string"},{"name":"Nombre","type":"element","dataType":"string"},{"name":"Direccion","type":"element","dataType":"string"},{"name":"CodPostal","type":"element","dataType":"string"},{"name":"Email","type":"element","dataType":"string"},{"name":"Celular","type":"element","dataType":"string"},{"name":"DisplayName","type":"element","dataType":"string"},{"name":"Provincia","type":"complex","children":[{"name":"Cod","type":"element","dataType":"string"},{"name":"Desc","type":"element","dataType":"string"}]},{"name":"Localidad","type":"complex","children":[{"name":"Cod","type":"element","dataType":"string"},{"name":"Desc","type":"element","dataType":"string"}]},{"name":"DireccionCompleta","type":"element","dataType":"string"},{"name":"Pais","type":"complex","children":[{"name":"Cod","type":"element","dataType":"string"},{"name":"Desc","type":"element","dataType":"string"}]}]}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:variable>
+        <bizuit:variable name="FlagBucleValidacion" description="" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+      </bizuit:processVariables>
+    </bpmn2:extensionElements>
+    <bpmn2:laneSet id="LaneSet_111gz1e">
+      <bpmn2:lane id="COR_Call21" name="COR-Call21" bizuit:Performers="COR-Call21" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>GenerarEtiqueta</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetDestinatarioValidacionYDevolucion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>ObtenerNroEtiqueta</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>_02_Validar_Datos</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetRecibidoPor</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetReferenteEmail</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>_03_Registrar_Entrega</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetFechaEntrega</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>_04_VerPedidosEntregados</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Correo_Externo_Saliente_entregado</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Pedido_Correo_Externo_Entrante</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:startEvent id="Pedido_Correo_Externo_Entrante" name="Pedido Correo Externo Entrante" bizuit:Performers="COR-Call21">
+      <bpmn2:outgoing>Flow_1fhgp0o</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="Flow_1fhgp0o" sourceRef="Pedido_Correo_Externo_Entrante" targetRef="GenerarEtiqueta" />
+    <bpmn2:userTask id="GenerarEtiqueta" name="GenerarEtiqueta" bizuit:Performers="COR-Call21">
+      <bpmn2:incoming>Flow_1fhgp0o</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_07zpp0t</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_07zpp0t" sourceRef="GenerarEtiqueta" targetRef="SetDestinatarioValidacionYDevolucion" />
+    <bpmn2:scriptTask id="SetDestinatarioValidacionYDevolucion" name="SetDestinatarioValidacionYDevolucion" bizuit:Performers="COR-Call21">
+      <bpmn2:incoming>Flow_07zpp0t</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_14srt80</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="Flow_14srt80" sourceRef="SetDestinatarioValidacionYDevolucion" targetRef="ObtenerNroEtiqueta" />
+    <bpmn2:serviceTask id="ObtenerNroEtiqueta" name="ObtenerNroEtiqueta" bizuit:Performers="COR-Call21" bizuit:serviceTaskType="sql">
+      <bpmn2:incoming>Flow_14srt80</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1cvs0t4</bpmn2:outgoing>
+    </bpmn2:serviceTask>
+    <bpmn2:sequenceFlow id="Flow_1cvs0t4" sourceRef="ObtenerNroEtiqueta" targetRef="_02_Validar_Datos" />
+    <bpmn2:userTask id="_02_Validar_Datos" name="02 - Validar Datos" bizuit:Performers="COR-Call21" bizuit:LoopConditions="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;join&#34;:null,&#34;children&#34;:[{&#34;type&#34;:&#34;condition&#34;,&#34;join&#34;:null,&#34;source&#34;:{&#34;type&#34;:&#34;variable&#34;,&#34;value&#34;:&#34;FlagBucleValidacion&#34;,&#34;subElementPath&#34;:&#34;&#34;},&#34;comparator&#34;:&#34;==&#34;,&#34;target&#34;:{&#34;type&#34;:&#34;constant&#34;,&#34;value&#34;:&#34;0&#34;,&#34;subElementPath&#34;:&#34;&#34;}}]}]}" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_1cvs0t4</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0obkw9d</bpmn2:outgoing>
+      <bpmn2:standardLoopCharacteristics />
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_0obkw9d" sourceRef="_02_Validar_Datos" targetRef="SetRecibidoPor" />
+    <bpmn2:scriptTask id="SetRecibidoPor" name="SetRecibidoPor" bizuit:Performers="COR-Call21">
+      <bpmn2:incoming>Flow_0obkw9d</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1c35m65</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="Flow_1c35m65" sourceRef="SetRecibidoPor" targetRef="SetReferenteEmail" />
+    <bpmn2:serviceTask id="SetReferenteEmail" name="SetReferenteEmail" bizuit:Performers="COR-Call21" bizuit:serviceTaskType="sql" bizuit:sqlSource="Actividad" bizuit:sqlConnectionString="" bizuit:sqlIsBigQuery="false" bizuit:sqlBigQueryProjectId="" bizuit:sqlBigQueryCredentials="" bizuit:sqlCommandType="Text" bizuit:sqlCommandText="" bizuit:sqlTimeout="30" bizuit:sqlParameters="[]" bizuit:sqlReturnDataType="Records" bizuit:sqlEnableMultipleExecution="false" bizuit:preservePreviousResults="false" bizuit:clearEmptyOutputNodes="false" bizuit:activityTracking="Both" bizuit:selectedInputSources="{&#34;parameters&#34;:[],&#34;variables&#34;:[],&#34;activities&#34;:[]}" bizuit:selectedOutputTargets="{&#34;parameters&#34;:[],&#34;variables&#34;:[]}">
+      <bpmn2:incoming>Flow_1c35m65</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1hr9731</bpmn2:outgoing>
+    </bpmn2:serviceTask>
+    <bpmn2:sequenceFlow id="Flow_1hr9731" sourceRef="SetReferenteEmail" targetRef="_03_Registrar_Entrega" />
+    <bpmn2:userTask id="_03_Registrar_Entrega" name="03 - Registrar Entrega" bizuit:Performers="COR-Call21">
+      <bpmn2:incoming>Flow_1hr9731</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1toorib</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_1toorib" sourceRef="_03_Registrar_Entrega" targetRef="SetFechaEntrega" />
+    <bpmn2:scriptTask id="SetFechaEntrega" name="SetFechaEntrega" bizuit:Performers="COR-Call21">
+      <bpmn2:incoming>Flow_1toorib</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_111bk8h</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="Flow_111bk8h" sourceRef="SetFechaEntrega" targetRef="_04_VerPedidosEntregados" />
+    <bpmn2:userTask id="_04_VerPedidosEntregados" name="04 - VerPedidosEntregados" bizuit:Performers="COR-Call21">
+      <bpmn2:incoming>Flow_111bk8h</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0a57927</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_0a57927" sourceRef="_04_VerPedidosEntregados" targetRef="Correo_Externo_Saliente_entregado" />
+    <bpmn2:endEvent id="Correo_Externo_Saliente_entregado" name="Correo Externo Saliente entregado" bizuit:Performers="COR-Call21">
+      <bpmn2:incoming>Flow_0a57927</bpmn2:incoming>
+      <bpmn2:terminateEventDefinition id="TerminateEventDefinition_1wosw9n" />
+    </bpmn2:endEvent>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_19i6vcq">
+      <bpmndi:BPMNShape id="Participant_0geas4r_di" bpmnElement="Correo_Externo_Entrante" isHorizontal="true">
+        <dc:Bounds x="-180" y="65" width="1850" height="315" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_148c09v_di" bpmnElement="COR_Call21" isHorizontal="true">
+        <dc:Bounds x="-150" y="65" width="1820" height="315" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="Pedido_Correo_Externo_Entrante" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="-78" y="191" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-103" y="234" width="86" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13lxe0z_di" bpmnElement="GenerarEtiqueta" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="10" y="169" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_09uil4h_di" bpmnElement="SetDestinatarioValidacionYDevolucion" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="170" y="169" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1mrxafa_di" bpmnElement="ObtenerNroEtiqueta" bioc:stroke="#ffb300" bioc:fill="#fff9c4" color:background-color="#fff9c4" color:border-color="#ffb300">
+        <dc:Bounds x="330" y="169" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0o7dgi3_di" bpmnElement="_02_Validar_Datos" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="490" y="169" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0o9wjq7_di" bpmnElement="SetRecibidoPor" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="650" y="169" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13mzsti_di" bpmnElement="SetReferenteEmail" bioc:stroke="#ffb300" bioc:fill="#fff9c4" color:background-color="#fff9c4" color:border-color="#ffb300">
+        <dc:Bounds x="810" y="169" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0jsxrgv_di" bpmnElement="_03_Registrar_Entrega" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="970" y="169" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1m89rno_di" bpmnElement="SetFechaEntrega" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="1130" y="169" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0smfnfx_di" bpmnElement="_04_VerPedidosEntregados" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="1290" y="169" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ekymot_di" bpmnElement="Correo_Externo_Saliente_entregado" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="1452" y="191" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1431" y="234" width="78" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1fhgp0o_di" bpmnElement="Flow_1fhgp0o">
+        <di:waypoint x="-42" y="209" />
+        <di:waypoint x="10" y="209" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07zpp0t_di" bpmnElement="Flow_07zpp0t">
+        <di:waypoint x="110" y="209" />
+        <di:waypoint x="170" y="209" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14srt80_di" bpmnElement="Flow_14srt80">
+        <di:waypoint x="270" y="209" />
+        <di:waypoint x="330" y="209" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1cvs0t4_di" bpmnElement="Flow_1cvs0t4">
+        <di:waypoint x="430" y="209" />
+        <di:waypoint x="490" y="209" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0obkw9d_di" bpmnElement="Flow_0obkw9d">
+        <di:waypoint x="590" y="209" />
+        <di:waypoint x="650" y="209" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1c35m65_di" bpmnElement="Flow_1c35m65">
+        <di:waypoint x="750" y="209" />
+        <di:waypoint x="810" y="209" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1hr9731_di" bpmnElement="Flow_1hr9731">
+        <di:waypoint x="910" y="209" />
+        <di:waypoint x="970" y="209" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1toorib_di" bpmnElement="Flow_1toorib">
+        <di:waypoint x="1070" y="209" />
+        <di:waypoint x="1130" y="209" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_111bk8h_di" bpmnElement="Flow_111bk8h">
+        <di:waypoint x="1230" y="209" />
+        <di:waypoint x="1290" y="209" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0a57927_di" bpmnElement="Flow_0a57927">
+        <di:waypoint x="1390" y="209" />
+        <di:waypoint x="1452" y="209" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

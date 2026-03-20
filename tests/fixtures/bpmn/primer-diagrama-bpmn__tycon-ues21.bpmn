@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_1h7broq">
+    <bpmn2:participant id="Gestion_de_solicitudes" name="Gestión de solicitudes" processRef="Primer_diagrama_BPMN" bizuit:AttachmentsCollection="[]" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Primer_diagrama_BPMN" name="Primer diagrama BPMN" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="TYCON-UES21" bizuit:createdBy="gvelez" bizuit:createdDate="2025-08-24T01:27:47.420Z" bizuit:lastEditedBy="gvelez" bizuit:lastEditedDate="2025-08-24T01:27:47.420Z">
+    <bpmn2:laneSet id="LaneSet_10pqwnz">
+      <bpmn2:lane id="Solicitante" name="Solicitante" bizuit:Performers="Solicitante" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Inicio</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="Soporte" name="Soporte" bizuit:Performers="Soporte" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Evaluacion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>InformarAlCliente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>EvaluarSolicitud</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>TratamientoDeSolicitud</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Fin</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Maximo2Dias</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_11efq66</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="Gerente" name="Gerente" bizuit:Performers="Gerente" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>ResolverLaSolicitud</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:exclusiveGateway id="Evaluacion" name="Evaluación" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0shziwy</bpmn2:incoming>
+      <bpmn2:outgoing>Tiene_solucion_inmediata</bpmn2:outgoing>
+      <bpmn2:outgoing>No_tiene_solucion_inmediata</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:serviceTask id="InformarAlCliente" name="InformarAlCliente" bizuit:Performers="Soporte" bizuit:serviceTaskType="rest">
+      <bpmn2:incoming>Tiene_solucion_inmediata</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0zjs90m</bpmn2:outgoing>
+    </bpmn2:serviceTask>
+    <bpmn2:userTask id="EvaluarSolicitud" name="EvaluarSolicitud" bizuit:Performers="Soporte">
+      <bpmn2:incoming>Flow_1wvhyca</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0shziwy</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="TratamientoDeSolicitud" name="TratamientoDeSolicitud" bizuit:Performers="Soporte" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>No_tiene_solucion_inmediata</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0tjll6y</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:startEvent id="Inicio" name="Inicio" bizuit:Performers="Solicitante" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:outgoing>Flow_1wvhyca</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:userTask id="ResolverLaSolicitud" name="ResolverLaSolicitud" bizuit:Performers="Gerente">
+      <bpmn2:incoming>Flow_0wme0kt</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0lbdg4g</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:endEvent id="Fin" name="Fin" bizuit:Performers="Soporte" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0jvy6d4</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0lbdg4g</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:boundaryEvent id="Maximo2Dias" name="Máximo2Días" attachedToRef="TratamientoDeSolicitud" bizuit:Performers="Soporte" bizuit:AttachmentsCollection="[]" bizuit:TimerConfiguration="{&#34;type&#34;:&#34;fixed&#34;,&#34;delay&#34;:{&#34;days&#34;:0,&#34;hours&#34;:0,&#34;minutes&#34;:0,&#34;seconds&#34;:0},&#34;useCalendar&#34;:false}">
+      <bpmn2:outgoing>Flow_0wme0kt</bpmn2:outgoing>
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_1c8oegq" />
+    </bpmn2:boundaryEvent>
+    <bpmn2:sequenceFlow id="Flow_0shziwy" sourceRef="EvaluarSolicitud" targetRef="Evaluacion" />
+    <bpmn2:sequenceFlow id="Tiene_solucion_inmediata" name="Tiene solución inmediata" sourceRef="Evaluacion" targetRef="InformarAlCliente" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="No_tiene_solucion_inmediata" name="No tiene solución inmediata" sourceRef="Evaluacion" targetRef="TratamientoDeSolicitud" />
+    <bpmn2:sequenceFlow id="Flow_0zjs90m" sourceRef="InformarAlCliente" targetRef="Gateway_11efq66" />
+    <bpmn2:sequenceFlow id="Flow_1wvhyca" sourceRef="Inicio" targetRef="EvaluarSolicitud" />
+    <bpmn2:sequenceFlow id="Flow_0tjll6y" sourceRef="TratamientoDeSolicitud" targetRef="Gateway_11efq66" />
+    <bpmn2:sequenceFlow id="Flow_0wme0kt" sourceRef="Maximo2Dias" targetRef="ResolverLaSolicitud" />
+    <bpmn2:sequenceFlow id="Flow_0jvy6d4" sourceRef="Gateway_11efq66" targetRef="Fin" />
+    <bpmn2:sequenceFlow id="Flow_0lbdg4g" sourceRef="ResolverLaSolicitud" targetRef="Fin" />
+    <bpmn2:exclusiveGateway id="Gateway_11efq66">
+      <bpmn2:incoming>Flow_0zjs90m</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0tjll6y</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0jvy6d4</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1h7broq">
+      <bpmndi:BPMNShape id="Participant_0yhqgv0_di" bpmnElement="Gestion_de_solicitudes" isHorizontal="true">
+        <dc:Bounds x="-120" y="-160" width="890" height="540" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_05cxp47_di" bpmnElement="Gerente" isHorizontal="true">
+        <dc:Bounds x="-90" y="240" width="860" height="140" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_05z2bsk_di" bpmnElement="Soporte" isHorizontal="true">
+        <dc:Bounds x="-90" y="-37" width="860" height="277" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0zk1hhx_di" bpmnElement="Solicitante" isHorizontal="true">
+        <dc:Bounds x="-90" y="-160" width="860" height="123" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1np37o2_di" bpmnElement="Evaluacion" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="115" y="-5" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="113" y="-35" width="56" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1qmigft_di" bpmnElement="InformarAlCliente" bioc:stroke="#ffb300" bioc:fill="#fff9c4" color:background-color="#fff9c4" color:border-color="#ffb300">
+        <dc:Bounds x="340" y="-20" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ta203i_di" bpmnElement="EvaluarSolicitud" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="-40" y="-20" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0owtnds_di" bpmnElement="TratamientoDeSolicitud" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="260" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1q8pdsl_di" bpmnElement="Inicio" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="-8" y="-118" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-3" y="-148" width="27" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1f6d006_di" bpmnElement="ResolverLaSolicitud" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="400" y="280" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_10rv2ex_di" bpmnElement="Fin" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="682" y="2" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="693" y="-28" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_11efq66_di" bpmnElement="Gateway_11efq66" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="495" y="-5" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1hl1gt1_di" bpmnElement="Maximo2Dias">
+        <dc:Bounds x="342" y="172" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="387.5" y="183" width="69" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0shziwy_di" bpmnElement="Flow_0shziwy">
+        <di:waypoint x="60" y="20" />
+        <di:waypoint x="115" y="20" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09pizkk_di" bpmnElement="Tiene_solucion_inmediata">
+        <di:waypoint x="165" y="20" />
+        <di:waypoint x="340" y="20" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="203" y="-14" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vzwunz_di" bpmnElement="No_tiene_solucion_inmediata">
+        <di:waypoint x="140" y="45" />
+        <di:waypoint x="140" y="150" />
+        <di:waypoint x="260" y="150" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="111" y="95" width="88" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zjs90m_di" bpmnElement="Flow_0zjs90m">
+        <di:waypoint x="440" y="20" />
+        <di:waypoint x="495" y="20" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1wvhyca_di" bpmnElement="Flow_1wvhyca">
+        <di:waypoint x="10" y="-82" />
+        <di:waypoint x="10" y="-20" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0tjll6y_di" bpmnElement="Flow_0tjll6y">
+        <di:waypoint x="360" y="150" />
+        <di:waypoint x="520" y="150" />
+        <di:waypoint x="520" y="45" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wme0kt_di" bpmnElement="Flow_0wme0kt">
+        <di:waypoint x="360" y="208" />
+        <di:waypoint x="360" y="320" />
+        <di:waypoint x="400" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jvy6d4_di" bpmnElement="Flow_0jvy6d4">
+        <di:waypoint x="545" y="20" />
+        <di:waypoint x="682" y="20" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lbdg4g_di" bpmnElement="Flow_0lbdg4g">
+        <di:waypoint x="500" y="320" />
+        <di:waypoint x="700" y="320" />
+        <di:waypoint x="700" y="38" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

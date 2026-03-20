@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_0ipifax">
+    <bpmn2:participant id="ProcesodeAlquilerMotorhome" name="ProcesodeAlquilerMotorhome" processRef="Process_ProcesoAlquilerMotorhomeGarant_a_1764367177498" bizuit:AttachmentsCollection="[]" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_ProcesoAlquilerMotorhomeGarant_a_1764367177498" name="Proceso De AlquilerMotorhome" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="Judith UTN">
+    <bpmn2:extensionElements>
+      <bizuit:processParameters>
+        <bizuit:parameter name="Cliente" description="" type="XML" direction="In">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Clientes","type":"complex","children":[{"name":"IdCliente","type":"element","dataType":"string"},{"name":"Apellido","type":"element","dataType":"string"},{"name":"Nombre","type":"element","dataType":"string"},{"name":"DNI","type":"element","dataType":"string"},{"name":"Direccion","type":"element","dataType":"string"},{"name":"Telefono","type":"element","dataType":"string"},{"name":"Email","type":"element","dataType":"string"},{"name":"FechaRegistro","type":"element","dataType":"string"},{"name":"LicenciaConducir","type":"element","dataType":"string"}]}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:parameter>
+        <bizuit:parameter name="ExceptionParameter" description="System parameter for exception handling" type="XML" direction="Optional">
+          <bizuit:xmlSchemaDefinition>{"name":"Exception","type":"root","children":[{"name":"Message","type":"element","dataType":"string"},{"name":"Type","type":"element","dataType":"string"},{"name":"StackTrace","type":"element","dataType":"string"},{"name":"FaultingActivity","type":"element","dataType":"string"}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:parameter>
+        <bizuit:parameter name="OutputParameter" description="System parameter for workflow output" type="Escalar" direction="Out" scalarDataType="string" defaultValue="" />
+        <bizuit:parameter name="Vehiculo" description="" type="XML" direction="In">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Vehiculos","type":"complex","children":[{"name":"IDVehiculo","type":"element","dataType":"string"},{"name":"Matricula","type":"element","dataType":"string"},{"name":"Marca","type":"element","dataType":"string"},{"name":"Modelo","type":"element","dataType":"string"},{"name":"Color","type":"element","dataType":"string"},{"name":"Anio","type":"element","dataType":"string"},{"name":"Tipo","type":"element","dataType":"string"},{"name":"Estado","type":"element","dataType":"string"},{"name":"Kilometraje","type":"element","dataType":"string"}]}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:parameter>
+        <bizuit:parameter name="Contrato" description="" type="XML" direction="In">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Contratos","type":"complex","children":[{"name":"IDContrato","type":"element","dataType":"string"},{"name":"FechaInicio","type":"element","dataType":"string"},{"name":"FechaFin","type":"element","dataType":"string"},{"name":"PrecioTotal","type":"element","dataType":"string"},{"name":"EstadoContrato","type":"element","dataType":"string"}]}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:parameter>
+      </bizuit:processParameters>
+      <bizuit:processVariables>
+        <bizuit:variable name="InstanceId" description="System variable for workflow instance ID" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+        <bizuit:variable name="LoggedUser" description="System variable for logged user information" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+      </bizuit:processVariables>
+    </bpmn2:extensionElements>
+    <bpmn2:laneSet id="LaneSet_0eybjuf">
+      <bpmn2:lane id="AsesorDeAlquiler" name="AsesorDeAlquiler" bizuit:Performers="AsesorDeAlquiler" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Solicitud_de_alquiler_de_vehiculo</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_10gztwp</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Brindar_asesoramiento_de_vehiculos_y_requisitos</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Verificar_interes_de_la_persona</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Solicitar_documentacion_de_requisitos</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Informar_no_cumplimiento_de_requisitos</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Despedir_a_interesado</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Registrar_nuevo_cliente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Confeccionar_Contrato_de_Alquiler</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Condiciones_no_aceptadas</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_1t67z0f</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Verificar_cumplimiento_de_requisitos</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1kyf3iu</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Recibir_contrato_firmado_por_el_cliente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Generar_y_emitir_Factura</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="Responsable_de_Caja" name="Responsable de Caja" bizuit:Performers="Responsable de Caja" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Verificar_estado_de_vehiculo_devuelto</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Desbloquear_deposito_en_garantia</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Confeccionar_comprobante_de_anulacion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Entregar_comprobante_de_anulacion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Cobrar_garantia</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Confeccionar_Factura_por_deposito</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Entregar_factura_con_sello_de_cobrada</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1l4z7ij</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Finalizar_y_archivar_el_contrato</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Vehiculo_devuelto</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0jxghje</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Cobrar_alquiler</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Bloquear_deposito_en_garantia</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Recibir_tarjeta_en_garantia</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="ResponsableDeEntregas" name="ResponsableDeEntregas" bizuit:Performers="ResponsableDeEntregas" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Consultar_vehiculo</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Entregar_Vehiculo</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Espera_devolucion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Recibir_devolucion_vehiculo</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Guardar_vehiculo_en_deposito</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Registrar_novedad</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:sequenceFlow id="Flow_13bga3g" sourceRef="Solicitud_de_alquiler_de_vehiculo" targetRef="Brindar_asesoramiento_de_vehiculos_y_requisitos" />
+    <bpmn2:startEvent id="Solicitud_de_alquiler_de_vehiculo" name="Solicitud de alquiler de vehículo" bizuit:Performers="AsesorDeAlquiler" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:outgoing>Flow_13bga3g</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="No_acepta_condiciones" name="No acepta condiciones" sourceRef="Gateway_10gztwp" targetRef="Despedir_a_interesado" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:sequenceFlow id="Flow_0qlsisv" sourceRef="Despedir_a_interesado" targetRef="Condiciones_no_aceptadas" />
+    <bpmn2:sequenceFlow id="Flow_168v574" sourceRef="Brindar_asesoramiento_de_vehiculos_y_requisitos" targetRef="Verificar_interes_de_la_persona" />
+    <bpmn2:sequenceFlow id="Flow_00wycmf" sourceRef="Verificar_interes_de_la_persona" targetRef="Gateway_10gztwp" />
+    <bpmn2:sequenceFlow id="Acepta_condiciones" name="Acepta condiciones" sourceRef="Gateway_10gztwp" targetRef="Solicitar_documentacion_de_requisitos" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:exclusiveGateway id="Gateway_10gztwp">
+      <bpmn2:incoming>Flow_00wycmf</bpmn2:incoming>
+      <bpmn2:outgoing>No_acepta_condiciones</bpmn2:outgoing>
+      <bpmn2:outgoing>Acepta_condiciones</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_0d6ckne" sourceRef="Generar_y_emitir_Factura" targetRef="Cobrar_alquiler" />
+    <bpmn2:sequenceFlow id="Flow_1ragxho" sourceRef="Bloquear_deposito_en_garantia" targetRef="Consultar_vehiculo" />
+    <bpmn2:userTask id="Brindar_asesoramiento_de_vehiculos_y_requisitos" name="Brindar asesoramiento de vehículos y requisitos" bizuit:Performers="AsesorDeAlquiler">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" showInList="true" order="0" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" showInList="true" order="1" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" showInList="true" order="2" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" showInList="true" order="3" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" showInList="true" order="4" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_13bga3g</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_168v574</bpmn2:outgoing>
+      <bpmn2:property id="Property_1nafkjm" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_00ujhc1">
+        <bpmn2:sourceRef>Vehiculos</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1nafkjm</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Verificar_interes_de_la_persona" name="Verificar interés de la persona" bizuit:Performers="AsesorDeAlquiler" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_168v574</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_00wycmf</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_13467pu" sourceRef="Confeccionar_Contrato_de_Alquiler" targetRef="Recibir_contrato_firmado_por_el_cliente" />
+    <bpmn2:sequenceFlow id="Si_cumple_requisitos" name="Si cumple requisitos" sourceRef="Gateway_1kyf3iu" targetRef="Registrar_nuevo_cliente" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:dataStoreReference id="Vehiculos" name="Vehículos" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:userTask id="Solicitar_documentacion_de_requisitos" name="Solicitar documentación de requisitos" bizuit:Performers="AsesorDeAlquiler" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Acepta_condiciones</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1q5b9ja</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Informar_no_cumplimiento_de_requisitos" name="Informar no cumplimiento de requisitos" bizuit:Performers="AsesorDeAlquiler">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>No_cumple_requisitos</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1vdibvh</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_1q5b9ja" sourceRef="Solicitar_documentacion_de_requisitos" targetRef="Verificar_cumplimiento_de_requisitos" />
+    <bpmn2:sequenceFlow id="Flow_10k6v72" sourceRef="Verificar_cumplimiento_de_requisitos" targetRef="Gateway_1kyf3iu" />
+    <bpmn2:sequenceFlow id="No_cumple_requisitos" name="No cumple requisitos" sourceRef="Gateway_1kyf3iu" targetRef="Informar_no_cumplimiento_de_requisitos" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:sequenceFlow id="Flow_1vdibvh" sourceRef="Informar_no_cumplimiento_de_requisitos" targetRef="Event_1t67z0f" />
+    <bpmn2:sequenceFlow id="Flow_1aiyjv7" sourceRef="Registrar_nuevo_cliente" targetRef="Confeccionar_Contrato_de_Alquiler" />
+    <bpmn2:manualTask id="Despedir_a_interesado" name="Despedir a interesado" bizuit:Performers="AsesorDeAlquiler" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>No_acepta_condiciones</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0qlsisv</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:userTask id="Registrar_nuevo_cliente" name="Registrar nuevo cliente" bizuit:Performers="AsesorDeAlquiler">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Si_cumple_requisitos</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1aiyjv7</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0zx207g">
+        <bpmn2:targetRef>Clientes</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Confeccionar_Contrato_de_Alquiler" name="Confeccionar Contrato de Alquiler" bizuit:Performers="AsesorDeAlquiler">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_1aiyjv7</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_13467pu</bpmn2:outgoing>
+      <bpmn2:property id="Property_09xhq1a" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_01xpscr">
+        <bpmn2:sourceRef>Clientes</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_09xhq1a</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_03b7wl3">
+        <bpmn2:sourceRef>Vehiculos</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_09xhq1a</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0j2h94x">
+        <bpmn2:targetRef>Contrato_de_Alquiler</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1ukines">
+        <bpmn2:targetRef>Contratos</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:dataStoreReference id="Clientes" name="Clientes" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:sequenceFlow id="Flow_0snpc6t" sourceRef="Guardar_vehiculo_en_deposito" targetRef="Verificar_estado_de_vehiculo_devuelto" />
+    <bpmn2:endEvent id="Condiciones_no_aceptadas" name="Condiciones no aceptadas" bizuit:Performers="AsesorDeAlquiler">
+      <bpmn2:incoming>Flow_0qlsisv</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:endEvent id="Event_1t67z0f" bizuit:Performers="AsesorDeAlquiler">
+      <bpmn2:incoming>Flow_1vdibvh</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:userTask id="Verificar_cumplimiento_de_requisitos" name="Verificar cumplimiento de requisitos" bizuit:Performers="AsesorDeAlquiler" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_1q5b9ja</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_10k6v72</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:exclusiveGateway id="Gateway_1kyf3iu">
+      <bpmn2:incoming>Flow_10k6v72</bpmn2:incoming>
+      <bpmn2:outgoing>No_cumple_requisitos</bpmn2:outgoing>
+      <bpmn2:outgoing>Si_cumple_requisitos</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:dataStoreReference id="Contratos" name="Contratos" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObjectReference id="Contrato_de_Alquiler" name="Contrato de Alquiler" dataObjectRef="DataObject_19ui1s5" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_19ui1s5" />
+    <bpmn2:userTask id="Recibir_contrato_firmado_por_el_cliente" name="Recibir contrato firmado por el cliente" bizuit:Performers="AsesorDeAlquiler" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_13467pu</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0fstltd</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Generar_y_emitir_Factura" name="Generar y emitir Factura" bizuit:Performers="AsesorDeAlquiler" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0fstltd</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0d6ckne</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_08lopvh">
+        <bpmn2:targetRef>Factura</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_0fstltd" sourceRef="Recibir_contrato_firmado_por_el_cliente" targetRef="Generar_y_emitir_Factura" />
+    <bpmn2:dataObjectReference id="Factura" name="Factura" dataObjectRef="DataObject_0hm6teq" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_0hm6teq" />
+    <bpmn2:userTask id="Consultar_vehiculo" name="Consultar vehículo" bizuit:Performers="ResponsableDeEntregas" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_1ragxho</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_13gy5uq</bpmn2:outgoing>
+      <bpmn2:property id="Property_0ku8mkh" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0mylevp">
+        <bpmn2:sourceRef>Contratos_1</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_0ku8mkh</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_13gy5uq" sourceRef="Consultar_vehiculo" targetRef="Entregar_Vehiculo" />
+    <bpmn2:sequenceFlow id="Flow_0z8m4k2" sourceRef="Verificar_estado_de_vehiculo_devuelto" targetRef="Gateway_0jxghje" />
+    <bpmn2:sequenceFlow id="Vehiculo_en_condiciones_optimas" name="Vehículo en condiciones óptimas" sourceRef="Gateway_0jxghje" targetRef="Desbloquear_deposito_en_garantia" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Vehiculo_con_desperfectos" name="Vehículo con desperfectos" sourceRef="Gateway_0jxghje" targetRef="Cobrar_garantia" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:userTask id="Entregar_Vehiculo" name="Entregar Vehículo" bizuit:Performers="ResponsableDeEntregas">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_13gy5uq</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0ip270f</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_0ip270f" sourceRef="Entregar_Vehiculo" targetRef="Espera_devolucion" />
+    <bpmn2:intermediateCatchEvent id="Espera_devolucion" name="Espera devolución" bizuit:Performers="ResponsableDeEntregas" bizuit:AttachmentsCollection="[]" bizuit:TimerConfiguration="{&#34;type&#34;:&#34;fixed&#34;,&#34;delay&#34;:{&#34;days&#34;:0,&#34;hours&#34;:0,&#34;minutes&#34;:0,&#34;seconds&#34;:0}}">
+      <bpmn2:incoming>Flow_0ip270f</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0xmsm3d</bpmn2:outgoing>
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_05dhp6n" />
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:userTask id="Recibir_devolucion_vehiculo" name="Recibir devolución vehículo" bizuit:Performers="ResponsableDeEntregas">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0xmsm3d</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_02yw0is</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Guardar_vehiculo_en_deposito" name="Guardar vehículo en depósito" bizuit:Performers="ResponsableDeEntregas">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0vt79j7</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0snpc6t</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1iacwpy">
+        <bpmn2:targetRef>Vehiculos_1</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Registrar_novedad" name="Registrar novedad" bizuit:Performers="ResponsableDeEntregas" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_02yw0is</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0vt79j7</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_19vqbqw">
+        <bpmn2:targetRef>Contratos_2</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:dataStoreReference id="Vehiculos_1" name="Vehículos" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:sequenceFlow id="Flow_0xmsm3d" sourceRef="Espera_devolucion" targetRef="Recibir_devolucion_vehiculo" />
+    <bpmn2:sequenceFlow id="Flow_02yw0is" sourceRef="Recibir_devolucion_vehiculo" targetRef="Registrar_novedad" />
+    <bpmn2:sequenceFlow id="Flow_0vt79j7" sourceRef="Registrar_novedad" targetRef="Guardar_vehiculo_en_deposito" />
+    <bpmn2:dataStoreReference id="Contratos_2" name="Contratos" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:userTask id="Verificar_estado_de_vehiculo_devuelto" name="Verificar estado de vehículo devuelto" bizuit:Performers="Responsable de Caja" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0snpc6t</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0z8m4k2</bpmn2:outgoing>
+      <bpmn2:property id="Property_1fx0k8b" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_10ilf4f">
+        <bpmn2:sourceRef>Contratos_2</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1fx0k8b</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Desbloquear_deposito_en_garantia" name="Desbloquear depósito en garantía" bizuit:Performers="Responsable de Caja">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Vehiculo_en_condiciones_optimas</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1mtptjj</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Confeccionar_comprobante_de_anulacion" name="Confeccionar comprobante de anulación" bizuit:Performers="Responsable de Caja">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_1mtptjj</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0hb0qac</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0i2e91l">
+        <bpmn2:targetRef>Comprobante_anulacion</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Entregar_comprobante_de_anulacion" name="Entregar comprobante de anulación" bizuit:Performers="Responsable de Caja">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0hb0qac</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_08cls8i</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:dataObjectReference id="Comprobante_anulacion" name="Comprobante anulación" dataObjectRef="DataObject_1s165gs" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_1s165gs" />
+    <bpmn2:dataStoreReference id="Cobros_2" name="Cobros" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:userTask id="Cobrar_garantia" name="Cobrar garantía" bizuit:Performers="Responsable de Caja">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Vehiculo_con_desperfectos</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_14w0kf9</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1g31f2d">
+        <bpmn2:targetRef>Cobros_2</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Confeccionar_Factura_por_deposito" name="Confeccionar Factura por depósito" bizuit:Performers="Responsable de Caja">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_14w0kf9</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0qnh1ru</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1at0jmq">
+        <bpmn2:targetRef>Factura_por_deposito</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Entregar_factura_con_sello_de_cobrada" name="Entregar factura con sello de cobrada" bizuit:Performers="Responsable de Caja">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0qnh1ru</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_18jr3bg</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:exclusiveGateway id="Gateway_1l4z7ij">
+      <bpmn2:incoming>Flow_08cls8i</bpmn2:incoming>
+      <bpmn2:incoming>Flow_18jr3bg</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0k2tekw</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:userTask id="Finalizar_y_archivar_el_contrato" name="Finalizar y archivar el contrato" bizuit:Performers="Responsable de Caja" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0k2tekw</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0m3hodp</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1r9qnwn">
+        <bpmn2:targetRef>Contratos_3</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:dataStoreReference id="Contratos_3" name="Contratos" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObjectReference id="Factura_por_deposito" name="Factura por depósito" dataObjectRef="DataObject_1vzs9ct" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_1vzs9ct" />
+    <bpmn2:endEvent id="Vehiculo_devuelto" name="Vehículo devuelto" bizuit:Performers="Responsable de Caja">
+      <bpmn2:incoming>Flow_0m3hodp</bpmn2:incoming>
+      <bpmn2:terminateEventDefinition id="TerminateEventDefinition_07yoe1t" />
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_1mtptjj" sourceRef="Desbloquear_deposito_en_garantia" targetRef="Confeccionar_comprobante_de_anulacion" />
+    <bpmn2:sequenceFlow id="Flow_0hb0qac" sourceRef="Confeccionar_comprobante_de_anulacion" targetRef="Entregar_comprobante_de_anulacion" />
+    <bpmn2:sequenceFlow id="Flow_08cls8i" sourceRef="Entregar_comprobante_de_anulacion" targetRef="Gateway_1l4z7ij" />
+    <bpmn2:sequenceFlow id="Flow_14w0kf9" sourceRef="Cobrar_garantia" targetRef="Confeccionar_Factura_por_deposito" />
+    <bpmn2:sequenceFlow id="Flow_0qnh1ru" sourceRef="Confeccionar_Factura_por_deposito" targetRef="Entregar_factura_con_sello_de_cobrada" />
+    <bpmn2:sequenceFlow id="Flow_18jr3bg" sourceRef="Entregar_factura_con_sello_de_cobrada" targetRef="Gateway_1l4z7ij" />
+    <bpmn2:sequenceFlow id="Flow_0k2tekw" sourceRef="Gateway_1l4z7ij" targetRef="Finalizar_y_archivar_el_contrato" />
+    <bpmn2:sequenceFlow id="Flow_0m3hodp" sourceRef="Finalizar_y_archivar_el_contrato" targetRef="Vehiculo_devuelto" />
+    <bpmn2:exclusiveGateway id="Gateway_0jxghje">
+      <bpmn2:incoming>Flow_0z8m4k2</bpmn2:incoming>
+      <bpmn2:outgoing>Vehiculo_en_condiciones_optimas</bpmn2:outgoing>
+      <bpmn2:outgoing>Vehiculo_con_desperfectos</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_0y8xsxh" sourceRef="Cobrar_alquiler" targetRef="Recibir_tarjeta_en_garantia" />
+    <bpmn2:dataStoreReference id="Cobros" name="Cobros" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:userTask id="Cobrar_alquiler" name="Cobrar alquiler" bizuit:Performers="Responsable de Caja">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0d6ckne</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0y8xsxh</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1a26y68">
+        <bpmn2:targetRef>Cobros</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Bloquear_deposito_en_garantia" name="Bloquear depósito en garantía" bizuit:Performers="Responsable de Caja">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_18pge6e</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1ragxho</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_05fdxc2">
+        <bpmn2:targetRef>Contratos_1</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:dataStoreReference id="Contratos_1" name="Contratos" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:sequenceFlow id="Flow_18pge6e" sourceRef="Recibir_tarjeta_en_garantia" targetRef="Bloquear_deposito_en_garantia" />
+    <bpmn2:userTask id="Recibir_tarjeta_en_garantia" name="Recibir tarjeta en garantía" bizuit:Performers="Responsable de Caja">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" showInList="true" order="0" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" showInList="true" order="1" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" showInList="true" order="2" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" showInList="true" order="3" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" showInList="true" order="4" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0y8xsxh</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_18pge6e</bpmn2:outgoing>
+    </bpmn2:userTask>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0ipifax">
+      <bpmndi:BPMNShape id="Participant_1it3x7f_di" bpmnElement="ProcesodeAlquilerMotorhome" isHorizontal="true">
+        <dc:Bounds x="-448" y="50" width="3718" height="1420" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1ctkya0_di" bpmnElement="ResponsableDeEntregas" isHorizontal="true">
+        <dc:Bounds x="-418" y="1090" width="3688" height="380" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1t8e1j1_di" bpmnElement="Responsable_de_Caja" isHorizontal="true">
+        <dc:Bounds x="-418" y="705" width="3688" height="385" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1gj8x8b_di" bpmnElement="AsesorDeAlquiler" isHorizontal="true">
+        <dc:Bounds x="-418" y="50" width="3688" height="655" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="Solicitud_de_alquiler_de_vehiculo" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="-348" y="262" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-359" y="305" width="59" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_10gztwp_di" bpmnElement="Gateway_10gztwp" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="35" y="255" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0x58fn0_di" bpmnElement="Brindar_asesoramiento_de_vehiculos_y_requisitos" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="-260" y="240" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0zk8vtp_di" bpmnElement="Verificar_interes_de_la_persona" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="-100" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0fcs8wh_di" bpmnElement="Vehiculos">
+        <dc:Bounds x="-235" y="125" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-235" y="101" width="49" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1oz42qu_di" bpmnElement="Solicitar_documentacion_de_requisitos" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="100" y="310" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0szxfag_di" bpmnElement="Informar_no_cumplimiento_de_requisitos" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="490" y="200" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1yedf7q_di" bpmnElement="Despedir_a_interesado" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="180" y="90" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1b63n9o_di" bpmnElement="Registrar_nuevo_cliente" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="490" y="410" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1d1zvk6_di" bpmnElement="Confeccionar_Contrato_de_Alquiler" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="690" y="410" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1hajosj_di" bpmnElement="Clientes">
+        <dc:Bounds x="515" y="315" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="520" y="291" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1c0zfu8_di" bpmnElement="Condiciones_no_aceptadas" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="332" y="112" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="311" y="155" width="78" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1rs5omf_di" bpmnElement="Event_1t67z0f" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="652" y="222" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1pres0j_di" bpmnElement="Verificar_cumplimiento_de_requisitos" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="230" y="310" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1kyf3iu_di" bpmnElement="Gateway_1kyf3iu" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="355" y="325" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_040ejtx_di" bpmnElement="Contratos">
+        <dc:Bounds x="615" y="575" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="554" y="593" width="51" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1tqpt32_di" bpmnElement="Contrato_de_Alquiler">
+        <dc:Bounds x="782" y="565" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="770" y="622" width="61" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00vxm67_di" bpmnElement="Recibir_contrato_firmado_por_el_cliente" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="830" y="410" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_03w0jdh_di" bpmnElement="Generar_y_emitir_Factura" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="1020" y="410" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_10tozrv_di" bpmnElement="Factura">
+        <dc:Bounds x="1192" y="415" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1190" y="472" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_18fpsjp_di" bpmnElement="Consultar_vehiculo" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="1435" y="1230" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_17mdsbf_di" bpmnElement="Entregar_Vehiculo" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="1565" y="1230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ceg8a3_di" bpmnElement="Espera_devolucion">
+        <dc:Bounds x="1697" y="1252" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1687" y="1295" width="56" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1c7q3l9_di" bpmnElement="Recibir_devolucion_vehiculo" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="1815" y="1230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1yr0b6s_di" bpmnElement="Guardar_vehiculo_en_deposito" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="2130" y="1230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vhl9sf_di" bpmnElement="Registrar_novedad" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="1975" y="1230" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0kiqgh0_di" bpmnElement="Vehiculos_1">
+        <dc:Bounds x="2200" y="1355" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2201" y="1412" width="49" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_00nc7kq_di" bpmnElement="Contratos_2">
+        <dc:Bounds x="2000" y="1105" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2004" y="1162" width="51" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07f96xn_di" bpmnElement="Verificar_estado_de_vehiculo_devuelto" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="2135" y="810" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0rz14nn_di" bpmnElement="Desbloquear_deposito_en_garantia" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="2410" y="740" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0lxm9e0_di" bpmnElement="Confeccionar_comprobante_de_anulacion" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="2590" y="740" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_088hg9a_di" bpmnElement="Entregar_comprobante_de_anulacion" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="2770" y="740" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0kr689e_di" bpmnElement="Comprobante_anulacion">
+        <dc:Bounds x="2702" y="825" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2685" y="882" width="71" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_01w0kkc_di" bpmnElement="Cobros_2">
+        <dc:Bounds x="2415" y="1015" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2422" y="1072" width="37" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0bgp1op_di" bpmnElement="Cobrar_garantia" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="2370" y="890" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0rv2nx2_di" bpmnElement="Confeccionar_Factura_por_deposito" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="2560" y="890" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1r00e8x_di" bpmnElement="Entregar_factura_con_sello_de_cobrada" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="2750" y="890" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1l4z7ij_di" bpmnElement="Gateway_1l4z7ij" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="2925" y="815" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0gq4j3i_di" bpmnElement="Finalizar_y_archivar_el_contrato" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="3030" y="800" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0txaru6_di" bpmnElement="Contratos_3">
+        <dc:Bounds x="3055" y="945" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3055" y="1002" width="51" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0lxxlzw_di" bpmnElement="Factura_por_deposito">
+        <dc:Bounds x="2622" y="995" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2610" y="1052" width="61" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0gbmsxi_di" bpmnElement="Vehiculo_devuelto" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="3212" y="822" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3208" y="865" width="45" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0jxghje_di" bpmnElement="Gateway_0jxghje" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="2255" y="825" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0sl185o_di" bpmnElement="Cobros">
+        <dc:Bounds x="1045" y="965" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1052" y="1022" width="37" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1tk4jv8_di" bpmnElement="Cobrar_alquiler" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="1020" y="750" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_01uxhg5_di" bpmnElement="Bloquear_deposito_en_garantia" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="1370" y="750" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_00uh129_di" bpmnElement="Contratos_1">
+        <dc:Bounds x="1395" y="875" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1334" y="893" width="51" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vw5kyi_di" bpmnElement="Recibir_tarjeta_en_garantia" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="1160" y="750" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_13bga3g_di" bpmnElement="Flow_13bga3g">
+        <di:waypoint x="-312" y="280" />
+        <di:waypoint x="-260" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kaa86q_di" bpmnElement="No_acepta_condiciones">
+        <di:waypoint x="60" y="255" />
+        <di:waypoint x="60" y="130" />
+        <di:waypoint x="180" y="130" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="71" y="96" width="61" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qlsisv_di" bpmnElement="Flow_0qlsisv">
+        <di:waypoint x="280" y="130" />
+        <di:waypoint x="332" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_168v574_di" bpmnElement="Flow_168v574">
+        <di:waypoint x="-160" y="280" />
+        <di:waypoint x="-100" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00wycmf_di" bpmnElement="Flow_00wycmf">
+        <di:waypoint x="0" y="280" />
+        <di:waypoint x="35" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vak9ta_di" bpmnElement="Acepta_condiciones">
+        <di:waypoint x="60" y="305" />
+        <di:waypoint x="60" y="350" />
+        <di:waypoint x="100" y="350" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="19" y="307" width="61" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0d6ckne_di" bpmnElement="Flow_0d6ckne">
+        <di:waypoint x="1070" y="490" />
+        <di:waypoint x="1070" y="750" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ragxho_di" bpmnElement="Flow_1ragxho">
+        <di:waypoint x="1470" y="790" />
+        <di:waypoint x="1495" y="790" />
+        <di:waypoint x="1495" y="1230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13467pu_di" bpmnElement="Flow_13467pu">
+        <di:waypoint x="790" y="450" />
+        <di:waypoint x="830" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0e8mxm8_di" bpmnElement="Si_cumple_requisitos">
+        <di:waypoint x="380" y="375" />
+        <di:waypoint x="380" y="450" />
+        <di:waypoint x="490" y="450" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="325" y="456" width="49" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1q5b9ja_di" bpmnElement="Flow_1q5b9ja">
+        <di:waypoint x="200" y="350" />
+        <di:waypoint x="230" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10k6v72_di" bpmnElement="Flow_10k6v72">
+        <di:waypoint x="330" y="350" />
+        <di:waypoint x="355" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1uhlvh7_di" bpmnElement="No_cumple_requisitos">
+        <di:waypoint x="380" y="325" />
+        <di:waypoint x="380" y="240" />
+        <di:waypoint x="490" y="240" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="374" y="206" width="55" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vdibvh_di" bpmnElement="Flow_1vdibvh">
+        <di:waypoint x="590" y="240" />
+        <di:waypoint x="652" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1aiyjv7_di" bpmnElement="Flow_1aiyjv7">
+        <di:waypoint x="590" y="450" />
+        <di:waypoint x="690" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0snpc6t_di" bpmnElement="Flow_0snpc6t">
+        <di:waypoint x="2165" y="1230" />
+        <di:waypoint x="2165" y="890" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fstltd_di" bpmnElement="Flow_0fstltd">
+        <di:waypoint x="930" y="450" />
+        <di:waypoint x="1020" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13gy5uq_di" bpmnElement="Flow_13gy5uq">
+        <di:waypoint x="1535" y="1270" />
+        <di:waypoint x="1565" y="1270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0z8m4k2_di" bpmnElement="Flow_0z8m4k2">
+        <di:waypoint x="2235" y="850" />
+        <di:waypoint x="2255" y="850" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1wcypi2_di" bpmnElement="Vehiculo_en_condiciones_optimas">
+        <di:waypoint x="2280" y="825" />
+        <di:waypoint x="2280" y="780" />
+        <di:waypoint x="2410" y="780" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2279" y="730" width="61" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1uvwg0q_di" bpmnElement="Vehiculo_con_desperfectos">
+        <di:waypoint x="2280" y="875" />
+        <di:waypoint x="2280" y="930" />
+        <di:waypoint x="2370" y="930" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2256" y="956" width="67" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ip270f_di" bpmnElement="Flow_0ip270f">
+        <di:waypoint x="1665" y="1270" />
+        <di:waypoint x="1697" y="1270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0xmsm3d_di" bpmnElement="Flow_0xmsm3d">
+        <di:waypoint x="1733" y="1270" />
+        <di:waypoint x="1815" y="1270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02yw0is_di" bpmnElement="Flow_02yw0is">
+        <di:waypoint x="1915" y="1270" />
+        <di:waypoint x="1975" y="1270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vt79j7_di" bpmnElement="Flow_0vt79j7">
+        <di:waypoint x="2075" y="1270" />
+        <di:waypoint x="2130" y="1270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1mtptjj_di" bpmnElement="Flow_1mtptjj">
+        <di:waypoint x="2510" y="780" />
+        <di:waypoint x="2590" y="780" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hb0qac_di" bpmnElement="Flow_0hb0qac">
+        <di:waypoint x="2690" y="780" />
+        <di:waypoint x="2770" y="780" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08cls8i_di" bpmnElement="Flow_08cls8i">
+        <di:waypoint x="2870" y="780" />
+        <di:waypoint x="2950" y="780" />
+        <di:waypoint x="2950" y="815" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14w0kf9_di" bpmnElement="Flow_14w0kf9">
+        <di:waypoint x="2470" y="930" />
+        <di:waypoint x="2560" y="930" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qnh1ru_di" bpmnElement="Flow_0qnh1ru">
+        <di:waypoint x="2660" y="930" />
+        <di:waypoint x="2750" y="930" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18jr3bg_di" bpmnElement="Flow_18jr3bg">
+        <di:waypoint x="2850" y="930" />
+        <di:waypoint x="2950" y="930" />
+        <di:waypoint x="2950" y="865" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0k2tekw_di" bpmnElement="Flow_0k2tekw">
+        <di:waypoint x="2975" y="840" />
+        <di:waypoint x="3030" y="840" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0m3hodp_di" bpmnElement="Flow_0m3hodp">
+        <di:waypoint x="3130" y="840" />
+        <di:waypoint x="3212" y="840" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0y8xsxh_di" bpmnElement="Flow_0y8xsxh">
+        <di:waypoint x="1120" y="790" />
+        <di:waypoint x="1160" y="790" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18pge6e_di" bpmnElement="Flow_18pge6e">
+        <di:waypoint x="1260" y="790" />
+        <di:waypoint x="1370" y="790" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_00ujhc1_di" bpmnElement="DataInputAssociation_00ujhc1">
+        <di:waypoint x="-210" y="175" />
+        <di:waypoint x="-209" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0zx207g_di" bpmnElement="DataOutputAssociation_0zx207g">
+        <di:waypoint x="542" y="410" />
+        <di:waypoint x="544" y="365" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_01xpscr_di" bpmnElement="DataInputAssociation_01xpscr">
+        <di:waypoint x="565" y="340" />
+        <di:waypoint x="670" y="340" />
+        <di:waypoint x="700" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_03b7wl3_di" bpmnElement="DataInputAssociation_03b7wl3">
+        <di:waypoint x="-185" y="137" />
+        <di:waypoint x="-60" y="70" />
+        <di:waypoint x="740" y="70" />
+        <di:waypoint x="740" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0j2h94x_di" bpmnElement="DataOutputAssociation_0j2h94x">
+        <di:waypoint x="755" y="490" />
+        <di:waypoint x="785" y="565" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1ukines_di" bpmnElement="DataOutputAssociation_1ukines">
+        <di:waypoint x="713" y="490" />
+        <di:waypoint x="657" y="575" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_08lopvh_di" bpmnElement="DataOutputAssociation_08lopvh">
+        <di:waypoint x="1120" y="446" />
+        <di:waypoint x="1192" y="441" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1a26y68_di" bpmnElement="DataOutputAssociation_1a26y68">
+        <di:waypoint x="1070" y="830" />
+        <di:waypoint x="1070" y="965" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_05fdxc2_di" bpmnElement="DataOutputAssociation_05fdxc2">
+        <di:waypoint x="1419" y="830" />
+        <di:waypoint x="1420" y="875" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0mylevp_di" bpmnElement="DataInputAssociation_0mylevp">
+        <di:waypoint x="1416" y="925" />
+        <di:waypoint x="1360" y="1271" />
+        <di:waypoint x="1435" y="1271" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1iacwpy_di" bpmnElement="DataOutputAssociation_1iacwpy">
+        <di:waypoint x="2199" y="1310" />
+        <di:waypoint x="2220" y="1355" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_19vqbqw_di" bpmnElement="DataOutputAssociation_19vqbqw">
+        <di:waypoint x="2024" y="1230" />
+        <di:waypoint x="2021" y="1155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_10ilf4f_di" bpmnElement="DataInputAssociation_10ilf4f">
+        <di:waypoint x="2026" y="1105" />
+        <di:waypoint x="2040" y="850" />
+        <di:waypoint x="2130" y="850" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0i2e91l_di" bpmnElement="DataOutputAssociation_0i2e91l">
+        <di:waypoint x="2683" y="819" />
+        <di:waypoint x="2702" y="837" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1g31f2d_di" bpmnElement="DataOutputAssociation_1g31f2d">
+        <di:waypoint x="2428" y="970" />
+        <di:waypoint x="2436" y="1015" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1at0jmq_di" bpmnElement="DataOutputAssociation_1at0jmq">
+        <di:waypoint x="2622" y="970" />
+        <di:waypoint x="2630" y="995" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1r9qnwn_di" bpmnElement="DataOutputAssociation_1r9qnwn">
+        <di:waypoint x="3080" y="880" />
+        <di:waypoint x="3080" y="945" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

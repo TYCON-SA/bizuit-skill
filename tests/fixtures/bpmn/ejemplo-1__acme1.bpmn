@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:process id="ejemplo_1" name="ejemplo 1" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="acme1" bizuit:createdBy="fbonoacme1" bizuit:createdDate="2025-09-28T01:17:22.240Z" bizuit:lastEditedBy="fbonoacme1" bizuit:lastEditedDate="2025-09-28T01:17:22.240Z">
+    <bpmn2:startEvent id="StartEvent_1">
+      <bpmn2:outgoing>Flow_0dq4z9v</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="Flow_0dq4z9v" sourceRef="StartEvent_1" targetRef="ver_tarea" />
+    <bpmn2:endEvent id="Event_1d4tn8s">
+      <bpmn2:incoming>Flow_07a5fzw</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_07a5fzw" sourceRef="ver_tarea" targetRef="Event_1d4tn8s" />
+    <bpmn2:userTask id="ver_tarea" name="ver tarea" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" showInList="true" order="0" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" showInList="true" order="1" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" showInList="true" order="2" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" showInList="true" order="3" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" showInList="true" order="4" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0dq4z9v</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_07a5fzw</bpmn2:outgoing>
+    </bpmn2:userTask>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="ejemplo_1">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="-8" y="-18" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1d4tn8s_di" bpmnElement="Event_1d4tn8s" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="232" y="-18" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ck5w17_di" bpmnElement="ver_tarea" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="80" y="-40" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0dq4z9v_di" bpmnElement="Flow_0dq4z9v">
+        <di:waypoint x="28" y="0" />
+        <di:waypoint x="80" y="0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07a5fzw_di" bpmnElement="Flow_07a5fzw">
+        <di:waypoint x="180" y="0" />
+        <di:waypoint x="232" y="0" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

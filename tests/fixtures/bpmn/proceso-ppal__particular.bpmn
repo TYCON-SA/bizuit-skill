@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_0lrs6zz">
+    <bpmn2:participant id="Dpto_Compras" name="Dpto Compras" processRef="Process_1" bizuit:AttachmentsCollection="[]" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_1" name="Proceso Ppal" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="Particular">
+    <bpmn2:laneSet id="LaneSet_0opz6b7">
+      <bpmn2:lane id="Lane_04vid75" name="" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+        <bpmn2:flowNodeRef>Stock_insuficiente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Comprar</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Taller_arreglos</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Llevar_al_taller</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Chapa_y_pintura</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Llevar_a_chapa_y_pintura</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Limpiar</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Auto_en_venta</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:startEvent id="Stock_insuficiente" name="Stock insuficiente" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:outgoing>Flow_0k602xo</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:task id="Comprar" name="Comprar" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_0k602xo</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0aayjym</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0k602xo" sourceRef="Stock_insuficiente" targetRef="Comprar" />
+    <bpmn2:exclusiveGateway id="Taller_arreglos" name="Taller (arreglos)?" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0aayjym</bpmn2:incoming>
+      <bpmn2:outgoing>Si</bpmn2:outgoing>
+      <bpmn2:outgoing>No</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_0aayjym" sourceRef="Comprar" targetRef="Taller_arreglos" />
+    <bpmn2:task id="Llevar_al_taller" name="Llevar al taller" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Si</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1seqldy</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Si" name="Si" sourceRef="Taller_arreglos" targetRef="Llevar_al_taller" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:exclusiveGateway id="Chapa_y_pintura" name="Chapa y pintura" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>No</bpmn2:incoming>
+      <bpmn2:incoming>Flow_1seqldy</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1eqxuo8</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="No" name="No" sourceRef="Taller_arreglos" targetRef="Chapa_y_pintura" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Flow_1eqxuo8" sourceRef="Chapa_y_pintura" targetRef="Llevar_a_chapa_y_pintura" />
+    <bpmn2:sequenceFlow id="Flow_1seqldy" sourceRef="Llevar_al_taller" targetRef="Chapa_y_pintura" />
+    <bpmn2:task id="Llevar_a_chapa_y_pintura" name="Llevar a chapa y pintura" bizuit:Performers="">
+      <bpmn2:incoming>Flow_1eqxuo8</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_09mz45o</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Limpiar" name="Limpiar" bizuit:Performers="">
+      <bpmn2:incoming>Flow_09mz45o</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1oq4ggb</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_09mz45o" sourceRef="Llevar_a_chapa_y_pintura" targetRef="Limpiar" />
+    <bpmn2:endEvent id="Auto_en_venta" name="Auto en venta" bizuit:AttachmentsCollection="[]" bizuit:Performers="">
+      <bpmn2:incoming>Flow_1oq4ggb</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_1oq4ggb" sourceRef="Limpiar" targetRef="Auto_en_venta" />
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0lrs6zz">
+      <bpmndi:BPMNShape id="Participant_0ny887h_di" bpmnElement="Dpto_Compras" isHorizontal="true">
+        <dc:Bounds x="-150" y="50" width="1030" height="395" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_04vid75_di" bpmnElement="Lane_04vid75" isHorizontal="true">
+        <dc:Bounds x="-120" y="50" width="1000" height="395" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="Stock_insuficiente" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="-98" y="122" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-124" y="165" width="89" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0kj527r_di" bpmnElement="Comprar">
+        <dc:Bounds x="-10" y="100" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1qmvxi9_di" bpmnElement="Taller_arreglos" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="145" y="115" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="127" y="85" width="87" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_09d77d0_di" bpmnElement="Llevar_al_taller">
+        <dc:Bounds x="250" y="210" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1k6kft5_di" bpmnElement="Chapa_y_pintura" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="255" y="115" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="238" y="93" width="83" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1vk61u5_di" bpmnElement="Llevar_a_chapa_y_pintura">
+        <dc:Bounds x="340" y="100" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1s744gd_di" bpmnElement="Limpiar">
+        <dc:Bounds x="480" y="100" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ngjwxf_di" bpmnElement="Auto_en_venta" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="622" y="122" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="604" y="165" width="72" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0k602xo_di" bpmnElement="Flow_0k602xo">
+        <di:waypoint x="-62" y="140" />
+        <di:waypoint x="-10" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0aayjym_di" bpmnElement="Flow_0aayjym">
+        <di:waypoint x="90" y="140" />
+        <di:waypoint x="145" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16ih1u3_di" bpmnElement="Si">
+        <di:waypoint x="170" y="165" />
+        <di:waypoint x="170" y="250" />
+        <di:waypoint x="250" y="250" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="205" y="233" width="9" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1390prl_di" bpmnElement="No">
+        <di:waypoint x="195" y="140" />
+        <di:waypoint x="255" y="140" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="217" y="122" width="16" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1eqxuo8_di" bpmnElement="Flow_1eqxuo8">
+        <di:waypoint x="280" y="115" />
+        <di:waypoint x="280" y="80" />
+        <di:waypoint x="390" y="80" />
+        <di:waypoint x="390" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1seqldy_di" bpmnElement="Flow_1seqldy">
+        <di:waypoint x="300" y="210" />
+        <di:waypoint x="300" y="188" />
+        <di:waypoint x="280" y="188" />
+        <di:waypoint x="280" y="165" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09mz45o_di" bpmnElement="Flow_09mz45o">
+        <di:waypoint x="440" y="140" />
+        <di:waypoint x="480" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1oq4ggb_di" bpmnElement="Flow_1oq4ggb">
+        <di:waypoint x="580" y="140" />
+        <di:waypoint x="622" y="140" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

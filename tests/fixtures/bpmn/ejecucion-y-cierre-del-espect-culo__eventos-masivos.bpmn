@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_1kkq2hk">
+    <bpmn2:participant id="Ejecucion_y_cierre_del_espectaculo" name="Ejecucion y cierre del espectáculo" processRef="Process_1" bizuit:AttachmentsCollection="[]" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_1" name="Ejecucion y cierre del espectáculo" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="Eventos Masivos">
+    <bpmn2:laneSet id="LaneSet_1j83vtp">
+      <bpmn2:lane id="Jefe_de_Administracion_Gerente_de_Marketing_Estrategia" name="Jefe de Administracion, Gerente de Marketing, Estrategia" bizuit:Performers="Jefe de Administracion, Gerente de Marketing, Estrategia" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Realizar_evalucacion_del_evento</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Realizar_evaluacion_de_satisfaccion_del_publico</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Generar_Informe_de_Resultado_de_Evaluacion</bpmn2:flowNodeRef>
+        <bpmn2:childLaneSet id="LaneSet_1j1221o" />
+      </bpmn2:lane>
+      <bpmn2:lane id="Encargado_de_Logistica" name="Encargado de Logistica" bizuit:Performers="Encargado de Logistica" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Realizar_Limpieza_del_Recinto</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Desmontar_infraestructura_del_Evento</bpmn2:flowNodeRef>
+        <bpmn2:childLaneSet id="LaneSet_1fx6wjq" />
+      </bpmn2:lane>
+      <bpmn2:lane id="Asistente_a_evento" name="Asistente a evento" bizuit:Performers="Asistente a evento" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Escanear_y_Consultar_el_Sistema</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Mostrar_Ticket_Digital</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Planificacion_de_Evento</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="Jefe_de_Seguridad_del_Recinto" name="Jefe de Seguridad del Recinto" bizuit:Performers="Jefe de Seguridad del Recinto" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Monitorear_Flujo_de_Desalojo</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Registrar_Resolucion_del_Incidente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Desplegar_Respuesta_y_Asistencia</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activar_Alerta_de_Incidente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Ocurre_Evento_Inesperado</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Monitorear_Situaciones_en_Evento</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Posicionar_Personal_en_Zonas_Criticas</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Visualizar_Aforo_Total_en_Tiempo_Real</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="Personal_de_Acceso" name="Personal de Acceso" bizuit:Performers="Personal de Acceso" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Realizar_cierre_del_evento</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Realizar_control_de_seguridad</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Registrar_Fin_de_Desalojo</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Dar_Paso_al_Asistente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Registrar_Ingreso</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:sequenceFlow id="Flow_0pqot5c" sourceRef="Planificacion_de_Evento" targetRef="Mostrar_Ticket_Digital" />
+    <bpmn2:sequenceFlow id="Flow_07k4pdo" sourceRef="Mostrar_Ticket_Digital" targetRef="Escanear_y_Consultar_el_Sistema" />
+    <bpmn2:sequenceFlow id="Flow_1ks8g8j" sourceRef="Escanear_y_Consultar_el_Sistema" targetRef="Registrar_Ingreso" />
+    <bpmn2:sequenceFlow id="Flow_1rcdvvn" sourceRef="Registrar_Ingreso" targetRef="Dar_Paso_al_Asistente" />
+    <bpmn2:sequenceFlow id="Flow_00u6v70" sourceRef="Dar_Paso_al_Asistente" targetRef="Visualizar_Aforo_Total_en_Tiempo_Real" />
+    <bpmn2:sequenceFlow id="Flow_02cyzx5" sourceRef="Visualizar_Aforo_Total_en_Tiempo_Real" targetRef="Posicionar_Personal_en_Zonas_Criticas" />
+    <bpmn2:sequenceFlow id="Flow_0wnetwf" sourceRef="Posicionar_Personal_en_Zonas_Criticas" targetRef="Monitorear_Situaciones_en_Evento" />
+    <bpmn2:sequenceFlow id="Flow_0vr6y0o" sourceRef="Monitorear_Situaciones_en_Evento" targetRef="Ocurre_Evento_Inesperado" />
+    <bpmn2:sequenceFlow id="Flow_1knigw4" sourceRef="Monitorear_Flujo_de_Desalojo" targetRef="Registrar_Fin_de_Desalojo" />
+    <bpmn2:sequenceFlow id="Flow_0uh0iix" sourceRef="Registrar_Fin_de_Desalojo" targetRef="Realizar_control_de_seguridad" />
+    <bpmn2:sequenceFlow id="Flow_17ukmpn" sourceRef="Realizar_cierre_del_evento" targetRef="Desmontar_infraestructura_del_Evento" />
+    <bpmn2:sequenceFlow id="Flow_0d6d5bc" sourceRef="Desmontar_infraestructura_del_Evento" targetRef="Realizar_Limpieza_del_Recinto" />
+    <bpmn2:sequenceFlow id="Flow_18yiqsd" sourceRef="Realizar_Limpieza_del_Recinto" targetRef="Realizar_evalucacion_del_evento" />
+    <bpmn2:sequenceFlow id="Flow_03kj1yo" sourceRef="Realizar_evalucacion_del_evento" targetRef="Realizar_evaluacion_de_satisfaccion_del_publico" />
+    <bpmn2:sequenceFlow id="Flow_1me1tre" sourceRef="Realizar_evaluacion_de_satisfaccion_del_publico" targetRef="Generar_Informe_de_Resultado_de_Evaluacion" />
+    <bpmn2:sequenceFlow id="No" name="No" sourceRef="Ocurre_Evento_Inesperado" targetRef="Monitorear_Flujo_de_Desalojo" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Si" name="Si" sourceRef="Ocurre_Evento_Inesperado" targetRef="Activar_Alerta_de_Incidente" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Flow_1cgomp2" sourceRef="Activar_Alerta_de_Incidente" targetRef="Desplegar_Respuesta_y_Asistencia" />
+    <bpmn2:sequenceFlow id="Flow_1j6l9zn" sourceRef="Desplegar_Respuesta_y_Asistencia" targetRef="Registrar_Resolucion_del_Incidente" />
+    <bpmn2:sequenceFlow id="Flow_0okel2o" sourceRef="Registrar_Resolucion_del_Incidente" targetRef="Monitorear_Flujo_de_Desalojo" />
+    <bpmn2:sequenceFlow id="Flow_0xrwobv" sourceRef="Realizar_control_de_seguridad" targetRef="Realizar_cierre_del_evento" />
+    <bpmn2:manualTask id="Realizar_evalucacion_del_evento" name="Realizar evalucacion del evento" bizuit:Performers="Jefe de Administracion, Gerente de Marketing, Estrategia">
+      <bpmn2:incoming>Flow_18yiqsd</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_03kj1yo</bpmn2:outgoing>
+      <bpmn2:property id="Property_1h77o0s" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0r7n5gc">
+        <bpmn2:sourceRef>Almacenamiento_de_Asistentes</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1h77o0s</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:manualTask>
+    <bpmn2:dataObjectReference id="Informe_de_Resultados_del_Evento" name="Informe de Resultados del Evento" dataObjectRef="DataObject_0mpp1bx" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_0mpp1bx" />
+    <bpmn2:dataStoreReference id="Almacenamiento_de_Asistentes" name="Almacenamiento de Asistentes" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:manualTask id="Realizar_evaluacion_de_satisfaccion_del_publico" name="Realizar evaluacion de satisfaccion del publico" bizuit:AttachmentsCollection="[]" bizuit:Performers="Jefe de Administracion, Gerente de Marketing, Estrategia">
+      <bpmn2:incoming>Flow_03kj1yo</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1me1tre</bpmn2:outgoing>
+      <bpmn2:property id="Property_0bgf9bi" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_1chjw58">
+        <bpmn2:sourceRef>Almacenamiento_de_Asistentes</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_0bgf9bi</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:manualTask>
+    <bpmn2:userTask id="Generar_Informe_de_Resultado_de_Evaluacion" name="Generar Informe de Resultado de Evaluacion" bizuit:AttachmentsCollection="[]" bizuit:Performers="Jefe de Administracion, Gerente de Marketing, Estrategia">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" showInList="true" order="0" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" showInList="true" order="1" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" showInList="true" order="2" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" showInList="true" order="3" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" showInList="true" order="4" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_1me1tre</bpmn2:incoming>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_08c2syz">
+        <bpmn2:targetRef>Informe_de_Resultados_del_Evento</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_14rq8cg">
+        <bpmn2:targetRef>Almacenamiento_de_Asistentes</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:manualTask id="Realizar_Limpieza_del_Recinto" name="Realizar Limpieza del Recinto" bizuit:AttachmentsCollection="[]" bizuit:Performers="Encargado de Logistica">
+      <bpmn2:incoming>Flow_0d6d5bc</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_18yiqsd</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Desmontar_infraestructura_del_Evento" name="Desmontar infraestructura del Evento" bizuit:AttachmentsCollection="[]" bizuit:Performers="Encargado de Logistica">
+      <bpmn2:incoming>Flow_17ukmpn</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0d6d5bc</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Realizar_cierre_del_evento" name="Realizar cierre del evento" bizuit:AttachmentsCollection="[]" bizuit:Performers="Personal de Acceso">
+      <bpmn2:incoming>Flow_0xrwobv</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_17ukmpn</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Realizar_control_de_seguridad" name="Realizar control de seguridad" bizuit:AttachmentsCollection="[]" bizuit:Performers="Personal de Acceso">
+      <bpmn2:incoming>Flow_0uh0iix</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0xrwobv</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:dataStoreReference id="Almacenamiento_Asistentes_1" name="Almacenamiento Asistentes" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:userTask id="Registrar_Fin_de_Desalojo" name="Registrar Fin de Desalojo" bizuit:AttachmentsCollection="[]" bizuit:Performers="Personal de Acceso">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_1knigw4</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0uh0iix</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1avqwri">
+        <bpmn2:targetRef>Almacenamiento_Asistentes_1</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:manualTask id="Monitorear_Flujo_de_Desalojo" name="Monitorear Flujo de Desalojo" bizuit:AttachmentsCollection="[]" bizuit:Performers="Jefe de Seguridad del Recinto">
+      <bpmn2:incoming>No</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0okel2o</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1knigw4</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:dataStoreReference id="Almacenamiento_Incidentes" name="Almacenamiento Incidentes" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:userTask id="Registrar_Resolucion_del_Incidente" name="     Registrar Resolución del Incidente" bizuit:AttachmentsCollection="[]" bizuit:Performers="Jefe de Seguridad del Recinto" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_1j6l9zn</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0okel2o</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1sri3td">
+        <bpmn2:targetRef>Almacenamiento_Incidentes</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:manualTask id="Desplegar_Respuesta_y_Asistencia" name="Desplegar Respuesta y Asistencia" bizuit:AttachmentsCollection="[]" bizuit:Performers="Jefe de Seguridad del Recinto">
+      <bpmn2:incoming>Flow_1cgomp2</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1j6l9zn</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Activar_Alerta_de_Incidente" name="Activar Alerta de Incidente" bizuit:AttachmentsCollection="[]" bizuit:Performers="Jefe de Seguridad del Recinto">
+      <bpmn2:incoming>Si</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1cgomp2</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:exclusiveGateway id="Ocurre_Evento_Inesperado" name="¿Ocurre Evento Inesperado?" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0vr6y0o</bpmn2:incoming>
+      <bpmn2:outgoing>No</bpmn2:outgoing>
+      <bpmn2:outgoing>Si</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:manualTask id="Monitorear_Situaciones_en_Evento" name="Monitorear Situaciones en Evento" bizuit:AttachmentsCollection="[]" bizuit:Performers="Jefe de Seguridad del Recinto" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_0wnetwf</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0vr6y0o</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Posicionar_Personal_en_Zonas_Criticas" name="Posicionar Personal en Zonas Críticas" bizuit:AttachmentsCollection="[]" bizuit:Performers="Jefe de Seguridad del Recinto">
+      <bpmn2:incoming>Flow_02cyzx5</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0wnetwf</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Visualizar_Aforo_Total_en_Tiempo_Real" name="Visualizar Aforo Total en Tiempo Real" bizuit:AttachmentsCollection="[]" bizuit:Performers="Jefe de Seguridad del Recinto">
+      <bpmn2:incoming>Flow_00u6v70</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_02cyzx5</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Dar_Paso_al_Asistente" name="Dar Paso al Asistente" bizuit:AttachmentsCollection="[]" bizuit:Performers="Personal de Acceso">
+      <bpmn2:incoming>Flow_1rcdvvn</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_00u6v70</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:dataStoreReference id="Almacenamiento_Tickets" name="Almacenamiento Tickets" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:userTask id="Registrar_Ingreso" name="Registrar Ingreso" bizuit:AttachmentsCollection="[]" bizuit:Performers="Personal de Acceso">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_1ks8g8j</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1rcdvvn</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0j7trk7">
+        <bpmn2:targetRef>Almacenamiento_Asistentes</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:manualTask id="Escanear_y_Consultar_el_Sistema" name="Escanear y Consultar el Sistema" bizuit:AttachmentsCollection="[]" bizuit:Performers="Asistente a evento">
+      <bpmn2:incoming>Flow_07k4pdo</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1ks8g8j</bpmn2:outgoing>
+      <bpmn2:property id="Property_13oiclw" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_1cvzq52">
+        <bpmn2:sourceRef>Almacenamiento_Tickets</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_13oiclw</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Mostrar_Ticket_Digital" name="Mostrar Ticket Digital" bizuit:AttachmentsCollection="[]" bizuit:Performers="Asistente a evento">
+      <bpmn2:incoming>Flow_0pqot5c</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_07k4pdo</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:dataStoreReference id="Almacenamiento_Asistentes" name="Almacenamiento Asistentes" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:startEvent id="Planificacion_de_Evento" name="Planificacion de Evento" bizuit:Performers="Asistente a evento" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:outgoing>Flow_0pqot5c</bpmn2:outgoing>
+    </bpmn2:startEvent>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1kkq2hk">
+      <bpmndi:BPMNShape id="Participant_1gb0fra_di" bpmnElement="Ejecucion_y_cierre_del_espectaculo" isHorizontal="true">
+        <dc:Bounds x="-140" y="60" width="4240" height="1620" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1xu9sih_di" bpmnElement="Personal_de_Acceso" isHorizontal="true">
+        <dc:Bounds x="-110" y="370" width="4210" height="260" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0loeov0_di" bpmnElement="Jefe_de_Seguridad_del_Recinto" isHorizontal="true">
+        <dc:Bounds x="-110" y="630" width="4210" height="370" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_17dbkin_di" bpmnElement="Asistente_a_evento" isHorizontal="true">
+        <dc:Bounds x="-110" y="60" width="4210" height="310" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1296vpt_di" bpmnElement="Encargado_de_Logistica" isHorizontal="true">
+        <dc:Bounds x="-110" y="1000" width="4210" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0j4txoi_di" bpmnElement="Jefe_de_Administracion_Gerente_de_Marketing_Estrategia" isHorizontal="true">
+        <dc:Bounds x="-110" y="1250" width="4210" height="430" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ue4bda_di" bpmnElement="Realizar_evalucacion_del_evento" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="3450" y="1270" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1247rb1_di" bpmnElement="Informe_de_Resultados_del_Evento">
+        <dc:Bounds x="3942" y="1435" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3922" y="1492" width="76" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0y098ie_di" bpmnElement="Almacenamiento_de_Asistentes">
+        <dc:Bounds x="3685" y="1435" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3667" y="1492" width="87" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_196fsqw_di" bpmnElement="Realizar_evaluacion_de_satisfaccion_del_publico" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="3660" y="1270" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_09g6q66_di" bpmnElement="Generar_Informe_de_Resultado_de_Evaluacion" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="3910" y="1270" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1rxmxwa_di" bpmnElement="Realizar_Limpieza_del_Recinto" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="3250" y="1020" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1xeq3by_di" bpmnElement="Desmontar_infraestructura_del_Evento" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="2992" y="1020" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1oktptx_di" bpmnElement="Realizar_cierre_del_evento" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="2830" y="397" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ts8nxw_di" bpmnElement="Realizar_control_de_seguridad" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="2650" y="397" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1199rbw_di" bpmnElement="Almacenamiento_Asistentes_1">
+        <dc:Bounds x="2465" y="525" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2447" y="582" width="87" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1kld7ko_di" bpmnElement="Registrar_Fin_de_Desalojo" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="2440" y="390" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1bm41xa_di" bpmnElement="Monitorear_Flujo_de_Desalojo" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="2202" y="640" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1puozhv_di" bpmnElement="Almacenamiento_Incidentes">
+        <dc:Bounds x="1972" y="875" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1954" y="932" width="87" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_14yi8l7_di" bpmnElement="Registrar_Resolucion_del_Incidente" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="1942" y="760" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_14eurnz_di" bpmnElement="Desplegar_Respuesta_y_Asistencia" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="1762" y="760" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0k4wz09_di" bpmnElement="Activar_Alerta_de_Incidente" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="1602" y="760" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_05lnde5_di" bpmnElement="Ocurre_Evento_Inesperado" isMarkerVisible="true" bioc:stroke="#5b176d" bioc:fill="#e1bee7" color:background-color="#e1bee7" color:border-color="#5b176d">
+        <dc:Bounds x="1477" y="705" width="50" height="50" />
+        <bpmndi:BPMNLabel color:color="#5b176d">
+          <dc:Bounds x="1373" y="736" width="78" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1mbslug_di" bpmnElement="Monitorear_Situaciones_en_Evento" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="1240" y="680" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_16jsvvb_di" bpmnElement="Posicionar_Personal_en_Zonas_Criticas" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="1002" y="680" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0exteir_di" bpmnElement="Visualizar_Aforo_Total_en_Tiempo_Real" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="770" y="680" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ywcy8w_di" bpmnElement="Dar_Paso_al_Asistente" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="582" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1a5uqn7_di" bpmnElement="Almacenamiento_Tickets">
+        <dc:Bounds x="217" y="115" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="199" y="85" width="87" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_010eh9h_di" bpmnElement="Registrar_Ingreso" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="370" y="420" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_043dvzk_di" bpmnElement="Escanear_y_Consultar_el_Sistema" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="192" y="209" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0j4m9lr_di" bpmnElement="Mostrar_Ticket_Digital" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="50" y="209" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0dbuumm_di" bpmnElement="Almacenamiento_Asistentes">
+        <dc:Bounds x="395" y="535" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="377" y="592" width="87" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="Planificacion_de_Evento" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="-48" y="231" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-70" y="274" width="81" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0pqot5c_di" bpmnElement="Flow_0pqot5c">
+        <di:waypoint x="-12" y="249" />
+        <di:waypoint x="50" y="249" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07k4pdo_di" bpmnElement="Flow_07k4pdo">
+        <di:waypoint x="150" y="249" />
+        <di:waypoint x="192" y="249" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ks8g8j_di" bpmnElement="Flow_1ks8g8j">
+        <di:waypoint x="292" y="249" />
+        <di:waypoint x="331" y="249" />
+        <di:waypoint x="331" y="460" />
+        <di:waypoint x="370" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1rcdvvn_di" bpmnElement="Flow_1rcdvvn">
+        <di:waypoint x="470" y="460" />
+        <di:waypoint x="582" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00u6v70_di" bpmnElement="Flow_00u6v70">
+        <di:waypoint x="682" y="460" />
+        <di:waypoint x="737" y="460" />
+        <di:waypoint x="737" y="720" />
+        <di:waypoint x="770" y="720" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02cyzx5_di" bpmnElement="Flow_02cyzx5">
+        <di:waypoint x="870" y="720" />
+        <di:waypoint x="1002" y="720" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wnetwf_di" bpmnElement="Flow_0wnetwf">
+        <di:waypoint x="1102" y="720" />
+        <di:waypoint x="1240" y="720" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vr6y0o_di" bpmnElement="Flow_0vr6y0o">
+        <di:waypoint x="1340" y="720" />
+        <di:waypoint x="1409" y="720" />
+        <di:waypoint x="1409" y="730" />
+        <di:waypoint x="1477" y="730" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1knigw4_di" bpmnElement="Flow_1knigw4">
+        <di:waypoint x="2302" y="680" />
+        <di:waypoint x="2352" y="680" />
+        <di:waypoint x="2352" y="430" />
+        <di:waypoint x="2440" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0uh0iix_di" bpmnElement="Flow_0uh0iix">
+        <di:waypoint x="2540" y="437" />
+        <di:waypoint x="2566" y="437" />
+        <di:waypoint x="2566" y="417" />
+        <di:waypoint x="2650" y="417" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17ukmpn_di" bpmnElement="Flow_17ukmpn">
+        <di:waypoint x="2930" y="437" />
+        <di:waypoint x="2961" y="437" />
+        <di:waypoint x="2961" y="1060" />
+        <di:waypoint x="2992" y="1060" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0d6d5bc_di" bpmnElement="Flow_0d6d5bc">
+        <di:waypoint x="3092" y="1060" />
+        <di:waypoint x="3250" y="1060" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18yiqsd_di" bpmnElement="Flow_18yiqsd">
+        <di:waypoint x="3350" y="1060" />
+        <di:waypoint x="3396" y="1060" />
+        <di:waypoint x="3396" y="1310" />
+        <di:waypoint x="3450" y="1310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03kj1yo_di" bpmnElement="Flow_03kj1yo">
+        <di:waypoint x="3550" y="1310" />
+        <di:waypoint x="3660" y="1310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1me1tre_di" bpmnElement="Flow_1me1tre">
+        <di:waypoint x="3760" y="1310" />
+        <di:waypoint x="3910" y="1310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0oxtsxq_di" bpmnElement="No">
+        <di:waypoint x="1502" y="705" />
+        <di:waypoint x="1502" y="671" />
+        <di:waypoint x="2202" y="671" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1483" y="664" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15mxzth_di" bpmnElement="Si">
+        <di:waypoint x="1502" y="755" />
+        <di:waypoint x="1502" y="800" />
+        <di:waypoint x="1602" y="800" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1508" y="780" width="9" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1cgomp2_di" bpmnElement="Flow_1cgomp2">
+        <di:waypoint x="1702" y="800" />
+        <di:waypoint x="1762" y="800" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1j6l9zn_di" bpmnElement="Flow_1j6l9zn">
+        <di:waypoint x="1862" y="800" />
+        <di:waypoint x="1942" y="800" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0okel2o_di" bpmnElement="Flow_0okel2o">
+        <di:waypoint x="2042" y="800" />
+        <di:waypoint x="2232" y="800" />
+        <di:waypoint x="2232" y="720" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0xrwobv_di" bpmnElement="Flow_0xrwobv">
+        <di:waypoint x="2750" y="437" />
+        <di:waypoint x="2830" y="437" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0r7n5gc_di" bpmnElement="DataInputAssociation_0r7n5gc">
+        <di:waypoint x="3685" y="1441" />
+        <di:waypoint x="3550" y="1338" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1chjw58_di" bpmnElement="DataInputAssociation_1chjw58">
+        <di:waypoint x="3711" y="1435" />
+        <di:waypoint x="3718" y="1350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_08c2syz_di" bpmnElement="DataOutputAssociation_08c2syz">
+        <di:waypoint x="3959" y="1350" />
+        <di:waypoint x="3958" y="1435" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_14rq8cg_di" bpmnElement="DataOutputAssociation_14rq8cg">
+        <di:waypoint x="3910" y="1341" />
+        <di:waypoint x="3735" y="1448" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1avqwri_di" bpmnElement="DataOutputAssociation_1avqwri">
+        <di:waypoint x="2490" y="470" />
+        <di:waypoint x="2490" y="525" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1sri3td_di" bpmnElement="DataOutputAssociation_1sri3td">
+        <di:waypoint x="1992" y="840" />
+        <di:waypoint x="1992" y="875" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0j7trk7_di" bpmnElement="DataOutputAssociation_0j7trk7">
+        <di:waypoint x="420" y="500" />
+        <di:waypoint x="420" y="535" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1cvzq52_di" bpmnElement="DataInputAssociation_1cvzq52">
+        <di:waypoint x="242" y="165" />
+        <di:waypoint x="242" y="209" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

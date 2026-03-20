@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_08276c8">
+    <bpmn2:participant id="PROCESO_DE_INGRESO_Y_EGRESO_DE_PROVEEDORES" name="PROCESO DE INGRESO Y EGRESO DE PROVEEDORES" processRef="BPMN_Gaspar" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:participant id="PROCESO_DE_CARGA_DESCARGA" name="PROCESO  DE CARGA/DESCARGA" processRef="Process_0vvansj" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:messageFlow id="Flow_1j7gddi" sourceRef="Informar_Anden_Asignado" targetRef="Realizar_carga_descarga" />
+    <bpmn2:messageFlow id="Flow_1p8pmka" sourceRef="Firmar_remito_y_registrar_entrega_completa" targetRef="Recibir_devolucion_de_pase_temporal" />
+    <bpmn2:messageFlow id="Flow_1iulswv" sourceRef="Registrar_discrepancias" targetRef="Recibir_devolucion_de_pase_temporal" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="BPMN_Gaspar" name="BPMN G1" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="Universidad Tecnologica Nacional Regional Cordoba" bizuit:createdBy="camiarcesa" bizuit:createdDate="2025-10-03T00:05:32.072Z" bizuit:lastEditedBy="camiarcesa" bizuit:lastEditedDate="2025-10-03T00:05:32.072Z">
+    <bpmn2:laneSet id="LaneSet_1b8x3m6" />
+    <bpmn2:sequenceFlow id="Flow_00dw52y" sourceRef="Solicitar_identificacion_de_ingresantes" targetRef="Verificar_Datos_de_ingresantes" />
+    <bpmn2:sequenceFlow id="Flow_1bnmloc" sourceRef="Solicitar_datos_del_vehiculo" targetRef="Verificar_datos_de_vehiculo" />
+    <bpmn2:sequenceFlow id="Flow_1lkieu6" sourceRef="Llegada_de_Vehiculo_1" targetRef="Verificar_motivo_de_visita" />
+    <bpmn2:task id="Verificar_Datos_de_ingresantes" name="Verificar Datos de ingresantes" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_00dw52y</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1svz2nt</bpmn2:outgoing>
+      <bpmn2:property id="Property_1dvfbcq" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_17g9eyo">
+        <bpmn2:sourceRef>Proveedores</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1dvfbcq</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:task id="Consultar_lista_de_ingresos_del_dia_Como_sabe_que_ingrso_coom_verifica_9" name="Consultar lista de ingresos del día (Como sabe que ingrso, coom verifica-9" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_0rrk2dg</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1n1sety</bpmn2:outgoing>
+      <bpmn2:property id="Property_1ce9p2d" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_1uxrmr2">
+        <bpmn2:sourceRef>Ingresos_autorizados</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1ce9p2d</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:task id="Verificar_motivo_de_visita" name="Verificar motivo de visita" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_1lkieu6</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0rrk2dg</bpmn2:outgoing>
+      <bpmn2:property id="Property_0km0s0p" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_05amopt">
+        <bpmn2:sourceRef>Orden_de_compra</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_0km0s0p</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0p72mzp">
+        <bpmn2:sourceRef>Remito</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_0km0s0p</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0rrk2dg" sourceRef="Verificar_motivo_de_visita" targetRef="Consultar_lista_de_ingresos_del_dia_Como_sabe_que_ingrso_coom_verifica_9" />
+    <bpmn2:sequenceFlow id="Flow_1svz2nt" sourceRef="Verificar_Datos_de_ingresantes" targetRef="Solicitar_datos_del_vehiculo" />
+    <bpmn2:sequenceFlow id="Flow_1n1sety" sourceRef="Consultar_lista_de_ingresos_del_dia_Como_sabe_que_ingrso_coom_verifica_9" targetRef="Solicitar_identificacion_de_ingresantes" />
+    <bpmn2:dataStoreReference id="Proveedores" name="Proveedores" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataStoreReference id="Ingresos_autorizados" name="Ingresos autorizados" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObjectReference id="Remito" name="Remito" dataObjectRef="DataObject_0h1zudt" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_0h1zudt" />
+    <bpmn2:task id="Solicitar_identificacion_de_ingresantes" name="Solicitar identificación de ingresantes" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_1n1sety</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_00dw52y</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Verificar_datos_de_vehiculo" name="Verificar datos de vehículo" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_1bnmloc</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0vd9dsq</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Solicitar_datos_del_vehiculo" name="Solicitar datos del vehículo">
+      <bpmn2:incoming>Flow_1svz2nt</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1bnmloc</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_1nqhou0</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Realizar_inspeccion_de_vehiculo" name="Realizar inspección de vehículo">
+      <bpmn2:incoming>Flow_0vd9dsq</bpmn2:incoming>
+      <bpmn2:incoming>Flow_1jfdc5v</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1gag5pr</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0vd9dsq" sourceRef="Verificar_datos_de_vehiculo" targetRef="Realizar_inspeccion_de_vehiculo" />
+    <bpmn2:sequenceFlow id="Flow_1gag5pr" sourceRef="Realizar_inspeccion_de_vehiculo" targetRef="Validar_resultados" />
+    <bpmn2:sequenceFlow id="No_paso" name="No pasó" sourceRef="Gateway_04cza2e" targetRef="Informar_y_registrar_inconveniente" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Flow_1ckk46o" sourceRef="Informar_y_registrar_inconveniente" targetRef="X" />
+    <bpmn2:sequenceFlow id="Paso" name="Pasó" sourceRef="Gateway_04cza2e" targetRef="Solicitar_Certificado_de_Induccion" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:task id="Solicitar_Certificado_de_Induccion" name="Solicitar Certificado de Inducción" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Paso</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0vs7o74</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1nqhou0" sourceRef="Solicitar_datos_del_vehiculo" targetRef="Verificar_datos_vehiculo" />
+    <bpmn2:sequenceFlow id="Flow_1jfdc5v" sourceRef="Verificar_datos_vehiculo" targetRef="Realizar_inspeccion_de_vehiculo" />
+    <bpmn2:task id="Verificar_datos_vehiculo" name="Verificar datos vehículo">
+      <bpmn2:incoming>Flow_1nqhou0</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1jfdc5v</bpmn2:outgoing>
+      <bpmn2:property id="Property_08xwfvc" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0dxwta7">
+        <bpmn2:sourceRef>Proveedores_1</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_08xwfvc</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:dataStoreReference id="Proveedores_1" name="Proveedores" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:exclusiveGateway id="Gateway_1203t4a">
+      <bpmn2:incoming>Flow_0vs7o74</bpmn2:incoming>
+      <bpmn2:outgoing>Tiene_certificado</bpmn2:outgoing>
+      <bpmn2:outgoing>No_lo_tiene</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_0vs7o74" sourceRef="Solicitar_Certificado_de_Induccion" targetRef="Gateway_1203t4a" />
+    <bpmn2:sequenceFlow id="Tiene_certificado" name="Tiene certificado" sourceRef="Gateway_1203t4a" targetRef="Verificar_Caducidad" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Flow_19u65fq" sourceRef="Verificar_Caducidad" targetRef="Gateway_0ryul6c" />
+    <bpmn2:task id="Verificar_Caducidad" name="Verificar Caducidad" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Tiene_certificado</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_19u65fq</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:exclusiveGateway id="Gateway_0ryul6c">
+      <bpmn2:incoming>Flow_19u65fq</bpmn2:incoming>
+      <bpmn2:outgoing>Esta_vigente_1</bpmn2:outgoing>
+      <bpmn2:outgoing>No_esta_vigente</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Esta_vigente_1" name="Esta vigente" sourceRef="Gateway_0ryul6c" targetRef="Registrar_entrega_de_equipo_de_seguridad" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:task id="Registrar_entrega_de_equipo_de_seguridad" name="Registrar entrega de equipo de seguridad" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Esta_vigente_1</bpmn2:incoming>
+      <bpmn2:incoming>Flow_10ya603</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_15mdnmr</bpmn2:outgoing>
+      <bpmn2:property id="Property_1o3byji" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0po31uv">
+        <bpmn2:sourceRef>Ingresos_autorizados_2</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1o3byji</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:dataStoreReference id="Ingresos_autorizados_2" name="Ingresos autorizados" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:task id="Generar_y_entregar_pase_temporal" name="Generar y entregar pase temporal" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_15mdnmr</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0ac0cd0</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0jqdypk">
+        <bpmn2:targetRef>Pase_temporal</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_15mdnmr" sourceRef="Registrar_entrega_de_equipo_de_seguridad" targetRef="Generar_y_entregar_pase_temporal" />
+    <bpmn2:sequenceFlow id="Flow_0ac0cd0" sourceRef="Generar_y_entregar_pase_temporal" targetRef="Informar_Anden_Asignado" />
+    <bpmn2:task id="Informar_Anden_Asignado" name="Informar Anden Asignado" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_0ac0cd0</bpmn2:incoming>
+    </bpmn2:task>
+    <bpmn2:dataStoreReference id="Orden_de_compra" name="Orden de compra" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:sequenceFlow id="Flow_18fross" sourceRef="Validar_resultados" targetRef="Gateway_04cza2e" />
+    <bpmn2:exclusiveGateway id="Gateway_04cza2e">
+      <bpmn2:incoming>Flow_18fross</bpmn2:incoming>
+      <bpmn2:outgoing>No_paso</bpmn2:outgoing>
+      <bpmn2:outgoing>Paso</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:task id="Validar_resultados" name="Validar resultados" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_1gag5pr</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_18fross</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Informar_y_registrar_inconveniente" name="Informar y registrar inconveniente">
+      <bpmn2:incoming>No_paso</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1ckk46o</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0b0y1d3">
+        <bpmn2:targetRef>Ingresos_autorizados_1</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:endEvent id="X" name="X" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1ckk46o</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:dataStoreReference id="Ingresos_autorizados_1" name="Ingresos autorizados" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObjectReference id="Pase_temporal" name="Pase temporal" dataObjectRef="DataObject_02hs24v" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_02hs24v" />
+    <bpmn2:startEvent id="Llegada_de_Vehiculo_1" name="Llegada de Vehículo" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:outgoing>Flow_1lkieu6</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="Flow_10ya603" sourceRef="Impartir_capacitacion" targetRef="Registrar_entrega_de_equipo_de_seguridad" />
+    <bpmn2:sequenceFlow id="No_lo_tiene" name="No lo tiene" sourceRef="Gateway_1203t4a" targetRef="Impartir_capacitacion" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="No_esta_vigente" name="No esta vigente" sourceRef="Gateway_0ryul6c" targetRef="Impartir_capacitacion" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:dataObjectReference id="Certificado_de_Induccion" name="Certificado de Inducción" dataObjectRef="DataObject_1jwjnue" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_1jwjnue" />
+    <bpmn2:subProcess id="Impartir_capacitacion" name="Impartir capacitación">
+      <bpmn2:incoming>No_lo_tiene</bpmn2:incoming>
+      <bpmn2:incoming>No_esta_vigente</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_10ya603</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_079glyx">
+        <bpmn2:targetRef>Certificado_de_Induccion</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:subProcess>
+    <bpmn2:task id="Recibir_devolucion_de_pase_temporal" name="Recibir devolución de pase temporal" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:outgoing>Flow_1ihpqoi</bpmn2:outgoing>
+      <bpmn2:property id="Property_0l9lhgv" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_00c49xe">
+        <bpmn2:sourceRef>Pase_temporal_1</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_0l9lhgv</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:dataObjectReference id="Pase_temporal_1" name="Pase temporal" dataObjectRef="DataObject_0q85o4a" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_0q85o4a" />
+    <bpmn2:task id="Verificar_remito_de_carga_descarga" name="Verificar remito de carga/descarga" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_1ihpqoi</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1wso7ak</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Controlar_ocupantes_y_vehiculo" name="Controlar ocupantes y vehículo">
+      <bpmn2:incoming>Flow_1wso7ak</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1umvl8u</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:exclusiveGateway id="Gateway_1re7cwo">
+      <bpmn2:incoming>Flow_1umvl8u</bpmn2:incoming>
+      <bpmn2:outgoing>Todo_correcto</bpmn2:outgoing>
+      <bpmn2:outgoing>Hubo_discrepancias</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:task id="Habilitar_y_registrar_el_egreso" name="Habilitar y registrar el egreso" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Todo_correcto</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1ct0r0k</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_16nwk8y">
+        <bpmn2:targetRef>Ingresos_autorizados_3</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:dataStoreReference id="Ingresos_autorizados_3" name="Ingresos autorizados" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:task id="Activar_alarma_de_seguridad" name="Activar alarma de seguridad">
+      <bpmn2:incoming>Hubo_discrepancias</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0lphwks</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1ihpqoi" sourceRef="Recibir_devolucion_de_pase_temporal" targetRef="Verificar_remito_de_carga_descarga" />
+    <bpmn2:sequenceFlow id="Flow_1wso7ak" sourceRef="Verificar_remito_de_carga_descarga" targetRef="Controlar_ocupantes_y_vehiculo" />
+    <bpmn2:sequenceFlow id="Flow_1umvl8u" sourceRef="Controlar_ocupantes_y_vehiculo" targetRef="Gateway_1re7cwo" />
+    <bpmn2:sequenceFlow id="Todo_correcto" name="Todo correcto" sourceRef="Gateway_1re7cwo" targetRef="Habilitar_y_registrar_el_egreso" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Hubo_discrepancias" name="Hubo discrepancias" sourceRef="Gateway_1re7cwo" targetRef="Activar_alarma_de_seguridad" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Flow_1ct0r0k" sourceRef="Habilitar_y_registrar_el_egreso" targetRef="Event_0nczjof" />
+    <bpmn2:endEvent id="X_1" name="X" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0lphwks</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_0lphwks" sourceRef="Activar_alarma_de_seguridad" targetRef="X_1" />
+    <bpmn2:endEvent id="Event_0nczjof">
+      <bpmn2:incoming>Flow_1ct0r0k</bpmn2:incoming>
+    </bpmn2:endEvent>
+  </bpmn2:process>
+  <bpmn2:process id="Process_0vvansj" bizuit:ProcessLevel="1">
+    <bpmn2:laneSet id="LaneSet_1n2m6r2">
+      <bpmn2:lane id="Lane_0cnkbub">
+        <bpmn2:flowNodeRef>Realizar_carga_descarga</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Verificar_si_la_entrega_es_completa</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_10zx6yp</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Firmar_remito_y_registrar_entrega_completa</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Registrar_discrepancias</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:task id="Realizar_carga_descarga" name="Realizar carga/descarga">
+      <bpmn2:outgoing>Flow_1xr1grg</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1xr1grg" sourceRef="Realizar_carga_descarga" targetRef="Verificar_si_la_entrega_es_completa" />
+    <bpmn2:task id="Verificar_si_la_entrega_es_completa" name="Verificar si la entrega es completa" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_1xr1grg</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0g473qn</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:exclusiveGateway id="Gateway_10zx6yp">
+      <bpmn2:incoming>Flow_0g473qn</bpmn2:incoming>
+      <bpmn2:outgoing>Esta_completa</bpmn2:outgoing>
+      <bpmn2:outgoing>No_esta_completo</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_0g473qn" sourceRef="Verificar_si_la_entrega_es_completa" targetRef="Gateway_10zx6yp" />
+    <bpmn2:sequenceFlow id="Esta_completa" name="Está completa" sourceRef="Gateway_10zx6yp" targetRef="Firmar_remito_y_registrar_entrega_completa" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:task id="Firmar_remito_y_registrar_entrega_completa" name="Firmar remito y registrar entrega completa" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Esta_completa</bpmn2:incoming>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0wvldsw">
+        <bpmn2:targetRef>Ordenes_de_compra</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="No_esta_completo" name="No está completo" sourceRef="Gateway_10zx6yp" targetRef="Registrar_discrepancias" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:dataStoreReference id="Ordenes_de_compra" name="Ordenes de compra" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:task id="Registrar_discrepancias" name="Registrar discrepancias" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>No_esta_completo</bpmn2:incoming>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1pyvhkv">
+        <bpmn2:targetRef>Ordenes_de_compra</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_08276c8">
+      <bpmndi:BPMNShape id="Participant_1ptayjz_di" bpmnElement="PROCESO_DE_INGRESO_Y_EGRESO_DE_PROVEEDORES" isHorizontal="true">
+        <dc:Bounds x="-510" y="390" width="4130" height="731" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1mu34ky_di" bpmnElement="Verificar_Datos_de_ingresantes">
+        <dc:Bounds x="230" y="700" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Verificar_motivo_de_visita_1_di" bpmnElement="Consultar_lista_de_ingresos_del_dia_Como_sabe_que_ingrso_coom_verifica_9">
+        <dc:Bounds x="-70" y="700" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Verificar_Datos_Vehiculo_1_1_di" bpmnElement="Verificar_motivo_de_visita">
+        <dc:Bounds x="-210" y="700" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1x1oo2d_di" bpmnElement="Proveedores">
+        <dc:Bounds x="255" y="825" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="249" y="882" width="64" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_15i82k1_di" bpmnElement="Ingresos_autorizados">
+        <dc:Bounds x="-45" y="825" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-50" y="882" width="61" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_18wve6q_di" bpmnElement="Remito">
+        <dc:Bounds x="-168" y="615" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-168" y="578" width="37" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_110pzcj_di" bpmnElement="Solicitar_identificacion_de_ingresantes">
+        <dc:Bounds x="70" y="700" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0wounrv_di" bpmnElement="Solicitar_datos_del_vehiculo">
+        <dc:Bounds x="400" y="700" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0s5btm9_di" bpmnElement="Realizar_inspeccion_de_vehiculo">
+        <dc:Bounds x="700" y="700" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_02naajs_di" bpmnElement="Solicitar_Certificado_de_Induccion">
+        <dc:Bounds x="1080" y="600" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1xqer20_di" bpmnElement="Verificar_datos_vehiculo">
+        <dc:Bounds x="550" y="700" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0mldx4m_di" bpmnElement="Proveedores_1">
+        <dc:Bounds x="575" y="825" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="569" y="882" width="64" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1203t4a_di" bpmnElement="Gateway_1203t4a" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="1355" y="615" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1qsux58_di" bpmnElement="Verificar_Caducidad">
+        <dc:Bounds x="1520" y="600" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0ryul6c_di" bpmnElement="Gateway_0ryul6c" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="1685" y="615" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1qd8eoi_di" bpmnElement="Registrar_entrega_de_equipo_de_seguridad">
+        <dc:Bounds x="1820" y="600" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0e9mmsb_di" bpmnElement="Ingresos_autorizados_2">
+        <dc:Bounds x="1845" y="715" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1840" y="772" width="61" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_18nohdf_di" bpmnElement="Generar_y_entregar_pase_temporal">
+        <dc:Bounds x="2010" y="600" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_09eheyl_di" bpmnElement="Informar_Anden_Asignado">
+        <dc:Bounds x="2190" y="600" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_18qc12e_di" bpmnElement="Orden_de_compra">
+        <dc:Bounds x="-185" y="825" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-182" y="882" width="48" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_04cza2e_di" bpmnElement="Gateway_04cza2e" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="965" y="715" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ek4ajl_di" bpmnElement="Validar_resultados">
+        <dc:Bounds x="835" y="700" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0h7os8o_di" bpmnElement="Informar_y_registrar_inconveniente">
+        <dc:Bounds x="1070" y="748" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0thx1lh_di" bpmnElement="X" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="1262" y="770" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1277" y="783" width="7" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1kx4vsr_di" bpmnElement="Ingresos_autorizados_1">
+        <dc:Bounds x="1095" y="875" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1090" y="932" width="61" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1cdukm6_di" bpmnElement="Pase_temporal">
+        <dc:Bounds x="2040" y="505" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2020" y="481" width="75" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1plxenr_di" bpmnElement="Llegada_de_Vehiculo_1" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="-298" y="722" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-309" y="765" width="58" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0unjvsb_di" bpmnElement="Certificado_de_Induccion">
+        <dc:Bounds x="1692" y="845" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1674" y="902" width="72" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_13cmxqr_di" bpmnElement="X_1" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="3342" y="722" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3357" y="733" width="7" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0nczjof_di" bpmnElement="Event_0nczjof" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="3342" y="622" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1c3extk_di" bpmnElement="Impartir_capacitacion" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="1660" y="730" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0jk468j_di" bpmnElement="Recibir_devolucion_de_pase_temporal">
+        <dc:Bounds x="2520" y="600" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1kzyotv_di" bpmnElement="Pase_temporal_1">
+        <dc:Bounds x="2552" y="505" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2533" y="475" width="75" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0dphg0t_di" bpmnElement="Verificar_remito_de_carga_descarga">
+        <dc:Bounds x="2670" y="600" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0oytggl_di" bpmnElement="Controlar_ocupantes_y_vehiculo">
+        <dc:Bounds x="2820" y="600" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1re7cwo_di" bpmnElement="Gateway_1re7cwo" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="2975" y="615" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0hivvwe_di" bpmnElement="Habilitar_y_registrar_el_egreso">
+        <dc:Bounds x="3130" y="600" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0vdvoxo_di" bpmnElement="Ingresos_autorizados_3">
+        <dc:Bounds x="3155" y="505" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3149" y="468" width="61" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1el3tdd_di" bpmnElement="Activar_alarma_de_seguridad">
+        <dc:Bounds x="3130" y="700" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_00dw52y_di" bpmnElement="Flow_00dw52y">
+        <di:waypoint x="170" y="740" />
+        <di:waypoint x="230" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lkieu6_di" bpmnElement="Flow_1lkieu6">
+        <di:waypoint x="-262" y="740" />
+        <di:waypoint x="-210" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0rrk2dg_di" bpmnElement="Flow_0rrk2dg">
+        <di:waypoint x="-110" y="740" />
+        <di:waypoint x="-70" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1svz2nt_di" bpmnElement="Flow_1svz2nt">
+        <di:waypoint x="330" y="740" />
+        <di:waypoint x="400" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1n1sety_di" bpmnElement="Flow_1n1sety">
+        <di:waypoint x="30" y="740" />
+        <di:waypoint x="70" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gag5pr_di" bpmnElement="Flow_1gag5pr">
+        <di:waypoint x="800" y="740" />
+        <di:waypoint x="835" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0sqf886_di" bpmnElement="No_paso">
+        <di:waypoint x="990" y="765" />
+        <di:waypoint x="990" y="788" />
+        <di:waypoint x="1070" y="788" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="978" y="767" width="44" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ckk46o_di" bpmnElement="Flow_1ckk46o">
+        <di:waypoint x="1170" y="788" />
+        <di:waypoint x="1262" y="788" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zhpfe7_di" bpmnElement="Paso">
+        <di:waypoint x="990" y="715" />
+        <di:waypoint x="990" y="640" />
+        <di:waypoint x="1080" y="640" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="992" y="668" width="26" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1nqhou0_di" bpmnElement="Flow_1nqhou0">
+        <di:waypoint x="500" y="740" />
+        <di:waypoint x="550" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jfdc5v_di" bpmnElement="Flow_1jfdc5v">
+        <di:waypoint x="650" y="740" />
+        <di:waypoint x="700" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vs7o74_di" bpmnElement="Flow_0vs7o74">
+        <di:waypoint x="1180" y="640" />
+        <di:waypoint x="1355" y="640" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01rxm4y_di" bpmnElement="Tiene_certificado">
+        <di:waypoint x="1405" y="640" />
+        <di:waypoint x="1520" y="640" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1420" y="622" width="86" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19u65fq_di" bpmnElement="Flow_19u65fq">
+        <di:waypoint x="1620" y="640" />
+        <di:waypoint x="1685" y="640" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12bflcp_di" bpmnElement="Esta_vigente_1">
+        <di:waypoint x="1735" y="640" />
+        <di:waypoint x="1820" y="640" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1746" y="622" width="63" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15mdnmr_di" bpmnElement="Flow_15mdnmr">
+        <di:waypoint x="1920" y="640" />
+        <di:waypoint x="2010" y="640" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ac0cd0_di" bpmnElement="Flow_0ac0cd0">
+        <di:waypoint x="2110" y="640" />
+        <di:waypoint x="2190" y="640" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18fross_di" bpmnElement="Flow_18fross">
+        <di:waypoint x="935" y="740" />
+        <di:waypoint x="965" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10ya603_di" bpmnElement="Flow_10ya603">
+        <di:waypoint x="1760" y="770" />
+        <di:waypoint x="1790" y="770" />
+        <di:waypoint x="1790" y="640" />
+        <di:waypoint x="1820" y="640" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1q1g0wz_di" bpmnElement="No_lo_tiene">
+        <di:waypoint x="1380" y="665" />
+        <di:waypoint x="1380" y="770" />
+        <di:waypoint x="1660" y="770" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1392" y="753" width="55" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0b6dffj_di" bpmnElement="No_esta_vigente">
+        <di:waypoint x="1710" y="665" />
+        <di:waypoint x="1710" y="730" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1685" y="695" width="80" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ihpqoi_di" bpmnElement="Flow_1ihpqoi">
+        <di:waypoint x="2620" y="640" />
+        <di:waypoint x="2670" y="640" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1wso7ak_di" bpmnElement="Flow_1wso7ak">
+        <di:waypoint x="2770" y="640" />
+        <di:waypoint x="2820" y="640" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1umvl8u_di" bpmnElement="Flow_1umvl8u">
+        <di:waypoint x="2920" y="640" />
+        <di:waypoint x="2975" y="640" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1opcqyy_di" bpmnElement="Todo_correcto">
+        <di:waypoint x="3025" y="640" />
+        <di:waypoint x="3130" y="640" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3042" y="622" width="72" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05yq90f_di" bpmnElement="Hubo_discrepancias">
+        <di:waypoint x="3000" y="665" />
+        <di:waypoint x="3000" y="740" />
+        <di:waypoint x="3130" y="740" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2980" y="700" width="71" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ct0r0k_di" bpmnElement="Flow_1ct0r0k">
+        <di:waypoint x="3230" y="640" />
+        <di:waypoint x="3342" y="640" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lphwks_di" bpmnElement="Flow_0lphwks">
+        <di:waypoint x="3230" y="740" />
+        <di:waypoint x="3342" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_0jmdrjv_di" bpmnElement="PROCESO_DE_CARGA_DESCARGA" isHorizontal="true">
+        <dc:Bounds x="-510" y="1130" width="4130" height="370" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0cnkbub_di" bpmnElement="Lane_0cnkbub" isHorizontal="true">
+        <dc:Bounds x="-480" y="1130" width="4100" height="370" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0sni60l_di" bpmnElement="Realizar_carga_descarga" bioc:stroke="#808080" bioc:fill="#f5f5f5" color:background-color="#f5f5f5" color:border-color="#808080">
+        <dc:Bounds x="2200" y="1300" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ifsrbv_di" bpmnElement="Verificar_si_la_entrega_es_completa">
+        <dc:Bounds x="2370" y="1300" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_10zx6yp_di" bpmnElement="Gateway_10zx6yp" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="2545" y="1315" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1p8j3ax_di" bpmnElement="Firmar_remito_y_registrar_entrega_completa">
+        <dc:Bounds x="2520" y="1180" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Orden_de_compra_1_di" bpmnElement="Ordenes_de_compra">
+        <dc:Bounds x="2695" y="1195" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2691" y="1252" width="60" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13k5xpm_di" bpmnElement="Registrar_discrepancias">
+        <dc:Bounds x="2790" y="1300" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1xr1grg_di" bpmnElement="Flow_1xr1grg">
+        <di:waypoint x="2300" y="1340" />
+        <di:waypoint x="2370" y="1340" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0g473qn_di" bpmnElement="Flow_0g473qn">
+        <di:waypoint x="2470" y="1340" />
+        <di:waypoint x="2545" y="1340" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1sccu3b_di" bpmnElement="Esta_completa">
+        <di:waypoint x="2570" y="1315" />
+        <di:waypoint x="2570" y="1260" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2593" y="1285" width="73" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15u3kxk_di" bpmnElement="No_esta_completo">
+        <di:waypoint x="2595" y="1340" />
+        <di:waypoint x="2790" y="1340" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2669" y="1356" width="48" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_17g9eyo_di" bpmnElement="DataInputAssociation_17g9eyo">
+        <di:waypoint x="280" y="825" />
+        <di:waypoint x="280" y="780" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1uxrmr2_di" bpmnElement="DataInputAssociation_1uxrmr2">
+        <di:waypoint x="-20" y="825" />
+        <di:waypoint x="-20" y="780" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_05amopt_di" bpmnElement="DataInputAssociation_05amopt">
+        <di:waypoint x="-159" y="825" />
+        <di:waypoint x="-157" y="780" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0p72mzp_di" bpmnElement="DataInputAssociation_0p72mzp">
+        <di:waypoint x="-152" y="665" />
+        <di:waypoint x="-156" y="700" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0dxwta7_di" bpmnElement="DataInputAssociation_0dxwta7">
+        <di:waypoint x="600" y="825" />
+        <di:waypoint x="600" y="780" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0po31uv_di" bpmnElement="DataInputAssociation_0po31uv">
+        <di:waypoint x="1870" y="715" />
+        <di:waypoint x="1870" y="680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0jqdypk_di" bpmnElement="DataOutputAssociation_0jqdypk">
+        <di:waypoint x="2060" y="600" />
+        <di:waypoint x="2060" y="555" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0b0y1d3_di" bpmnElement="DataOutputAssociation_0b0y1d3">
+        <di:waypoint x="1120" y="828" />
+        <di:waypoint x="1120" y="875" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_079glyx_di" bpmnElement="DataOutputAssociation_079glyx">
+        <di:waypoint x="1711" y="810" />
+        <di:waypoint x="1712" y="845" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_00c49xe_di" bpmnElement="DataInputAssociation_00c49xe">
+        <di:waypoint x="2570" y="555" />
+        <di:waypoint x="2570" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_16nwk8y_di" bpmnElement="DataOutputAssociation_16nwk8y">
+        <di:waypoint x="3180" y="600" />
+        <di:waypoint x="3180" y="555" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1j7gddi_di" bpmnElement="Flow_1j7gddi">
+        <di:waypoint x="2240" y="680" />
+        <di:waypoint x="2240" y="1300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1p8pmka_di" bpmnElement="Flow_1p8pmka">
+        <di:waypoint x="2550" y="1180" />
+        <di:waypoint x="2550" y="680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1iulswv_di" bpmnElement="Flow_1iulswv">
+        <di:waypoint x="2840" y="1300" />
+        <di:waypoint x="2840" y="990" />
+        <di:waypoint x="2580" y="990" />
+        <di:waypoint x="2580" y="680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0wvldsw_di" bpmnElement="DataOutputAssociation_0wvldsw">
+        <di:waypoint x="2620" y="1222" />
+        <di:waypoint x="2695" y="1224" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1pyvhkv_di" bpmnElement="DataOutputAssociation_1pyvhkv">
+        <di:waypoint x="2807" y="1300" />
+        <di:waypoint x="2745" y="1226" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1olq5gl">
+    <bpmndi:BPMNPlane id="BPMNPlane_1jmzgzb" bpmnElement="Impartir_capacitacion" />
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

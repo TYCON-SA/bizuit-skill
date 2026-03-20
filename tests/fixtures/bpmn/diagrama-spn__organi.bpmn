@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_17q0z4p">
+    <bpmn2:participant id="Proceso_de_Venta" name="" processRef="Process_1" bizuit:AttachmentsCollection="[]" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_1" name="Diagrama Spn" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="Organi">
+    <bpmn2:extensionElements>
+      <bizuit:processParameters>
+        <bizuit:parameter name="ExceptionParameter" description="System parameter for exception handling" type="XML" direction="Optional">
+          <bizuit:xmlSchemaDefinition>{"name":"Exception","type":"root","children":[{"name":"Message","type":"element","dataType":"string"},{"name":"Type","type":"element","dataType":"string"},{"name":"StackTrace","type":"element","dataType":"string"},{"name":"FaultingActivity","type":"element","dataType":"string"}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:parameter>
+        <bizuit:parameter name="OutputParameter" description="System parameter for workflow output" type="Escalar" direction="Out" scalarDataType="string" defaultValue="" />
+      </bizuit:processParameters>
+      <bizuit:processVariables>
+        <bizuit:variable name="InstanceId" description="System variable for workflow instance ID" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+        <bizuit:variable name="LoggedUser" description="System variable for logged user information" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+      </bizuit:processVariables>
+    </bpmn2:extensionElements>
+    <bpmn2:laneSet id="LaneSet_06kzmzy">
+      <bpmn2:lane id="Proceso_de_venta_1" name="Proceso de venta" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Cliente_se_dirige_a_un_R_comercial</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Brindar_asesoramiento_sobre_modelos_y_precios</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Elaborar_propuesta_comercial</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1ex0oyk</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Verificar_si_esta_registrado</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Actualizar_precio</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1ivphph</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_1h1xdnj</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0c2949f</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Tomar_pedido</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Solicitar_numero_del_cliente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Verificar_condicion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1ocfuvp</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_00atjzq</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Ingresar_datos</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Generar_orden_de_venta</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Acordar_Fecha_de_entrega</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Generar_factura</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Emitir_factura</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Emite_remito</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Realiza_copia_del_remito</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Entrega_el_remito</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Llena_formulario_de_solicitud_de_apertura_de_cuenta_corriente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1x05nlj</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_0gmhpqr</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Confirmar_cobro_financiado</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Informar_a_administracion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Recibir_remito_original_firmado</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Despachar_con_la_empresa</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Preparar_las_partes_de_las_unidades_de_las_casas</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Elaborar_Hoja_de_ruta</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Solicitar_pago_de_flete</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Firmar_hoja_de_ruta</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Dejar_copia_de_remito</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Hacer_firmar_remito_al_cliente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Entregar_casas_capsula</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Recibir_solicitud_de_cobro</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Abonar_solicitud_final</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Fin</bpmn2:flowNodeRef>
+        <bpmn2:childLaneSet id="LaneSet_1g0r3ra">
+          <bpmn2:lane id="Administracion" name="Administración" bizuit:Performers="Administración" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+            <bpmn2:flowNodeRef>Recibir_solicitud_de_cobro</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Abonar_solicitud_final</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Fin</bpmn2:flowNodeRef>
+          </bpmn2:lane>
+          <bpmn2:lane id="Transporte" name="Transporte" bizuit:Performers="Transporte" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+            <bpmn2:flowNodeRef>Solicitar_pago_de_flete</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Firmar_hoja_de_ruta</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Dejar_copia_de_remito</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Hacer_firmar_remito_al_cliente</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Entregar_casas_capsula</bpmn2:flowNodeRef>
+          </bpmn2:lane>
+          <bpmn2:lane id="Responsable_de_Entrega" name="Responsable de Entrega" bizuit:Performers="Responsable de Entrega" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+            <bpmn2:flowNodeRef>Informar_a_administracion</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Recibir_remito_original_firmado</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Despachar_con_la_empresa</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Preparar_las_partes_de_las_unidades_de_las_casas</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Elaborar_Hoja_de_ruta</bpmn2:flowNodeRef>
+            <bpmn2:childLaneSet id="LaneSet_1ompltg" />
+          </bpmn2:lane>
+          <bpmn2:lane id="Responsable_de_Cobro" name="Responsable de Cobro" bizuit:Performers="Responsable de Cobro" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+            <bpmn2:flowNodeRef>Confirmar_cobro_financiado</bpmn2:flowNodeRef>
+          </bpmn2:lane>
+          <bpmn2:lane id="Responsable_Financiero" name="Responsable Financiero" bizuit:Performers="Responsable Financiero" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+            <bpmn2:flowNodeRef>Llena_formulario_de_solicitud_de_apertura_de_cuenta_corriente</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Gateway_1x05nlj</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Event_0gmhpqr</bpmn2:flowNodeRef>
+          </bpmn2:lane>
+          <bpmn2:lane id="Responsable_Comercial_1" name="Responsable Comercial" bizuit:Performers="Responsable Comercial" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+            <bpmn2:flowNodeRef>Cliente_se_dirige_a_un_R_comercial</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Brindar_asesoramiento_sobre_modelos_y_precios</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Elaborar_propuesta_comercial</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Gateway_1ex0oyk</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Verificar_si_esta_registrado</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Actualizar_precio</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Gateway_1ivphph</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Event_1h1xdnj</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Gateway_0c2949f</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Tomar_pedido</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Solicitar_numero_del_cliente</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Verificar_condicion</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Gateway_1ocfuvp</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Event_00atjzq</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Ingresar_datos</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Generar_orden_de_venta</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Acordar_Fecha_de_entrega</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Generar_factura</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Emitir_factura</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Emite_remito</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Realiza_copia_del_remito</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Entrega_el_remito</bpmn2:flowNodeRef>
+          </bpmn2:lane>
+        </bpmn2:childLaneSet>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:sequenceFlow id="Flow_1b2fhhk" sourceRef="Llena_formulario_de_solicitud_de_apertura_de_cuenta_corriente" targetRef="Gateway_1x05nlj" />
+    <bpmn2:sequenceFlow id="Flow_1lhzs6o" sourceRef="Solicitar_pago_de_flete" targetRef="Informar_a_administracion" />
+    <bpmn2:sequenceFlow id="Flow_1ry6agj" sourceRef="Recibir_remito_original_firmado" targetRef="Firmar_hoja_de_ruta" />
+    <bpmn2:sequenceFlow id="Flow_1e55i07" sourceRef="Dejar_copia_de_remito" targetRef="Recibir_remito_original_firmado" />
+    <bpmn2:sequenceFlow id="Flow_0m0l5jr" sourceRef="Despachar_con_la_empresa" targetRef="Entregar_casas_capsula" />
+    <bpmn2:task id="Entrega_el_remito" name="Entrega el remito" bizuit:Performers="Responsable Comercial">
+      <bpmn2:incoming>Flow_1j6ureh</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0mii22c</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0mii22c" sourceRef="Entrega_el_remito" targetRef="Elaborar_Hoja_de_ruta" />
+    <bpmn2:task id="Realiza_copia_del_remito" name="Realiza copia del remito" bizuit:Performers="Responsable Comercial" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_08hgos3</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1j6ureh</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1j6ureh" sourceRef="Realiza_copia_del_remito" targetRef="Entrega_el_remito" />
+    <bpmn2:dataObjectReference id="Remito" name="Remito" dataObjectRef="DataObject_0wpwje2" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_0wpwje2" />
+    <bpmn2:task id="Emite_remito" name="Emite remito" bizuit:Performers="Responsable Comercial" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_09o0478</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_08hgos3</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1m3n0ro">
+        <bpmn2:targetRef>Remito</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_08hgos3" sourceRef="Emite_remito" targetRef="Realiza_copia_del_remito" />
+    <bpmn2:sequenceFlow id="Flow_09o0478" sourceRef="Confirmar_cobro_financiado" targetRef="Emite_remito" />
+    <bpmn2:sequenceFlow id="Rechazado" name="Rechazado" sourceRef="Gateway_1x05nlj" targetRef="Event_0gmhpqr" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:task id="Emitir_factura" name="Emitir factura" bizuit:Performers="Responsable Comercial">
+      <bpmn2:incoming>Flow_0dnknxv</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0sdsyk6</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0sdsyk6" sourceRef="Emitir_factura" targetRef="Confirmar_cobro_financiado" />
+    <bpmn2:dataStoreReference id="Factura" name="Factura" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:task id="Generar_factura" name="Generar factura" bizuit:Performers="Responsable Comercial" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_10gg5nd</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0dnknxv</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_09nca8t">
+        <bpmn2:targetRef>Factura</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0dnknxv" sourceRef="Generar_factura" targetRef="Emitir_factura" />
+    <bpmn2:task id="Acordar_Fecha_de_entrega" name="Acordar Fecha de entrega" bizuit:Performers="Responsable Comercial" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1qnybhe</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_10gg5nd</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_10gg5nd" sourceRef="Acordar_Fecha_de_entrega" targetRef="Generar_factura" />
+    <bpmn2:dataObjectReference id="Orden_de_venta" name="Orden de venta" dataObjectRef="DataObject_1x6bnfb" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_1x6bnfb" />
+    <bpmn2:task id="Generar_orden_de_venta" name="Generar orden de venta" bizuit:Performers="Responsable Comercial" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_07ag4b0</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1qnybhe</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0gd4a24">
+        <bpmn2:targetRef>Orden_de_venta</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1qnybhe" sourceRef="Generar_orden_de_venta" targetRef="Acordar_Fecha_de_entrega" />
+    <bpmn2:dataStoreReference id="DataStoreReference_0z9uz5t" />
+    <bpmn2:task id="Ingresar_datos" name="Ingresar datos" bizuit:Performers="Responsable Comercial" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Compra</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_07ag4b0</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1x692zn">
+        <bpmn2:targetRef>DataStoreReference_0z9uz5t</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_07ag4b0" sourceRef="Ingresar_datos" targetRef="Generar_orden_de_venta" />
+    <bpmn2:endEvent id="Event_00atjzq" bizuit:Performers="Responsable Comercial">
+      <bpmn2:incoming>No_compra</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:exclusiveGateway id="Gateway_1ocfuvp">
+      <bpmn2:incoming>Flow_02vpa5y</bpmn2:incoming>
+      <bpmn2:outgoing>Compra</bpmn2:outgoing>
+      <bpmn2:outgoing>No_compra</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Compra" name="Compra" sourceRef="Gateway_1ocfuvp" targetRef="Ingresar_datos" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="No_compra" name="No compra" sourceRef="Gateway_1ocfuvp" targetRef="Event_00atjzq" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:task id="Verificar_condicion" name="Verificar condición " bizuit:Performers="Responsable Comercial" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1rglh82</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_02vpa5y</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_02vpa5y" sourceRef="Verificar_condicion" targetRef="Gateway_1ocfuvp" />
+    <bpmn2:task id="Solicitar_numero_del_cliente" name="Solicitar número del cliente " bizuit:Performers="Responsable Comercial" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0yvc7k8</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1rglh82</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1rglh82" sourceRef="Solicitar_numero_del_cliente" targetRef="Verificar_condicion" />
+    <bpmn2:dataStoreReference id="Pedido" name="Pedido" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:task id="Tomar_pedido" name="Tomar pedido" bizuit:Performers="Responsable Comercial" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Aceptado</bpmn2:incoming>
+      <bpmn2:incoming>Registrado</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0yvc7k8</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0c0bwgu">
+        <bpmn2:targetRef>Pedido</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0yvc7k8" sourceRef="Tomar_pedido" targetRef="Solicitar_numero_del_cliente" />
+    <bpmn2:sequenceFlow id="Aceptado" name="Aceptado" sourceRef="Gateway_1x05nlj" targetRef="Tomar_pedido" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:exclusiveGateway id="Gateway_0c2949f">
+      <bpmn2:incoming>Flow_0jopw5m</bpmn2:incoming>
+      <bpmn2:outgoing>Registrado</bpmn2:outgoing>
+      <bpmn2:outgoing>No_registrado</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Registrado" name="Registrado" sourceRef="Gateway_0c2949f" targetRef="Tomar_pedido" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="No_registrado" name="No registrado" sourceRef="Gateway_0c2949f" targetRef="Llena_formulario_de_solicitud_de_apertura_de_cuenta_corriente" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:endEvent id="Event_1h1xdnj" bizuit:Performers="Responsable Comercial">
+      <bpmn2:incoming>No_acepta</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:exclusiveGateway id="Gateway_1ivphph">
+      <bpmn2:incoming>Flow_05x5tiw</bpmn2:incoming>
+      <bpmn2:outgoing>Acepta</bpmn2:outgoing>
+      <bpmn2:outgoing>No_acepta</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Acepta" name="Acepta" sourceRef="Gateway_1ivphph" targetRef="Verificar_si_esta_registrado" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="No_acepta" name="No acepta" sourceRef="Gateway_1ivphph" targetRef="Event_1h1xdnj" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:task id="Actualizar_precio" name="Actualizar precio" bizuit:Performers="Responsable Comercial" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>No_vigente</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_05x5tiw</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_05x5tiw" sourceRef="Actualizar_precio" targetRef="Gateway_1ivphph" />
+    <bpmn2:task id="Verificar_si_esta_registrado" name="Verificar si esta registrado" bizuit:Performers="Responsable Comercial" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Acepta</bpmn2:incoming>
+      <bpmn2:incoming>Vigente</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0jopw5m</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0jopw5m" sourceRef="Verificar_si_esta_registrado" targetRef="Gateway_0c2949f" />
+    <bpmn2:exclusiveGateway id="Gateway_1ex0oyk">
+      <bpmn2:incoming>Flow_1xwn9dk</bpmn2:incoming>
+      <bpmn2:outgoing>No_vigente</bpmn2:outgoing>
+      <bpmn2:outgoing>Vigente</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="No_vigente" name="No vigente" sourceRef="Gateway_1ex0oyk" targetRef="Actualizar_precio" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Vigente" name="Vigente" sourceRef="Gateway_1ex0oyk" targetRef="Verificar_si_esta_registrado" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:dataObjectReference id="Propuesta_comercial" name="Propuesta comercial" dataObjectRef="DataObject_1etlumm" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_1etlumm" />
+    <bpmn2:task id="Elaborar_propuesta_comercial" name="Elaborar propuesta comercial" bizuit:Performers="Responsable Comercial" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1814y83</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1xwn9dk</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1hve62e">
+        <bpmn2:targetRef>Propuesta_comercial</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1xwn9dk" sourceRef="Elaborar_propuesta_comercial" targetRef="Gateway_1ex0oyk" />
+    <bpmn2:task id="Brindar_asesoramiento_sobre_modelos_y_precios" name="Brindar asesoramiento sobre modelos y precios" bizuit:Performers="Responsable Comercial" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1riwjp2</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1814y83</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1814y83" sourceRef="Brindar_asesoramiento_sobre_modelos_y_precios" targetRef="Elaborar_propuesta_comercial" />
+    <bpmn2:startEvent id="Cliente_se_dirige_a_un_R_comercial" name="Cliente se dirige a un R comercial" bizuit:Performers="Responsable Comercial" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:outgoing>Flow_1riwjp2</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="Flow_1riwjp2" sourceRef="Cliente_se_dirige_a_un_R_comercial" targetRef="Brindar_asesoramiento_sobre_modelos_y_precios" />
+    <bpmn2:task id="Llena_formulario_de_solicitud_de_apertura_de_cuenta_corriente" name="Llena formulario de solicitud de apertura de cuenta corriente" bizuit:Performers="Responsable Financiero" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>No_registrado</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1b2fhhk</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:exclusiveGateway id="Gateway_1x05nlj">
+      <bpmn2:incoming>Flow_1b2fhhk</bpmn2:incoming>
+      <bpmn2:outgoing>Rechazado</bpmn2:outgoing>
+      <bpmn2:outgoing>Aceptado</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:endEvent id="Event_0gmhpqr" bizuit:Performers="Responsable Financiero">
+      <bpmn2:incoming>Rechazado</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:task id="Confirmar_cobro_financiado" name="Confirmar cobro financiado" bizuit:Performers="Responsable de Cobro" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0sdsyk6</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_09o0478</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Informar_a_administracion" name="Informar a administración" bizuit:Performers="Responsable de Entrega" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1lhzs6o</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0r176gx</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Recibir_remito_original_firmado" name="Recibir remito original firmado" bizuit:Performers="Responsable de Entrega" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1e55i07</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1ry6agj</bpmn2:outgoing>
+      <bpmn2:property id="Property_1e1rug9" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_003lfve">
+        <bpmn2:sourceRef>Remito_2</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1e1rug9</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:task id="Despachar_con_la_empresa" name="Despachar con la empresa" bizuit:Performers="Responsable de Entrega" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1e0b3wd</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0m0l5jr</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Preparar_las_partes_de_las_unidades_de_las_casas" name="Preparar las partes de las unidades de las casas" bizuit:Performers="Responsable de Entrega" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_00wgski</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1e0b3wd</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:dataObjectReference id="Hoja_de_ruta" name="Hoja de ruta" dataObjectRef="DataObject_0twczff" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_0twczff" />
+    <bpmn2:task id="Elaborar_Hoja_de_ruta" name="Elaborar Hoja de ruta" bizuit:Performers="Responsable de Entrega" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0mii22c</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_00wgski</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1ap86fg">
+        <bpmn2:targetRef>Hoja_de_ruta</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1e0b3wd" sourceRef="Preparar_las_partes_de_las_unidades_de_las_casas" targetRef="Despachar_con_la_empresa" />
+    <bpmn2:sequenceFlow id="Flow_00wgski" sourceRef="Elaborar_Hoja_de_ruta" targetRef="Preparar_las_partes_de_las_unidades_de_las_casas" />
+    <bpmn2:dataObjectReference id="Remito_2" name="Remito" dataObjectRef="DataObject_01w0rg5" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_01w0rg5" />
+    <bpmn2:task id="Solicitar_pago_de_flete" name="Solicitar pago de flete" bizuit:Performers="Transporte" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_04je89s</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1lhzs6o</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Firmar_hoja_de_ruta" name="Firmar hoja de ruta" bizuit:Performers="Transporte" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1ry6agj</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_04je89s</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:dataObjectReference id="Copia_de_remito" name="Copia de remito" dataObjectRef="DataObject_0z9fih4" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_0z9fih4" />
+    <bpmn2:task id="Dejar_copia_de_remito" name="Dejar copia de remito" bizuit:Performers="Transporte" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1dezol4</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1e55i07</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0saki7q">
+        <bpmn2:targetRef>Copia_de_remito</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:dataObjectReference id="Remito_1" name="Remito" dataObjectRef="DataObject_08xfw2y" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_08xfw2y" />
+    <bpmn2:task id="Hacer_firmar_remito_al_cliente" name="Hacer firmar remito al cliente" bizuit:Performers="Transporte" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_06botyt</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1dezol4</bpmn2:outgoing>
+      <bpmn2:property id="Property_1qatbdy" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0ywk6yo">
+        <bpmn2:sourceRef>Remito_1</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1qatbdy</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:task id="Entregar_casas_capsula" name="Entregar casas capsula" bizuit:Performers="Transporte" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0m0l5jr</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_06botyt</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_04je89s" sourceRef="Firmar_hoja_de_ruta" targetRef="Solicitar_pago_de_flete" />
+    <bpmn2:sequenceFlow id="Flow_1dezol4" sourceRef="Hacer_firmar_remito_al_cliente" targetRef="Dejar_copia_de_remito" />
+    <bpmn2:sequenceFlow id="Flow_06botyt" sourceRef="Entregar_casas_capsula" targetRef="Hacer_firmar_remito_al_cliente" />
+    <bpmn2:sequenceFlow id="Flow_0r176gx" sourceRef="Informar_a_administracion" targetRef="Recibir_solicitud_de_cobro" />
+    <bpmn2:task id="Recibir_solicitud_de_cobro" name="Recibir solicitud de cobro" bizuit:Performers="Administración" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0r176gx</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_06awc15</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Abonar_solicitud_final" name="Abonar solicitud final" bizuit:Performers="Administración" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_06awc15</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_06w1anv</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_06awc15" sourceRef="Recibir_solicitud_de_cobro" targetRef="Abonar_solicitud_final" />
+    <bpmn2:endEvent id="Fin" name="Fin" bizuit:Performers="Administración" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_06w1anv</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_06w1anv" sourceRef="Abonar_solicitud_final" targetRef="Fin" />
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_17q0z4p">
+      <bpmndi:BPMNShape id="Participant_012pawb_di" bpmnElement="Proceso_de_Venta" isHorizontal="true">
+        <dc:Bounds x="-3255" y="-1253" width="5225" height="2143" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0wgtea2_di" bpmnElement="Proceso_de_venta_1" isHorizontal="true">
+        <dc:Bounds x="-3225" y="-1253" width="5195" height="2143" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0s84wac_di" bpmnElement="Responsable_Comercial_1" isHorizontal="true">
+        <dc:Bounds x="-3195" y="-1253" width="5165" height="523" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_18o9lrq_di" bpmnElement="Responsable_Financiero" isHorizontal="true">
+        <dc:Bounds x="-3195" y="-730" width="5165" height="340" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0cnp51j_di" bpmnElement="Responsable_de_Cobro" isHorizontal="true">
+        <dc:Bounds x="-3195" y="-390" width="5165" height="300" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0j8hxi6_di" bpmnElement="Responsable_de_Entrega" isHorizontal="true">
+        <dc:Bounds x="-3195" y="-90" width="5165" height="330" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0688eyb_di" bpmnElement="Transporte" isHorizontal="true">
+        <dc:Bounds x="-3195" y="240" width="5165" height="330" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_15gn99l_di" bpmnElement="Administracion" isHorizontal="true">
+        <dc:Bounds x="-3195" y="570" width="5165" height="320" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="Cliente_se_dirige_a_un_R_comercial" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="-3073" y="-1116" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-3098" y="-1073" width="86" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1e0uy9u_di" bpmnElement="Brindar_asesoramiento_sobre_modelos_y_precios">
+        <dc:Bounds x="-2965" y="-1138" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0eu2g3c_di" bpmnElement="Elaborar_propuesta_comercial">
+        <dc:Bounds x="-2795" y="-1138" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_12shgbn_di" bpmnElement="Propuesta_comercial">
+        <dc:Bounds x="-2843" y="-1053" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-2851" y="-996" width="53" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1ex0oyk_di" bpmnElement="Gateway_1ex0oyk" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="-2630" y="-1123" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ipkzx6_di" bpmnElement="Verificar_si_esta_registrado">
+        <dc:Bounds x="-2515" y="-1048" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xk2twj_di" bpmnElement="Actualizar_precio">
+        <dc:Bounds x="-2515" y="-1228" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1ivphph_di" bpmnElement="Gateway_1ivphph" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="-2350" y="-1213" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1h1xdnj_di" bpmnElement="Event_1h1xdnj" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="-2203" y="-1236" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0c2949f_di" bpmnElement="Gateway_0c2949f" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="-2270" y="-1013" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1h2mc17_di" bpmnElement="Tomar_pedido">
+        <dc:Bounds x="-2155" y="-1068" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_12930df_di" bpmnElement="Pedido">
+        <dc:Bounds x="-2210" y="-1148" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-2203" y="-1091" width="36" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0r80we1_di" bpmnElement="Solicitar_numero_del_cliente">
+        <dc:Bounds x="-1985" y="-1068" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_18much9_di" bpmnElement="Verificar_condicion">
+        <dc:Bounds x="-1835" y="-1068" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1ocfuvp_di" bpmnElement="Gateway_1ocfuvp" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="-1680" y="-1053" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_00atjzq_di" bpmnElement="Event_00atjzq" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="-1573" y="-1091" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0i9ptx5_di" bpmnElement="Ingresar_datos">
+        <dc:Bounds x="-1605" y="-993" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0z9uz5t_di" bpmnElement="DataStoreReference_0z9uz5t">
+        <dc:Bounds x="-1580" y="-878" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ghvqhz_di" bpmnElement="Generar_orden_de_venta">
+        <dc:Bounds x="-1445" y="-993" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1n9llqf_di" bpmnElement="Orden_de_venta">
+        <dc:Bounds x="-1413" y="-878" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-1435" y="-821" width="80" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0c9pie9_di" bpmnElement="Acordar_Fecha_de_entrega">
+        <dc:Bounds x="-1285" y="-993" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ew7kj0_di" bpmnElement="Generar_factura">
+        <dc:Bounds x="-1125" y="-993" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1mzs8vi_di" bpmnElement="Factura">
+        <dc:Bounds x="-1100" y="-878" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-1095" y="-821" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0egevk4_di" bpmnElement="Emitir_factura">
+        <dc:Bounds x="-965" y="-993" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0gt0pni_di" bpmnElement="Emite_remito">
+        <dc:Bounds x="-775" y="-993" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1rc7r98_di" bpmnElement="Remito">
+        <dc:Bounds x="-743" y="-863" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-743" y="-806" width="37" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_19sh921_di" bpmnElement="Realiza_copia_del_remito">
+        <dc:Bounds x="-565" y="-993" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1l07j96_di" bpmnElement="Entrega_el_remito">
+        <dc:Bounds x="-355" y="-993" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1u04cbq_di" bpmnElement="Llena_formulario_de_solicitud_de_apertura_de_cuenta_corriente">
+        <dc:Bounds x="-2255" y="-590" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1x05nlj_di" bpmnElement="Gateway_1x05nlj" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="-2115" y="-575" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0gmhpqr_di" bpmnElement="Event_0gmhpqr" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="-1883" y="-568" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_04xf5g7_di" bpmnElement="Confirmar_cobro_financiado">
+        <dc:Bounds x="-965" y="-250" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_16879bi_di" bpmnElement="Informar_a_administracion">
+        <dc:Bounds x="1160" y="0" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xy6xun_di" bpmnElement="Recibir_remito_original_firmado">
+        <dc:Bounds x="590" y="0" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ojhv22_di" bpmnElement="Despachar_con_la_empresa">
+        <dc:Bounds x="45" y="0" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1iira13_di" bpmnElement="Preparar_las_partes_de_las_unidades_de_las_casas">
+        <dc:Bounds x="-95" y="0" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_00ev1jh_di" bpmnElement="Hoja_de_ruta">
+        <dc:Bounds x="-203" y="115" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-217" y="172" width="65" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0h1kayj_di" bpmnElement="Elaborar_Hoja_de_ruta">
+        <dc:Bounds x="-235" y="0" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0zlp4na_di" bpmnElement="Remito_2">
+        <dc:Bounds x="622" y="125" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="621" y="185" width="37" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_05nbu8j_di" bpmnElement="Solicitar_pago_de_flete">
+        <dc:Bounds x="980" y="330" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1rtxhje_di" bpmnElement="Firmar_hoja_de_ruta">
+        <dc:Bounds x="800" y="330" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1ewygfg_di" bpmnElement="Copia_de_remito">
+        <dc:Bounds x="392" y="445" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="369" y="502" width="82" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_18jwww4_di" bpmnElement="Dejar_copia_de_remito">
+        <dc:Bounds x="360" y="330" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0rnii6b_di" bpmnElement="Remito_1">
+        <dc:Bounds x="232" y="445" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="232" y="502" width="37" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_14ywp99_di" bpmnElement="Hacer_firmar_remito_al_cliente">
+        <dc:Bounds x="200" y="330" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_111nr85_di" bpmnElement="Entregar_casas_capsula">
+        <dc:Bounds x="45" y="330" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0icpeel_di" bpmnElement="Recibir_solicitud_de_cobro">
+        <dc:Bounds x="1340" y="700" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0s0yhzn_di" bpmnElement="Abonar_solicitud_final">
+        <dc:Bounds x="1520" y="700" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1xzpatu_di" bpmnElement="Fin" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="1702" y="722" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1713" y="765" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1riwjp2_di" bpmnElement="Flow_1riwjp2">
+        <di:waypoint x="-3037" y="-1098" />
+        <di:waypoint x="-2965" y="-1098" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1814y83_di" bpmnElement="Flow_1814y83">
+        <di:waypoint x="-2865" y="-1098" />
+        <di:waypoint x="-2795" y="-1098" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xwn9dk_di" bpmnElement="Flow_1xwn9dk">
+        <di:waypoint x="-2695" y="-1098" />
+        <di:waypoint x="-2630" y="-1098" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17cl5jl_di" bpmnElement="Vigente">
+        <di:waypoint x="-2605" y="-1073" />
+        <di:waypoint x="-2605" y="-1008" />
+        <di:waypoint x="-2515" y="-1008" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-2585" y="-1025" width="39" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1w29iwj_di" bpmnElement="No_vigente">
+        <di:waypoint x="-2605" y="-1123" />
+        <di:waypoint x="-2605" y="-1188" />
+        <di:waypoint x="-2515" y="-1188" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-2593" y="-1205" width="55" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1cs6ela_di" bpmnElement="Acepta">
+        <di:waypoint x="-2325" y="-1163" />
+        <di:waypoint x="-2325" y="-1038" />
+        <di:waypoint x="-2415" y="-1038" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-2384" y="-1055" width="37" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jopw5m_di" bpmnElement="Flow_0jopw5m">
+        <di:waypoint x="-2415" y="-1008" />
+        <di:waypoint x="-2357" y="-1008" />
+        <di:waypoint x="-2357" y="-988" />
+        <di:waypoint x="-2270" y="-988" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05x5tiw_di" bpmnElement="Flow_05x5tiw">
+        <di:waypoint x="-2415" y="-1188" />
+        <di:waypoint x="-2350" y="-1188" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0icrjfl_di" bpmnElement="No_acepta">
+        <di:waypoint x="-2300" y="-1188" />
+        <di:waypoint x="-2266" y="-1188" />
+        <di:waypoint x="-2266" y="-1218" />
+        <di:waypoint x="-2203" y="-1218" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-2278" y="-1235" width="54" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04h4vb0_di" bpmnElement="No_registrado">
+        <di:waypoint x="-2245" y="-963" />
+        <di:waypoint x="-2245" y="-590" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-2241" y="-787" width="71" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mh5563_di" bpmnElement="Registrado">
+        <di:waypoint x="-2237" y="-1005" />
+        <di:waypoint x="-2225" y="-1028" />
+        <di:waypoint x="-2155" y="-1028" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-2234" y="-1050" width="57" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1f6yj1c_di" bpmnElement="Aceptado">
+        <di:waypoint x="-2090" y="-575" />
+        <di:waypoint x="-2090" y="-740" />
+        <di:waypoint x="-2105" y="-740" />
+        <di:waypoint x="-2105" y="-988" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-2085" y="-787" width="50" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0yvc7k8_di" bpmnElement="Flow_0yvc7k8">
+        <di:waypoint x="-2055" y="-1028" />
+        <di:waypoint x="-1985" y="-1028" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1rglh82_di" bpmnElement="Flow_1rglh82">
+        <di:waypoint x="-1885" y="-1028" />
+        <di:waypoint x="-1835" y="-1028" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02vpa5y_di" bpmnElement="Flow_02vpa5y">
+        <di:waypoint x="-1735" y="-1028" />
+        <di:waypoint x="-1680" y="-1028" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14kzeul_di" bpmnElement="No_compra">
+        <di:waypoint x="-1655" y="-1053" />
+        <di:waypoint x="-1655" y="-1073" />
+        <di:waypoint x="-1573" y="-1073" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-1654" y="-1091" width="58" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_127mgm3_di" bpmnElement="Compra">
+        <di:waypoint x="-1655" y="-1003" />
+        <di:waypoint x="-1655" y="-953" />
+        <di:waypoint x="-1605" y="-953" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-1661" y="-940" width="42" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07ag4b0_di" bpmnElement="Flow_07ag4b0">
+        <di:waypoint x="-1505" y="-953" />
+        <di:waypoint x="-1445" y="-953" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qnybhe_di" bpmnElement="Flow_1qnybhe">
+        <di:waypoint x="-1345" y="-953" />
+        <di:waypoint x="-1285" y="-953" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10gg5nd_di" bpmnElement="Flow_10gg5nd">
+        <di:waypoint x="-1185" y="-953" />
+        <di:waypoint x="-1125" y="-953" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dnknxv_di" bpmnElement="Flow_0dnknxv">
+        <di:waypoint x="-1025" y="-953" />
+        <di:waypoint x="-965" y="-953" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0sdsyk6_di" bpmnElement="Flow_0sdsyk6">
+        <di:waypoint x="-915" y="-913" />
+        <di:waypoint x="-915" y="-250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fqd7gc_di" bpmnElement="Rechazado">
+        <di:waypoint x="-2065" y="-550" />
+        <di:waypoint x="-1883" y="-550" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-2005" y="-537" width="58" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1b2fhhk_di" bpmnElement="Flow_1b2fhhk">
+        <di:waypoint x="-2155" y="-550" />
+        <di:waypoint x="-2115" y="-550" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09o0478_di" bpmnElement="Flow_09o0478">
+        <di:waypoint x="-865" y="-210" />
+        <di:waypoint x="-830" y="-210" />
+        <di:waypoint x="-830" y="-953" />
+        <di:waypoint x="-775" y="-953" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08hgos3_di" bpmnElement="Flow_08hgos3">
+        <di:waypoint x="-675" y="-953" />
+        <di:waypoint x="-565" y="-953" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1j6ureh_di" bpmnElement="Flow_1j6ureh">
+        <di:waypoint x="-465" y="-953" />
+        <di:waypoint x="-355" y="-953" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mii22c_di" bpmnElement="Flow_0mii22c">
+        <di:waypoint x="-255" y="-953" />
+        <di:waypoint x="-245" y="-953" />
+        <di:waypoint x="-245" y="40" />
+        <di:waypoint x="-235" y="40" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0m0l5jr_di" bpmnElement="Flow_0m0l5jr">
+        <di:waypoint x="95" y="80" />
+        <di:waypoint x="95" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1e55i07_di" bpmnElement="Flow_1e55i07">
+        <di:waypoint x="460" y="370" />
+        <di:waypoint x="525" y="370" />
+        <di:waypoint x="525" y="40" />
+        <di:waypoint x="590" y="40" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ry6agj_di" bpmnElement="Flow_1ry6agj">
+        <di:waypoint x="690" y="40" />
+        <di:waypoint x="745" y="40" />
+        <di:waypoint x="745" y="370" />
+        <di:waypoint x="800" y="370" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lhzs6o_di" bpmnElement="Flow_1lhzs6o">
+        <di:waypoint x="1080" y="370" />
+        <di:waypoint x="1120" y="370" />
+        <di:waypoint x="1120" y="40" />
+        <di:waypoint x="1160" y="40" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1e0b3wd_di" bpmnElement="Flow_1e0b3wd">
+        <di:waypoint x="5" y="40" />
+        <di:waypoint x="45" y="40" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00wgski_di" bpmnElement="Flow_00wgski">
+        <di:waypoint x="-135" y="40" />
+        <di:waypoint x="-95" y="40" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04je89s_di" bpmnElement="Flow_04je89s">
+        <di:waypoint x="900" y="370" />
+        <di:waypoint x="980" y="370" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1dezol4_di" bpmnElement="Flow_1dezol4">
+        <di:waypoint x="300" y="370" />
+        <di:waypoint x="360" y="370" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06botyt_di" bpmnElement="Flow_06botyt">
+        <di:waypoint x="145" y="370" />
+        <di:waypoint x="200" y="370" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0r176gx_di" bpmnElement="Flow_0r176gx">
+        <di:waypoint x="1260" y="40" />
+        <di:waypoint x="1300" y="40" />
+        <di:waypoint x="1300" y="740" />
+        <di:waypoint x="1340" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06awc15_di" bpmnElement="Flow_06awc15">
+        <di:waypoint x="1440" y="740" />
+        <di:waypoint x="1520" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06w1anv_di" bpmnElement="Flow_06w1anv">
+        <di:waypoint x="1620" y="740" />
+        <di:waypoint x="1702" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1hve62e_di" bpmnElement="DataOutputAssociation_1hve62e">
+        <di:waypoint x="-2792" y="-1061" />
+        <di:waypoint x="-2807" y="-1049" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0c0bwgu_di" bpmnElement="DataOutputAssociation_0c0bwgu">
+        <di:waypoint x="-2138" y="-1068" />
+        <di:waypoint x="-2163" y="-1098" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1x692zn_di" bpmnElement="DataOutputAssociation_1x692zn">
+        <di:waypoint x="-1553" y="-913" />
+        <di:waypoint x="-1551" y="-878" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0gd4a24_di" bpmnElement="DataOutputAssociation_0gd4a24">
+        <di:waypoint x="-1396" y="-913" />
+        <di:waypoint x="-1396" y="-878" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_09nca8t_di" bpmnElement="DataOutputAssociation_09nca8t">
+        <di:waypoint x="-1073" y="-913" />
+        <di:waypoint x="-1071" y="-878" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1m3n0ro_di" bpmnElement="DataOutputAssociation_1m3n0ro">
+        <di:waypoint x="-726" y="-913" />
+        <di:waypoint x="-727" y="-863" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_003lfve_di" bpmnElement="DataInputAssociation_003lfve">
+        <di:waypoint x="640" y="125" />
+        <di:waypoint x="640" y="80" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1ap86fg_di" bpmnElement="DataOutputAssociation_1ap86fg">
+        <di:waypoint x="-184" y="80" />
+        <di:waypoint x="-184" y="115" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0saki7q_di" bpmnElement="DataOutputAssociation_0saki7q">
+        <di:waypoint x="411" y="410" />
+        <di:waypoint x="412" y="445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0ywk6yo_di" bpmnElement="DataInputAssociation_0ywk6yo">
+        <di:waypoint x="250" y="445" />
+        <di:waypoint x="250" y="410" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

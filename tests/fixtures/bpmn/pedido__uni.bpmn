@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_19dfizm">
+    <bpmn2:participant id="Participant_0v03guf" processRef="Process_1" />
+    <bpmn2:participant id="Participant_09kseqi" processRef="Process_0bl6wfm" />
+    <bpmn2:messageFlow id="Flow_0tp7icd" sourceRef="Recibir_confirmacion_de_cliente_1" targetRef="Verificar_disponibilidad" />
+    <bpmn2:messageFlow id="Flow_00cdxai" sourceRef="Verificar_disponibilidad" targetRef="Confeccionar_factura" />
+    <bpmn2:messageFlow id="Flow_1m0ut13" sourceRef="Controlar_la_factura" targetRef="Buscar_el_producto" />
+    <bpmn2:messageFlow id="Flow_0k3iya0" sourceRef="Empacar_producto" targetRef="Solicitar_firma_al_cliente_de_orden_de_despacho" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_1" name="Pedido" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="UNI">
+    <bpmn2:laneSet id="LaneSet_0j1a96y">
+      <bpmn2:lane id="Lane_1vp1m5x">
+        <bpmn2:flowNodeRef>Event_1e04lt5</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Recibir_pedido</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Realizar_presupuesto</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Recibir_confirmacion_de_cliente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0u278bd</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>No_acepta_el_presupuesto</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Acepta_el_presupuesto</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Corroborar_vigencia</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0y4t8kp</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Fuera_de_plazo</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Actualizar_presupuesto</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Dentro_de_plazo</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Recibir_confirmacion_de_cliente_1</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_058jhfi</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Confeccionar_factura</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Confeccionar_orden_de_despacho</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Derivara_a_caja_al_cliente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Buscar_la_factura</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Consultar_medio_de_pago</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Generar_ticket_de_venta</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Solicitar_firma_al_cliente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Sellar_factura_como_abonada</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Recibir_al_cliente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Despachar_cliente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Confirmar_si_es_cliente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Controlar_la_factura</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Solicitar_firma_al_cliente_de_orden_de_despacho</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_0j65lkk</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:startEvent id="Event_1e04lt5">
+      <bpmn2:outgoing>Flow_1cp5b3l</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:task id="Recibir_pedido" name="Recibir pedido">
+      <bpmn2:incoming>Flow_1cp5b3l</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1esa8el</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1cp5b3l" sourceRef="Event_1e04lt5" targetRef="Recibir_pedido" />
+    <bpmn2:task id="Realizar_presupuesto" name="Realizar presupuesto">
+      <bpmn2:incoming>Flow_1esa8el</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1iuhpse</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1esa8el" sourceRef="Recibir_pedido" targetRef="Realizar_presupuesto" />
+    <bpmn2:task id="Recibir_confirmacion_de_cliente" name="Recibir confirmación de cliente">
+      <bpmn2:incoming>Flow_1iuhpse</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0aiw844</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1iuhpse" sourceRef="Realizar_presupuesto" targetRef="Recibir_confirmacion_de_cliente" />
+    <bpmn2:exclusiveGateway id="Gateway_0u278bd">
+      <bpmn2:incoming>Flow_0aiw844</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1fh3lfj</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_1numbkz</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_0aiw844" sourceRef="Recibir_confirmacion_de_cliente" targetRef="Gateway_0u278bd" />
+    <bpmn2:task id="No_acepta_el_presupuesto" name="No acepta el presupuesto">
+      <bpmn2:incoming>Flow_1fh3lfj</bpmn2:incoming>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1fh3lfj" sourceRef="Gateway_0u278bd" targetRef="No_acepta_el_presupuesto" />
+    <bpmn2:task id="Acepta_el_presupuesto" name="Acepta el presupuesto">
+      <bpmn2:incoming>Flow_1numbkz</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1w0t7ob</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1numbkz" sourceRef="Gateway_0u278bd" targetRef="Acepta_el_presupuesto" />
+    <bpmn2:task id="Corroborar_vigencia" name="Corroborar vigencia">
+      <bpmn2:incoming>Flow_1w0t7ob</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1o9twk0</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1w0t7ob" sourceRef="Acepta_el_presupuesto" targetRef="Corroborar_vigencia" />
+    <bpmn2:exclusiveGateway id="Gateway_0y4t8kp">
+      <bpmn2:incoming>Flow_1o9twk0</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_18n3qaa</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_0rd3rvq</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_1o9twk0" sourceRef="Corroborar_vigencia" targetRef="Gateway_0y4t8kp" />
+    <bpmn2:task id="Fuera_de_plazo" name="Fuera de plazo">
+      <bpmn2:incoming>Flow_18n3qaa</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1u5ye90</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_18n3qaa" sourceRef="Gateway_0y4t8kp" targetRef="Fuera_de_plazo" />
+    <bpmn2:task id="Actualizar_presupuesto" name="Actualizar presupuesto">
+      <bpmn2:incoming>Flow_1u5ye90</bpmn2:incoming>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1u5ye90" sourceRef="Fuera_de_plazo" targetRef="Actualizar_presupuesto" />
+    <bpmn2:task id="Dentro_de_plazo" name="Dentro de plazo">
+      <bpmn2:incoming>Flow_0rd3rvq</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0fchqvl</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0rd3rvq" sourceRef="Gateway_0y4t8kp" targetRef="Dentro_de_plazo" />
+    <bpmn2:task id="Recibir_confirmacion_de_cliente_1" name="Recibir confirmación de cliente">
+      <bpmn2:incoming>Flow_0fchqvl</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1kqb398</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_01j0mjn</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0fchqvl" sourceRef="Dentro_de_plazo" targetRef="Recibir_confirmacion_de_cliente_1" />
+    <bpmn2:sequenceFlow id="Flow_1kqb398" sourceRef="Recibir_confirmacion_de_cliente_1" targetRef="Despachar_cliente" />
+    <bpmn2:endEvent id="Event_058jhfi">
+      <bpmn2:incoming>Flow_103jsuy</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_103jsuy" sourceRef="Despachar_cliente" targetRef="Event_058jhfi" />
+    <bpmn2:sequenceFlow id="Flow_01j0mjn" sourceRef="Recibir_confirmacion_de_cliente_1" targetRef="Confirmar_si_es_cliente" />
+    <bpmn2:task id="Confeccionar_factura" name="Confeccionar factura">
+      <bpmn2:outgoing>Flow_12l55ve</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Confeccionar_orden_de_despacho" name="Confeccionar orden de despacho">
+      <bpmn2:incoming>Flow_12l55ve</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0c6rusp</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_12l55ve" sourceRef="Confeccionar_factura" targetRef="Confeccionar_orden_de_despacho" />
+    <bpmn2:task id="Derivara_a_caja_al_cliente" name="Derivara a caja al cliente">
+      <bpmn2:incoming>Flow_0c6rusp</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1b4s0p2</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0c6rusp" sourceRef="Confeccionar_orden_de_despacho" targetRef="Derivara_a_caja_al_cliente" />
+    <bpmn2:task id="Buscar_la_factura" name="Buscar la factura">
+      <bpmn2:incoming>Flow_1b4s0p2</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_01nko7q</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1b4s0p2" sourceRef="Derivara_a_caja_al_cliente" targetRef="Buscar_la_factura" />
+    <bpmn2:task id="Consultar_medio_de_pago" name="Consultar medio de pago">
+      <bpmn2:incoming>Flow_01nko7q</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1qs837h</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_01nko7q" sourceRef="Buscar_la_factura" targetRef="Consultar_medio_de_pago" />
+    <bpmn2:task id="Generar_ticket_de_venta" name="Generar ticket de venta">
+      <bpmn2:incoming>Flow_1qs837h</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0vw6rlk</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1qs837h" sourceRef="Consultar_medio_de_pago" targetRef="Generar_ticket_de_venta" />
+    <bpmn2:task id="Solicitar_firma_al_cliente" name="Solicitar firma al cliente">
+      <bpmn2:incoming>Flow_0vw6rlk</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1v30l25</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0vw6rlk" sourceRef="Generar_ticket_de_venta" targetRef="Solicitar_firma_al_cliente" />
+    <bpmn2:task id="Sellar_factura_como_abonada" name="Sellar factura como abonada">
+      <bpmn2:incoming>Flow_1v30l25</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0zwac9p</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1v30l25" sourceRef="Solicitar_firma_al_cliente" targetRef="Sellar_factura_como_abonada" />
+    <bpmn2:task id="Recibir_al_cliente" name="Recibir al cliente">
+      <bpmn2:incoming>Flow_0zwac9p</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1vdmvww</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0zwac9p" sourceRef="Sellar_factura_como_abonada" targetRef="Recibir_al_cliente" />
+    <bpmn2:sequenceFlow id="Flow_1vdmvww" sourceRef="Recibir_al_cliente" targetRef="Controlar_la_factura" />
+    <bpmn2:task id="Despachar_cliente" name="Despachar cliente">
+      <bpmn2:incoming>Flow_1kqb398</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_103jsuy</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Confirmar_si_es_cliente" name="Confirmar si es cliente">
+      <bpmn2:incoming>Flow_01j0mjn</bpmn2:incoming>
+    </bpmn2:task>
+    <bpmn2:task id="Controlar_la_factura" name="Controlar la factura">
+      <bpmn2:incoming>Flow_1vdmvww</bpmn2:incoming>
+    </bpmn2:task>
+    <bpmn2:task id="Solicitar_firma_al_cliente_de_orden_de_despacho" name="Solicitar firma al cliente de orden de despacho">
+      <bpmn2:outgoing>Flow_0pmbqwb</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:intermediateThrowEvent id="Event_0j65lkk">
+      <bpmn2:incoming>Flow_0pmbqwb</bpmn2:incoming>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:sequenceFlow id="Flow_0pmbqwb" sourceRef="Solicitar_firma_al_cliente_de_orden_de_despacho" targetRef="Event_0j65lkk" />
+  </bpmn2:process>
+  <bpmn2:process id="Process_0bl6wfm" bizuit:ProcessLevel="1">
+    <bpmn2:laneSet id="LaneSet_1dr0qd1">
+      <bpmn2:lane id="Lane_1uelcjh">
+        <bpmn2:flowNodeRef>Verificar_disponibilidad</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Buscar_el_producto</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Empacar_producto</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:task id="Verificar_disponibilidad" name="Verificar disponibilidad" />
+    <bpmn2:task id="Buscar_el_producto" name="Buscar el producto">
+      <bpmn2:outgoing>Flow_1ne3pmk</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Empacar_producto" name="Empacar producto">
+      <bpmn2:incoming>Flow_1ne3pmk</bpmn2:incoming>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1ne3pmk" sourceRef="Buscar_el_producto" targetRef="Empacar_producto" />
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_19dfizm">
+      <bpmndi:BPMNShape id="Participant_0v03guf_di" bpmnElement="Participant_0v03guf" isHorizontal="true">
+        <dc:Bounds x="-132" y="46" width="2002" height="554" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1vp1m5x_di" bpmnElement="Lane_1vp1m5x" isHorizontal="true">
+        <dc:Bounds x="-102" y="46" width="1972" height="554" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1e04lt5_di" bpmnElement="Event_1e04lt5" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="-78" y="112" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0pb8xc7_di" bpmnElement="Recibir_pedido">
+        <dc:Bounds x="10" y="90" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1m5tgmv_di" bpmnElement="Realizar_presupuesto">
+        <dc:Bounds x="170" y="90" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1a2iory_di" bpmnElement="Recibir_confirmacion_de_cliente">
+        <dc:Bounds x="330" y="90" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0u278bd_di" bpmnElement="Gateway_0u278bd" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="495" y="105" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0uy9t0d_di" bpmnElement="No_acepta_el_presupuesto">
+        <dc:Bounds x="610" y="90" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ne1og0_di" bpmnElement="Acepta_el_presupuesto">
+        <dc:Bounds x="610" y="200" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0q3pdnr_di" bpmnElement="Corroborar_vigencia">
+        <dc:Bounds x="780" y="200" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0y4t8kp_di" bpmnElement="Gateway_0y4t8kp" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="955" y="215" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_078sbi1_di" bpmnElement="Fuera_de_plazo">
+        <dc:Bounds x="1080" y="200" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_099hlmb_di" bpmnElement="Actualizar_presupuesto">
+        <dc:Bounds x="1260" y="200" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_17yyi2m_di" bpmnElement="Dentro_de_plazo">
+        <dc:Bounds x="1080" y="310" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_15y2rqb_di" bpmnElement="Recibir_confirmacion_de_cliente_1">
+        <dc:Bounds x="1260" y="310" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_058jhfi_di" bpmnElement="Event_058jhfi" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="1622" y="332" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0f5elcp_di" bpmnElement="Confeccionar_factura">
+        <dc:Bounds x="-40" y="420" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1vfsam9_di" bpmnElement="Confeccionar_orden_de_despacho">
+        <dc:Bounds x="110" y="420" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0d6f952_di" bpmnElement="Derivara_a_caja_al_cliente">
+        <dc:Bounds x="260" y="420" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0301baf_di" bpmnElement="Buscar_la_factura">
+        <dc:Bounds x="410" y="420" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1suluwj_di" bpmnElement="Consultar_medio_de_pago">
+        <dc:Bounds x="560" y="420" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0frlbr9_di" bpmnElement="Generar_ticket_de_venta">
+        <dc:Bounds x="710" y="420" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_158b1di_di" bpmnElement="Solicitar_firma_al_cliente">
+        <dc:Bounds x="860" y="420" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ykoby1_di" bpmnElement="Sellar_factura_como_abonada">
+        <dc:Bounds x="1010" y="420" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_020iayl_di" bpmnElement="Recibir_al_cliente">
+        <dc:Bounds x="1160" y="420" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0rlwybq_di" bpmnElement="Despachar_cliente">
+        <dc:Bounds x="1440" y="260" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ol7e7t_di" bpmnElement="Confirmar_si_es_cliente">
+        <dc:Bounds x="1440" y="360" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ttohgj_di" bpmnElement="Controlar_la_factura">
+        <dc:Bounds x="1330" y="420" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_112lj32_di" bpmnElement="Solicitar_firma_al_cliente_de_orden_de_despacho">
+        <dc:Bounds x="1600" y="490" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0j65lkk_di" bpmnElement="Event_0j65lkk">
+        <dc:Bounds x="1752" y="512" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1cp5b3l_di" bpmnElement="Flow_1cp5b3l">
+        <di:waypoint x="-42" y="130" />
+        <di:waypoint x="10" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1esa8el_di" bpmnElement="Flow_1esa8el">
+        <di:waypoint x="110" y="130" />
+        <di:waypoint x="170" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1iuhpse_di" bpmnElement="Flow_1iuhpse">
+        <di:waypoint x="270" y="130" />
+        <di:waypoint x="330" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0aiw844_di" bpmnElement="Flow_0aiw844">
+        <di:waypoint x="430" y="130" />
+        <di:waypoint x="495" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fh3lfj_di" bpmnElement="Flow_1fh3lfj">
+        <di:waypoint x="545" y="130" />
+        <di:waypoint x="610" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1numbkz_di" bpmnElement="Flow_1numbkz">
+        <di:waypoint x="520" y="155" />
+        <di:waypoint x="520" y="240" />
+        <di:waypoint x="610" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1w0t7ob_di" bpmnElement="Flow_1w0t7ob">
+        <di:waypoint x="710" y="240" />
+        <di:waypoint x="780" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1o9twk0_di" bpmnElement="Flow_1o9twk0">
+        <di:waypoint x="880" y="240" />
+        <di:waypoint x="955" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18n3qaa_di" bpmnElement="Flow_18n3qaa">
+        <di:waypoint x="1005" y="240" />
+        <di:waypoint x="1080" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1u5ye90_di" bpmnElement="Flow_1u5ye90">
+        <di:waypoint x="1180" y="240" />
+        <di:waypoint x="1260" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0rd3rvq_di" bpmnElement="Flow_0rd3rvq">
+        <di:waypoint x="980" y="265" />
+        <di:waypoint x="980" y="350" />
+        <di:waypoint x="1080" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fchqvl_di" bpmnElement="Flow_0fchqvl">
+        <di:waypoint x="1180" y="350" />
+        <di:waypoint x="1260" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kqb398_di" bpmnElement="Flow_1kqb398">
+        <di:waypoint x="1360" y="350" />
+        <di:waypoint x="1400" y="350" />
+        <di:waypoint x="1400" y="300" />
+        <di:waypoint x="1440" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_103jsuy_di" bpmnElement="Flow_103jsuy">
+        <di:waypoint x="1540" y="300" />
+        <di:waypoint x="1581" y="300" />
+        <di:waypoint x="1581" y="350" />
+        <di:waypoint x="1622" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01j0mjn_di" bpmnElement="Flow_01j0mjn">
+        <di:waypoint x="1360" y="350" />
+        <di:waypoint x="1400" y="350" />
+        <di:waypoint x="1400" y="400" />
+        <di:waypoint x="1440" y="400" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12l55ve_di" bpmnElement="Flow_12l55ve">
+        <di:waypoint x="60" y="460" />
+        <di:waypoint x="110" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0c6rusp_di" bpmnElement="Flow_0c6rusp">
+        <di:waypoint x="210" y="460" />
+        <di:waypoint x="260" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1b4s0p2_di" bpmnElement="Flow_1b4s0p2">
+        <di:waypoint x="360" y="460" />
+        <di:waypoint x="410" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01nko7q_di" bpmnElement="Flow_01nko7q">
+        <di:waypoint x="510" y="460" />
+        <di:waypoint x="560" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qs837h_di" bpmnElement="Flow_1qs837h">
+        <di:waypoint x="660" y="460" />
+        <di:waypoint x="710" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vw6rlk_di" bpmnElement="Flow_0vw6rlk">
+        <di:waypoint x="810" y="460" />
+        <di:waypoint x="860" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1v30l25_di" bpmnElement="Flow_1v30l25">
+        <di:waypoint x="960" y="460" />
+        <di:waypoint x="1010" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zwac9p_di" bpmnElement="Flow_0zwac9p">
+        <di:waypoint x="1110" y="460" />
+        <di:waypoint x="1160" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vdmvww_di" bpmnElement="Flow_1vdmvww">
+        <di:waypoint x="1260" y="460" />
+        <di:waypoint x="1330" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0pmbqwb_di" bpmnElement="Flow_0pmbqwb">
+        <di:waypoint x="1700" y="530" />
+        <di:waypoint x="1752" y="530" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_09kseqi_di" bpmnElement="Participant_09kseqi" isHorizontal="true">
+        <dc:Bounds x="-132" y="600" width="2002" height="180" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1uelcjh_di" bpmnElement="Lane_1uelcjh" isHorizontal="true">
+        <dc:Bounds x="-102" y="600" width="1972" height="180" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_14n3z3f_di" bpmnElement="Verificar_disponibilidad">
+        <dc:Bounds x="1260" y="620" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0v5z7xm_di" bpmnElement="Buscar_el_producto">
+        <dc:Bounds x="1450" y="620" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1iozles_di" bpmnElement="Empacar_producto">
+        <dc:Bounds x="1600" y="620" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1ne3pmk_di" bpmnElement="Flow_1ne3pmk">
+        <di:waypoint x="1550" y="660" />
+        <di:waypoint x="1600" y="660" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0tp7icd_di" bpmnElement="Flow_0tp7icd">
+        <di:waypoint x="1310" y="390" />
+        <di:waypoint x="1310" y="620" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00cdxai_di" bpmnElement="Flow_00cdxai">
+        <di:waypoint x="1260" y="660" />
+        <di:waypoint x="10" y="660" />
+        <di:waypoint x="10" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1m0ut13_di" bpmnElement="Flow_1m0ut13">
+        <di:waypoint x="1380" y="500" />
+        <di:waypoint x="1380" y="660" />
+        <di:waypoint x="1450" y="660" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0k3iya0_di" bpmnElement="Flow_0k3iya0">
+        <di:waypoint x="1650" y="620" />
+        <di:waypoint x="1650" y="570" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

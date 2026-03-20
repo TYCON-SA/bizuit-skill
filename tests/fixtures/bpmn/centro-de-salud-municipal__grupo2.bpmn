@@ -1,0 +1,1129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_1rotrkv">
+    <bpmn2:participant id="Recepcionista" name="Recepcionista" processRef="Process_1" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:participant id="Medico" name="Medico" processRef="Process_0dfztk3" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:participant id="Encargado_de_la_Direccion_de_Accion_Social_del_municipio" name="Encargado de la Dirección de Acción Social del municipio" processRef="Process_0b356ob" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:participant id="Farmacista" name="Farmacista" processRef="Process_1woc60g" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:textAnnotation id="Asigna_turno_y_medico" name="Asigna turno y medico" bizuit:AttachmentsCollection="[]">
+      <bpmn2:text>Asigna turno y medico</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:textAnnotation id="Continua_en_Medico" name="Continua en Medico" bizuit:AttachmentsCollection="[]">
+      <bpmn2:text>Continua en Medico</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_112fwdb" associationDirection="None" sourceRef="Asignar_orden_de_consulta" targetRef="Asigna_turno_y_medico" />
+    <bpmn2:textAnnotation id="Continua_en_Encargado_de_la_Direccion_de_Accion_Social_del_municipio" name="Continua en Encargado de la Dirección de Acción Social del municipio" bizuit:AttachmentsCollection="[]">
+      <bpmn2:text>Continua en Encargado de la Dirección de Acción Social del municipio</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:textAnnotation id="Continua_en_Farmacista" name="Continua en Farmacista" bizuit:AttachmentsCollection="[]">
+      <bpmn2:text>Continua en Farmacista</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_1xsmocv" associationDirection="None" sourceRef="Llegada_del_paciente_a_una_farmacia_disponible" targetRef="Continua_en_Farmacista" />
+    <bpmn2:association id="Association_0xkrsxv" associationDirection="None" sourceRef="Espera_del_turno" targetRef="Continua_en_Medico" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_1" name="Centro de Salud Municipal" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="Grupo2">
+    <bpmn2:laneSet id="LaneSet_0zkpcz9">
+      <bpmn2:lane id="Lane_07s0lo0">
+        <bpmn2:flowNodeRef>Pedido_de_atencion_medica_de_paciente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Registrar_datos_del_paciente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Verificar_si_el_paciente_posee_cobertura_medica</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_00m9fp3</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_19hcylg</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Registrar_motivo_de_consulta</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Informar_cancelacion_de_servicio_por_falta_de_cobertura_medica</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Asignar_orden_de_consulta</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Espera_del_turno</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:startEvent id="Pedido_de_atencion_medica_de_paciente" name="Pedido de atencion medica de paciente" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:outgoing>Flow_0fl4ne6</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="Flow_0fl4ne6" sourceRef="Pedido_de_atencion_medica_de_paciente" targetRef="Registrar_datos_del_paciente" />
+    <bpmn2:sequenceFlow id="Flow_0y347xi" sourceRef="Registrar_datos_del_paciente" targetRef="Verificar_si_el_paciente_posee_cobertura_medica" />
+    <bpmn2:sequenceFlow id="Flow_16hyo42" sourceRef="Verificar_si_el_paciente_posee_cobertura_medica" targetRef="Gateway_00m9fp3" />
+    <bpmn2:userTask id="Registrar_datos_del_paciente" name="Registrar datos del paciente">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" showInList="true" order="0" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" showInList="true" order="1" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" showInList="true" order="2" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" showInList="true" order="3" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" showInList="true" order="4" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0fl4ne6</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0y347xi</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0gby8aq">
+        <bpmn2:targetRef>Paciente</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Verificar_si_el_paciente_posee_cobertura_medica" name="Verificar si el paciente posee cobertura medica" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0y347xi</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_16hyo42</bpmn2:outgoing>
+      <bpmn2:property id="Property_0en27bi" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_1vk2qnv">
+        <bpmn2:sourceRef>Informacion_municipal_de_estado_socio_economico</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_0en27bi</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:exclusiveGateway id="Gateway_00m9fp3">
+      <bpmn2:incoming>Flow_16hyo42</bpmn2:incoming>
+      <bpmn2:outgoing>Posee</bpmn2:outgoing>
+      <bpmn2:outgoing>No_posee</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Posee" name="Posee" sourceRef="Gateway_00m9fp3" targetRef="Informar_cancelacion_de_servicio_por_falta_de_cobertura_medica" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:sequenceFlow id="No_posee" name="No posee" sourceRef="Gateway_00m9fp3" targetRef="Registrar_motivo_de_consulta" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:dataStoreReference id="Paciente" name="Paciente" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataStoreReference id="Informacion_municipal_de_estado_socio_economico" name="Informacion municipal de estado socio-economico " bizuit:AttachmentsCollection="[]" />
+    <bpmn2:endEvent id="Event_19hcylg">
+      <bpmn2:incoming>Flow_03g8a0s</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:userTask id="Registrar_motivo_de_consulta" name="Registrar motivo de consulta">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>No_posee</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_15o57fg</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1qh3lju">
+        <bpmn2:targetRef>Paciente</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:task id="Informar_cancelacion_de_servicio_por_falta_de_cobertura_medica" name="Informar cancelacion de servicio por falta de cobertura medica" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Posee</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_03g8a0s</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:serviceTask id="Asignar_orden_de_consulta" name="Asignar orden de consulta">
+      <bpmn2:incoming>Flow_15o57fg</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1u8jqnt</bpmn2:outgoing>
+      <bpmn2:property id="Property_11l8v1x" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_133jq70">
+        <bpmn2:sourceRef>Personal_Medico</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_11l8v1x</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_148tjcm">
+        <bpmn2:targetRef>Orden_de_Consulta</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0ukewam">
+        <bpmn2:targetRef>Ordenes_de_Consulta</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:serviceTask>
+    <bpmn2:sequenceFlow id="Flow_03g8a0s" sourceRef="Informar_cancelacion_de_servicio_por_falta_de_cobertura_medica" targetRef="Event_19hcylg" />
+    <bpmn2:sequenceFlow id="Flow_15o57fg" sourceRef="Registrar_motivo_de_consulta" targetRef="Asignar_orden_de_consulta" />
+    <bpmn2:dataObjectReference id="Orden_de_Consulta" name="Orden de Consulta" dataObjectRef="DataObject_1afubf5" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_1afubf5" />
+    <bpmn2:dataStoreReference id="Ordenes_de_Consulta" name="Ordenes de Consulta" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:intermediateCatchEvent id="Espera_del_turno" name="Espera del turno" bizuit:AttachmentsCollection="[]" bizuit:TimerConfiguration="{&#34;type&#34;:&#34;fixed&#34;,&#34;delay&#34;:{&#34;days&#34;:0,&#34;hours&#34;:0,&#34;minutes&#34;:0,&#34;seconds&#34;:0}}">
+      <bpmn2:incoming>Flow_1u8jqnt</bpmn2:incoming>
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_108m0hb" />
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:sequenceFlow id="Flow_1u8jqnt" sourceRef="Asignar_orden_de_consulta" targetRef="Espera_del_turno" />
+    <bpmn2:dataStoreReference id="Personal_Medico" name="Personal Medico" bizuit:AttachmentsCollection="[]" />
+  </bpmn2:process>
+  <bpmn2:process id="Process_0dfztk3" bizuit:ProcessLevel="1">
+    <bpmn2:laneSet id="LaneSet_10gp55b">
+      <bpmn2:lane id="Lane_09584dc">
+        <bpmn2:flowNodeRef>Realizar_consulta_medica</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0ksx2sj</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Verificar_si_necesario_asignar_tratamiento</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Generar_receta_medica</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Entregar_receta_al_paciente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Llegada_del_paciente_a_la_Direccion_de_Accion_Social_del_municipio</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_18mpd2v</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_1k4z3gc</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Realizar_diagnostico</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Concluir_consulta_medica</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:sequenceFlow id="Flow_0r6q67c" sourceRef="Entregar_receta_al_paciente" targetRef="Llegada_del_paciente_a_la_Direccion_de_Accion_Social_del_municipio" />
+    <bpmn2:sequenceFlow id="Flow_0oo0j5i" sourceRef="Generar_receta_medica" targetRef="Entregar_receta_al_paciente" />
+    <bpmn2:sequenceFlow id="Flow_1x66vhg" sourceRef="Realizar_diagnostico" targetRef="Verificar_si_necesario_asignar_tratamiento" />
+    <bpmn2:sequenceFlow id="Flow_1ld4w44" sourceRef="Concluir_consulta_medica" targetRef="Event_1k4z3gc" />
+    <bpmn2:sequenceFlow id="Necesario" name="Necesario" sourceRef="Gateway_0ksx2sj" targetRef="Generar_receta_medica" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="No_es_necesario" name="No es necesario" sourceRef="Gateway_0ksx2sj" targetRef="Concluir_consulta_medica" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Flow_1fxet8s" sourceRef="Verificar_si_necesario_asignar_tratamiento" targetRef="Gateway_0ksx2sj" />
+    <bpmn2:sequenceFlow id="Flow_1jow595" sourceRef="Realizar_consulta_medica" targetRef="Realizar_diagnostico" />
+    <bpmn2:sequenceFlow id="Flow_0lut5i5" sourceRef="Event_18mpd2v" targetRef="Realizar_consulta_medica" />
+    <bpmn2:intermediateCatchEvent id="Event_18mpd2v" name="Espera del turno">
+      <bpmn2:outgoing>Flow_0lut5i5</bpmn2:outgoing>
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_10g4i4q" />
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:intermediateThrowEvent id="Llegada_del_paciente_a_la_Direccion_de_Accion_Social_del_municipio" name="Llegada del paciente a la Dirección de Acción Social del municipio" bizuit:serviceTaskType="callactivity" bizuit:retryCount="0" bizuit:continueOnError="false" bizuit:activityTracking="Both" bizuit:selectedProcessId="" bizuit:selectedProcessName="" bizuit:associateDocuments="false" bizuit:waitForCompletion="true" bizuit:preservePreviousResults="false" bizuit:clearEmptyOutputNodes="false" bizuit:selectedInputSources="{&#34;parameters&#34;:[],&#34;variables&#34;:[],&#34;activities&#34;:[]}" bizuit:LinksDefinitions="null" bizuit:OutParametersLinksDefinitions="null" bizuit:selectedOutputTargets="{&#34;parameters&#34;:[],&#34;variables&#34;:[]}">
+      <bpmn2:incoming>Flow_0r6q67c</bpmn2:incoming>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:manualTask id="Entregar_receta_al_paciente" name="Entregar receta al paciente">
+      <bpmn2:incoming>Flow_0oo0j5i</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0r6q67c</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:userTask id="Generar_receta_medica" name="Generar receta medica">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Necesario</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0oo0j5i</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0uypgoy">
+        <bpmn2:targetRef>Receta_Medica</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0h4a8u7">
+        <bpmn2:targetRef>Recetas_medicas</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:manualTask id="Verificar_si_necesario_asignar_tratamiento" name="Verificar si necesario asignar tratamiento" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_1x66vhg</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1fxet8s</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:exclusiveGateway id="Gateway_0ksx2sj">
+      <bpmn2:incoming>Flow_1fxet8s</bpmn2:incoming>
+      <bpmn2:outgoing>No_es_necesario</bpmn2:outgoing>
+      <bpmn2:outgoing>Necesario</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:userTask id="Realizar_consulta_medica" name="Realizar consulta medica" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0lut5i5</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1jow595</bpmn2:outgoing>
+      <bpmn2:property id="Property_0c11dkm" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_17s2fcw">
+        <bpmn2:sourceRef>Paciente_copy</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_0c11dkm</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_1puvr2c">
+        <bpmn2:sourceRef>Historial_clinico</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_0c11dkm</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_1r09w4d">
+        <bpmn2:sourceRef>Ordenes_de_Consulta_1</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_0c11dkm</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:dataStoreReference id="Historial_clinico" name="Historial clinico" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataStoreReference id="Paciente_copy" name="Paciente (copy)" />
+    <bpmn2:endEvent id="Event_1k4z3gc">
+      <bpmn2:incoming>Flow_1ld4w44</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:dataStoreReference id="Ordenes_de_Consulta_1" name="Ordenes de Consulta" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:userTask id="Realizar_diagnostico" name="Realizar diagnostico">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_1jow595</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1x66vhg</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0fjdaii">
+        <bpmn2:targetRef>Historial_clinico</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:dataObjectReference id="Receta_Medica" name="Receta Medica" dataObjectRef="DataObject_0drqujk" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_0drqujk" />
+    <bpmn2:manualTask id="Concluir_consulta_medica" name="Concluir consulta medica">
+      <bpmn2:incoming>No_es_necesario</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1ld4w44</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:dataStoreReference id="Recetas_medicas" name="Recetas medicas" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:association id="Association_0p17ft8" associationDirection="None" sourceRef="Llegada_del_paciente_a_la_Direccion_de_Accion_Social_del_municipio" targetRef="Continua_en_Encargado_de_la_Direccion_de_Accion_Social_del_municipio" />
+  </bpmn2:process>
+  <bpmn2:process id="Process_0b356ob" bizuit:ProcessLevel="1">
+    <bpmn2:laneSet id="LaneSet_0954djn">
+      <bpmn2:lane id="Lane_1knqdfx">
+        <bpmn2:flowNodeRef>Event_14cv46c</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Recibir_receta_medica</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Verificar_las_condiciones_de_autorizacion_del_medicamento_al_paciente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_07ato6r</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Informar_al_paciente_porque_no_se_puede_autorizar_la_receta_medica</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_0b9etsz</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Autorizar_receta_medica</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Definir_descuento_s</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Llegada_del_paciente_a_una_farmacia_disponible</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:intermediateThrowEvent id="Event_14cv46c" name="Llegada del paciente a la Dirección de Acción Social del municipio" bizuit:serviceTaskType="callactivity">
+      <bpmn2:outgoing>Flow_1xodz6d</bpmn2:outgoing>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:manualTask id="Recibir_receta_medica" name="Recibir receta medica">
+      <bpmn2:incoming>Flow_1xodz6d</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_08sq5oc</bpmn2:outgoing>
+      <bpmn2:property id="Property_19fjva5" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_1hp2bqi">
+        <bpmn2:sourceRef>Receta_Medica_copy</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_19fjva5</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:manualTask>
+    <bpmn2:task id="Verificar_las_condiciones_de_autorizacion_del_medicamento_al_paciente" name="Verificar las condiciones de autorizacion del medicamento al paciente" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_08sq5oc</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_08iosep</bpmn2:outgoing>
+      <bpmn2:property id="Property_04o97jn" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_14ln1yd">
+        <bpmn2:sourceRef>Paciente_copy2</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_04o97jn</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_05fieg4">
+        <bpmn2:sourceRef>Politicas_de_autorizacion_y_descuento</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_04o97jn</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:exclusiveGateway id="Gateway_07ato6r">
+      <bpmn2:incoming>Flow_08iosep</bpmn2:incoming>
+      <bpmn2:outgoing>Receta_Medica_No_se_puede_autorizar</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_17wm4c5</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:task id="Informar_al_paciente_porque_no_se_puede_autorizar_la_receta_medica" name="Informar al paciente porque no se puede autorizar la receta medica" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Receta_Medica_No_se_puede_autorizar</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1nxykij</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:endEvent id="Event_0b9etsz">
+      <bpmn2:incoming>Flow_1nxykij</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:task id="Autorizar_receta_medica" name="Autorizar receta medica" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_17wm4c5</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_18cp8ok</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_18z3qcp">
+        <bpmn2:targetRef>Receta_Medica_copy</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:dataStoreReference id="Paciente_copy2" name="Paciente (copy2)" />
+    <bpmn2:dataObjectReference id="Receta_Medica_copy" name="Receta Medica (copy)" dataObjectRef="DataObject_1s2t1yv" />
+    <bpmn2:dataObject id="DataObject_1s2t1yv" />
+    <bpmn2:task id="Definir_descuento_s" name="Definir descuento/s" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_18cp8ok</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1kwvt5i</bpmn2:outgoing>
+      <bpmn2:property id="Property_1toeec4" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0hov4bn">
+        <bpmn2:sourceRef>Politicas_de_autorizacion_y_descuento</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1toeec4</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_16t1g5x">
+        <bpmn2:targetRef>Receta_Medica_copy</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:intermediateThrowEvent id="Llegada_del_paciente_a_una_farmacia_disponible" name="Llegada del paciente a una farmacia disponible" bizuit:serviceTaskType="callactivity" bizuit:retryCount="0" bizuit:continueOnError="false" bizuit:activityTracking="Both" bizuit:selectedProcessId="" bizuit:selectedProcessName="" bizuit:associateDocuments="false" bizuit:waitForCompletion="true" bizuit:preservePreviousResults="false" bizuit:clearEmptyOutputNodes="false" bizuit:selectedInputSources="{&#34;parameters&#34;:[],&#34;variables&#34;:[],&#34;activities&#34;:[]}" bizuit:LinksDefinitions="null" bizuit:OutParametersLinksDefinitions="null" bizuit:selectedOutputTargets="{&#34;parameters&#34;:[],&#34;variables&#34;:[]}">
+      <bpmn2:incoming>Flow_1kwvt5i</bpmn2:incoming>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:sequenceFlow id="Flow_1xodz6d" sourceRef="Event_14cv46c" targetRef="Recibir_receta_medica" />
+    <bpmn2:sequenceFlow id="Flow_08sq5oc" sourceRef="Recibir_receta_medica" targetRef="Verificar_las_condiciones_de_autorizacion_del_medicamento_al_paciente" />
+    <bpmn2:sequenceFlow id="Flow_08iosep" sourceRef="Verificar_las_condiciones_de_autorizacion_del_medicamento_al_paciente" targetRef="Gateway_07ato6r" />
+    <bpmn2:sequenceFlow id="Receta_Medica_No_se_puede_autorizar" name="Receta Medica No se puede autorizar" sourceRef="Gateway_07ato6r" targetRef="Informar_al_paciente_porque_no_se_puede_autorizar_la_receta_medica" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:sequenceFlow id="Flow_17wm4c5" sourceRef="Gateway_07ato6r" targetRef="Autorizar_receta_medica" />
+    <bpmn2:sequenceFlow id="Flow_1nxykij" sourceRef="Informar_al_paciente_porque_no_se_puede_autorizar_la_receta_medica" targetRef="Event_0b9etsz" />
+    <bpmn2:sequenceFlow id="Flow_18cp8ok" sourceRef="Autorizar_receta_medica" targetRef="Definir_descuento_s" />
+    <bpmn2:sequenceFlow id="Flow_1kwvt5i" sourceRef="Definir_descuento_s" targetRef="Llegada_del_paciente_a_una_farmacia_disponible" />
+    <bpmn2:dataStoreReference id="Politicas_de_autorizacion_y_descuento" name="Politicas de autorizacion y descuento" bizuit:AttachmentsCollection="[]" />
+  </bpmn2:process>
+  <bpmn2:process id="Process_1woc60g" bizuit:ProcessLevel="1">
+    <bpmn2:laneSet id="LaneSet_03ej1i2" />
+    <bpmn2:sequenceFlow id="Flow_1vjfuc1" sourceRef="Entregar_medicamentos_disponibles" targetRef="Atencion_medica_brindada" />
+    <bpmn2:sequenceFlow id="Flow_0anjpr5" sourceRef="Gateway_0iqzeqt" targetRef="Entregar_medicamentos_disponibles" />
+    <bpmn2:sequenceFlow id="No_necesario_1" name="No necesario" sourceRef="Gateway_1fc41nc" targetRef="Gateway_0iqzeqt" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:sequenceFlow id="Flow_1jj514o" sourceRef="Verificar_la_necesidad_del_cobro_de_contribucion_1" targetRef="Gateway_1fc41nc" />
+    <bpmn2:sequenceFlow id="Flow_1dp77sf" sourceRef="Generar_factura_ticket_1" targetRef="Gateway_0iqzeqt" />
+    <bpmn2:sequenceFlow id="Flow_1vb0boz" sourceRef="Cobrar_contribucion_1" targetRef="Generar_factura_ticket_1" />
+    <bpmn2:sequenceFlow id="Necesario_2" name="Necesario" sourceRef="Gateway_1fc41nc" targetRef="Cobrar_contribucion_1" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Flow_13uf49y" sourceRef="Preparar_medicamentos_disponibles" targetRef="Verificar_la_necesidad_del_cobro_de_contribucion_1" />
+    <bpmn2:sequenceFlow id="Flow_183b1ld" sourceRef="Recibir_paciente_y_tomar_receta_autorizada" targetRef="Validar_receta_autorizada" />
+    <bpmn2:sequenceFlow id="Flow_0aeb8rb" sourceRef="Validar_receta_autorizada" targetRef="Gateway_04gan6z" />
+    <bpmn2:sequenceFlow id="No_valida" name="No valida" sourceRef="Gateway_04gan6z" targetRef="Informar_al_cliente_del_problema_con_la_receta" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:sequenceFlow id="Flow_19i1umj" sourceRef="Informar_al_cliente_del_problema_con_la_receta" targetRef="Event_1sr377f" />
+    <bpmn2:sequenceFlow id="Flow_0mtdiw4" sourceRef="Consultar_disponibilidad_stock_del_medicamento_s" targetRef="Preparar_medicamentos_disponibles" />
+    <bpmn2:sequenceFlow id="Valida" name="Valida" sourceRef="Gateway_04gan6z" targetRef="Consultar_disponibilidad_stock_del_medicamento_s" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Flow_1m1cv46" sourceRef="Event_106bx54" targetRef="Recibir_paciente_y_tomar_receta_autorizada" />
+    <bpmn2:subProcess id="Entregar_medicamentos_disponibles" name="Entregar medicamentos disponibles" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_0anjpr5</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1vjfuc1</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_05443iy">
+        <bpmn2:targetRef>Constancia_de_Retiro_1</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_195m8wi">
+        <bpmn2:targetRef>Constancia_de_Retiro</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:subProcess>
+    <bpmn2:dataStoreReference id="Entidad_de_autoirzacion_de_Cobro" name="Entidad de autoirzacion de Cobro" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObjectReference id="Constancia_de_Retiro_1" name="Constancia de Retiro" dataObjectRef="DataObject_1cz3dpk" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_1cz3dpk" />
+    <bpmn2:dataStoreReference id="Constancia_de_Retiro" name="Constancia de Retiro" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:endEvent id="Atencion_medica_brindada" name="Atencion medica brindada" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1vjfuc1</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:dataObjectReference id="Factura" name="Factura" dataObjectRef="DataObject_1cygz0b" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_1cygz0b" />
+    <bpmn2:dataStoreReference id="ARCA" name="ARCA" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataStoreReference id="Facturas" name="Facturas" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:exclusiveGateway id="Gateway_0iqzeqt">
+      <bpmn2:incoming>Flow_1dp77sf</bpmn2:incoming>
+      <bpmn2:incoming>No_necesario_1</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0anjpr5</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:task id="Verificar_la_necesidad_del_cobro_de_contribucion_1" name="Verificar la necesidad del cobro de &#39;contribucion&#39;" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_13uf49y</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1jj514o</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:exclusiveGateway id="Gateway_1fc41nc">
+      <bpmn2:incoming>Flow_1jj514o</bpmn2:incoming>
+      <bpmn2:outgoing>No_necesario_1</bpmn2:outgoing>
+      <bpmn2:outgoing>Necesario_2</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:task id="Generar_factura_ticket_1" name="Generar factura/ticket">
+      <bpmn2:incoming>Flow_1vb0boz</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1dp77sf</bpmn2:outgoing>
+      <bpmn2:property id="Property_1drkym1" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0bpcqp4">
+        <bpmn2:sourceRef>ARCA</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1drkym1</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_08th84y">
+        <bpmn2:targetRef>ARCA</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_08i107j">
+        <bpmn2:targetRef>Factura</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0uoci0k">
+        <bpmn2:targetRef>Facturas</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:task id="Cobrar_contribucion_1" name="Cobrar &#39;contribucion&#39;" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Necesario_2</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1vb0boz</bpmn2:outgoing>
+      <bpmn2:property id="Property_0nsaxde" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0n4okrr">
+        <bpmn2:sourceRef>Entidad_de_autoirzacion_de_Cobro</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_0nsaxde</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:task id="Preparar_medicamentos_disponibles" name="Preparar medicamentos disponibles" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_0mtdiw4</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_13uf49y</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Recibir_paciente_y_tomar_receta_autorizada" name="Recibir paciente y tomar receta autorizada" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_1m1cv46</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_183b1ld</bpmn2:outgoing>
+      <bpmn2:property id="Property_1kdqb97" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_06a7miw">
+        <bpmn2:sourceRef>Receta_Medica_copy2</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1kdqb97</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:task id="Validar_receta_autorizada" name="Validar receta autorizada">
+      <bpmn2:incoming>Flow_183b1ld</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0aeb8rb</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:exclusiveGateway id="Gateway_04gan6z">
+      <bpmn2:incoming>Flow_0aeb8rb</bpmn2:incoming>
+      <bpmn2:outgoing>No_valida</bpmn2:outgoing>
+      <bpmn2:outgoing>Valida</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:task id="Informar_al_cliente_del_problema_con_la_receta" name="Informar al cliente del problema con la receta">
+      <bpmn2:incoming>No_valida</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_19i1umj</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:endEvent id="Event_1sr377f">
+      <bpmn2:incoming>Flow_19i1umj</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:dataObjectReference id="Receta_Medica_copy2" name="Receta Medica (copy2)" dataObjectRef="DataObject_0bkgyqb" />
+    <bpmn2:dataObject id="DataObject_0bkgyqb" />
+    <bpmn2:dataStoreReference id="Informacion_stock_actualizada" name="Informacion stock actualizada" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:task id="Consultar_disponibilidad_stock_del_medicamento_s" name="Consultar disponibilidad stock del medicamento/s" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Valida</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0mtdiw4</bpmn2:outgoing>
+      <bpmn2:property id="Property_1njvowv" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0fzudl1">
+        <bpmn2:sourceRef>Informacion_stock_actualizada</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1njvowv</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:intermediateThrowEvent id="Event_106bx54" name="Llegada del paciente a una farmacia disponible">
+      <bpmn2:outgoing>Flow_1m1cv46</bpmn2:outgoing>
+    </bpmn2:intermediateThrowEvent>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1rotrkv">
+      <bpmndi:BPMNShape id="Participant_04j92vr_di" bpmnElement="Recepcionista" isHorizontal="true">
+        <dc:Bounds x="70" y="-70" width="4690" height="370" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_07s0lo0_di" bpmnElement="Lane_07s0lo0" isHorizontal="true">
+        <dc:Bounds x="100" y="-70" width="4660" height="370" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1setaor_di" bpmnElement="Pedido_de_atencion_medica_de_paciente" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="132" y="82" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="108" y="125" width="85" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ujswps_di" bpmnElement="Registrar_datos_del_paciente" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="200" y="60" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1isfys8_di" bpmnElement="Verificar_si_el_paciente_posee_cobertura_medica" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="340" y="60" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_00m9fp3_di" bpmnElement="Gateway_00m9fp3" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="475" y="75" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1ferzyi_di" bpmnElement="Paciente">
+        <dc:Bounds x="225" y="185" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="228" y="242" width="44" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1p6a5u3_di" bpmnElement="Informacion_municipal_de_estado_socio_economico">
+        <dc:Bounds x="365" y="-55" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="295" y="-57" width="69" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_19hcylg_di" bpmnElement="Event_19hcylg" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="702" y="-18" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1fr921n_di" bpmnElement="Registrar_motivo_de_consulta" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="580" y="60" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0j3kekv_di" bpmnElement="Informar_cancelacion_de_servicio_por_falta_de_cobertura_medica" bioc:stroke="#808080" bioc:fill="#f5f5f5" color:background-color="#f5f5f5" color:border-color="#808080">
+        <dc:Bounds x="580" y="-40" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1byjwh8_di" bpmnElement="Asignar_orden_de_consulta" bioc:stroke="#ffb300" bioc:fill="#fff9c4" color:background-color="#fff9c4" color:border-color="#ffb300">
+        <dc:Bounds x="720" y="60" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0qhmslb_di" bpmnElement="Orden_de_Consulta">
+        <dc:Bounds x="702" y="175" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="696" y="232" width="48" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_03qpc7f_di" bpmnElement="Ordenes_de_Consulta">
+        <dc:Bounds x="795" y="175" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="791" y="232" width="59" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_14m9w08_di" bpmnElement="Espera_del_turno">
+        <dc:Bounds x="862" y="82" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="838" y="125" width="85" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1ugo61j_di" bpmnElement="Personal_Medico">
+        <dc:Bounds x="605" y="175" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="588" y="232" width="84" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0fl4ne6_di" bpmnElement="Flow_0fl4ne6">
+        <di:waypoint x="168" y="100" />
+        <di:waypoint x="200" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0y347xi_di" bpmnElement="Flow_0y347xi">
+        <di:waypoint x="300" y="100" />
+        <di:waypoint x="340" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16hyo42_di" bpmnElement="Flow_16hyo42">
+        <di:waypoint x="440" y="100" />
+        <di:waypoint x="475" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0stoan2_di" bpmnElement="Posee">
+        <di:waypoint x="500" y="75" />
+        <di:waypoint x="500" y="0" />
+        <di:waypoint x="580" y="0" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="524" y="-17" width="31" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0nt3nzd_di" bpmnElement="No_posee">
+        <di:waypoint x="525" y="100" />
+        <di:waypoint x="580" y="100" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="525" y="82" width="49" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03g8a0s_di" bpmnElement="Flow_03g8a0s">
+        <di:waypoint x="680" y="0" />
+        <di:waypoint x="702" y="0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15o57fg_di" bpmnElement="Flow_15o57fg">
+        <di:waypoint x="680" y="100" />
+        <di:waypoint x="720" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1u8jqnt_di" bpmnElement="Flow_1u8jqnt">
+        <di:waypoint x="820" y="100" />
+        <di:waypoint x="862" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_0akqfhi_di" bpmnElement="Medico" isHorizontal="true">
+        <dc:Bounds x="70" y="300" width="4690" height="370" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_09584dc_di" bpmnElement="Lane_09584dc" isHorizontal="true">
+        <dc:Bounds x="100" y="300" width="4660" height="370" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_048g00s" bpmnElement="Event_18mpd2v">
+        <dc:Bounds x="872" y="452" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="848" y="495" width="84" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0cohuvq_di" bpmnElement="Llegada_del_paciente_a_la_Direccion_de_Accion_Social_del_municipio">
+        <dc:Bounds x="1842" y="452" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1817" y="495" width="86" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0won1v6_di" bpmnElement="Entregar_receta_al_paciente" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="1700" y="430" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0i39yok_di" bpmnElement="Generar_receta_medica" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="1560" y="430" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0jpq5xs_di" bpmnElement="Verificar_si_necesario_asignar_tratamiento" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="1290" y="430" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0ksx2sj_di" bpmnElement="Gateway_0ksx2sj" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="1445" y="445" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1lf6h79_di" bpmnElement="Realizar_consulta_medica" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="960" y="430" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0wtkcj6_di" bpmnElement="Historial_clinico">
+        <dc:Bounds x="1065" y="555" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1051" y="615" width="77" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Paciente_1_di" bpmnElement="Paciente_copy">
+        <dc:Bounds x="935" y="555" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="919" y="615" width="81" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0b4zdvt_di" bpmnElement="Event_1k4z3gc" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="1682" y="352" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0zusi9a_di" bpmnElement="Ordenes_de_Consulta_1">
+        <dc:Bounds x="905" y="345" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="901" y="402" width="59" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0d90r8a_di" bpmnElement="Realizar_diagnostico" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="1120" y="430" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0p68nu6_di" bpmnElement="Receta_Medica">
+        <dc:Bounds x="1592" y="555" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1572" y="612" width="76" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_099npsd_di" bpmnElement="Concluir_consulta_medica" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="1560" y="330" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1d9nmlw_di" bpmnElement="Recetas_medicas">
+        <dc:Bounds x="1695" y="545" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1676" y="602" width="88" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0r6q67c_di" bpmnElement="Flow_0r6q67c">
+        <di:waypoint x="1800" y="470" />
+        <di:waypoint x="1842" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0oo0j5i_di" bpmnElement="Flow_0oo0j5i">
+        <di:waypoint x="1660" y="470" />
+        <di:waypoint x="1700" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1x66vhg_di" bpmnElement="Flow_1x66vhg">
+        <di:waypoint x="1220" y="470" />
+        <di:waypoint x="1290" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ld4w44_di" bpmnElement="Flow_1ld4w44">
+        <di:waypoint x="1660" y="370" />
+        <di:waypoint x="1682" y="370" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_099xg9l_di" bpmnElement="Necesario">
+        <di:waypoint x="1495" y="470" />
+        <di:waypoint x="1560" y="470" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1494" y="453" width="52" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dhdrc0_di" bpmnElement="No_es_necesario">
+        <di:waypoint x="1470" y="445" />
+        <di:waypoint x="1470" y="370" />
+        <di:waypoint x="1560" y="370" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1469" y="353" width="82" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fxet8s_di" bpmnElement="Flow_1fxet8s">
+        <di:waypoint x="1390" y="470" />
+        <di:waypoint x="1445" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jow595_di" bpmnElement="Flow_1jow595">
+        <di:waypoint x="1060" y="470" />
+        <di:waypoint x="1120" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lut5i5_di" bpmnElement="Flow_0lut5i5">
+        <di:waypoint x="908" y="470" />
+        <di:waypoint x="960" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0p17ft8_di" bpmnElement="Association_0p17ft8">
+        <di:waypoint x="1878" y="470" />
+        <di:waypoint x="1937" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_0f1s18d_di" bpmnElement="Encargado_de_la_Direccion_de_Accion_Social_del_municipio" isHorizontal="true">
+        <dc:Bounds x="70" y="670" width="4690" height="380" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1knqdfx_di" bpmnElement="Lane_1knqdfx" isHorizontal="true">
+        <dc:Bounds x="100" y="670" width="4660" height="380" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1hfcc7u" bpmnElement="Event_14cv46c">
+        <dc:Bounds x="1882" y="802" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1858" y="845" width="86" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1he045h_di" bpmnElement="Recibir_receta_medica" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="1970" y="780" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0szpor2_di" bpmnElement="Verificar_las_condiciones_de_autorizacion_del_medicamento_al_paciente">
+        <dc:Bounds x="2130" y="780" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_07ato6r_di" bpmnElement="Gateway_07ato6r" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="2295" y="795" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_06jud0l_di" bpmnElement="Informar_al_paciente_porque_no_se_puede_autorizar_la_receta_medica">
+        <dc:Bounds x="2410" y="690" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0b9etsz_di" bpmnElement="Event_0b9etsz" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="2542" y="712" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1565bra_di" bpmnElement="Autorizar_receta_medica">
+        <dc:Bounds x="2410" y="780" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Paciente_copy_1_di" bpmnElement="Paciente_copy2">
+        <dc:Bounds x="2155" y="925" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2137" y="982" width="87" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Receta_Medica_1_di" bpmnElement="Receta_Medica_copy">
+        <dc:Bounds x="2002" y="925" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1982" y="982" width="76" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1812hzq_di" bpmnElement="Definir_descuento_s">
+        <dc:Bounds x="2540" y="780" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0lhp2w2_di" bpmnElement="Llegada_del_paciente_a_una_farmacia_disponible">
+        <dc:Bounds x="2682" y="802" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2662" y="845" width="76" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0h3n9kk_di" bpmnElement="Politicas_de_autorizacion_y_descuento">
+        <dc:Bounds x="2295" y="925" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2284" y="982" width="72" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1xodz6d_di" bpmnElement="Flow_1xodz6d">
+        <di:waypoint x="1918" y="820" />
+        <di:waypoint x="1970" y="820" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08sq5oc_di" bpmnElement="Flow_08sq5oc">
+        <di:waypoint x="2070" y="820" />
+        <di:waypoint x="2130" y="820" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08iosep_di" bpmnElement="Flow_08iosep">
+        <di:waypoint x="2230" y="820" />
+        <di:waypoint x="2295" y="820" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wxkl51_di" bpmnElement="Receta_Medica_No_se_puede_autorizar">
+        <di:waypoint x="2320" y="795" />
+        <di:waypoint x="2320" y="730" />
+        <di:waypoint x="2410" y="730" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2328" y="690" width="76" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17wm4c5_di" bpmnElement="Flow_17wm4c5">
+        <di:waypoint x="2345" y="820" />
+        <di:waypoint x="2410" y="820" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1nxykij_di" bpmnElement="Flow_1nxykij">
+        <di:waypoint x="2510" y="730" />
+        <di:waypoint x="2542" y="730" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18cp8ok_di" bpmnElement="Flow_18cp8ok">
+        <di:waypoint x="2510" y="820" />
+        <di:waypoint x="2540" y="820" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kwvt5i_di" bpmnElement="Flow_1kwvt5i">
+        <di:waypoint x="2640" y="820" />
+        <di:waypoint x="2682" y="820" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_0c6p5ex_di" bpmnElement="Farmacista" isHorizontal="true">
+        <dc:Bounds x="70" y="1050" width="5148" height="610" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_01l70jc" bpmnElement="Event_106bx54">
+        <dc:Bounds x="2742" y="1272" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2722" y="1315" width="77" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0clrngl_di" bpmnElement="Consultar_disponibilidad_stock_del_medicamento_s">
+        <dc:Bounds x="3200" y="1250" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1nwp2n0_di" bpmnElement="Informacion_stock_actualizada">
+        <dc:Bounds x="3225" y="1375" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3205" y="1432" width="90" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Receta_Medica_copy_1_di" bpmnElement="Receta_Medica_copy2">
+        <dc:Bounds x="2822" y="1365" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2802" y="1422" width="76" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1sr377f_di" bpmnElement="Event_1sr377f" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="3332" y="1182" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0d88jif_di" bpmnElement="Informar_al_cliente_del_problema_con_la_receta">
+        <dc:Bounds x="3200" y="1160" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_04gan6z_di" bpmnElement="Gateway_04gan6z" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="3095" y="1265" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1x4fgmu_di" bpmnElement="Validar_receta_autorizada">
+        <dc:Bounds x="2960" y="1250" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_181k3uv_di" bpmnElement="Recibir_paciente_y_tomar_receta_autorizada">
+        <dc:Bounds x="2830" y="1250" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0cb764k_di" bpmnElement="Preparar_medicamentos_disponibles">
+        <dc:Bounds x="3360" y="1250" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_18c0kaj_di" bpmnElement="Cobrar_contribucion_1">
+        <dc:Bounds x="3730" y="1350" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0dhdkdi_di" bpmnElement="Generar_factura_ticket_1">
+        <dc:Bounds x="3880" y="1350" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1fc41nc_di" bpmnElement="Gateway_1fc41nc" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="3665" y="1265" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00yim8c_di" bpmnElement="Verificar_la_necesidad_del_cobro_de_contribucion_1">
+        <dc:Bounds x="3510" y="1250" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0iqzeqt_di" bpmnElement="Gateway_0iqzeqt" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="4015" y="1265" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0p1dif2_di" bpmnElement="Facturas">
+        <dc:Bounds x="3995" y="1485" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3997" y="1540" width="45" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0yrko82_di" bpmnElement="ARCA">
+        <dc:Bounds x="3815" y="1485" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3826" y="1542" width="30" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1yc89l7_di" bpmnElement="Factura">
+        <dc:Bounds x="3912" y="1485" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3910" y="1542" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1f3giou_di" bpmnElement="Atencion_medica_brindada" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="4372" y="1272" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4347" y="1315" width="86" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0u91iz2_di" bpmnElement="Constancia_de_Retiro">
+        <dc:Bounds x="4295" y="1405" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4284" y="1462" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0mgl01d_di" bpmnElement="Constancia_de_Retiro_1">
+        <dc:Bounds x="4182" y="1405" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4164" y="1462" width="73" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0juy78c_di" bpmnElement="Entidad_de_autoirzacion_de_Cobro">
+        <dc:Bounds x="3665" y="1475" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3651" y="1532" width="79" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0aqixyk_di" bpmnElement="Entregar_medicamentos_disponibles" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="4180" y="1250" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1m1cv46_di" bpmnElement="Flow_1m1cv46">
+        <di:waypoint x="2778" y="1290" />
+        <di:waypoint x="2830" y="1290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0nbrkcw_di" bpmnElement="Valida">
+        <di:waypoint x="3145" y="1290" />
+        <di:waypoint x="3200" y="1290" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3156" y="1272" width="33" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mtdiw4_di" bpmnElement="Flow_0mtdiw4">
+        <di:waypoint x="3300" y="1290" />
+        <di:waypoint x="3360" y="1290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19i1umj_di" bpmnElement="Flow_19i1umj">
+        <di:waypoint x="3300" y="1200" />
+        <di:waypoint x="3332" y="1200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0botgga_di" bpmnElement="No_valida">
+        <di:waypoint x="3120" y="1265" />
+        <di:waypoint x="3120" y="1200" />
+        <di:waypoint x="3200" y="1200" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3135" y="1183" width="49" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0aeb8rb_di" bpmnElement="Flow_0aeb8rb">
+        <di:waypoint x="3060" y="1290" />
+        <di:waypoint x="3095" y="1290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_183b1ld_di" bpmnElement="Flow_183b1ld">
+        <di:waypoint x="2930" y="1290" />
+        <di:waypoint x="2960" y="1290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1dp77sf_di" bpmnElement="Flow_1dp77sf">
+        <di:waypoint x="3980" y="1390" />
+        <di:waypoint x="4040" y="1390" />
+        <di:waypoint x="4040" y="1315" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08hpqdz_di" bpmnElement="No_necesario_1">
+        <di:waypoint x="3715" y="1290" />
+        <di:waypoint x="4015" y="1290" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3616" y="1263" width="68" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1pa8ywa_di" bpmnElement="Necesario_2">
+        <di:waypoint x="3690" y="1315" />
+        <di:waypoint x="3690" y="1390" />
+        <di:waypoint x="3730" y="1390" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3634" y="1348" width="52" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vb0boz_di" bpmnElement="Flow_1vb0boz">
+        <di:waypoint x="3830" y="1390" />
+        <di:waypoint x="3880" y="1390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jj514o_di" bpmnElement="Flow_1jj514o">
+        <di:waypoint x="3610" y="1290" />
+        <di:waypoint x="3665" y="1290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13uf49y_di" bpmnElement="Flow_13uf49y">
+        <di:waypoint x="3460" y="1290" />
+        <di:waypoint x="3510" y="1290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0anjpr5_di" bpmnElement="Flow_0anjpr5">
+        <di:waypoint x="4065" y="1290" />
+        <di:waypoint x="4180" y="1290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vjfuc1_di" bpmnElement="Flow_1vjfuc1">
+        <di:waypoint x="4280" y="1290" />
+        <di:waypoint x="4372" y="1290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_19jb6xb_di" bpmnElement="Asigna_turno_y_medico">
+        <dc:Bounds x="733" y="-60" width="97" height="40" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_04hikg0_di" bpmnElement="Continua_en_Medico">
+        <dc:Bounds x="959" y="80" width="101" height="40" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1ey9wpj_di" bpmnElement="Continua_en_Encargado_de_la_Direccion_de_Accion_Social_del_municipio">
+        <dc:Bounds x="1937" y="437" width="153" height="65" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0nqiqh9_di" bpmnElement="Continua_en_Farmacista">
+        <dc:Bounds x="2760" y="806" width="210" height="27" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0gby8aq_di" bpmnElement="DataOutputAssociation_0gby8aq">
+        <di:waypoint x="250" y="140" />
+        <di:waypoint x="250" y="185" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1vk2qnv_di" bpmnElement="DataInputAssociation_1vk2qnv">
+        <di:waypoint x="390" y="-5" />
+        <di:waypoint x="390" y="60" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1qh3lju_di" bpmnElement="DataOutputAssociation_1qh3lju">
+        <di:waypoint x="580" y="115" />
+        <di:waypoint x="275" y="209" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_133jq70_di" bpmnElement="DataInputAssociation_133jq70">
+        <di:waypoint x="655" y="183" />
+        <di:waypoint x="722" y="136" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_148tjcm_di" bpmnElement="DataOutputAssociation_148tjcm">
+        <di:waypoint x="751" y="140" />
+        <di:waypoint x="735" y="175" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0ukewam_di" bpmnElement="DataOutputAssociation_0ukewam">
+        <di:waypoint x="789" y="140" />
+        <di:waypoint x="806" y="175" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0uypgoy_di" bpmnElement="DataOutputAssociation_0uypgoy">
+        <di:waypoint x="1610" y="510" />
+        <di:waypoint x="1612" y="555" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_17s2fcw_di" bpmnElement="DataInputAssociation_17s2fcw">
+        <di:waypoint x="970" y="555" />
+        <di:waypoint x="987" y="510" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1puvr2c_di" bpmnElement="DataInputAssociation_1puvr2c">
+        <di:waypoint x="1069" y="555" />
+        <di:waypoint x="1030" y="510" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1r09w4d_di" bpmnElement="DataInputAssociation_1r09w4d">
+        <di:waypoint x="950" y="395" />
+        <di:waypoint x="978" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0fjdaii_di" bpmnElement="DataOutputAssociation_0fjdaii">
+        <di:waypoint x="1139" y="510" />
+        <di:waypoint x="1104" y="555" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1hp2bqi_di" bpmnElement="DataInputAssociation_1hp2bqi">
+        <di:waypoint x="2020" y="925" />
+        <di:waypoint x="2020" y="860" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_14ln1yd_di" bpmnElement="DataInputAssociation_14ln1yd">
+        <di:waypoint x="2180" y="925" />
+        <di:waypoint x="2180" y="860" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_05fieg4_di" bpmnElement="DataInputAssociation_05fieg4">
+        <di:waypoint x="2295" y="925" />
+        <di:waypoint x="2227" y="857" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_18z3qcp_di" bpmnElement="DataOutputAssociation_18z3qcp">
+        <di:waypoint x="2410" y="834" />
+        <di:waypoint x="2038" y="939" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0hov4bn_di" bpmnElement="DataInputAssociation_0hov4bn">
+        <di:waypoint x="2345" y="940" />
+        <di:waypoint x="2545" y="858" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_16t1g5x_di" bpmnElement="DataOutputAssociation_16t1g5x">
+        <di:waypoint x="2540" y="831" />
+        <di:waypoint x="2038" y="941" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0fzudl1_di" bpmnElement="DataInputAssociation_0fzudl1">
+        <di:waypoint x="3250" y="1375" />
+        <di:waypoint x="3250" y="1330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_06a7miw_di" bpmnElement="DataInputAssociation_06a7miw">
+        <di:waypoint x="2850" y="1365" />
+        <di:waypoint x="2864" y="1330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_112fwdb_di" bpmnElement="Association_112fwdb">
+        <di:waypoint x="770" y="60" />
+        <di:waypoint x="770" y="-20" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1xsmocv_di" bpmnElement="Association_1xsmocv">
+        <di:waypoint x="2718" y="820" />
+        <di:waypoint x="2760" y="820" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0xkrsxv_di" bpmnElement="Association_0xkrsxv">
+        <di:waypoint x="898" y="100" />
+        <di:waypoint x="959" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0n4okrr_di" bpmnElement="DataInputAssociation_0n4okrr">
+        <di:waypoint x="3706" y="1475" />
+        <di:waypoint x="3735" y="1428" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0bpcqp4_di" bpmnElement="DataInputAssociation_0bpcqp4">
+        <di:waypoint x="3850" y="1485" />
+        <di:waypoint x="3880" y="1414" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_08th84y_di" bpmnElement="DataOutputAssociation_08th84y">
+        <di:waypoint x="3900" y="1430" />
+        <di:waypoint x="3860" y="1485" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_08i107j_di" bpmnElement="DataOutputAssociation_08i107j">
+        <di:waypoint x="3931" y="1430" />
+        <di:waypoint x="3932" y="1485" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0uoci0k_di" bpmnElement="DataOutputAssociation_0uoci0k">
+        <di:waypoint x="3959" y="1430" />
+        <di:waypoint x="3998" y="1485" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_05443iy_di" bpmnElement="DataOutputAssociation_05443iy">
+        <di:waypoint x="4222" y="1330" />
+        <di:waypoint x="4207" y="1405" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_195m8wi_di" bpmnElement="DataOutputAssociation_195m8wi">
+        <di:waypoint x="4257" y="1330" />
+        <di:waypoint x="4308" y="1405" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0h4a8u7_di" bpmnElement="DataOutputAssociation_0h4a8u7">
+        <di:waypoint x="1651" y="510" />
+        <di:waypoint x="1695" y="551" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1spcrm4">
+    <bpmndi:BPMNPlane id="BPMNPlane_05wi2ld" bpmnElement="Entregar_medicamentos_disponibles" />
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

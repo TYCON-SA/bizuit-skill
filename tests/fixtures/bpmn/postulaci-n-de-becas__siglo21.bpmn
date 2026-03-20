@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_1evjedf">
+    <bpmn2:participant id="Apertura_excepcional_materias" name="Postulación de Becas" processRef="Process_Postulaci_n_de_Becas_1771942612353" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:textAnnotation id="_1_Solicitar_nueva_beca_Listado_completo_de_becas_y_beneficios_disponibles_2_Renovar_beca_Listado_basado_en_todas_las_becas_beneficios_historicos_aplicados">
+      <bpmn2:text>1. Solicitar nueva beca: Listado completo de becas y beneficios disponibles
+2. Renovar beca: Listado basado en todas las becas/beneficios históricos aplicados</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_1nlvmww" associationDirection="None" sourceRef="Solicitar_beca_beneficio" targetRef="_1_Solicitar_nueva_beca_Listado_completo_de_becas_y_beneficios_disponibles_2_Renovar_beca_Listado_basado_en_todas_las_becas_beneficios_historicos_aplicados" />
+    <bpmn2:textAnnotation id="Estado_de_mis_becas_o_Historico_de_solicitudes_y_beneficios_aplicados_Estados_visibles_para_el_estudiante_Solicitud_iniciada_En_revision_Aprobada_Rechazada_tomar_de_columna_motivos_de_rechazo">
+      <bpmn2:text>Estado de mis becas
+o Histórico de solicitudes y beneficios aplicados
+
+Estados visibles para el estudiante
+• Solicitud iniciada
+• En revisión
+• Aprobada
+• Rechazada [tomar de columna motivos de rechazo]</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_1b9d1jw" associationDirection="None" sourceRef="StartEvent_1" targetRef="Estado_de_mis_becas_o_Historico_de_solicitudes_y_beneficios_aplicados_Estados_visibles_para_el_estudiante_Solicitud_iniciada_En_revision_Aprobada_Rechazada_tomar_de_columna_motivos_de_rechazo" />
+    <bpmn2:textAnnotation id="Antes_de_permitir_el_envio_de_una_solicitud_el_sistema_debe_validar_si_el_estudiante_ya_tiene_la_misma_beca_beneficio_aplicada_en_el_periodo_actual_Si_ya_esta_aplicada_No_se_genera_una_nueva_solicitud_Se_informa_al_estudiante_que_el_beneficio_ya_se_encuentra_vigente_en_el_periodo">
+      <bpmn2:text>Antes de permitir el envío de una solicitud, el sistema debe validar si el estudiante ya tiene la misma beca/beneficio aplicada en el período actual:
+• Si ya está aplicada:
+No se genera una nueva solicitud
+Se informa al estudiante que el beneficio ya se encuentra vigente en el período</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_1yc98rm" associationDirection="None" sourceRef="Solicitar_beca_beneficio" targetRef="Antes_de_permitir_el_envio_de_una_solicitud_el_sistema_debe_validar_si_el_estudiante_ya_tiene_la_misma_beca_beneficio_aplicada_en_el_periodo_actual_Si_ya_esta_aplicada_No_se_genera_una_nueva_solicitud_Se_informa_al_estudiante_que_el_beneficio_ya_se_encuentra_vigente_en_el_periodo" />
+    <bpmn2:textAnnotation id="La_renovacion_es_bajo_demanda_del_estudiante_para_el_caso_de_becas_beneficios_con_validacion_de_documentacion_El_sistema_debe_enviar_una_notificacion_en_el_Portal_cuando_el_estudiante_haya_tenido_una_beca_aplicada_en_el_periodo_anterior_inmediato_informando_que_puede_renovarla_La_renovacion_podria_ser_automatica_para_el_caso_de_las_becas_beneficios_automaticas">
+      <bpmn2:text>• La renovación es bajo demanda del estudiante para el caso de becas/beneficios con validación de documentación.
+• El sistema debe enviar una notificación en el Portal cuando el estudiante haya tenido una beca aplicada en el período anterior inmediato, informando que puede renovarla.
+• La renovación podría ser automática para el caso de las becas/beneficios automáticas.</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_1mh09ir" associationDirection="None" sourceRef="StartEvent_1" targetRef="La_renovacion_es_bajo_demanda_del_estudiante_para_el_caso_de_becas_beneficios_con_validacion_de_documentacion_El_sistema_debe_enviar_una_notificacion_en_el_Portal_cuando_el_estudiante_haya_tenido_una_beca_aplicada_en_el_periodo_anterior_inmediato_informando_que_puede_renovarla_La_renovacion_podria_ser_automatica_para_el_caso_de_las_becas_beneficios_automaticas" />
+    <bpmn2:textAnnotation id="Impacto_inmediato_en_aranceles">
+      <bpmn2:text>• Impacto inmediato en aranceles</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_0h3u2c2" associationDirection="None" sourceRef="Otorgar_Beca_Beneficio" targetRef="Impacto_inmediato_en_aranceles" />
+    <bpmn2:textAnnotation id="Repositorio_documental_Conserva_historico_de_versiones_y_documentacion_presentada">
+      <bpmn2:text>• Repositorio documental. Conserva histórico de versiones y documentación presentada.</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_11m0bn3" associationDirection="None" sourceRef="Analizar_postulacion" targetRef="Repositorio_documental_Conserva_historico_de_versiones_y_documentacion_presentada" />
+    <bpmn2:textAnnotation id="Rechazo_x_falta_de_documentacion_o_Se_informa_el_motivo_especifico_Debe_iniciar_nueva_solicitud_El_negocio_debe_poder_seleccionar_motivos_de_rechazo_desde_un_desplegable_por_beca_beneficio_a_traves_de_BPM">
+      <bpmn2:text>Rechazo x falta de documentación. o Se informa el motivo específico. Debe iniciar nueva solicitud.
+• El negocio debe poder seleccionar motivos de rechazo desde un desplegable por beca/beneficio a través de BPM.</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:textAnnotation id="Las_reglas_particulares_de_cada_beca_o_beneficio_derivan_del_Reglamento_institucional_vigente">
+      <bpmn2:text>Las reglas particulares de cada beca o beneficio derivan del Reglamento institucional vigente.</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_0y47k8x" associationDirection="None" sourceRef="Gateway_0xsx1dw" targetRef="Las_reglas_particulares_de_cada_beca_o_beneficio_derivan_del_Reglamento_institucional_vigente" />
+    <bpmn2:association id="Association_0xggobu" associationDirection="None" sourceRef="Notificar_rechazo" targetRef="Rechazo_x_falta_de_documentacion_o_Se_informa_el_motivo_especifico_Debe_iniciar_nueva_solicitud_El_negocio_debe_poder_seleccionar_motivos_de_rechazo_desde_un_desplegable_por_beca_beneficio_a_traves_de_BPM" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_Postulaci_n_de_Becas_1771942612353" name="Postulación de Becas" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="Siglo21">
+    <bpmn2:extensionElements>
+      <bizuit:processParameters>
+        <bizuit:parameter name="ExceptionParameter" description="System parameter for exception handling" type="XML" direction="Optional">
+          <bizuit:xmlSchemaDefinition>{"name":"Exception","type":"root","children":[{"name":"Message","type":"element","dataType":"string"},{"name":"Type","type":"element","dataType":"string"},{"name":"StackTrace","type":"element","dataType":"string"},{"name":"FaultingActivity","type":"element","dataType":"string"}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:parameter>
+        <bizuit:parameter name="OutputParameter" description="System parameter for workflow output" type="Escalar" direction="Out" scalarDataType="string" defaultValue="" />
+      </bizuit:processParameters>
+      <bizuit:processVariables>
+        <bizuit:variable name="InstanceId" description="System variable for workflow instance ID" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+        <bizuit:variable name="LoggedUser" description="System variable for logged user information" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+      </bizuit:processVariables>
+    </bpmn2:extensionElements>
+    <bpmn2:laneSet id="LaneSet_03keoai">
+      <bpmn2:lane id="Portal_Estudiantes_SOA" name="Portal Estudiantes/SOA" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>StartEvent_1</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Solicitar_beca_beneficio</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0xsx1dw</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Validaciones_automaticas</bpmn2:flowNodeRef>
+        <bpmn2:childLaneSet id="LaneSet_1eff4qg">
+          <bpmn2:lane id="Lane_0ow5l6s">
+            <bpmn2:flowNodeRef>StartEvent_1</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Solicitar_beca_beneficio</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Gateway_0xsx1dw</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Validaciones_automaticas</bpmn2:flowNodeRef>
+          </bpmn2:lane>
+        </bpmn2:childLaneSet>
+      </bpmn2:lane>
+      <bpmn2:lane id="SOA_Planificacion" name="SOA Planificación" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Otorgar_Beca_Beneficio</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_1xmqaha</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Notificar_otorgamiento</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Analizar_postulacion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1nm4rwx</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Notificar_rechazo</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_0l37udt</bpmn2:flowNodeRef>
+        <bpmn2:childLaneSet id="LaneSet_09scmmh">
+          <bpmn2:lane id="Lane_0iqinmj">
+            <bpmn2:flowNodeRef>Otorgar_Beca_Beneficio</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Event_1xmqaha</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Notificar_otorgamiento</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Analizar_postulacion</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Gateway_1nm4rwx</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Notificar_rechazo</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Event_0l37udt</bpmn2:flowNodeRef>
+          </bpmn2:lane>
+        </bpmn2:childLaneSet>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:startEvent id="StartEvent_1">
+      <bpmn2:outgoing>Flow_1wp2w99</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:userTask id="Solicitar_beca_beneficio" name="Solicitar beca/beneficio" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_1wp2w99</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0vg42qe</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_1wp2w99" sourceRef="StartEvent_1" targetRef="Solicitar_beca_beneficio" />
+    <bpmn2:sequenceFlow id="Flow_0vg42qe" sourceRef="Solicitar_beca_beneficio" targetRef="Gateway_0xsx1dw" />
+    <bpmn2:sequenceFlow id="Grupo_A" name="Grupo A" sourceRef="Gateway_0xsx1dw" targetRef="Validaciones_automaticas" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Grupo_B" name="Grupo B" sourceRef="Gateway_0xsx1dw" targetRef="Analizar_postulacion" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Flow_18nmetj" sourceRef="Validaciones_automaticas" targetRef="Gateway_1nm4rwx" />
+    <bpmn2:sequenceFlow id="Rechazada" name="Rechazada" sourceRef="Gateway_1nm4rwx" targetRef="Notificar_rechazo" bizuit:AttachmentsCollection="[]" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:exclusiveGateway id="Gateway_0xsx1dw">
+      <bpmn2:incoming>Flow_0vg42qe</bpmn2:incoming>
+      <bpmn2:outgoing>Grupo_A</bpmn2:outgoing>
+      <bpmn2:outgoing>Grupo_B</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:serviceTask id="Validaciones_automaticas" name="Validaciones automáticas">
+      <bpmn2:incoming>Grupo_A</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_18nmetj</bpmn2:outgoing>
+    </bpmn2:serviceTask>
+    <bpmn2:sequenceFlow id="Aprobada" name="Aprobada" sourceRef="Gateway_1nm4rwx" targetRef="Otorgar_Beca_Beneficio" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:serviceTask id="Otorgar_Beca_Beneficio" name="Otorgar Beca/Beneficio">
+      <bpmn2:incoming>Aprobada</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1f5nzqb</bpmn2:outgoing>
+    </bpmn2:serviceTask>
+    <bpmn2:sequenceFlow id="Flow_1f5nzqb" sourceRef="Otorgar_Beca_Beneficio" targetRef="Notificar_otorgamiento" />
+    <bpmn2:endEvent id="Event_1xmqaha">
+      <bpmn2:incoming>Flow_10cz86a</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_10cz86a" sourceRef="Notificar_otorgamiento" targetRef="Event_1xmqaha" />
+    <bpmn2:sendTask id="Notificar_otorgamiento" name="Notificar otorgamiento">
+      <bpmn2:incoming>Flow_1f5nzqb</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_10cz86a</bpmn2:outgoing>
+    </bpmn2:sendTask>
+    <bpmn2:userTask id="Analizar_postulacion" name="Analizar postulación">
+      <bpmn2:extensionElements>
+        <bizuit:userTaskColumnSettings>
+          <bizuit:visibleDescriptionColumn name="xCol_Description" headerText="Descripción" columnType="ReactionDescription" />
+          <bizuit:visibleDescriptionColumn name="xCol_Version" headerText="Versión" columnType="Version" />
+          <bizuit:visibleDescriptionColumn name="xCol_Executor" headerText="Ejecutado por" columnType="PersistenceUser" />
+          <bizuit:visibleDescriptionColumn name="xCol_ExecutionDate" headerText="Fecha Ejecución" columnType="IdledDateTime" />
+          <bizuit:visibleDescriptionColumn name="xCol_ElapsedTime" headerText="Tiempo Transcurrido" columnType="TimeElapsed" />
+        </bizuit:userTaskColumnSettings>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Grupo_B</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0r1satw</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:exclusiveGateway id="Gateway_1nm4rwx">
+      <bpmn2:incoming>Flow_18nmetj</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0r1satw</bpmn2:incoming>
+      <bpmn2:outgoing>Rechazada</bpmn2:outgoing>
+      <bpmn2:outgoing>Aprobada</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_02zxuba" sourceRef="Notificar_rechazo" targetRef="Event_0l37udt" />
+    <bpmn2:sequenceFlow id="Flow_0r1satw" sourceRef="Analizar_postulacion" targetRef="Gateway_1nm4rwx" />
+    <bpmn2:sendTask id="Notificar_rechazo" name="Notificar rechazo">
+      <bpmn2:incoming>Rechazada</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_02zxuba</bpmn2:outgoing>
+    </bpmn2:sendTask>
+    <bpmn2:endEvent id="Event_0l37udt">
+      <bpmn2:incoming>Flow_02zxuba</bpmn2:incoming>
+    </bpmn2:endEvent>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1evjedf">
+      <bpmndi:BPMNShape id="Participant_03nf2hj_di" bpmnElement="Apertura_excepcional_materias" isHorizontal="true">
+        <dc:Bounds x="-140" y="100" width="1360" height="620" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0u3aaxh_di" bpmnElement="SOA_Planificacion" isHorizontal="true">
+        <dc:Bounds x="-110" y="410" width="1330" height="310" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0iqinmj_di" bpmnElement="Lane_0iqinmj" isHorizontal="true">
+        <dc:Bounds x="-80" y="410" width="1300" height="310" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_16pngy9_di" bpmnElement="Portal_Estudiantes_SOA" isHorizontal="true">
+        <dc:Bounds x="-110" y="100" width="1330" height="310" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0ow5l6s_di" bpmnElement="Lane_0ow5l6s" isHorizontal="true">
+        <dc:Bounds x="-80" y="100" width="1300" height="310" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="-58" y="262" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_19zdn4u_di" bpmnElement="Solicitar_beca_beneficio" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="30" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0xsx1dw_di" bpmnElement="Gateway_0xsx1dw" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="215" y="255" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0fso9ia_di" bpmnElement="Validaciones_automaticas" bioc:stroke="#ffb300" bioc:fill="#fff9c4" color:background-color="#fff9c4" color:border-color="#ffb300">
+        <dc:Bounds x="390" y="240" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1n0tikl_di" bpmnElement="Otorgar_Beca_Beneficio" bioc:stroke="#ffb300" bioc:fill="#fff9c4" color:background-color="#fff9c4" color:border-color="#ffb300">
+        <dc:Bounds x="560" y="470" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1xmqaha_di" bpmnElement="Event_1xmqaha" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="962" y="492" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0jkw10r_di" bpmnElement="Notificar_otorgamiento" bioc:stroke="#008b8b" bioc:fill="#e0ffff" color:background-color="#e0ffff" color:border-color="#008b8b">
+        <dc:Bounds x="760" y="470" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0kc7up4_di" bpmnElement="Analizar_postulacion" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="190" y="470" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1nm4rwx_di" bpmnElement="Gateway_1nm4rwx" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="415" y="485" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ef6ytu_di" bpmnElement="Notificar_rechazo" bioc:stroke="#008b8b" bioc:fill="#e0ffff" color:background-color="#e0ffff" color:border-color="#008b8b">
+        <dc:Bounds x="760" y="610" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0l37udt_di" bpmnElement="Event_0l37udt" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="962" y="632" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1wp2w99_di" bpmnElement="Flow_1wp2w99">
+        <di:waypoint x="-22" y="280" />
+        <di:waypoint x="30" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vg42qe_di" bpmnElement="Flow_0vg42qe">
+        <di:waypoint x="130" y="280" />
+        <di:waypoint x="215" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gqnbr0_di" bpmnElement="Grupo_A">
+        <di:waypoint x="265" y="280" />
+        <di:waypoint x="390" y="280" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="307" y="262" width="42" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1q9ksao_di" bpmnElement="Grupo_B">
+        <di:waypoint x="240" y="305" />
+        <di:waypoint x="240" y="470" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="234" y="385" width="42" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18nmetj_di" bpmnElement="Flow_18nmetj">
+        <di:waypoint x="440" y="320" />
+        <di:waypoint x="440" y="485" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0inhsiz_di" bpmnElement="Rechazada">
+        <di:waypoint x="440" y="535" />
+        <di:waypoint x="440" y="650" />
+        <di:waypoint x="760" y="650" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="422" y="586" width="58" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kz08na_di" bpmnElement="Aprobada">
+        <di:waypoint x="465" y="510" />
+        <di:waypoint x="560" y="510" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="489" y="488" width="52" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1f5nzqb_di" bpmnElement="Flow_1f5nzqb">
+        <di:waypoint x="660" y="510" />
+        <di:waypoint x="760" y="510" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10cz86a_di" bpmnElement="Flow_10cz86a">
+        <di:waypoint x="860" y="510" />
+        <di:waypoint x="962" y="510" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02zxuba_di" bpmnElement="Flow_02zxuba">
+        <di:waypoint x="860" y="650" />
+        <di:waypoint x="962" y="650" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0r1satw_di" bpmnElement="Flow_0r1satw">
+        <di:waypoint x="290" y="510" />
+        <di:waypoint x="415" y="510" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0h3u2c2_di" bpmnElement="Association_0h3u2c2">
+        <di:waypoint x="621" y="470" />
+        <di:waypoint x="644" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0y47k8x_di" bpmnElement="Association_0y47k8x">
+        <di:waypoint x="246" y="261" />
+        <di:waypoint x="520" y="153" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1b9d1jw_di" bpmnElement="Association_1b9d1jw">
+        <di:waypoint x="-41" y="262" />
+        <di:waypoint x="-54" y="63" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0xggobu_di" bpmnElement="Association_0xggobu">
+        <di:waypoint x="774" y="690" />
+        <di:waypoint x="710" y="760" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1nlvmww_di" bpmnElement="Association_1nlvmww">
+        <di:waypoint x="110" y="240" />
+        <di:waypoint x="133" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1yc98rm_di" bpmnElement="Association_1yc98rm">
+        <di:waypoint x="84" y="240" />
+        <di:waypoint x="122" y="63" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1mh09ir_di" bpmnElement="Association_1mh09ir">
+        <di:waypoint x="-56" y="273" />
+        <di:waypoint x="-170" y="224" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_1mpfr46_di" bpmnElement="Repositorio_documental_Conserva_historico_de_versiones_y_documentacion_presentada">
+        <dc:Bounds x="-10" y="600" width="270" height="50" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_11m0bn3_di" bpmnElement="Association_11m0bn3">
+        <di:waypoint x="190" y="536" />
+        <di:waypoint x="69" y="600" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_09gpq9q_di" bpmnElement="Impacto_inmediato_en_aranceles">
+        <dc:Bounds x="600" y="340" width="190" height="50" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0watfvr_di" bpmnElement="Las_reglas_particulares_de_cada_beca_o_beneficio_derivan_del_Reglamento_institucional_vigente">
+        <dc:Bounds x="520" y="120" width="190" height="90" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1x86emv_di" bpmnElement="Estado_de_mis_becas_o_Historico_de_solicitudes_y_beneficios_aplicados_Estados_visibles_para_el_estudiante_Solicitud_iniciada_En_revision_Aprobada_Rechazada_tomar_de_columna_motivos_de_rechazo">
+        <dc:Bounds x="-190" y="-110" width="220" height="173" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0e2xrir_di" bpmnElement="Rechazo_x_falta_de_documentacion_o_Se_informa_el_motivo_especifico_Debe_iniciar_nueva_solicitud_El_negocio_debe_poder_seleccionar_motivos_de_rechazo_desde_un_desplegable_por_beca_beneficio_a_traves_de_BPM">
+        <dc:Bounds x="640" y="760" width="300" height="110" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0h7kurt_di" bpmnElement="_1_Solicitar_nueva_beca_Listado_completo_de_becas_y_beneficios_disponibles_2_Renovar_beca_Listado_basado_en_todas_las_becas_beneficios_historicos_aplicados">
+        <dc:Bounds x="130" y="120" width="290" height="90" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_06rgsin_di" bpmnElement="Antes_de_permitir_el_envio_de_una_solicitud_el_sistema_debe_validar_si_el_estudiante_ya_tiene_la_misma_beca_beneficio_aplicada_en_el_periodo_actual_Si_ya_esta_aplicada_No_se_genera_una_nueva_solicitud_Se_informa_al_estudiante_que_el_beneficio_ya_se_encuentra_vigente_en_el_periodo">
+        <dc:Bounds x="80" y="-60" width="390" height="123" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0kzfgwp_di" bpmnElement="La_renovacion_es_bajo_demanda_del_estudiante_para_el_caso_de_becas_beneficios_con_validacion_de_documentacion_El_sistema_debe_enviar_una_notificacion_en_el_Portal_cuando_el_estudiante_haya_tenido_una_beca_aplicada_en_el_periodo_anterior_inmediato_informando_que_puede_renovarla_La_renovacion_podria_ser_automatica_para_el_caso_de_las_becas_beneficios_automaticas">
+        <dc:Bounds x="-420" y="120" width="250" height="190" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

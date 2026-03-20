@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_04x8dmq">
+    <bpmn2:participant id="Participant_1lujadd" processRef="Process_1" />
+    <bpmn2:textAnnotation id="mantener_presupuesto">
+      <bpmn2:text>mantener presupuesto</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:textAnnotation id="actualizar_presupuesto">
+      <bpmn2:text>actualizar presupuesto</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_1izhd11" associationDirection="None" sourceRef="Gateway_1h3vpdq" targetRef="mantener_presupuesto" />
+    <bpmn2:association id="Association_1ndd3d8" associationDirection="None" sourceRef="Gateway_1h3vpdq" targetRef="actualizar_presupuesto" />
+    <bpmn2:textAnnotation id="Despachar_cliente">
+      <bpmn2:text>Despachar cliente</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_0gnr7db" associationDirection="None" sourceRef="Gateway_18aws3i" targetRef="Despachar_cliente" />
+    <bpmn2:textAnnotation id="Verificar_que_el_cliente_este_registrado">
+      <bpmn2:text>Verificar que el cliente este registrado</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_08isvei" associationDirection="None" sourceRef="Gateway_18aws3i" targetRef="Verificar_que_el_cliente_este_registrado" />
+    <bpmn2:association id="Association_1t435bd" associationDirection="None" sourceRef="Verificar_que_el_cliente_este_registrado" targetRef="Gateway_1d5xpyg" />
+    <bpmn2:textAnnotation id="Registrarlo">
+      <bpmn2:text>Registrarlo</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_0bx2ir3" associationDirection="None" sourceRef="Gateway_1d5xpyg" targetRef="Registrarlo" />
+    <bpmn2:textAnnotation id="Consultar_productos_y_cantidad">
+      <bpmn2:text>Consultar productos y cantidad</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_1y5g88d" associationDirection="None" sourceRef="Gateway_1d5xpyg" targetRef="Consultar_productos_y_cantidad" />
+    <bpmn2:association id="Association_0sptgj5" associationDirection="None" sourceRef="Consultar_productos_y_cantidad" targetRef="Verificar_disponibilidad" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_1" name="caoba" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="46126175">
+    <bpmn2:laneSet id="LaneSet_1vsa6qx">
+      <bpmn2:lane id="Vendedor" name="Vendedor" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Activity_0juhemg</bpmn2:flowNodeRef>
+        <bpmn2:childLaneSet id="LaneSet_1c17we9">
+          <bpmn2:lane id="Lane_0cc1wax">
+            <bpmn2:flowNodeRef>Activity_0juhemg</bpmn2:flowNodeRef>
+            <bpmn2:childLaneSet id="LaneSet_0egh77w" />
+          </bpmn2:lane>
+          <bpmn2:lane id="Lane_099tmxk">
+            <bpmn2:flowNodeRef>StartEvent_1</bpmn2:flowNodeRef>
+            <bpmn2:childLaneSet id="LaneSet_03zz23l" />
+          </bpmn2:lane>
+        </bpmn2:childLaneSet>
+      </bpmn2:lane>
+      <bpmn2:lane id="Lane_1djfrml">
+        <bpmn2:flowNodeRef>StartEvent_1</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:startEvent id="StartEvent_1" />
+    <bpmn2:subProcess id="Activity_0juhemg">
+      <bpmn2:task id="Realizar_presupuesto_con_vigencia_de_3_dias" name="Realizar presupuesto con vigencia de 3 dias.">
+        <bpmn2:incoming>Flow_10utofu</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0282nim</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:task id="Cotejar_la_vigencia_del_presupuesto" name="Cotejar la vigencia del presupuesto">
+        <bpmn2:incoming>Flow_0282nim</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1kzl1kp</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0282nim" sourceRef="Realizar_presupuesto_con_vigencia_de_3_dias" targetRef="Cotejar_la_vigencia_del_presupuesto" />
+      <bpmn2:sequenceFlow id="Flow_10utofu" sourceRef="Asesoria_al_cliente" targetRef="Realizar_presupuesto_con_vigencia_de_3_dias" />
+      <bpmn2:startEvent id="Asesoria_al_cliente" name="Asesoria al cliente" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+        <bpmn2:outgoing>Flow_10utofu</bpmn2:outgoing>
+      </bpmn2:startEvent>
+      <bpmn2:exclusiveGateway id="Gateway_1h3vpdq">
+        <bpmn2:incoming>Flow_1kzl1kp</bpmn2:incoming>
+      </bpmn2:exclusiveGateway>
+      <bpmn2:sequenceFlow id="Flow_1kzl1kp" sourceRef="Cotejar_la_vigencia_del_presupuesto" targetRef="Gateway_1h3vpdq" />
+      <bpmn2:task id="Activity_02gapku">
+        <bpmn2:outgoing>Flow_1nbry4g</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:exclusiveGateway id="Gateway_18aws3i">
+        <bpmn2:incoming>Flow_1nbry4g</bpmn2:incoming>
+      </bpmn2:exclusiveGateway>
+      <bpmn2:sequenceFlow id="Flow_1nbry4g" sourceRef="Activity_02gapku" targetRef="Gateway_18aws3i" />
+      <bpmn2:exclusiveGateway id="Gateway_1d5xpyg" />
+      <bpmn2:intermediateThrowEvent id="Event_1sfgknj" />
+      <bpmn2:task id="Verificar_disponibilidad" name="Verificar disponibilidad" />
+      <bpmn2:association id="Association_1vikyus" associationDirection="None" sourceRef="Despachar_cliente" targetRef="Event_1sfgknj" />
+      <bpmn2:association id="Association_0tkdi7f" associationDirection="None" sourceRef="Despachar_cliente" targetRef="Event_1sfgknj" />
+      <bpmn2:association id="Association_1la6it7" associationDirection="None" sourceRef="Despachar_cliente" targetRef="Event_1sfgknj" />
+      <bpmn2:association id="Association_16cgyhj" associationDirection="None" sourceRef="Consultar_productos_y_cantidad" targetRef="Verificar_disponibilidad" />
+    </bpmn2:subProcess>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_04x8dmq">
+      <bpmndi:BPMNShape id="Participant_1lujadd_di" bpmnElement="Participant_1lujadd" isHorizontal="true">
+        <dc:Bounds x="-760" y="-280" width="1428" height="920" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_01u5uqz_di" bpmnElement="Vendedor" isHorizontal="true">
+        <dc:Bounds x="-730" y="-280" width="1398" height="510" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0cc1wax_di" bpmnElement="Lane_0cc1wax" isHorizontal="true">
+        <dc:Bounds x="-700" y="-280" width="1368" height="510" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_099tmxk_di" bpmnElement="Lane_099tmxk" isHorizontal="true">
+        <dc:Bounds x="-700" y="231" width="1368" height="409" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1djfrml_di" bpmnElement="Lane_1djfrml" isHorizontal="true">
+        <dc:Bounds x="-730" y="230" width="1398" height="410" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="412" y="240" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0juhemg_di" bpmnElement="Activity_0juhemg" isExpanded="true" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="-690" y="-220" width="1258" height="380" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1cwl5di_di" bpmnElement="Asesoria_al_cliente" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="-650" y="-58" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-660" y="-15" width="56" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0dphs80_di" bpmnElement="Realizar_presupuesto_con_vigencia_de_3_dias">
+        <dc:Bounds x="-560" y="-80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00oeoit_di" bpmnElement="Cotejar_la_vigencia_del_presupuesto">
+        <dc:Bounds x="-400" y="-80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1h3vpdq_di" bpmnElement="Gateway_1h3vpdq" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="-235" y="-65" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_18aws3i_di" bpmnElement="Gateway_18aws3i" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="-35" y="-15" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_02gapku_di" bpmnElement="Activity_02gapku">
+        <dc:Bounds x="-150" y="-30" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1d5xpyg_di" bpmnElement="Gateway_1d5xpyg" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="135" y="25" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1sfgknj_di" bpmnElement="Event_1sfgknj" bioc:stroke="#831311" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#831311">
+        <dc:Bounds x="142" y="-173" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ov5rb9_di" bpmnElement="Verificar_disponibilidad">
+        <dc:Bounds x="330" y="30" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1vikyus_di" bpmnElement="Association_1vikyus">
+        <di:waypoint x="120" y="-155" />
+        <di:waypoint x="142" y="-155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0tkdi7f_di" bpmnElement="Association_0tkdi7f">
+        <di:waypoint x="120" y="-155" />
+        <di:waypoint x="142" y="-155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1la6it7_di" bpmnElement="Association_1la6it7">
+        <di:waypoint x="120" y="-155" />
+        <di:waypoint x="142" y="-155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_16cgyhj_di" bpmnElement="Association_16cgyhj">
+        <di:waypoint x="310" y="70" />
+        <di:waypoint x="330" y="70" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10utofu_di" bpmnElement="Flow_10utofu">
+        <di:waypoint x="-614" y="-40" />
+        <di:waypoint x="-560" y="-40" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0282nim_di" bpmnElement="Flow_0282nim">
+        <di:waypoint x="-460" y="-40" />
+        <di:waypoint x="-400" y="-40" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kzl1kp_di" bpmnElement="Flow_1kzl1kp">
+        <di:waypoint x="-300" y="-40" />
+        <di:waypoint x="-235" y="-40" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1nbry4g_di" bpmnElement="Flow_1nbry4g">
+        <di:waypoint x="-50" y="10" />
+        <di:waypoint x="-35" y="10" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1ndd3d8_di" bpmnElement="Association_1ndd3d8">
+        <di:waypoint x="-191" y="-34" />
+        <di:waypoint x="-145" y="-20" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1izhd11_di" bpmnElement="Association_1izhd11">
+        <di:waypoint x="-196" y="-51" />
+        <di:waypoint x="-130" y="-100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_08isvei_di" bpmnElement="Association_08isvei">
+        <di:waypoint x="9" y="16" />
+        <di:waypoint x="22" y="20" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1t435bd_di" bpmnElement="Association_1t435bd">
+        <di:waypoint x="120" y="50" />
+        <di:waypoint x="135" y="50" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0gnr7db_di" bpmnElement="Association_0gnr7db">
+        <di:waypoint x="-5" y="-10" />
+        <di:waypoint x="20" y="-120" />
+        <di:waypoint x="40" y="-133" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0bx2ir3_di" bpmnElement="Association_0bx2ir3">
+        <di:waypoint x="163" y="28" />
+        <di:waypoint x="170" y="-30" />
+        <di:waypoint x="210" y="-37" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1y5g88d_di" bpmnElement="Association_1y5g88d">
+        <di:waypoint x="185" y="50" />
+        <di:waypoint x="210" y="50" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0sptgj5_di" bpmnElement="Association_0sptgj5">
+        <di:waypoint x="310" y="70" />
+        <di:waypoint x="330" y="70" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0dwy5p5_di" bpmnElement="actualizar_presupuesto">
+        <dc:Bounds x="-146" y="-20" width="86" height="40" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0s2yth5_di" bpmnElement="mantener_presupuesto">
+        <dc:Bounds x="-146" y="-140" width="100" height="40" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1i3jneh_di" bpmnElement="Verificar_que_el_cliente_este_registrado">
+        <dc:Bounds x="20" y="20" width="100" height="60" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_164u8oi_di" bpmnElement="Despachar_cliente">
+        <dc:Bounds x="40" y="-180" width="80" height="50" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0fhl7oy_di" bpmnElement="Registrarlo">
+        <dc:Bounds x="210" y="-60" width="100" height="31" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0sh54nw_di" bpmnElement="Consultar_productos_y_cantidad">
+        <dc:Bounds x="210" y="35" width="100" height="70" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

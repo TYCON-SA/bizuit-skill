@@ -1,0 +1,1881 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_1i313vu">
+    <bpmn2:documentation>
+1. 🆔 Identificación de la venta
+ID o número de venta/pedido
+
+Fecha de la venta
+
+Canal de venta (tienda física, online, telefónica, etc.)
+
+Estado de la venta (pendiente, confirmada, entregada, cancelada, devuelta)
+
+2. 👤 Información del cliente
+Nombre o razón social
+
+Tipo de cliente (particular, empresa, distribuidor)
+
+Datos de contacto (teléfono, email, dirección)
+
+ID del cliente / número de cliente
+
+Condición de pago (contado, crédito, cuotas)
+
+3. 🪑 Detalle de los productos vendidos
+Código del producto / mueble
+
+Nombre y descripción del producto
+
+Cantidad vendida
+
+Precio unitario y total por ítem
+
+Descuentos aplicados
+
+Impuestos asociados (IVA, etc.)
+
+Subtotal y total de la venta
+
+4. 💳 Información de pago
+Forma de pago (efectivo, tarjeta, transferencia, crédito)
+
+Monto pagado / pendiente
+
+Anticipo recibido (si aplica)
+
+Fecha(s) de pago
+
+Estado del cobro (pagado, parcial, vencido)
+
+5. 🚚 Datos de entrega
+Dirección de entrega
+
+Fecha programada y fecha real de entrega
+
+Responsable de la entrega
+
+Método de envío / transporte
+
+Comprobante de entrega firmado (físico o digital)
+
+Observaciones o incidencias en la entrega
+
+6. 📄 Documentación asociada
+Factura / boleta / recibo
+
+Orden de compra del cliente (si aplica)
+
+Guía de remisión o despacho
+
+Notas de crédito o devolución (si hubo)
+
+7. 📦 Estado logístico y postventa
+Estado del pedido (en preparación, en tránsito, entregado, cancelado)
+
+Devoluciones o reclamos asociados
+
+Satisfacción del cliente / encuestas
+
+Comentarios o notas adicionales
+
+8. 📈 Datos de análisis y rendimiento
+Vendedor o asesor asignado
+
+Sucursal o punto de venta
+
+Margen de ganancia
+
+Tiempo promedio de cierre de venta
+
+Frecuencia de compra del cliente (si recurrente)
+
+</bpmn2:documentation>
+    <bpmn2:participant id="Participant_1i7igq0" name="Proceso de Ventas Producto en Mostrador" processRef="Proc9A68B864" bizuit:AttachmentsCollection="[{&#34;type&#34;:&#34;file&#34;,&#34;fileName&#34;:&#34;NotebookLM Mind Map.png&#34;,&#34;content&#34;:&#34;__LAZY_LOAD_PLACEHOLDER__&#34;,&#34;mimeType&#34;:&#34;application/octet-stream&#34;}]" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Proc9A68B864" name="Proceso de Ventas Producto en Mostrador" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="TYCON-UES21">
+    <bpmn2:documentation>Proceso de venta minorísta de productos artesanales.</bpmn2:documentation>
+    <bpmn2:laneSet id="LaneSet_0nwa6zm">
+      <bpmn2:lane id="Responsable_de_Entrega" name="Responsable de Entrega" bizuit:Performers="Responsable de Entrega">
+        <bpmn2:documentation>El Responsable de Entrega tiene como función principal organizar, coordinar y ejecutar la entrega de los muebles vendidos al cliente, asegurando que se realice en tiempo, forma y con la calidad esperada. Su trabajo es clave para culminar la experiencia de compra y garantizar la satisfacción del cliente.</bpmn2:documentation>
+        <bpmn2:flowNodeRef>Gateway_1w2gqc8</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_06de6zp</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0i350tg</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0v0q6bn</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_084w8p0</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_04btyb3</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1t17bgt</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1utjtoe</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1e55p04</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1h5tp7p</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0poz6v6</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_1xp510v</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="Responsable_de_Cobros" name="Responsable de Cobros" bizuit:Performers="Responsable de Cobros">
+        <bpmn2:documentation>El Responsable de Cobros tiene como principal función garantizar que los pagos por las ventas se realicen en tiempo y forma, minimizando el riesgo de morosidad y asegurando el flujo de caja de la empresa</bpmn2:documentation>
+        <bpmn2:flowNodeRef>Gateway_047ywto</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0cv1uz4</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1ffldyr</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1b1x3ro</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1nva3u7</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0gzrv3t</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_055ptro</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0ce3uts</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_020786d</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_103r7qk</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1rquu9z</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0eefz0z</bpmn2:flowNodeRef>
+        <bpmn2:childLaneSet id="LaneSet_0f85uta" />
+      </bpmn2:lane>
+      <bpmn2:lane id="Responsable_de_Ventas" name="Responsable de Ventas" bizuit:Performers="Responsable de Ventas">
+        <bpmn2:documentation>El Responsable de Ventas (también llamado Jefe o Encargado de Ventas) tiene la función de liderar, coordinar y supervisar todo el proceso comercial, desde la captación del cliente hasta el cierre de la venta y seguimiento postventa. Su objetivo es maximizar las ventas, asegurar la satisfacción del cliente y cumplir con los objetivos comerciales de la empresa.</bpmn2:documentation>
+        <bpmn2:flowNodeRef>StartEvent_1</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1s7pn5l</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1mbetbj</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_10a971v</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0nn99w3</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0b6ktas</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1uwl2w9</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0xpi2fp</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0vsdzmx</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0257dzo</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0wpw01y</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0qxt646</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1xssn9d</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_170ulbu</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1ylz9zl</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1oz0gyv</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_18nsawm</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0wpv08u</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1uxm3i3</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0oceqir</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1l6ribu</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1c2bvn6</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_12te23t</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1gwv0xu</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0sh7rz5</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1un4owd</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_0vz5f11</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_0ss3pzz</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:startEvent id="StartEvent_1" name="Solicitud de muebles" bizuit:Performers="Responsable de Ventas">
+      <bpmn2:outgoing>Flow_0wp6ncq</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:exclusiveGateway id="Gateway_1s7pn5l" name="Verificación">
+      <bpmn2:documentation>Decisión de Compras</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0d8fger</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1kn2kbj</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_0tvw8g2</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="Gateway_1mbetbj" name="Alternativas">
+      <bpmn2:documentation>Resultado de alternativas</bpmn2:documentation>
+      <bpmn2:incoming>Flow_12e5xyj</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1v34ijq</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_0tiqt81</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="Gateway_10a971v">
+      <bpmn2:documentation>Convergencia</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0b1n9gi</bpmn2:incoming>
+      <bpmn2:incoming>Flow_14k2ssj</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0mjo4zj</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="Gateway_0nn99w3" name="Decisión de cliente">
+      <bpmn2:documentation>Decisión del cliente</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1i85iw2</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1pxenoy</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_0dcryw8</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:dataStoreReference id="DataStoreReference_01rplmg" name="Muebles">
+      <bpmn2:documentation> 
+1. 🆔 Datos de identificación
+Código o ID del mueble (único)
+
+Nombre del mueble (ej. “Silla Toscana”)
+
+Categoría (ej. sillas, mesas, camas, sofás)
+
+Subcategoría (ej. comedor, oficina, exterior)
+
+2. 📝 Descripción del producto
+Descripción corta y larga
+
+Materiales (ej. madera roble, metal, tela)
+
+Color(es) disponibles
+
+Acabado (mate, brillante, rústico, etc.)
+
+Estilo (moderno, clásico, minimalista)
+
+3. 📐 Dimensiones y peso
+Alto, ancho, profundidad (en cm o pulgadas)
+
+Peso del producto
+
+Volumen empaquetado
+
+4. 💰 Información comercial
+Precio de venta
+
+Costo de producción o compra
+
+Descuentos aplicables
+
+Impuestos asociados
+
+Lista de precios por canal (retail, online, distribuidor, etc.)
+
+5. 🖼️ Imágenes y recursos
+Fotos del mueble (varios ángulos)
+
+Planos o esquemas
+
+Archivos descargables (catálogos, fichas técnicas, manuales de armado)
+
+6. 📦 Inventario y stock
+Stock actual disponible
+
+Ubicación física (almacén, tienda, depósito)
+
+Stock reservado / comprometido
+
+Nivel mínimo y máximo de inventario
+
+7. 🧩 Variantes o configuraciones
+Tamaños disponibles (ej. individual, matrimonial, king)
+
+Colores o telas personalizables
+
+Opciones modulares o piezas adicionales
+
+8. 🔄 Estado y ciclo de vida
+Estado del producto (activo, descontinuado, en desarrollo)
+
+Fecha de alta / baja
+
+Historial de actualizaciones o cambios
+
+9. 🔧 Producción o proveedor
+Tipo de fabricación (propia o tercerizada)
+
+Proveedor o fabricante
+
+Plazo de fabricación o reposición
+
+Código del proveedor
+
+10. 📊 Datos de rendimiento
+Ventas históricas
+
+Rotación de inventario
+
+Nivel de devolución o reclamos
+
+Calificaciones del cliente (si aplica)</bpmn2:documentation>
+    </bpmn2:dataStoreReference>
+    <bpmn2:dataStoreReference id="DataStoreReference_1em2y89" name="Muebles">
+      <bpmn2:documentation>
+1. 🆔 Datos de identificación
+Código o ID del mueble (único)
+
+Nombre del mueble (ej. “Silla Toscana”)
+
+Categoría (ej. sillas, mesas, camas, sofás)
+
+Subcategoría (ej. comedor, oficina, exterior)
+
+2. 📝 Descripción del producto
+Descripción corta y larga
+
+Materiales (ej. madera roble, metal, tela)
+
+Color(es) disponibles
+
+Acabado (mate, brillante, rústico, etc.)
+
+Estilo (moderno, clásico, minimalista)
+
+3. 📐 Dimensiones y peso
+Alto, ancho, profundidad (en cm o pulgadas)
+
+Peso del producto
+
+Volumen empaquetado
+
+4. 💰 Información comercial
+Precio de venta
+
+Costo de producción o compra
+
+Descuentos aplicables
+
+Impuestos asociados
+
+Lista de precios por canal (retail, online, distribuidor, etc.)
+
+5. 🖼️ Imágenes y recursos
+Fotos del mueble (varios ángulos)
+
+Planos o esquemas
+
+Archivos descargables (catálogos, fichas técnicas, manuales de armado)
+
+6. 📦 Inventario y stock
+Stock actual disponible
+
+Ubicación física (almacén, tienda, depósito)
+
+Stock reservado / comprometido
+
+Nivel mínimo y máximo de inventario
+
+7. 🧩 Variantes o configuraciones
+Tamaños disponibles (ej. individual, matrimonial, king)
+
+Colores o telas personalizables
+
+Opciones modulares o piezas adicionales
+
+8. 🔄 Estado y ciclo de vida
+Estado del producto (activo, descontinuado, en desarrollo)
+
+Fecha de alta / baja
+
+Historial de actualizaciones o cambios
+
+9. 🔧 Producción o proveedor
+Tipo de fabricación (propia o tercerizada)
+
+Proveedor o fabricante
+
+Plazo de fabricación o reposición
+
+Código del proveedor
+
+10. 📊 Datos de rendimiento
+Ventas históricas
+
+Rotación de inventario
+
+Nivel de devolución o reclamos
+
+Calificaciones del cliente (si aplica)
+
+</bpmn2:documentation>
+    </bpmn2:dataStoreReference>
+    <bpmn2:exclusiveGateway id="Gateway_0b6ktas" name="Disponibilidad">
+      <bpmn2:documentation>Resultado de disponibilidad de stock</bpmn2:documentation>
+      <bpmn2:incoming>Flow_16ksrym</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0leqy5z</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_142jbu4</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="Gateway_1uwl2w9" name="Resultado confirmación">
+      <bpmn2:documentation>Confirmación de Venta</bpmn2:documentation>
+      <bpmn2:incoming>Flow_04ns6so</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_07a0xtk</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_0lbays7</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:dataStoreReference id="DataStoreReference_00g2uoa" name="Ventas">
+      <bpmn2:documentation>1. 🆔 Identificación de la operación
+ID de venta / número de transacción
+
+Fecha y hora de la venta
+
+Tipo de venta (presencial, online, telefónica)
+
+Estado de la venta (pendiente, confirmada, entregada, cancelada, devuelta)
+
+2. 👤 Datos del cliente
+Nombre o razón social
+
+Número de identificación (DNI, RUC, NIT, etc.)
+
+Datos de contacto (teléfono, correo, dirección)
+
+Código o ID interno del cliente
+
+Historial de compras (si aplica)
+
+3. 📦 Detalle de productos o servicios vendidos
+Código del producto / mueble
+
+Descripción del producto
+
+Cantidad vendida
+
+Precio unitario
+
+Subtotal
+
+Descuento aplicado
+
+Impuestos (IVA, etc.)
+
+Total por ítem
+
+Total general de la venta
+
+4. 💳 Información de pago
+Forma de pago (efectivo, tarjeta, transferencia, crédito)
+
+Monto pagado
+
+Saldo pendiente (si hay crédito)
+
+Anticipo recibido
+
+Fechas de pago y vencimiento
+
+Estado del cobro (pagado, parcial, pendiente)
+
+5. 📄 Documentación asociada
+Número de factura / boleta / recibo
+
+Guía de remisión o despacho
+
+Notas de crédito o devolución
+
+Contrato o cotización previa (si aplica)
+
+6. 🧍‍♂️ Responsables y usuarios
+Vendedor o asesor comercial
+
+Sucursal o punto de venta
+
+Usuario que registró la venta
+
+Aprobadores (si hubo validación)
+
+7. 🚚 Información logística
+Fecha programada y real de entrega
+
+Dirección de entrega
+
+Responsable de entrega / transporte
+
+Estado de la entrega (pendiente, en tránsito, entregada)
+
+Observaciones del cliente o del repartidor
+
+8. 🗒️ Notas y observaciones
+Instrucciones especiales
+
+Comentarios del cliente
+
+Notas internas sobre la operación
+
+9. 📊 Datos analíticos y estratégicos
+Margen de ganancia
+
+Frecuencia de compra
+
+Segmento de cliente
+
+Campaña o promoción asociada (si aplica)
+
+Indicadores clave (KPI) como tiempo de cierre de venta, monto promedio por venta, productos más vendidos, etc.
+</bpmn2:documentation>
+    </bpmn2:dataStoreReference>
+    <bpmn2:dataObjectReference id="DataObjectReference_0zpc0s1" name="Factura" dataObjectRef="DataObject_1sgs8z8">
+      <bpmn2:documentation> 🆔 Datos de identificación del documento
+Número de factura (único y correlativo)
+
+Fecha de emisión
+
+Tipo de comprobante (Factura, boleta, ticket, etc.)
+
+Serie o código interno (según sistema o país)
+
+2. 🏢 Datos del emisor (empresa o vendedor)
+Nombre o razón social
+
+RUC / NIT / CUIT / RFC / CIF (según país)
+
+Dirección fiscal
+
+Teléfono y correo electrónico
+
+Condición frente al IVA (si aplica)
+
+3. 👤 Datos del cliente (comprador)
+Nombre o razón social
+
+Documento de identidad (DNI, RUC, NIT, etc.)
+
+Dirección fiscal o de entrega
+
+Condición tributaria (si aplica)
+
+4. 📦 Detalle de los productos o servicios vendidos
+Por cada ítem:
+
+Código del producto o servicio
+
+Descripción detallada
+
+Cantidad
+
+Unidad de medida (ej. unidad, metro, kg, etc.)
+
+Precio unitario (sin impuestos)
+
+Descuento aplicado (si hay)
+
+Subtotal por ítem
+
+5. 💰 Resumen de importes
+Subtotal (sin impuestos)
+
+Descuentos globales (si aplica)
+
+Impuestos aplicados (ej. IVA, IGV, ITE, etc.)
+
+Total a pagar
+
+Total en letras (en algunos países es obligatorio)
+
+6. 💳 Forma y condiciones de pago
+Medio de pago (efectivo, tarjeta, transferencia, cheque, etc.)
+
+Condición de pago (contado, crédito, cuotas)
+
+Fecha de vencimiento de pago (si aplica)
+
+7. 🚚 Datos de envío / entrega (si corresponde)
+Dirección de entrega
+
+Fecha de entrega
+
+Guía de remisión o transporte
+
+Transportista o responsable de entrega
+
+8. 📌 Información adicional y legal
+Notas o comentarios adicionales
+
+Leyendas fiscales obligatorias (según el país)
+
+Código QR o hash de seguridad (en facturas electrónicas)
+
+Firma del emisor (digital o física)
+
+Autorización tributaria o código de control (según el país)
+
+</bpmn2:documentation>
+    </bpmn2:dataObjectReference>
+    <bpmn2:dataObject id="DataObject_1sgs8z8" />
+    <bpmn2:dataStoreReference id="DataStoreReference_071y5q6" name="Muebles">
+      <bpmn2:documentation>
+1. 🆔 Datos de identificación
+Código o ID del mueble (único)
+
+Nombre del mueble (ej. “Silla Toscana”)
+
+Categoría (ej. sillas, mesas, camas, sofás)
+
+Subcategoría (ej. comedor, oficina, exterior)
+
+2. 📝 Descripción del producto
+Descripción corta y larga
+
+Materiales (ej. madera roble, metal, tela)
+
+Color(es) disponibles
+
+Acabado (mate, brillante, rústico, etc.)
+
+Estilo (moderno, clásico, minimalista)
+
+3. 📐 Dimensiones y peso
+Alto, ancho, profundidad (en cm o pulgadas)
+
+Peso del producto
+
+Volumen empaquetado
+
+4. 💰 Información comercial
+Precio de venta
+
+Costo de producción o compra
+
+Descuentos aplicables
+
+Impuestos asociados
+
+Lista de precios por canal (retail, online, distribuidor, etc.)
+
+5. 🖼️ Imágenes y recursos
+Fotos del mueble (varios ángulos)
+
+Planos o esquemas
+
+Archivos descargables (catálogos, fichas técnicas, manuales de armado)
+
+6. 📦 Inventario y stock
+Stock actual disponible
+
+Ubicación física (almacén, tienda, depósito)
+
+Stock reservado / comprometido
+
+Nivel mínimo y máximo de inventario
+
+7. 🧩 Variantes o configuraciones
+Tamaños disponibles (ej. individual, matrimonial, king)
+
+Colores o telas personalizables
+
+Opciones modulares o piezas adicionales
+
+8. 🔄 Estado y ciclo de vida
+Estado del producto (activo, descontinuado, en desarrollo)
+
+Fecha de alta / baja
+
+Historial de actualizaciones o cambios
+
+9. 🔧 Producción o proveedor
+Tipo de fabricación (propia o tercerizada)
+
+Proveedor o fabricante
+
+Plazo de fabricación o reposición
+
+Código del proveedor
+
+10. 📊 Datos de rendimiento
+Ventas históricas
+
+Rotación de inventario
+
+Nivel de devolución o reclamos
+
+Calificaciones del cliente (si aplica)
+
+</bpmn2:documentation>
+    </bpmn2:dataStoreReference>
+    <bpmn2:exclusiveGateway id="Gateway_047ywto" name="Tipo de pago">
+      <bpmn2:documentation>Método de pago del cliente</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1pvkm61</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0e4wzjz</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_079het3</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="Gateway_0cv1uz4" name="Autorización">
+      <bpmn2:documentation>Resultado autorización</bpmn2:documentation>
+      <bpmn2:incoming>Flow_13yhr9o</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1xoem1t</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_03kjhhh</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="Gateway_1ffldyr" name="Unión">
+      <bpmn2:documentation>Convergencia de cobro</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0ivouvj</bpmn2:incoming>
+      <bpmn2:incoming>Flow_13nuybn</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_11qpn2s</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:dataStoreReference id="DataStoreReference_1vygoyp" name="Cobros">
+      <bpmn2:documentation>
+1. 🆔 Identificación del cobro
+ID del cobro / número de operación
+
+Fecha del cobro
+
+Referencia de la venta o factura asociada
+
+Cliente asociado al cobro
+
+Sucursal o canal de venta (si aplica)
+
+2. 👤 Datos del cliente
+Nombre del cliente / razón social
+
+ID o código del cliente
+
+Forma de pago acordada (contado, crédito, cuotas)
+
+Vendedor responsable (opcional)
+
+3. 💳 Información del pago
+Monto cobrado
+
+Moneda utilizada (si aplica)
+
+Forma de pago:
+
+Efectivo
+
+Tarjeta
+
+Transferencia bancaria
+
+Cheque
+
+Pago móvil o billetera digital
+
+Banco o entidad financiera receptora (si aplica)
+
+Número de comprobante o transacción bancaria
+
+Anticipo o pago parcial (si corresponde)
+
+4. 📄 Documentación asociada
+Factura(s) o nota(s) de venta pagadas
+
+Recibo de cobro emitido
+
+Nota de crédito aplicada (si corresponde)
+
+Contrato de financiamiento o plan de pagos (si existe)
+
+5. 📊 Estado del cobro
+Estado actual: pagado, parcial, vencido, pendiente, rechazado
+
+Saldo pendiente (si aplica)
+
+Fecha de vencimiento del cobro
+
+Fecha real de pago
+
+6. 📌 Seguimiento y observaciones
+Observaciones del cobrador (ej. cliente solicita prórroga, se niega a pagar, etc.)
+
+Registro de comunicaciones con el cliente
+
+Promesas de pago y acuerdos de reestructuración
+
+7. 🔎 Auditoría y control
+Usuario que registró el cobro
+
+Fecha y hora del registro
+
+Última modificación / responsable de cambios
+
+</bpmn2:documentation>
+    </bpmn2:dataStoreReference>
+    <bpmn2:dataObjectReference id="DataObjectReference_0cakitu" name="Cupón de cobro" dataObjectRef="DataObject_023m516">
+      <bpmn2:documentation>Formulario que representa el cupón de cobro en tarjeta</bpmn2:documentation>
+    </bpmn2:dataObjectReference>
+    <bpmn2:dataObject id="DataObject_023m516" />
+    <bpmn2:dataStoreReference id="DataStoreReference_1m8snby" name="Cobros">
+      <bpmn2:documentation>
+1. 🆔 Identificación del cobro
+ID del cobro / número de operación
+
+Fecha del cobro
+
+Referencia de la venta o factura asociada
+
+Cliente asociado al cobro
+
+Sucursal o canal de venta (si aplica)
+
+2. 👤 Datos del cliente
+Nombre del cliente / razón social
+
+ID o código del cliente
+
+Forma de pago acordada (contado, crédito, cuotas)
+
+Vendedor responsable (opcional)
+
+3. 💳 Información del pago
+Monto cobrado
+
+Moneda utilizada (si aplica)
+
+Forma de pago:
+
+Efectivo
+
+Tarjeta
+
+Transferencia bancaria
+
+Cheque
+
+Pago móvil o billetera digital
+
+Banco o entidad financiera receptora (si aplica)
+
+Número de comprobante o transacción bancaria
+
+Anticipo o pago parcial (si corresponde)
+
+4. 📄 Documentación asociada
+Factura(s) o nota(s) de venta pagadas
+
+Recibo de cobro emitido
+
+Nota de crédito aplicada (si corresponde)
+
+Contrato de financiamiento o plan de pagos (si existe)
+
+5. 📊 Estado del cobro
+Estado actual: pagado, parcial, vencido, pendiente, rechazado
+
+Saldo pendiente (si aplica)
+
+Fecha de vencimiento del cobro
+
+Fecha real de pago
+
+6. 📌 Seguimiento y observaciones
+Observaciones del cobrador (ej. cliente solicita prórroga, se niega a pagar, etc.)
+
+Registro de comunicaciones con el cliente
+
+Promesas de pago y acuerdos de reestructuración
+
+7. 🔎 Auditoría y control
+Usuario que registró el cobro
+
+Fecha y hora del registro
+
+Última modificación / responsable de cambios
+
+</bpmn2:documentation>
+    </bpmn2:dataStoreReference>
+    <bpmn2:exclusiveGateway id="Gateway_1w2gqc8" name="Control">
+      <bpmn2:documentation>Resultado de control de factura</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0s6yulq</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1pug19e</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_1m3vws7</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="Gateway_06de6zp" name="Constatación de mueble">
+      <bpmn2:documentation>Resultado de control de mueble</bpmn2:documentation>
+      <bpmn2:incoming>Flow_06ao3ut</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0nzpse1</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_15p2y74</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:dataStoreReference id="DataStoreReference_1uq8a21" name="Muebles">
+      <bpmn2:documentation>
+1. 🆔 Datos de identificación
+Código o ID del mueble (único)
+
+Nombre del mueble (ej. “Silla Toscana”)
+
+Categoría (ej. sillas, mesas, camas, sofás)
+
+Subcategoría (ej. comedor, oficina, exterior)
+
+2. 📝 Descripción del producto
+Descripción corta y larga
+
+Materiales (ej. madera roble, metal, tela)
+
+Color(es) disponibles
+
+Acabado (mate, brillante, rústico, etc.)
+
+Estilo (moderno, clásico, minimalista)
+
+3. 📐 Dimensiones y peso
+Alto, ancho, profundidad (en cm o pulgadas)
+
+Peso del producto
+
+Volumen empaquetado
+
+4. 💰 Información comercial
+Precio de venta
+
+Costo de producción o compra
+
+Descuentos aplicables
+
+Impuestos asociados
+
+Lista de precios por canal (retail, online, distribuidor, etc.)
+
+5. 🖼️ Imágenes y recursos
+Fotos del mueble (varios ángulos)
+
+Planos o esquemas
+
+Archivos descargables (catálogos, fichas técnicas, manuales de armado)
+
+6. 📦 Inventario y stock
+Stock actual disponible
+
+Ubicación física (almacén, tienda, depósito)
+
+Stock reservado / comprometido
+
+Nivel mínimo y máximo de inventario
+
+7. 🧩 Variantes o configuraciones
+Tamaños disponibles (ej. individual, matrimonial, king)
+
+Colores o telas personalizables
+
+Opciones modulares o piezas adicionales
+
+8. 🔄 Estado y ciclo de vida
+Estado del producto (activo, descontinuado, en desarrollo)
+
+Fecha de alta / baja
+
+Historial de actualizaciones o cambios
+
+9. 🔧 Producción o proveedor
+Tipo de fabricación (propia o tercerizada)
+
+Proveedor o fabricante
+
+Plazo de fabricación o reposición
+
+Código del proveedor
+
+10. 📊 Datos de rendimiento
+Ventas históricas
+
+Rotación de inventario
+
+Nivel de devolución o reclamos
+
+Calificaciones del cliente (si aplica)
+
+</bpmn2:documentation>
+    </bpmn2:dataStoreReference>
+    <bpmn2:dataStoreReference id="DataStoreReference_0316hhs" name="Entregas">
+      <bpmn2:documentation>Este almacenamiento guarda información de entrega del mueble.</bpmn2:documentation>
+    </bpmn2:dataStoreReference>
+    <bpmn2:manualTask id="Activity_0xpi2fp" name="Verificar si el cliente está decidido que comprar" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>El vendedor observa la decisión del cliente acerca de comprar el producto.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0jafskv</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0d8fger</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Activity_0vsdzmx" name="Ofrecer alternativas" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>El responsable de ventas, ofrece distintos productos, similares al producto que busca el comprador.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1kn2kbj</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_12e5xyj</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Activity_0257dzo" name="Mostrar los muebles en el salón de ventas" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>El responsable de ventas invita al cliente a ver los productos en el salón con acceso al público.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1v34ijq</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0b1n9gi</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:userTask id="Activity_0wpw01y" name="Mostrar el mueble en el catálogo" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas" bizuit:AttachmentsCollection="[{&#34;type&#34;:&#34;file&#34;,&#34;fileName&#34;:&#34;StatsHasta30 días.xlsx&#34;,&#34;content&#34;:&#34;__LAZY_LOAD_PLACEHOLDER__&#34;,&#34;mimeType&#34;:&#34;application/octet-stream&#34;}]">
+      <bpmn2:documentation>El responsable de ventas le muesta una carpeta que contiene el catálogo de productos para que el cliente elija.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0tiqt81</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_14k2ssj</bpmn2:outgoing>
+      <bpmn2:property id="Property_1odzv2u" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_1v74bno">
+        <bpmn2:sourceRef>DataStoreReference_01rplmg</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1odzv2u</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:manualTask id="Activity_0qxt646" name="Receptar decision del cliente" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se recibe la opción de compra del cliente.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0mjo4zj</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1i85iw2</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Activity_1xssn9d" name="Agradecer la visita y despedir al cliente" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se brinda un agradecimiento al cliente acerca de su visita al local. Como así también, si no confirma su compra.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0dcryw8</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0lbays7</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0jk8ppr</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:userTask id="Activity_170ulbu" name="Controlar stock del mueble" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se verifica si hay disponibilidad del mueble en el almacén de datos Muebles.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0tvw8g2</bpmn2:incoming>
+      <bpmn2:incoming>Flow_1pxenoy</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_16ksrym</bpmn2:outgoing>
+      <bpmn2:property id="Property_0cj2f24" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0zs0b8i">
+        <bpmn2:sourceRef>DataStoreReference_071y5q6</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_0cj2f24</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Activity_1ylz9zl" name="Informar que no hay stock" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Si no hay disponibilidad de muebles en el almacen, se informa a cliente y termina el proceso.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_142jbu4</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_12qdbj3</bpmn2:outgoing>
+      <bpmn2:property id="Property_0b2ppmz" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0as1xso">
+        <bpmn2:sourceRef>DataStoreReference_1em2y89</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_0b2ppmz</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Activity_1oz0gyv" name="Informar el precio" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Si hay disponibilidad de mueble en el almacén, se informa al cliente el precio correspondiente.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0leqy5z</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0ghomrl</bpmn2:outgoing>
+      <bpmn2:property id="Property_1lbt719" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0rvw402">
+        <bpmn2:sourceRef>DataStoreReference_1em2y89</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1lbt719</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:manualTask id="Activity_18nsawm" name="Solicitar confirmación de la venta" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se pide al cliente la confirmación de que si requiere el mueble.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0ghomrl</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_04ns6so</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:userTask id="Activity_0wpv08u" name="Registrar la venta" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se ingresa los datos de la venta del mueble, como fecha, producto, precio y cantidad.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_07a0xtk</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_01g2r7s</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_15epdg4">
+        <bpmn2:targetRef>DataStoreReference_00g2uoa</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Activity_1uxm3i3" name="Confeccionar la Factura" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se elabora la factura de venta del mueble la cual tiene: fecha, número, cantidad, precio, condiciones de entrega.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_01g2r7s</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0pm7g0m</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_19c6t31">
+        <bpmn2:targetRef>DataObjectReference_0zpc0s1</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:manualTask id="Activity_0oceqir" name="Entregar factura al cliente" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se entrega el formulario de factura.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0pm7g0m</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0bxtvhg</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Activity_1l6ribu" name="Indicar al cliente donde pagar" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se informa al cliente a donde debe dirigirse el cliente. </bpmn2:documentation>
+      <bpmn2:incoming>Flow_0bxtvhg</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0dalm5d</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:userTask id="Activity_1c2bvn6" name="Retirar de almacen el mueble" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se retira del almacén el mueble.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0dalm5d</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_16c9bef</bpmn2:outgoing>
+      <bpmn2:property id="Property_0t5lk8x" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_1hcffj5">
+        <bpmn2:sourceRef>DataStoreReference_071y5q6</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_0t5lk8x</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:manualTask id="Activity_12te23t" name="Colocar el mueble en el montacarga" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>El responsable de ventas, ubica el mueble sobre el montacarga para llevar a empaque</bpmn2:documentation>
+      <bpmn2:incoming>Flow_16c9bef</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0cxcrdm</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Activity_1gwv0xu" name="Llevar el mueble a empaque" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se traslada el mueble desde el almacén hasta el despacho de entregas.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0cxcrdm</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0is7bnh</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Activity_1b1x3ro" name="Solicitar forma de pago" bizuit:Performers="Responsable de Cobros" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se consulta a cliente cual es la modalidad de pago.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1mlci6m</bpmn2:incoming>
+      <bpmn2:incoming>Flow_03h0mj0</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1pvkm61</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Activity_1nva3u7" name="Receptar dinero" bizuit:Performers="Responsable de Cobros" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Si el cliente elige pago en efectivo, aquí se recibe el dinero.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0e4wzjz</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0ivouvj</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Activity_0gzrv3t" name="Solicitar tarjeta" bizuit:Performers="Responsable de Cobros" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Si el cliente elige pago con tarjeta, aquí se recibe la tarjeta.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_079het3</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_09fix2v</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Activity_055ptro" name="Solicitar autorización a entidad bancaria" bizuit:Performers="Responsable de Cobros" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>El responsable de cobro pide autorización al banco correspondiente a la tarjeta del cliente.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_09fix2v</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_13yhr9o</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Activity_0ce3uts" name="Solicitar otra forma de pago" bizuit:Performers="Responsable de Cobros" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Si no se autoriza la tarjeta, se pide otra forma de pago.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_03kjhhh</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_03h0mj0</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Activity_020786d" name="Generar el cupón de cobro" bizuit:Performers="Responsable de Cobros" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se crea el cupón de cobro de la tarjeta efectivizada.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1xoem1t</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_13nuybn</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0pnwbve">
+        <bpmn2:targetRef>DataObjectReference_0cakitu</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:manualTask>
+    <bpmn2:userTask id="Activity_103r7qk" name="Registrar el Cobro" bizuit:Performers="Responsable de Cobros" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se registra el cobro al cliente, resguardando el Nro de Cobro, fecha de Cobro, medio de pago.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_11qpn2s</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1vj65ll</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0qmrjls">
+        <bpmn2:targetRef>DataStoreReference_1vygoyp</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:manualTask id="Activity_1rquu9z" name="Entregar original de factura con sello de &#34;pagado&#34;" bizuit:Performers="Responsable de Cobros" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se entrega al Responsable de Entrega, el formulario de factura en original con sello de "pagado" como constancia de que se recibió el dinero del cliente.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1vj65ll</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1kbfysm</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:userTask id="Activity_0eefz0z" name="Receptar factura a cobrar" bizuit:Performers="Responsable de Cobros" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>El responsable de cobro, recibe la factura del responsable de ventas, para proceder a cobrar.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0is7bnh</bpmn2:incoming>
+      <bpmn2:incoming>Flow_19b9hz7</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1mlci6m</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Activity_0i350tg" name="Receptar Factura" bizuit:Performers="Responsable de Entrega" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se recibe la factura en original.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1kbfysm</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0qzlwr6</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Activity_0v0q6bn" name="Controlar si la factura fue cobrada" bizuit:Performers="Responsable de Entrega" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se verifica si la factura fue cobrada, para ello se valida en almacén Cobros.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0qzlwr6</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0s6yulq</bpmn2:outgoing>
+      <bpmn2:property id="Property_1s6fjkq" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0ywsgyu">
+        <bpmn2:sourceRef>DataStoreReference_1m8snby</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1s6fjkq</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:manualTask id="Activity_084w8p0" name="Indicar al cliente pasar por Caja" bizuit:Performers="Responsable de Entrega" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Si la factura no tiene sello, se envia la misma a la actividad Receptar Factura a Cobrar.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1pug19e</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_19b9hz7</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Activity_04btyb3" name="Controlar la factura con lo que hay en el montacarga" bizuit:Performers="Responsable de Entrega" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Si la factura tiene sello, se controla dicho documento contra el producto ubicado en el montacargas.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1m3vws7</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_06ao3ut</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Activity_1t17bgt" name="Llevar mueble a venta" bizuit:Performers="Responsable de Entrega" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Si el mueble no corresponde, se envia el mismo al Reponsable de Ventas para que valide el mueble correspondiente.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0nzpse1</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1lnocwl</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:userTask id="Activity_1utjtoe" name="Solicitar el mueble correcto" bizuit:Performers="Responsable de Entrega" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se pide el mueble que corresponde a la factura.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1lnocwl</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_18swea6</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Activity_1e55p04" name="Registrar entrega del mueble" bizuit:Performers="Responsable de Entrega" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Si el mueble es el correcto, se registra la entrega del mismo y se guardan los datos en el almacén Entregas.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_15p2y74</bpmn2:incoming>
+      <bpmn2:incoming>Flow_1tv8s4z</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0qdxd4s</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_16ctge6">
+        <bpmn2:targetRef>DataStoreReference_0316hhs</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:manualTask id="Activity_1h5tp7p" name="Sellar factura como &#34;entregado&#34;" bizuit:Performers="Responsable de Entrega" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Una vez registrada la entrega, se sella el documento factura como "Entregado".</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0qdxd4s</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0lwvkec</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:manualTask id="Activity_0poz6v6" name="Entregar mueble y factura sellada" bizuit:Performers="Responsable de Entrega" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>Se entrega al clente el mueble y la factura original con sello.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0lwvkec</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_14o4am1</bpmn2:outgoing>
+    </bpmn2:manualTask>
+    <bpmn2:userTask id="Activity_0sh7rz5" name="Entregar el mueble correcto" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>El responsable de ventas, verifica el pedido de mueble correspondiente a la factura, validando contra el almacén Muebles.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_18swea6</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1tv8s4z</bpmn2:outgoing>
+      <bpmn2:property id="Property_1rqto74" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_1pkliu3">
+        <bpmn2:sourceRef>DataStoreReference_1uq8a21</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1rqto74</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_0wp6ncq" sourceRef="StartEvent_1" targetRef="Activity_1un4owd" />
+    <bpmn2:sequenceFlow id="Flow_0d8fger" sourceRef="Activity_0xpi2fp" targetRef="Gateway_1s7pn5l" />
+    <bpmn2:sequenceFlow id="Flow_1kn2kbj" name="No eligió el mueble" sourceRef="Gateway_1s7pn5l" targetRef="Activity_0vsdzmx" />
+    <bpmn2:sequenceFlow id="Flow_0tvw8g2" name="Cliente tiene elegido un mueble" sourceRef="Gateway_1s7pn5l" targetRef="Activity_170ulbu" />
+    <bpmn2:sequenceFlow id="Flow_12e5xyj" sourceRef="Activity_0vsdzmx" targetRef="Gateway_1mbetbj" />
+    <bpmn2:sequenceFlow id="Flow_1v34ijq" name="Ver el mueble fisicamente" sourceRef="Gateway_1mbetbj" targetRef="Activity_0257dzo" />
+    <bpmn2:sequenceFlow id="Flow_0tiqt81" name="Ver una imagen del mueble" sourceRef="Gateway_1mbetbj" targetRef="Activity_0wpw01y" />
+    <bpmn2:sequenceFlow id="Flow_0b1n9gi" sourceRef="Activity_0257dzo" targetRef="Gateway_10a971v" />
+    <bpmn2:sequenceFlow id="Flow_14k2ssj" sourceRef="Activity_0wpw01y" targetRef="Gateway_10a971v" />
+    <bpmn2:sequenceFlow id="Flow_0mjo4zj" sourceRef="Gateway_10a971v" targetRef="Activity_0qxt646" />
+    <bpmn2:sequenceFlow id="Flow_1i85iw2" sourceRef="Activity_0qxt646" targetRef="Gateway_0nn99w3" />
+    <bpmn2:sequenceFlow id="Flow_1pxenoy" name="Cliente se decidió por un mueble" sourceRef="Gateway_0nn99w3" targetRef="Activity_170ulbu" />
+    <bpmn2:sequenceFlow id="Flow_0dcryw8" name="Cliente no desea producto" sourceRef="Gateway_0nn99w3" targetRef="Activity_1xssn9d" />
+    <bpmn2:sequenceFlow id="Flow_16ksrym" sourceRef="Activity_170ulbu" targetRef="Gateway_0b6ktas" />
+    <bpmn2:sequenceFlow id="Flow_0leqy5z" name="Hay Stock" sourceRef="Gateway_0b6ktas" targetRef="Activity_1oz0gyv" />
+    <bpmn2:sequenceFlow id="Flow_142jbu4" name="No hay stock" sourceRef="Gateway_0b6ktas" targetRef="Activity_1ylz9zl" />
+    <bpmn2:sequenceFlow id="Flow_04ns6so" sourceRef="Activity_18nsawm" targetRef="Gateway_1uwl2w9" />
+    <bpmn2:sequenceFlow id="Flow_07a0xtk" name="Cliente confirma la compra" sourceRef="Gateway_1uwl2w9" targetRef="Activity_0wpv08u" />
+    <bpmn2:sequenceFlow id="Flow_0lbays7" name="Cliente no confirma la compra" sourceRef="Gateway_1uwl2w9" targetRef="Activity_1xssn9d" />
+    <bpmn2:sequenceFlow id="Flow_1pvkm61" sourceRef="Activity_1b1x3ro" targetRef="Gateway_047ywto" />
+    <bpmn2:sequenceFlow id="Flow_0e4wzjz" name="pago en efectivo" sourceRef="Gateway_047ywto" targetRef="Activity_1nva3u7" />
+    <bpmn2:sequenceFlow id="Flow_079het3" name="pago con tarjeta de débito" sourceRef="Gateway_047ywto" targetRef="Activity_0gzrv3t" />
+    <bpmn2:sequenceFlow id="Flow_13yhr9o" sourceRef="Activity_055ptro" targetRef="Gateway_0cv1uz4" />
+    <bpmn2:sequenceFlow id="Flow_1xoem1t" name="Se autorizó el cobro" sourceRef="Gateway_0cv1uz4" targetRef="Activity_020786d" />
+    <bpmn2:sequenceFlow id="Flow_03kjhhh" name="No se autorizó el cobro" sourceRef="Gateway_0cv1uz4" targetRef="Activity_0ce3uts" />
+    <bpmn2:sequenceFlow id="Flow_0ivouvj" sourceRef="Activity_1nva3u7" targetRef="Gateway_1ffldyr" />
+    <bpmn2:sequenceFlow id="Flow_13nuybn" sourceRef="Activity_020786d" targetRef="Gateway_1ffldyr" />
+    <bpmn2:sequenceFlow id="Flow_11qpn2s" sourceRef="Gateway_1ffldyr" targetRef="Activity_103r7qk" />
+    <bpmn2:sequenceFlow id="Flow_0s6yulq" sourceRef="Activity_0v0q6bn" targetRef="Gateway_1w2gqc8" />
+    <bpmn2:sequenceFlow id="Flow_1pug19e" name="Factura sin sellar" sourceRef="Gateway_1w2gqc8" targetRef="Activity_084w8p0" />
+    <bpmn2:sequenceFlow id="Flow_1m3vws7" name="Factura sellada" sourceRef="Gateway_1w2gqc8" targetRef="Activity_04btyb3" />
+    <bpmn2:sequenceFlow id="Flow_06ao3ut" sourceRef="Activity_04btyb3" targetRef="Gateway_06de6zp" />
+    <bpmn2:sequenceFlow id="Flow_0nzpse1" name="Mueble incorrecto" sourceRef="Gateway_06de6zp" targetRef="Activity_1t17bgt" />
+    <bpmn2:sequenceFlow id="Flow_15p2y74" name="Mueble correcto" sourceRef="Gateway_06de6zp" targetRef="Activity_1e55p04" />
+    <bpmn2:sequenceFlow id="Flow_14o4am1" sourceRef="Activity_0poz6v6" targetRef="Event_1xp510v" />
+    <bpmn2:sequenceFlow id="Flow_0jk8ppr" sourceRef="Activity_1xssn9d" targetRef="Event_0vz5f11" />
+    <bpmn2:sequenceFlow id="Flow_12qdbj3" sourceRef="Activity_1ylz9zl" targetRef="Event_0ss3pzz" />
+    <bpmn2:sequenceFlow id="Flow_0jafskv" sourceRef="Activity_1un4owd" targetRef="Activity_0xpi2fp" />
+    <bpmn2:sequenceFlow id="Flow_0ghomrl" sourceRef="Activity_1oz0gyv" targetRef="Activity_18nsawm" />
+    <bpmn2:sequenceFlow id="Flow_01g2r7s" sourceRef="Activity_0wpv08u" targetRef="Activity_1uxm3i3" />
+    <bpmn2:sequenceFlow id="Flow_0pm7g0m" sourceRef="Activity_1uxm3i3" targetRef="Activity_0oceqir" />
+    <bpmn2:sequenceFlow id="Flow_0bxtvhg" sourceRef="Activity_0oceqir" targetRef="Activity_1l6ribu" />
+    <bpmn2:sequenceFlow id="Flow_0dalm5d" sourceRef="Activity_1l6ribu" targetRef="Activity_1c2bvn6" />
+    <bpmn2:sequenceFlow id="Flow_16c9bef" sourceRef="Activity_1c2bvn6" targetRef="Activity_12te23t" />
+    <bpmn2:sequenceFlow id="Flow_0cxcrdm" sourceRef="Activity_12te23t" targetRef="Activity_1gwv0xu" />
+    <bpmn2:sequenceFlow id="Flow_0is7bnh" sourceRef="Activity_1gwv0xu" targetRef="Activity_0eefz0z" />
+    <bpmn2:sequenceFlow id="Flow_1mlci6m" sourceRef="Activity_0eefz0z" targetRef="Activity_1b1x3ro" />
+    <bpmn2:sequenceFlow id="Flow_03h0mj0" sourceRef="Activity_0ce3uts" targetRef="Activity_1b1x3ro" />
+    <bpmn2:sequenceFlow id="Flow_09fix2v" sourceRef="Activity_0gzrv3t" targetRef="Activity_055ptro" />
+    <bpmn2:sequenceFlow id="Flow_1vj65ll" sourceRef="Activity_103r7qk" targetRef="Activity_1rquu9z" />
+    <bpmn2:sequenceFlow id="Flow_1kbfysm" sourceRef="Activity_1rquu9z" targetRef="Activity_0i350tg" />
+    <bpmn2:sequenceFlow id="Flow_19b9hz7" sourceRef="Activity_084w8p0" targetRef="Activity_0eefz0z" />
+    <bpmn2:sequenceFlow id="Flow_0qzlwr6" sourceRef="Activity_0i350tg" targetRef="Activity_0v0q6bn" />
+    <bpmn2:sequenceFlow id="Flow_1lnocwl" sourceRef="Activity_1t17bgt" targetRef="Activity_1utjtoe" />
+    <bpmn2:sequenceFlow id="Flow_18swea6" sourceRef="Activity_1utjtoe" targetRef="Activity_0sh7rz5" />
+    <bpmn2:sequenceFlow id="Flow_1tv8s4z" sourceRef="Activity_0sh7rz5" targetRef="Activity_1e55p04" />
+    <bpmn2:sequenceFlow id="Flow_0qdxd4s" sourceRef="Activity_1e55p04" targetRef="Activity_1h5tp7p" />
+    <bpmn2:sequenceFlow id="Flow_0lwvkec" sourceRef="Activity_1h5tp7p" targetRef="Activity_0poz6v6" />
+    <bpmn2:userTask id="Activity_1un4owd" name="Receptar solicitud de muebles" bizuit:AttachmentType="url" bizuit:AttachmentURL="https://docs.google.com/spreadsheets/d/18Uf7imN6kYUzleUkbZ0EoXldZFZIr50p/edit?gid=236572348#gid=236572348" bizuit:Performers="Responsable de Ventas" bizuit:Accountable="Administración" bizuit:Informed="Gerente de Administración y Finanzas">
+      <bpmn2:documentation>En ésta actividad el Responsable de Ventas, recibe el pedido del cliente.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0wp6ncq</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0jafskv</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:endEvent id="Event_0vz5f11" bizuit:Performers="Responsable de Ventas">
+      <bpmn2:documentation>Este evento termina con la visita del cliente.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0jk8ppr</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:endEvent id="Event_1xp510v" name="Mueble entregado" bizuit:Performers="Responsable de Entrega">
+      <bpmn2:documentation>Fin del proceso, mueble y factura entregada.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_14o4am1</bpmn2:incoming>
+      <bpmn2:terminateEventDefinition id="TerminateEventDefinition_0el6hg3" />
+    </bpmn2:endEvent>
+    <bpmn2:endEvent id="Event_0ss3pzz" bizuit:Performers="Responsable de Ventas">
+      <bpmn2:documentation>Este evento finaliza cuando no hay stock de productos.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_12qdbj3</bpmn2:incoming>
+    </bpmn2:endEvent>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1i313vu">
+      <bpmndi:BPMNShape id="Participant_1i7igq0_di" bpmnElement="Participant_1i7igq0" isHorizontal="true">
+        <dc:Bounds x="551" y="-994" width="2448" height="1578" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0i4cft6_di" bpmnElement="Responsable_de_Ventas" isHorizontal="true">
+        <dc:Bounds x="581" y="-994" width="2418" height="688" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_10mvpnt_di" bpmnElement="Responsable_de_Cobros" isHorizontal="true">
+        <dc:Bounds x="581" y="-306" width="2418" height="450" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0iwm5tj_di" bpmnElement="Responsable_de_Entrega" isHorizontal="true">
+        <dc:Bounds x="581" y="144" width="2418" height="440" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1" bioc:stroke="#000000" bioc:fill="#008000" color:background-color="#008000" color:border-color="#000000">
+        <dc:Bounds x="631" y="-924" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="621" y="-881" width="59" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1s7pn5l_di" bpmnElement="Gateway_1s7pn5l" isMarkerVisible="true" bioc:stroke="#000000" bioc:fill="#ffff00" color:background-color="#ffff00" color:border-color="#000000">
+        <dc:Bounds x="1024" y="-931" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1021" y="-961" width="57" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1mbetbj_di" bpmnElement="Gateway_1mbetbj" isMarkerVisible="true" bioc:stroke="#000000" bioc:fill="#ffff00" color:background-color="#ffff00" color:border-color="#000000">
+        <dc:Bounds x="1324" y="-931" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1321" y="-961" width="57" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_10a971v_di" bpmnElement="Gateway_10a971v" isMarkerVisible="true" bioc:stroke="#000000" bioc:fill="#ffff00" color:background-color="#ffff00" color:border-color="#000000">
+        <dc:Bounds x="1644" y="-931" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0nn99w3_di" bpmnElement="Gateway_0nn99w3" isMarkerVisible="true" bioc:stroke="#000000" bioc:fill="#ffff00" color:background-color="#ffff00" color:border-color="#000000">
+        <dc:Bounds x="1964" y="-931" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1960" y="-961" width="58" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_01rplmg_di" bpmnElement="DataStoreReference_01rplmg">
+        <dc:Bounds x="1354" y="-791" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1359" y="-734" width="42" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1em2y89_di" bpmnElement="DataStoreReference_1em2y89">
+        <dc:Bounds x="914" y="-471" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="919" y="-414" width="42" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0b6ktas_di" bpmnElement="Gateway_0b6ktas" isMarkerVisible="true" bioc:stroke="#000000" bioc:fill="#ffff00" color:background-color="#ffff00" color:border-color="#000000">
+        <dc:Bounds x="714" y="-591" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="625" y="-576" width="69" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1uwl2w9_di" bpmnElement="Gateway_1uwl2w9" isMarkerVisible="true" bioc:stroke="#000000" bioc:fill="#ffff00" color:background-color="#ffff00" color:border-color="#000000">
+        <dc:Bounds x="1344" y="-591" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1338" y="-621" width="63" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_00g2uoa_di" bpmnElement="DataStoreReference_00g2uoa">
+        <dc:Bounds x="1224" y="-411" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1232" y="-354" width="34" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0zpc0s1_di" bpmnElement="DataObjectReference_0zpc0s1">
+        <dc:Bounds x="1571" y="-391" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1570" y="-334" width="38" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_071y5q6_di" bpmnElement="DataStoreReference_071y5q6">
+        <dc:Bounds x="2074" y="-721" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2079" y="-664" width="42" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_047ywto_di" bpmnElement="Gateway_047ywto" isMarkerVisible="true" bioc:stroke="#000000" bioc:fill="#ffff00" color:background-color="#ffff00" color:border-color="#000000">
+        <dc:Bounds x="994" y="-171" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="987" y="-197" width="64" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0cv1uz4_di" bpmnElement="Gateway_0cv1uz4" isMarkerVisible="true" bioc:stroke="#000000" bioc:fill="#ffff00" color:background-color="#ffff00" color:border-color="#000000">
+        <dc:Bounds x="1524" y="-61" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1519" y="-91" width="60" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1ffldyr_di" bpmnElement="Gateway_1ffldyr" isMarkerVisible="true" bioc:stroke="#000000" bioc:fill="#ffff00" color:background-color="#ffff00" color:border-color="#000000">
+        <dc:Bounds x="1724" y="-171" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1735" y="-201" width="29" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1vygoyp_di" bpmnElement="DataStoreReference_1vygoyp">
+        <dc:Bounds x="1874" y="-51" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1881" y="6" width="36" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0cakitu_di" bpmnElement="DataObjectReference_0cakitu">
+        <dc:Bounds x="1751" y="49" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1730" y="106" width="79" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1m8snby_di" bpmnElement="DataStoreReference_1m8snby">
+        <dc:Bounds x="784" y="379" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="784" y="447" width="36" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1w2gqc8_di" bpmnElement="Gateway_1w2gqc8" isMarkerVisible="true" bioc:stroke="#000000" bioc:fill="#ffff00" color:background-color="#ffff00" color:border-color="#000000">
+        <dc:Bounds x="984" y="259" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="991" y="229" width="36" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_06de6zp_di" bpmnElement="Gateway_06de6zp" isMarkerVisible="true" bioc:stroke="#000000" bioc:fill="#ffff00" color:background-color="#ffff00" color:border-color="#000000">
+        <dc:Bounds x="1344" y="259" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1329" y="229" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1uq8a21_di" bpmnElement="DataStoreReference_1uq8a21">
+        <dc:Bounds x="2534" y="-441" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2539" y="-384" width="42" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0316hhs_di" bpmnElement="DataStoreReference_0316hhs">
+        <dc:Bounds x="2274" y="499" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2277" y="556" width="45" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0mcjacm_di" bpmnElement="Activity_0xpi2fp">
+        <dc:Bounds x="879" y="-946" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1rf9y3q_di" bpmnElement="Activity_0vsdzmx">
+        <dc:Bounds x="1169" y="-946" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_16do8wo_di" bpmnElement="Activity_0257dzo">
+        <dc:Bounds x="1459" y="-946" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0cfzwsr_di" bpmnElement="Activity_0wpw01y" bioc:stroke="#000000" bioc:fill="#8de194" color:background-color="#8de194" color:border-color="#000000">
+        <dc:Bounds x="1459" y="-846" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_01daiff_di" bpmnElement="Activity_0qxt646">
+        <dc:Bounds x="1779" y="-946" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ujibs0_di" bpmnElement="Activity_1xssn9d">
+        <dc:Bounds x="2179" y="-946" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0qfnl61_di" bpmnElement="Activity_170ulbu" bioc:stroke="#000000" bioc:fill="#8de194" color:background-color="#8de194" color:border-color="#000000">
+        <dc:Bounds x="1939" y="-756" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0uzyhob_di" bpmnElement="Activity_1ylz9zl" bioc:stroke="#000000" bioc:fill="#8de194" color:background-color="#8de194" color:border-color="#000000">
+        <dc:Bounds x="689" y="-456" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_03llks3_di" bpmnElement="Activity_1oz0gyv" bioc:stroke="#000000" bioc:fill="#8de194" color:background-color="#8de194" color:border-color="#000000">
+        <dc:Bounds x="839" y="-606" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0f5drcf_di" bpmnElement="Activity_18nsawm">
+        <dc:Bounds x="1079" y="-606" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0cndh6r_di" bpmnElement="Activity_0wpv08u" bioc:stroke="#000000" bioc:fill="#8de194" color:background-color="#8de194" color:border-color="#000000">
+        <dc:Bounds x="1319" y="-486" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13gofkz_di" bpmnElement="Activity_1uxm3i3" bioc:stroke="#000000" bioc:fill="#8de194" color:background-color="#8de194" color:border-color="#000000">
+        <dc:Bounds x="1469" y="-486" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ke94lj_di" bpmnElement="Activity_0oceqir">
+        <dc:Bounds x="1619" y="-486" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00cvdbq_di" bpmnElement="Activity_1l6ribu">
+        <dc:Bounds x="1769" y="-486" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13e130g_di" bpmnElement="Activity_1c2bvn6" bioc:stroke="#000000" bioc:fill="#8de194" color:background-color="#8de194" color:border-color="#000000">
+        <dc:Bounds x="1919" y="-486" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_127cgp2_di" bpmnElement="Activity_12te23t">
+        <dc:Bounds x="2069" y="-486" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1oemx3x_di" bpmnElement="Activity_1gwv0xu">
+        <dc:Bounds x="2219" y="-486" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0jesg9v_di" bpmnElement="Activity_1b1x3ro">
+        <dc:Bounds x="839" y="-186" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1oa8rn6_di" bpmnElement="Activity_1nva3u7">
+        <dc:Bounds x="1179" y="-186" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0e9yqd6_di" bpmnElement="Activity_0gzrv3t">
+        <dc:Bounds x="1139" y="-76" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1dmtbk9_di" bpmnElement="Activity_055ptro">
+        <dc:Bounds x="1329" y="-76" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0u9q6c5_di" bpmnElement="Activity_0ce3uts">
+        <dc:Bounds x="1499" y="44" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0g35f1t_di" bpmnElement="Activity_020786d">
+        <dc:Bounds x="1699" y="-76" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_06p68gf_di" bpmnElement="Activity_103r7qk" bioc:stroke="#000000" bioc:fill="#8de194" color:background-color="#8de194" color:border-color="#000000">
+        <dc:Bounds x="1829" y="-186" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1l9fryu_di" bpmnElement="Activity_1rquu9z">
+        <dc:Bounds x="1989" y="-186" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0wgtvux_di" bpmnElement="Activity_0eefz0z" bioc:stroke="#000000" bioc:fill="#8de194" color:background-color="#8de194" color:border-color="#000000">
+        <dc:Bounds x="689" y="-186" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1y5xzoh_di" bpmnElement="Activity_0i350tg" bioc:stroke="#000000" bioc:fill="#8de194" color:background-color="#8de194" color:border-color="#000000">
+        <dc:Bounds x="679" y="244" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0nm7n7y_di" bpmnElement="Activity_0v0q6bn" bioc:stroke="#000000" bioc:fill="#8de194" color:background-color="#8de194" color:border-color="#000000">
+        <dc:Bounds x="829" y="244" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1625lr3_di" bpmnElement="Activity_084w8p0">
+        <dc:Bounds x="959" y="434" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1n5g4ew_di" bpmnElement="Activity_04btyb3">
+        <dc:Bounds x="1139" y="244" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07zy8k7_di" bpmnElement="Activity_1t17bgt">
+        <dc:Bounds x="1509" y="244" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1xjbr8c_di" bpmnElement="Activity_1utjtoe" bioc:stroke="#000000" bioc:fill="#8de194" color:background-color="#8de194" color:border-color="#000000">
+        <dc:Bounds x="2329" y="244" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1e687wc_di" bpmnElement="Activity_1e55p04" bioc:stroke="#000000" bioc:fill="#8de194" color:background-color="#8de194" color:border-color="#000000">
+        <dc:Bounds x="2439" y="414" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xvmxu9_di" bpmnElement="Activity_1h5tp7p">
+        <dc:Bounds x="2579" y="414" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1v73lty_di" bpmnElement="Activity_0poz6v6">
+        <dc:Bounds x="2719" y="414" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0eiqioq_di" bpmnElement="Activity_0sh7rz5" bioc:stroke="#000000" bioc:fill="#8de194" color:background-color="#8de194" color:border-color="#000000">
+        <dc:Bounds x="2329" y="-406" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_06q1cdi_di" bpmnElement="Activity_1un4owd" bioc:stroke="#000000" bioc:fill="#8de194" color:background-color="#8de194" color:border-color="#000000">
+        <dc:Bounds x="719" y="-946" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0udhamk_di" bpmnElement="Event_0vz5f11" bioc:stroke="#000000" bioc:fill="#ff0000" color:background-color="#ff0000" color:border-color="#000000">
+        <dc:Bounds x="2361" y="-924" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ze816e_di" bpmnElement="Event_1xp510v" bioc:stroke="#000000" bioc:fill="#ff0000" color:background-color="#ff0000" color:border-color="#000000">
+        <dc:Bounds x="2861" y="436" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2854" y="479" width="54" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_11v80s8_di" bpmnElement="Event_0ss3pzz" bioc:stroke="#000000" bioc:fill="#ff0000" color:background-color="#ff0000" color:border-color="#000000">
+        <dc:Bounds x="942" y="-364" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0wp6ncq_di" bpmnElement="Flow_0wp6ncq">
+        <di:waypoint x="667" y="-906" />
+        <di:waypoint x="719" y="-906" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0d8fger_di" bpmnElement="Flow_0d8fger">
+        <di:waypoint x="979" y="-906" />
+        <di:waypoint x="1024" y="-906" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kn2kbj_di" bpmnElement="Flow_1kn2kbj">
+        <di:waypoint x="1074" y="-906" />
+        <di:waypoint x="1169" y="-906" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1088" y="-940" width="55" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0tvw8g2_di" bpmnElement="Flow_0tvw8g2">
+        <di:waypoint x="1049" y="-881" />
+        <di:waypoint x="1049" y="-716" />
+        <di:waypoint x="1939" y="-716" />
+        <bpmndi:BPMNLabel color:color="#205022">
+          <dc:Bounds x="1167" y="-706" width="90" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12e5xyj_di" bpmnElement="Flow_12e5xyj">
+        <di:waypoint x="1269" y="-906" />
+        <di:waypoint x="1324" y="-906" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1v34ijq_di" bpmnElement="Flow_1v34ijq">
+        <di:waypoint x="1374" y="-906" />
+        <di:waypoint x="1459" y="-906" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1383" y="-940" width="67" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0tiqt81_di" bpmnElement="Flow_0tiqt81">
+        <di:waypoint x="1349" y="-881" />
+        <di:waypoint x="1349" y="-806" />
+        <di:waypoint x="1459" y="-806" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1342" y="-851" width="77" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0b1n9gi_di" bpmnElement="Flow_0b1n9gi">
+        <di:waypoint x="1559" y="-906" />
+        <di:waypoint x="1644" y="-906" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14k2ssj_di" bpmnElement="Flow_14k2ssj">
+        <di:waypoint x="1559" y="-806" />
+        <di:waypoint x="1669" y="-806" />
+        <di:waypoint x="1669" y="-881" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mjo4zj_di" bpmnElement="Flow_0mjo4zj">
+        <di:waypoint x="1694" y="-906" />
+        <di:waypoint x="1779" y="-906" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1i85iw2_di" bpmnElement="Flow_1i85iw2">
+        <di:waypoint x="1879" y="-906" />
+        <di:waypoint x="1964" y="-906" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1pxenoy_di" bpmnElement="Flow_1pxenoy">
+        <di:waypoint x="1989" y="-881" />
+        <di:waypoint x="1989" y="-756" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1969" y="-821" width="70" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dcryw8_di" bpmnElement="Flow_0dcryw8">
+        <di:waypoint x="2014" y="-906" />
+        <di:waypoint x="2179" y="-906" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2055" y="-940" width="83" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16ksrym_di" bpmnElement="Flow_16ksrym">
+        <di:waypoint x="1989" y="-676" />
+        <di:waypoint x="1989" y="-646" />
+        <di:waypoint x="739" y="-646" />
+        <di:waypoint x="739" y="-591" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0leqy5z_di" bpmnElement="Flow_0leqy5z">
+        <di:waypoint x="764" y="-566" />
+        <di:waypoint x="839" y="-566" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="777" y="-584" width="51" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_142jbu4_di" bpmnElement="Flow_142jbu4">
+        <di:waypoint x="739" y="-541" />
+        <di:waypoint x="739" y="-456" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="723" y="-497" width="65" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04ns6so_di" bpmnElement="Flow_04ns6so">
+        <di:waypoint x="1179" y="-566" />
+        <di:waypoint x="1344" y="-566" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07a0xtk_di" bpmnElement="Flow_07a0xtk">
+        <di:waypoint x="1369" y="-541" />
+        <di:waypoint x="1369" y="-486" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1344" y="-516" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lbays7_di" bpmnElement="Flow_0lbays7">
+        <di:waypoint x="1394" y="-566" />
+        <di:waypoint x="2229" y="-576" />
+        <di:waypoint x="2229" y="-866" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1760" y="-616" width="55" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1pvkm61_di" bpmnElement="Flow_1pvkm61">
+        <di:waypoint x="939" y="-146" />
+        <di:waypoint x="994" y="-146" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0e4wzjz_di" bpmnElement="Flow_0e4wzjz">
+        <di:waypoint x="1044" y="-146" />
+        <di:waypoint x="1179" y="-146" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1072" y="-164" width="81" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_079het3_di" bpmnElement="Flow_079het3">
+        <di:waypoint x="1019" y="-121" />
+        <di:waypoint x="1019" y="-36" />
+        <di:waypoint x="1139" y="-36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1029" y="-70" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13yhr9o_di" bpmnElement="Flow_13yhr9o">
+        <di:waypoint x="1429" y="-36" />
+        <di:waypoint x="1524" y="-36" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xoem1t_di" bpmnElement="Flow_1xoem1t">
+        <di:waypoint x="1574" y="-36" />
+        <di:waypoint x="1699" y="-36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1603" y="-70" width="68" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03kjhhh_di" bpmnElement="Flow_03kjhhh">
+        <di:waypoint x="1549" y="-11" />
+        <di:waypoint x="1549" y="44" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1523" y="14" width="83" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ivouvj_di" bpmnElement="Flow_0ivouvj">
+        <di:waypoint x="1279" y="-146" />
+        <di:waypoint x="1724" y="-146" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13nuybn_di" bpmnElement="Flow_13nuybn">
+        <di:waypoint x="1749" y="-76" />
+        <di:waypoint x="1749" y="-121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11qpn2s_di" bpmnElement="Flow_11qpn2s">
+        <di:waypoint x="1774" y="-146" />
+        <di:waypoint x="1829" y="-146" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0s6yulq_di" bpmnElement="Flow_0s6yulq">
+        <di:waypoint x="929" y="284" />
+        <di:waypoint x="984" y="284" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1pug19e_di" bpmnElement="Flow_1pug19e">
+        <di:waypoint x="1009" y="309" />
+        <di:waypoint x="1009" y="434" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="982" y="369" width="85" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1m3vws7_di" bpmnElement="Flow_1m3vws7">
+        <di:waypoint x="1034" y="284" />
+        <di:waypoint x="1139" y="284" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1049" y="266" width="76" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06ao3ut_di" bpmnElement="Flow_06ao3ut">
+        <di:waypoint x="1239" y="284" />
+        <di:waypoint x="1344" y="284" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0nzpse1_di" bpmnElement="Flow_0nzpse1">
+        <di:waypoint x="1394" y="284" />
+        <di:waypoint x="1509" y="284" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1408" y="266" width="88" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15p2y74_di" bpmnElement="Flow_15p2y74">
+        <di:waypoint x="1369" y="309" />
+        <di:waypoint x="1369" y="454" />
+        <di:waypoint x="2439" y="454" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1589" y="427" width="80" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14o4am1_di" bpmnElement="Flow_14o4am1">
+        <di:waypoint x="2819" y="454" />
+        <di:waypoint x="2861" y="454" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jk8ppr_di" bpmnElement="Flow_0jk8ppr">
+        <di:waypoint x="2279" y="-906" />
+        <di:waypoint x="2361" y="-906" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12qdbj3_di" bpmnElement="Flow_12qdbj3">
+        <di:waypoint x="790" y="-390" />
+        <di:waypoint x="810" y="-390" />
+        <di:waypoint x="810" y="-346" />
+        <di:waypoint x="942" y="-346" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jafskv_di" bpmnElement="Flow_0jafskv">
+        <di:waypoint x="819" y="-906" />
+        <di:waypoint x="879" y="-906" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ghomrl_di" bpmnElement="Flow_0ghomrl">
+        <di:waypoint x="939" y="-566" />
+        <di:waypoint x="1079" y="-566" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01g2r7s_di" bpmnElement="Flow_01g2r7s">
+        <di:waypoint x="1419" y="-446" />
+        <di:waypoint x="1469" y="-446" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0pm7g0m_di" bpmnElement="Flow_0pm7g0m">
+        <di:waypoint x="1569" y="-446" />
+        <di:waypoint x="1619" y="-446" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0bxtvhg_di" bpmnElement="Flow_0bxtvhg">
+        <di:waypoint x="1719" y="-446" />
+        <di:waypoint x="1769" y="-446" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dalm5d_di" bpmnElement="Flow_0dalm5d">
+        <di:waypoint x="1869" y="-446" />
+        <di:waypoint x="1919" y="-446" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16c9bef_di" bpmnElement="Flow_16c9bef">
+        <di:waypoint x="2019" y="-446" />
+        <di:waypoint x="2069" y="-446" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0cxcrdm_di" bpmnElement="Flow_0cxcrdm">
+        <di:waypoint x="2169" y="-446" />
+        <di:waypoint x="2219" y="-446" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0is7bnh_di" bpmnElement="Flow_0is7bnh">
+        <di:waypoint x="2269" y="-406" />
+        <di:waypoint x="2269" y="-266" />
+        <di:waypoint x="729" y="-246" />
+        <di:waypoint x="729" y="-186" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1mlci6m_di" bpmnElement="Flow_1mlci6m">
+        <di:waypoint x="789" y="-146" />
+        <di:waypoint x="839" y="-146" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03h0mj0_di" bpmnElement="Flow_03h0mj0">
+        <di:waypoint x="1499" y="84" />
+        <di:waypoint x="889" y="84" />
+        <di:waypoint x="889" y="-106" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09fix2v_di" bpmnElement="Flow_09fix2v">
+        <di:waypoint x="1239" y="-36" />
+        <di:waypoint x="1329" y="-36" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vj65ll_di" bpmnElement="Flow_1vj65ll">
+        <di:waypoint x="1929" y="-146" />
+        <di:waypoint x="1989" y="-146" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kbfysm_di" bpmnElement="Flow_1kbfysm">
+        <di:waypoint x="2039" y="-106" />
+        <di:waypoint x="2039" y="174" />
+        <di:waypoint x="729" y="174" />
+        <di:waypoint x="729" y="244" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19b9hz7_di" bpmnElement="Flow_19b9hz7">
+        <di:waypoint x="959" y="474" />
+        <di:waypoint x="639" y="474" />
+        <di:waypoint x="639" y="-36" />
+        <di:waypoint x="703" y="-106" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qzlwr6_di" bpmnElement="Flow_0qzlwr6">
+        <di:waypoint x="779" y="284" />
+        <di:waypoint x="829" y="284" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lnocwl_di" bpmnElement="Flow_1lnocwl">
+        <di:waypoint x="1609" y="284" />
+        <di:waypoint x="2329" y="284" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18swea6_di" bpmnElement="Flow_18swea6">
+        <di:waypoint x="2379" y="244" />
+        <di:waypoint x="2379" y="-326" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1tv8s4z_di" bpmnElement="Flow_1tv8s4z">
+        <di:waypoint x="2429" y="-366" />
+        <di:waypoint x="2519" y="-366" />
+        <di:waypoint x="2519" y="414" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qdxd4s_di" bpmnElement="Flow_0qdxd4s">
+        <di:waypoint x="2539" y="454" />
+        <di:waypoint x="2579" y="454" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lwvkec_di" bpmnElement="Flow_0lwvkec">
+        <di:waypoint x="2679" y="454" />
+        <di:waypoint x="2719" y="454" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1v74bno_di" bpmnElement="DataInputAssociation_1v74bno">
+        <di:waypoint x="1404" y="-776" />
+        <di:waypoint x="1459" y="-798" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0zs0b8i_di" bpmnElement="DataInputAssociation_0zs0b8i">
+        <di:waypoint x="2074" y="-702" />
+        <di:waypoint x="2039" y="-711" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0as1xso_di" bpmnElement="DataInputAssociation_0as1xso">
+        <di:waypoint x="914" y="-446" />
+        <di:waypoint x="789" y="-446" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0rvw402_di" bpmnElement="DataInputAssociation_0rvw402">
+        <di:waypoint x="929" y="-471" />
+        <di:waypoint x="906" y="-526" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_15epdg4_di" bpmnElement="DataOutputAssociation_15epdg4">
+        <di:waypoint x="1319" y="-419" />
+        <di:waypoint x="1274" y="-394" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_19c6t31_di" bpmnElement="DataOutputAssociation_19c6t31">
+        <di:waypoint x="1519" y="-406" />
+        <di:waypoint x="1571" y="-377" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1hcffj5_di" bpmnElement="DataInputAssociation_1hcffj5">
+        <di:waypoint x="2086" y="-671" />
+        <di:waypoint x="1990" y="-486" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0pnwbve_di" bpmnElement="DataOutputAssociation_0pnwbve">
+        <di:waypoint x="1757" y="4" />
+        <di:waypoint x="1765" y="49" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0qmrjls_di" bpmnElement="DataOutputAssociation_0qmrjls">
+        <di:waypoint x="1884" y="-106" />
+        <di:waypoint x="1891" y="-51" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0ywsgyu_di" bpmnElement="DataInputAssociation_0ywsgyu">
+        <di:waypoint x="824" y="379" />
+        <di:waypoint x="856" y="324" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_16ctge6_di" bpmnElement="DataOutputAssociation_16ctge6">
+        <di:waypoint x="2439" y="471" />
+        <di:waypoint x="2324" y="510" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1pkliu3_di" bpmnElement="DataInputAssociation_1pkliu3">
+        <di:waypoint x="2534" y="-407" />
+        <di:waypoint x="2429" y="-370" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

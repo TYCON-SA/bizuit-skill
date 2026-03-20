@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_097hvt8">
+    <bpmn2:participant id="Participant_1wt82z4" processRef="Clase_28_09_2025" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Clase_28_09_2025" name="Clase 28/09/2025" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="Universidad Tecnologica Nacional Regional Cordoba" bizuit:createdBy="fterreno" bizuit:createdDate="2025-09-19T00:48:53.993Z" bizuit:lastEditedBy="fterreno" bizuit:lastEditedDate="2025-09-19T00:48:53.993Z">
+    <bpmn2:laneSet id="LaneSet_1pu2et7">
+      <bpmn2:lane id="Responsable_de_Venta_de_Producto" name="Responsable de Venta de Producto" bizuit:Performers="Responsable de Venta de Producto" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Gateway_1hjvbjj</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0ymbz0n</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0x412yd</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_0vqexxe</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Solicitud</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Recibir_Reclamos</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0z8lu2w</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1q06mfc</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="Responsable_de_Entrega" name="Responsable de Entrega" bizuit:Performers="Responsable de Entrega" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Activity_1kxvhe2</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:exclusiveGateway id="Gateway_1hjvbjj">
+      <bpmn2:incoming>Flow_1ugg7xl</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0dpko4r</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_0h3pe21</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="Gateway_0ymbz0n">
+      <bpmn2:incoming>Flow_1fhcjgb</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0zuf83t</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_09z8utd</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:task id="Activity_0x412yd" bizuit:Performers="Responsable de Venta de Producto">
+      <bpmn2:incoming>Flow_09z8utd</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0oqrerd</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:endEvent id="Event_0vqexxe" bizuit:Performers="Responsable de Venta de Producto">
+      <bpmn2:incoming>Flow_0oqrerd</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_0rtrr22" sourceRef="Solicitud" targetRef="Recibir_Reclamos" />
+    <bpmn2:sequenceFlow id="Flow_1a2gbd9" sourceRef="Recibir_Reclamos" targetRef="Activity_0z8lu2w" />
+    <bpmn2:sequenceFlow id="Flow_1ugg7xl" sourceRef="Activity_0z8lu2w" targetRef="Gateway_1hjvbjj" />
+    <bpmn2:sequenceFlow id="Flow_0dpko4r" sourceRef="Gateway_1hjvbjj" targetRef="Activity_1q06mfc" />
+    <bpmn2:sequenceFlow id="Flow_0h3pe21" sourceRef="Gateway_1hjvbjj" targetRef="Activity_1kxvhe2" />
+    <bpmn2:sequenceFlow id="Flow_1fhcjgb" sourceRef="Activity_1q06mfc" targetRef="Gateway_0ymbz0n" />
+    <bpmn2:sequenceFlow id="Flow_0zuf83t" sourceRef="Activity_1kxvhe2" targetRef="Gateway_0ymbz0n" />
+    <bpmn2:sequenceFlow id="Flow_09z8utd" sourceRef="Gateway_0ymbz0n" targetRef="Activity_0x412yd" />
+    <bpmn2:sequenceFlow id="Flow_0oqrerd" sourceRef="Activity_0x412yd" targetRef="Event_0vqexxe" />
+    <bpmn2:startEvent id="Solicitud" name="Solicitud" bizuit:AttachmentsCollection="[]" bizuit:Performers="Responsable de Venta de Producto" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:outgoing>Flow_0rtrr22</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:task id="Recibir_Reclamos" name="Recibir Reclamos" bizuit:AttachmentsCollection="[]" bizuit:Performers="Responsable de Venta de Producto" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_0rtrr22</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1a2gbd9</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Activity_1kxvhe2" bizuit:Performers="Responsable de Entrega">
+      <bpmn2:incoming>Flow_0h3pe21</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0zuf83t</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:receiveTask id="Activity_0z8lu2w" bizuit:Performers="Responsable de Venta de Producto">
+      <bpmn2:incoming>Flow_1a2gbd9</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1ugg7xl</bpmn2:outgoing>
+    </bpmn2:receiveTask>
+    <bpmn2:manualTask id="Activity_1q06mfc" bizuit:Performers="Responsable de Venta de Producto">
+      <bpmn2:incoming>Flow_0dpko4r</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1fhcjgb</bpmn2:outgoing>
+    </bpmn2:manualTask>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_097hvt8">
+      <bpmndi:BPMNShape id="Participant_1wt82z4_di" bpmnElement="Participant_1wt82z4" isHorizontal="true">
+        <dc:Bounds x="360" y="198" width="1130" height="372" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0ejpexm_di" bpmnElement="Responsable_de_Venta_de_Producto" isHorizontal="true">
+        <dc:Bounds x="390" y="198" width="1100" height="252" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_076vgta_di" bpmnElement="Responsable_de_Entrega" isHorizontal="true">
+        <dc:Bounds x="390" y="450" width="1100" height="120" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1hjvbjj_di" bpmnElement="Gateway_1hjvbjj" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="825" y="233" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0ymbz0n_di" bpmnElement="Gateway_0ymbz0n" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="1105" y="233" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0x412yd_di" bpmnElement="Activity_0x412yd">
+        <dc:Bounds x="1220" y="218" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0vqexxe_di" bpmnElement="Event_0vqexxe" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="1392" y="240" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="Solicitud" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="432" y="240" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="429" y="283" width="43" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1tftabb_di" bpmnElement="Recibir_Reclamos">
+        <dc:Bounds x="520" y="218" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1kxvhe2_di" bpmnElement="Activity_1kxvhe2">
+        <dc:Bounds x="940" y="470" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ujdidd_di" bpmnElement="Activity_0z8lu2w" bioc:stroke="#4682b4" bioc:fill="#f0ffff" color:background-color="#f0ffff" color:border-color="#4682b4">
+        <dc:Bounds x="660" y="218" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0d8f203_di" bpmnElement="Activity_1q06mfc" bioc:stroke="#daa520" bioc:fill="#f0e68c" color:background-color="#f0e68c" color:border-color="#daa520">
+        <dc:Bounds x="940" y="218" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0rtrr22_di" bpmnElement="Flow_0rtrr22">
+        <di:waypoint x="468" y="258" />
+        <di:waypoint x="520" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1a2gbd9_di" bpmnElement="Flow_1a2gbd9">
+        <di:waypoint x="620" y="258" />
+        <di:waypoint x="660" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ugg7xl_di" bpmnElement="Flow_1ugg7xl">
+        <di:waypoint x="760" y="258" />
+        <di:waypoint x="825" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dpko4r_di" bpmnElement="Flow_0dpko4r">
+        <di:waypoint x="875" y="258" />
+        <di:waypoint x="940" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0h3pe21_di" bpmnElement="Flow_0h3pe21">
+        <di:waypoint x="850" y="283" />
+        <di:waypoint x="850" y="510" />
+        <di:waypoint x="940" y="510" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fhcjgb_di" bpmnElement="Flow_1fhcjgb">
+        <di:waypoint x="1040" y="258" />
+        <di:waypoint x="1105" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zuf83t_di" bpmnElement="Flow_0zuf83t">
+        <di:waypoint x="1040" y="510" />
+        <di:waypoint x="1130" y="510" />
+        <di:waypoint x="1130" y="283" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09z8utd_di" bpmnElement="Flow_09z8utd">
+        <di:waypoint x="1155" y="258" />
+        <di:waypoint x="1220" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0oqrerd_di" bpmnElement="Flow_0oqrerd">
+        <di:waypoint x="1320" y="258" />
+        <di:waypoint x="1392" y="258" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

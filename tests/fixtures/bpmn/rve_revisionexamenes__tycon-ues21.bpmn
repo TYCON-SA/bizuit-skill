@@ -1,0 +1,1118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_19zeea8">
+    <bpmn2:participant id="RVE_RevisionDeExamen" name="RVE_RevisionDeExamen" processRef="RVE_RevisionExamenes" bizuit:AttachmentsCollection="[]" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="RVE_RevisionExamenes" name="RVE_RevisionExamenes" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="TYCON-UES21">
+    <bpmn2:extensionElements>
+      <bizuit:processParameters>
+        <bizuit:parameter name="pData" description="" type="XML" direction="In">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"comment","type":"complex","children":[{"name":"body","type":"element","dataType":"string"}]},{"name":"subject","type":"element","dataType":"string"},{"name":"ticket_form_id","type":"element","dataType":"string"},{"name":"group_id","type":"element","dataType":"string"},{"name":"legajo","type":"element","dataType":"string"},{"name":"exaId","type":"element","dataType":"string"},{"name":"periodo","type":"complex","children":[{"name":"descripcion","type":"element","dataType":"string"},{"name":"subPeriodo","type":"complex","children":[{"name":"id","type":"element","dataType":"string"},{"name":"descripcion","type":"element","dataType":"string"}]},{"name":"fullDesc","type":"element","dataType":"string"}]},{"name":"programa","type":"element","dataType":"string"},{"name":"codigoPrograma","type":"element","dataType":"string"},{"name":"materia","type":"element","dataType":"string"},{"name":"fechaExamen","type":"element","dataType":"string"},{"name":"modalidad","type":"element","dataType":"string"},{"name":"exaNota","type":"element","dataType":"string"},{"name":"codigoMateria","type":"element","dataType":"string"},{"name":"revFechaCreacion","type":"element","dataType":"string"},{"name":"linkExamen","type":"element","dataType":"string"},{"name":"nombreCau","type":"element","dataType":"string"},{"name":"codigoCau","type":"element","dataType":"string"},{"name":"exaTipo","type":"element","dataType":"string"},{"name":"exaEstado","type":"element","dataType":"string"}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:parameter>
+        <bizuit:parameter name="pOut" description="" type="Escalar" direction="Out" scalarDataType="string" defaultValue="" />
+        <bizuit:parameter name="pSendEmail" description="" type="Escalar" direction="Optional" useAsFilter="true" filterColumnName="pSendEmail" scalarDataType="integer" defaultValue="1" />
+      </bizuit:processParameters>
+      <bizuit:processVariables>
+        <bizuit:variable name="Nombre" description="" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+        <bizuit:variable name="vAnulacion" description="" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+        <bizuit:variable name="vAPIStudentRecordsUrlBase" description="" type="Escalar" valueFromConfig="Aplicacion" />
+        <bizuit:variable name="vComentariosDocente" description="" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" useAsFilter="true" filterColumnName="vComentariosDocente" />
+        <bizuit:variable name="vDataAlumno" description="" type="XML" useAsFilter="true">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"DocumentType","type":"element","dataType":"string"},{"name":"DocumentNumber","type":"element","dataType":"string"},{"name":"LastName","type":"element","dataType":"string"},{"name":"FirstName","type":"element","dataType":"string"},{"name":"DateOfBirth","type":"element","dataType":"string"},{"name":"FullName","type":"element","dataType":"string"},{"name":"PrimaryMail","type":"element","dataType":"string"},{"name":"SecondaryMail","type":"element","dataType":"string"}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:variable>
+        <bizuit:variable name="vDataAnalizarCaso" description="" type="XML" useAsFilter="true">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Observaciones","type":"element","dataType":"string"},{"name":"Resultado","type":"complex","children":[{"name":"Codigo","type":"element","dataType":"string"},{"name":"Descripcion","type":"element","dataType":"string"}]},{"name":"AgenteAsignado","type":"complex","children":[{"name":"UserName","type":"element","dataType":"string"},{"name":"FullName","type":"element","dataType":"string"}]},{"name":"DocenteAsignado","type":"complex","children":[{"name":"Apellido","type":"element","dataType":"string"},{"name":"Nombre","type":"element","dataType":"string"},{"name":"Email","type":"element","dataType":"string"}]}]}</bizuit:xmlSchemaDefinition>
+          <bizuit:xmlFilterNode nodePath="/ROOT/AgenteAsignado/UserName" columnName="UserName" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/AgenteAsignado/FullName" columnName="FullName" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/DocenteAsignado/Apellido" columnName="Apellido" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/DocenteAsignado/Nombre" columnName="Nombre" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/DocenteAsignado/Email" columnName="Email" nodeDataType="string" />
+        </bizuit:variable>
+        <bizuit:variable name="vDataAnalizarExamen" description="" type="XML">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Observaciones","type":"element","dataType":"string"},{"name":"TipoExamen","type":"complex","children":[{"name":"Codigo","type":"element","dataType":"string"},{"name":"Descripcion","type":"element","dataType":"string"}]}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:variable>
+        <bizuit:variable name="vDataEvaluacionAnalista" description="Datos de la evaluacion que realiza el analista en funcion de la respuesta del docente" type="XML">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Observaciones","type":"element","dataType":"string"},{"name":"Resultado","type":"complex","children":[{"name":"Codigo","type":"element","dataType":"string"},{"name":"Descripcion","type":"element","dataType":"string"}]}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:variable>
+        <bizuit:variable name="vDataEvaluarSiHayCambioNota" description="" type="XML">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Observaciones","type":"element","dataType":"string"},{"name":"Resultado","type":"complex","children":[{"name":"Codigo","type":"element","dataType":"string"},{"name":"Descripcion","type":"element","dataType":"string"}]}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:variable>
+        <bizuit:variable name="vDataRegistrarAnulacionExamen" description="" type="XML">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Observaciones","type":"element","dataType":"string"},{"name":"Resultado","type":"complex","children":[{"name":"Codigo","type":"element","dataType":"string"},{"name":"Descripcion","type":"element","dataType":"string"}]}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:variable>
+        <bizuit:variable name="vDataRegistrarContactoAlumno" description="" type="XML">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Observaciones","type":"element","dataType":"string"},{"name":"Resultado","type":"complex","children":[{"name":"Codigo","type":"element","dataType":"string"},{"name":"Descripcion","type":"element","dataType":"string"}]}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:variable>
+        <bizuit:variable name="vDataRegistrarInscripcion" description="" type="XML">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Observaciones","type":"element","dataType":"string"},{"name":"Resultado","type":"complex","children":[{"name":"Codigo","type":"element","dataType":"string"},{"name":"Descripcion","type":"element","dataType":"string"}]}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:variable>
+        <bizuit:variable name="vDataRegistrarModificacionNota" description="" type="XML">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Observaciones","type":"element","dataType":"string"},{"name":"Resultado","type":"complex","children":[{"name":"Codigo","type":"element","dataType":"string"},{"name":"Descripcion","type":"element","dataType":"string"}]}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:variable>
+        <bizuit:variable name="vDataRegistrarModificacionNotaFinalOLibre" description="" type="XML">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Observaciones","type":"element","dataType":"string"},{"name":"Resultado","type":"complex","children":[{"name":"Codigo","type":"element","dataType":"string"},{"name":"Descripcion","type":"element","dataType":"string"}]}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:variable>
+        <bizuit:variable name="vDataRegistroRechazoRespuesta" description="" type="XML">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Observaciones","type":"element","dataType":"string"},{"name":"Resultado","type":"complex","children":[{"name":"Codigo","type":"element","dataType":"string"},{"name":"Descripcion","type":"element","dataType":"string"}]}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:variable>
+        <bizuit:variable name="vDataRespuestaDocente" description="JSON con la respuesta del docente" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+        <bizuit:variable name="vDataSolicitarCambioNota" description="" type="XML">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Observaciones","type":"element","dataType":"string"},{"name":"Resultado","type":"complex","children":[{"name":"Codigo","type":"element","dataType":"string"},{"name":"Descripcion","type":"element","dataType":"string"}]}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:variable>
+        <bizuit:variable name="vDataTipificacionError" description="" type="XML" useAsFilter="true">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"Resultado","type":"complex","children":[{"name":"Codigo","type":"element","dataType":"string"},{"name":"Descripcion","type":"element","dataType":"string"}]}]}</bizuit:xmlSchemaDefinition>
+          <bizuit:xmlFilterNode nodePath="/ROOT/Resultado/Codigo" columnName="Codigo" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/Resultado/Descripcion" columnName="Descripcion" nodeDataType="string" />
+        </bizuit:variable>
+        <bizuit:variable name="vDebug" description="" type="Escalar" valueFromConfig="Aplicacion" />
+        <bizuit:variable name="vDocenteUserPortal" description="" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" useAsFilter="true" filterColumnName="Usuario Docente" />
+        <bizuit:variable name="vEstado" description="" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" useAsFilter="true" filterColumnName="Estado" />
+        <bizuit:variable name="vEvaluarCambioNota" description="" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+        <bizuit:variable name="vIdAppRevExamen" description="" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="39" />
+        <bizuit:variable name="vLegajo" description="" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" useAsFilter="true" filterColumnName="Legajo" />
+        <bizuit:variable name="vLinkFormulario" description="" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+        <bizuit:variable name="vMailAlumno" description="" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+        <bizuit:variable name="vMailDocente" description="" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+        <bizuit:variable name="vMailFromBPM" description="" type="Escalar" valueFromConfig="Aplicacion" />
+        <bizuit:variable name="vMailFromBPMPass" description="" type="Escalar" valueFromConfig="Aplicacion" />
+        <bizuit:variable name="vMailFromBPMPort" description="" type="Escalar" valueFromConfig="Aplicacion" />
+        <bizuit:variable name="vMailFromBPMServer" description="" type="Escalar" valueFromConfig="Aplicacion" />
+        <bizuit:variable name="vObservacionErrorExamen" description="" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+        <bizuit:variable name="vObservacionRequiereRevisionDocente" description="" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+        <bizuit:variable name="vReintentoRespuestaDocente" description="" type="Escalar" valueFromConfig="Constante" constantDataType="integer" constantDefaultValue="0" />
+        <bizuit:variable name="vSolicitud" description="" type="XML" useAsFilter="true">
+          <bizuit:xmlSchemaDefinition>{"name":"ROOT","type":"root","children":[{"name":"comment","type":"complex","children":[{"name":"body","type":"element","dataType":"string"}]},{"name":"subject","type":"element","dataType":"string"},{"name":"ticket_from_id","type":"element","dataType":"string"},{"name":"group_id","type":"element","dataType":"string"},{"name":"legajo","type":"element","dataType":"string"},{"name":"exaId","type":"element","dataType":"string"},{"name":"periodo","type":"complex","children":[{"name":"descripcion","type":"element","dataType":"string"},{"name":"subPeriodo","type":"complex","children":[{"name":"id","type":"element","dataType":"string"},{"name":"descripcion","type":"element","dataType":"string"}]},{"name":"fullDesc","type":"element","dataType":"string"}]},{"name":"programa","type":"element","dataType":"string"},{"name":"codigoPrograma","type":"element","dataType":"string"},{"name":"materia","type":"element","dataType":"string"},{"name":"fechaExamen","type":"element","dataType":"string"},{"name":"modalidad","type":"element","dataType":"string"},{"name":"exaNota","type":"element","dataType":"string"},{"name":"codigoMateria","type":"element","dataType":"string"},{"name":"revFechaCreacion","type":"element","dataType":"string"},{"name":"linkExamen","type":"element","dataType":"string"},{"name":"nombreCau","type":"element","dataType":"string"},{"name":"codigoCau","type":"element","dataType":"string"},{"name":"exaTipo","type":"element","dataType":"string"},{"name":"exaEstado","type":"element","dataType":"string"}]}</bizuit:xmlSchemaDefinition>
+          <bizuit:xmlFilterNode nodePath="/ROOT" columnName="ROOT" nodeDataType="root" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/comment" columnName="comment" nodeDataType="complex" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/comment/body" columnName="body" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/subject" columnName="subject" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/ticket_from_id" columnName="ticket_from_id" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/group_id" columnName="group_id" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/legajo" columnName="legajo" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/exaId" columnName="exaId" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/periodo" columnName="periodo" nodeDataType="complex" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/periodo/descripcion" columnName="descripcion" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/periodo/subPeriodo/id" columnName="id" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/periodo/subPeriodo/descripcion" columnName="descripcion" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/periodo/fullDesc" columnName="fullDesc" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/programa" columnName="programa" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/codigoPrograma" columnName="codigoPrograma" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/materia" columnName="materia" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/fechaExamen" columnName="fechaExamen" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/modalidad" columnName="modalidad" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/exaNota" columnName="exaNota" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/codigoMateria" columnName="codigoMateria" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/revFechaCreacion" columnName="revFechaCreacion" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/linkExamen" columnName="linkExamen" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/nombreCau" columnName="nombreCau" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/codigoCau" columnName="codigoCau" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/exaTipo" columnName="exaTipo" nodeDataType="string" />
+          <bizuit:xmlFilterNode nodePath="/ROOT/exaEstado" columnName="exaEstado" nodeDataType="string" />
+        </bizuit:variable>
+        <bizuit:variable name="vTicketDuplicado" description="" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" useAsFilter="true" filterColumnName="vTicketDuplicado" />
+        <bizuit:variable name="vTokenRevExamen" description="" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+        <bizuit:variable name="vUrlBaseFromBPM" description="" type="Escalar" valueFromConfig="Aplicacion" />
+        <bizuit:variable name="vValidationCode" description="" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" useAsFilter="true" filterColumnName="vValidationCode" />
+      </bizuit:processVariables>
+    </bpmn2:extensionElements>
+    <bpmn2:laneSet id="LaneSet_0le89ke">
+      <bpmn2:lane id="RVE_AminsProceso" name="RVE_AminsProceso" bizuit:Performers="RVE_AminsProceso" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:documentation>Se le avisa al alumno que su nota del parcial ha sido cambiada.</bpmn2:documentation>
+        <bpmn2:flowNodeRef>Gateway_10k8c64</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>ParsearResultadoAPIStudentRecordGet</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>_99_Casos_Duplicados</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1cr86uh</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0q6tbrh</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0n764bk</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1rst56e</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Fin</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>CheckDuplicados</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetvSolicitud</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1aa8ntz</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>NuevoCaso</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetvLegajo</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0n5guvx</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1ybmlcj</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>NotificarDocenteAsignado</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>setvEstadoValidacionDocente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>EvaluarRespuestaDocente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0thalr5</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0yuwr40</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>setObservacionEvaluacionAnalista</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>NotificarAlumnoTramiteCerradoNoPoseeError</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetEstadoCerradoNoPoseeError</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1l0r26t</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0iszcbv</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_08flijj</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetEvaluarcambioNotaFinaloLibre</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>NotificarAlumnoCambioNotaFinalOLibre</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetEstadoNotaModificadaFinaloLibre</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetEvaluarCambioNotaParcial</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>NotificarAlumnoCambioNotaParcial</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetEstadoNotaModificadaParcial</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0r0hm21</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetEvaluiarCambiNota</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetEstadoNoHayCambioNota</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>NotificarAlumnoNoHayCambioNota</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetComentarioContactoAlumno</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetEstadoContactoAlumno</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>NotificalAlumnoAnulacionDeExamen</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>ExamenesResueltos</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>CallAPIStudentRecordGet</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>GetNextNumerador</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetvSolicitudNroTicket</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>GetTokenRevExamen</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>setvValidationCode</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>setvLinkFormulario</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetvReintentoRespuestaDocente1</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>ControlExpiracionDocente20hs</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>EnEsperaRespuestaDocente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1oad2i0</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>ParsearRespuestaDocente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>setvObservacionRequiereRevisionDocente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetvEstadoNoRequiereRevisionDocentec</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>NotificarAlumnoTramiteFinalizadoSinRevDocente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>SetvEstadoPendienteDeTratamiento</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>NotificarAlumnoInicial</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>ExceptionCallAPIStudentRecordGet</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Inicio</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>ForcePersistence</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_14kpvh2</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:sequenceFlow id="Flow_0013ufi" sourceRef="Inicio" targetRef="ForcePersistence" />
+    <bpmn2:sequenceFlow id="Flow_1amwyyx" sourceRef="ForcePersistence" targetRef="SetvSolicitud" />
+    <bpmn2:sequenceFlow id="Flow_1d1r2p0" sourceRef="CheckDuplicados" targetRef="Gateway_14kpvh2" />
+    <bpmn2:sequenceFlow id="SiDuplicado" name="SiDuplicado" sourceRef="Gateway_14kpvh2" targetRef="_99_Casos_Duplicados" />
+    <bpmn2:sequenceFlow id="SiNoDuplicado" name="SiNoDuplicado" sourceRef="Gateway_14kpvh2" targetRef="GetNextNumerador" />
+    <bpmn2:sequenceFlow id="Flow_0s4d44t" sourceRef="GetNextNumerador" targetRef="SetvSolicitudNroTicket" />
+    <bpmn2:sequenceFlow id="Flow_0at6ucf" sourceRef="GetTokenRevExamen" targetRef="CallAPIStudentRecordGet" />
+    <bpmn2:exclusiveGateway id="Gateway_10k8c64">
+      <bpmn2:incoming>Flow_0rhfxv4</bpmn2:incoming>
+      <bpmn2:outgoing>CallAPIStudentRecordGetEsOK</bpmn2:outgoing>
+      <bpmn2:outgoing>FalloCallAPIStudentRecordGet</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_0rhfxv4" sourceRef="CallAPIStudentRecordGet" targetRef="Gateway_10k8c64" />
+    <bpmn2:sequenceFlow id="CallAPIStudentRecordGetEsOK" name="CallAPIStudentRecordGetEsOK" sourceRef="Gateway_10k8c64" targetRef="ParsearResultadoAPIStudentRecordGet" />
+    <bpmn2:scriptTask id="ParsearResultadoAPIStudentRecordGet" name="ParsearResultadoAPIStudentRecordGet" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se procesa y extrae la información útil de la respuesta que se recibe de la API al solicitar los datos del estudiante.</bpmn2:documentation>
+      <bpmn2:incoming>CallAPIStudentRecordGetEsOK</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_12bui17</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="Flow_12bui17" sourceRef="ParsearResultadoAPIStudentRecordGet" targetRef="SetvLegajo" />
+    <bpmn2:sequenceFlow id="SendEmailInicialAlumno" name="SendEmailInicialAlumno" sourceRef="Gateway_0n5guvx" targetRef="NotificarAlumnoInicial" />
+    <bpmn2:sequenceFlow id="DoNotSendEmailInicial_1" name="DoNotSendEmailInicial" sourceRef="Gateway_0n5guvx" targetRef="Gateway_1ybmlcj" />
+    <bpmn2:sequenceFlow id="Flow_0ctu2wh" sourceRef="NotificarAlumnoInicial" targetRef="Gateway_1ybmlcj" />
+    <bpmn2:sequenceFlow id="Flow_1xtcsmt" sourceRef="Gateway_1ybmlcj" targetRef="SetvEstadoPendienteDeTratamiento" />
+    <bpmn2:sequenceFlow id="FalloCallAPIStudentRecordGet" name="FalloCallAPIStudentRecordGet" sourceRef="Gateway_10k8c64" targetRef="ExceptionCallAPIStudentRecordGet" />
+    <bpmn2:sequenceFlow id="Flow_1607mnk" sourceRef="NuevoCaso" targetRef="Gateway_1aa8ntz" />
+    <bpmn2:sequenceFlow id="SiReqRevisionDocente" name="SiReqRevisionDocente" sourceRef="Gateway_1aa8ntz" targetRef="Gateway_1cr86uh" />
+    <bpmn2:sequenceFlow id="NoReqRevisionDocente" name="NoReqRevisionDocente" sourceRef="Gateway_1aa8ntz" targetRef="setvObservacionRequiereRevisionDocente" />
+    <bpmn2:sequenceFlow id="Flow_1pydb83" sourceRef="Gateway_1cr86uh" targetRef="setvValidationCode" />
+    <bpmn2:sequenceFlow id="Flow_01zx19t" sourceRef="NotificarDocenteAsignado" targetRef="setvEstadoValidacionDocente" />
+    <bpmn2:sequenceFlow id="Flow_05u9bgv" sourceRef="ControlExpiracionDocente20hs" targetRef="EnEsperaRespuestaDocente" />
+    <bpmn2:sequenceFlow id="Flow_0wkvcxu" sourceRef="Gateway_1oad2i0" targetRef="Gateway_1cr86uh" />
+    <bpmn2:sequenceFlow id="Flow_1yjhois" sourceRef="EnEsperaRespuestaDocente" targetRef="Gateway_1oad2i0" />
+    <bpmn2:sequenceFlow id="Flow_1pxxlyn" sourceRef="ParsearRespuestaDocente" targetRef="EvaluarRespuestaDocente" />
+    <bpmn2:sequenceFlow id="Flow_168gmgv" sourceRef="Gateway_1oad2i0" targetRef="ParsearRespuestaDocente" />
+    <bpmn2:sequenceFlow id="Flow_1nkp5f2" sourceRef="EvaluarRespuestaDocente" targetRef="Gateway_1l0r26t" />
+    <bpmn2:sequenceFlow id="SiHayErrorEnExamen" name="SiHayErrorEnExamen" sourceRef="Gateway_1l0r26t" targetRef="Gateway_0iszcbv" />
+    <bpmn2:sequenceFlow id="NoHayErrorEnExamen" name="NoHayErrorEnExamen" sourceRef="Gateway_1l0r26t" targetRef="setObservacionEvaluacionAnalista" />
+    <bpmn2:sequenceFlow id="SiCorrespondeAnularExamen" name="SiCorrespondeAnularExamen" sourceRef="Gateway_0iszcbv" targetRef="SetComentarioContactoAlumno" />
+    <bpmn2:sequenceFlow id="NoCorrespondeAnularExamen" name="NoCorrespondeAnularExamen" sourceRef="Gateway_0iszcbv" targetRef="Gateway_0r0hm21" />
+    <bpmn2:sequenceFlow id="NoHayCambioDeNota" name="NoHayCambioDeNota" sourceRef="Gateway_0r0hm21" targetRef="SetEvaluiarCambiNota" />
+    <bpmn2:sequenceFlow id="SiHayCambioDeNota" name="SiHayCambioDeNota" sourceRef="Gateway_0r0hm21" targetRef="Gateway_08flijj" />
+    <bpmn2:sequenceFlow id="SiExamenParcial" name="SiExamenParcial" sourceRef="Gateway_08flijj" targetRef="SetEvaluarCambioNotaParcial" />
+    <bpmn2:sequenceFlow id="SiExamenFinalOLibre" name="SiExamenFinalOLibre" sourceRef="Gateway_08flijj" targetRef="SetEvaluarcambioNotaFinaloLibre" />
+    <bpmn2:sequenceFlow id="Flow_019nu1h" sourceRef="NotificarAlumnoCambioNotaParcial" targetRef="SetEstadoNotaModificadaParcial" />
+    <bpmn2:sequenceFlow id="Flow_0uzi2is" sourceRef="NotificarAlumnoCambioNotaFinalOLibre" targetRef="SetEstadoNotaModificadaFinaloLibre" />
+    <bpmn2:sequenceFlow id="Flow_1h8of4l" sourceRef="Gateway_0q6tbrh" targetRef="Gateway_0n764bk" />
+    <bpmn2:sequenceFlow id="Flow_1llbjkr" sourceRef="NotificarAlumnoNoHayCambioNota" targetRef="SetEstadoNoHayCambioNota" />
+    <bpmn2:sequenceFlow id="Flow_0jxw58m" sourceRef="NotificalAlumnoAnulacionDeExamen" targetRef="Gateway_1rst56e" />
+    <bpmn2:sequenceFlow id="Flow_1m1nmnx" sourceRef="NotificarAlumnoTramiteCerradoNoPoseeError" targetRef="SetEstadoCerradoNoPoseeError" />
+    <bpmn2:sequenceFlow id="Flow_0hu0c58" sourceRef="Gateway_0n764bk" targetRef="Gateway_1rst56e" />
+    <bpmn2:sequenceFlow id="Flow_04snamt" sourceRef="Gateway_1rst56e" targetRef="Gateway_0thalr5" />
+    <bpmn2:sequenceFlow id="Flow_04ther2" sourceRef="ExamenesResueltos" targetRef="Gateway_0yuwr40" />
+    <bpmn2:sequenceFlow id="Flow_1g7lt7t" sourceRef="_99_Casos_Duplicados" targetRef="Gateway_0yuwr40" />
+    <bpmn2:userTask id="_99_Casos_Duplicados" name="99 - Casos Duplicados" bizuit:Performers="RVE_AminsProceso">
+      <bpmn2:incoming>SiDuplicado</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1g7lt7t</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_0jm61li" sourceRef="Gateway_0yuwr40" targetRef="Fin" />
+    <bpmn2:exclusiveGateway id="Gateway_1cr86uh">
+      <bpmn2:incoming>SiReqRevisionDocente</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0wkvcxu</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1pydb83</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="Gateway_0q6tbrh">
+      <bpmn2:incoming>Flow_1wge3x7</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0031crq</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1h8of4l</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="Gateway_0n764bk">
+      <bpmn2:incoming>Flow_1h8of4l</bpmn2:incoming>
+      <bpmn2:incoming>Flow_101hjwb</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0hu0c58</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="Gateway_1rst56e">
+      <bpmn2:incoming>Flow_0hu0c58</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0jxw58m</bpmn2:incoming>
+      <bpmn2:incoming>Flow_1sq9ckr</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_04snamt</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:endEvent id="Fin" name="Fin" bizuit:Performers="RVE_AminsProceso">
+      <bpmn2:incoming>Flow_0jm61li</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_1yklvxi" sourceRef="SetvSolicitud" targetRef="CheckDuplicados" />
+    <bpmn2:serviceTask id="CheckDuplicados" name="CheckDuplicados" bizuit:serviceTaskType="sql" bizuit:sqlSource="Actividad" bizuit:sqlConnectionString="" bizuit:sqlIsBigQuery="false" bizuit:sqlBigQueryProjectId="" bizuit:sqlBigQueryCredentials="" bizuit:sqlCommandType="Text" bizuit:sqlCommandText="" bizuit:sqlTimeout="30" bizuit:sqlParameters="[]" bizuit:sqlReturnDataType="Records" bizuit:sqlEnableMultipleExecution="false" bizuit:preservePreviousResults="false" bizuit:clearEmptyOutputNodes="false" bizuit:activityTracking="Both" bizuit:selectedInputSources="{&#34;parameters&#34;:[],&#34;variables&#34;:[],&#34;activities&#34;:[]}" bizuit:selectedOutputTargets="{&#34;parameters&#34;:[],&#34;variables&#34;:[]}" bizuit:Performers="RVE_AminsProceso">
+      <bpmn2:documentation>A nivel base de datos se corrobora que no exista una instancia de solicitud ya creada.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1yklvxi</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1d1r2p0</bpmn2:outgoing>
+    </bpmn2:serviceTask>
+    <bpmn2:scriptTask id="SetvSolicitud" name="SetvSolicitud" bizuit:Performers="RVE_AminsProceso">
+      <bpmn2:incoming>Flow_1amwyyx</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1yklvxi</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="Flow_019gkug" sourceRef="SetvLegajo" targetRef="Gateway_0n5guvx" />
+    <bpmn2:exclusiveGateway id="Gateway_1aa8ntz">
+      <bpmn2:incoming>Flow_1607mnk</bpmn2:incoming>
+      <bpmn2:outgoing>SiReqRevisionDocente</bpmn2:outgoing>
+      <bpmn2:outgoing>NoReqRevisionDocente</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:userTask id="NuevoCaso" name="NuevoCaso" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>El nuevo caso generado queda en espera de definir si corresponde o no ser revisado por el docente.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0p9wrii</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1607mnk</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_0p9wrii" sourceRef="SetvEstadoPendienteDeTratamiento" targetRef="NuevoCaso" />
+    <bpmn2:scriptTask id="SetvLegajo" name="SetvLegajo" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se asigna el valor del legajo del estudiante a una variable llamada vLegajo.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_12bui17</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_019gkug</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:exclusiveGateway id="Gateway_0n5guvx">
+      <bpmn2:incoming>Flow_019gkug</bpmn2:incoming>
+      <bpmn2:outgoing>SendEmailInicialAlumno</bpmn2:outgoing>
+      <bpmn2:outgoing>DoNotSendEmailInicial_1</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="Gateway_1ybmlcj">
+      <bpmn2:incoming>DoNotSendEmailInicial_1</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0ctu2wh</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1xtcsmt</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_1vp7n0r" sourceRef="setvValidationCode" targetRef="setvLinkFormulario" />
+    <bpmn2:sequenceFlow id="Flow_17m4osv" sourceRef="setvLinkFormulario" targetRef="NotificarDocenteAsignado" />
+    <bpmn2:sequenceFlow id="Flow_1jsqj8k" sourceRef="setvEstadoValidacionDocente" targetRef="SetvReintentoRespuestaDocente1" />
+    <bpmn2:sequenceFlow id="Flow_096e5f0" sourceRef="SetvReintentoRespuestaDocente1" targetRef="ControlExpiracionDocente20hs" />
+    <bpmn2:sendTask id="NotificarDocenteAsignado" name="NotificarDocenteAsignado" bizuit:Performers="RVE_AminsProceso" bizuit:emailServiceType="SMTP" bizuit:emailHost="" bizuit:emailPort="25" bizuit:emailUser="" bizuit:emailPassword="" bizuit:emailRequireAuth="true" bizuit:emailDisableSSL="false" bizuit:emailGoogleClientId="" bizuit:emailGoogleClientSecret="" bizuit:emailGoogleRefreshToken="" bizuit:emailFrom="" bizuit:emailTo="" bizuit:emailCc="" bizuit:emailBcc="" bizuit:emailSubject="" bizuit:emailBody="" bizuit:emailBackgroundSend="false" bizuit:emailMultipleExecution="false" bizuit:emailAdvancedSettings="" bizuit:activityTracking="Both" bizuit:selectedInputSources="{&#34;parameters&#34;:[],&#34;variables&#34;:[],&#34;activities&#34;:[]}">
+      <bpmn2:documentation>Se envia una&amp;nbsp;&lt;b&gt;enviar una notificación por mail al docente que ha sido asignado&lt;/b&gt; a la revisión</bpmn2:documentation>
+      <bpmn2:incoming>Flow_17m4osv</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_01zx19t</bpmn2:outgoing>
+    </bpmn2:sendTask>
+    <bpmn2:scriptTask id="setvEstadoValidacionDocente" name="setvEstadoValidacionDocente" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se establece el estado del proceso en "Validación Docente".</bpmn2:documentation>
+      <bpmn2:incoming>Flow_01zx19t</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1jsqj8k</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:userTask id="EvaluarRespuestaDocente" name="EvaluarRespuestaDocente" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se evalua la respuesta del docente para definir si:&lt;div&gt;&lt;ul&gt;&lt;li&gt;Hay un error en el examen y se anula.&lt;/li&gt;&lt;li&gt;No hay Error en el examen.&lt;/li&gt;&lt;li&gt;Hay un error en el examen pero no se anula y cambia la nota.&lt;br&gt;&lt;/li&gt;&lt;li&gt;Hay un error en el examen pero no se anula ni cambia la nota.&lt;/li&gt;&lt;li&gt;Hay un error, hay cambio de nota y es un examen parcial.&lt;br&gt;&lt;/li&gt;&lt;li&gt;Hay un error, hay cambio de nota y es un examen final o libre.&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;&lt;/div&gt;</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1pxxlyn</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1nkp5f2</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_1vps4gx" sourceRef="setvObservacionRequiereRevisionDocente" targetRef="NotificarAlumnoTramiteFinalizadoSinRevDocente" />
+    <bpmn2:sequenceFlow id="Flow_0zise8i" sourceRef="NotificarAlumnoTramiteFinalizadoSinRevDocente" targetRef="SetvEstadoNoRequiereRevisionDocentec" />
+    <bpmn2:sequenceFlow id="Flow_0jbxuc5" sourceRef="Gateway_0thalr5" targetRef="ExamenesResueltos" />
+    <bpmn2:exclusiveGateway id="Gateway_0thalr5">
+      <bpmn2:incoming>Flow_04snamt</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0602fjk</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0jbxuc5</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_0602fjk" sourceRef="SetvEstadoNoRequiereRevisionDocentec" targetRef="Gateway_0thalr5" />
+    <bpmn2:exclusiveGateway id="Gateway_0yuwr40">
+      <bpmn2:incoming>Flow_1g7lt7t</bpmn2:incoming>
+      <bpmn2:incoming>Flow_04ther2</bpmn2:incoming>
+      <bpmn2:incoming>Flow_1ca2dk9</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0jm61li</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:scriptTask id="setObservacionEvaluacionAnalista" name="setObservacionEvaluacionAnalista" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se registra una observación indicando que el analista ha verificado que no hay errores.</bpmn2:documentation>
+      <bpmn2:incoming>NoHayErrorEnExamen</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1h1as6b</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="Flow_1h1as6b" sourceRef="setObservacionEvaluacionAnalista" targetRef="NotificarAlumnoTramiteCerradoNoPoseeError" />
+    <bpmn2:sendTask id="NotificarAlumnoTramiteCerradoNoPoseeError" name="NotificarAlumnoTramiteCerradoNoPoseeError" bizuit:Performers="RVE_AminsProceso" bizuit:emailServiceType="SMTP" bizuit:emailHost="" bizuit:emailPort="25" bizuit:emailUser="" bizuit:emailPassword="" bizuit:emailRequireAuth="true" bizuit:emailDisableSSL="false" bizuit:emailGoogleClientId="" bizuit:emailGoogleClientSecret="" bizuit:emailGoogleRefreshToken="" bizuit:emailFrom="" bizuit:emailTo="" bizuit:emailCc="" bizuit:emailBcc="" bizuit:emailSubject="" bizuit:emailBody="" bizuit:emailBackgroundSend="false" bizuit:emailMultipleExecution="false" bizuit:emailAdvancedSettings="" bizuit:activityTracking="Both" bizuit:selectedInputSources="{&#34;parameters&#34;:[],&#34;variables&#34;:[],&#34;activities&#34;:[]}">
+      <bpmn2:documentation>Se le informa al alumno por mail que su trámite ha sido cerrado porque no se encontró ningún error en el examen.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1h1as6b</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1m1nmnx</bpmn2:outgoing>
+    </bpmn2:sendTask>
+    <bpmn2:sequenceFlow id="Flow_1sq9ckr" sourceRef="SetEstadoCerradoNoPoseeError" targetRef="Gateway_1rst56e" />
+    <bpmn2:scriptTask id="SetEstadoCerradoNoPoseeError" name="SetEstadoCerradoNoPoseeError" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>El estado del trámite se establece como "Cerrado, no posee error".</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1m1nmnx</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1sq9ckr</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:exclusiveGateway id="Gateway_1l0r26t">
+      <bpmn2:incoming>Flow_1nkp5f2</bpmn2:incoming>
+      <bpmn2:outgoing>SiHayErrorEnExamen</bpmn2:outgoing>
+      <bpmn2:outgoing>NoHayErrorEnExamen</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="Gateway_0iszcbv">
+      <bpmn2:incoming>SiHayErrorEnExamen</bpmn2:incoming>
+      <bpmn2:outgoing>SiCorrespondeAnularExamen</bpmn2:outgoing>
+      <bpmn2:outgoing>NoCorrespondeAnularExamen</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="Gateway_08flijj">
+      <bpmn2:incoming>SiHayCambioDeNota</bpmn2:incoming>
+      <bpmn2:outgoing>SiExamenParcial</bpmn2:outgoing>
+      <bpmn2:outgoing>SiExamenFinalOLibre</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_1ruot6f" sourceRef="SetEvaluarcambioNotaFinaloLibre" targetRef="NotificarAlumnoCambioNotaFinalOLibre" />
+    <bpmn2:scriptTask id="SetEvaluarcambioNotaFinaloLibre" name="SetEvaluarcambioNotaFinaloLibre" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se registra el cambio de nota en un examen final o libre.</bpmn2:documentation>
+      <bpmn2:incoming>SiExamenFinalOLibre</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1ruot6f</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sendTask id="NotificarAlumnoCambioNotaFinalOLibre" name="NotificarAlumnoCambioNotaFinalOLibre" bizuit:Performers="RVE_AminsProceso" bizuit:emailServiceType="SMTP" bizuit:emailHost="" bizuit:emailPort="25" bizuit:emailUser="" bizuit:emailPassword="" bizuit:emailRequireAuth="true" bizuit:emailDisableSSL="false" bizuit:emailGoogleClientId="" bizuit:emailGoogleClientSecret="" bizuit:emailGoogleRefreshToken="" bizuit:emailFrom="" bizuit:emailTo="" bizuit:emailCc="" bizuit:emailBcc="" bizuit:emailSubject="" bizuit:emailBody="" bizuit:emailBackgroundSend="false" bizuit:emailMultipleExecution="false" bizuit:emailAdvancedSettings="" bizuit:activityTracking="Both" bizuit:selectedInputSources="{&#34;parameters&#34;:[],&#34;variables&#34;:[],&#34;activities&#34;:[]}">
+      <bpmn2:documentation>Se notifica al alumno por mail sobre el cambio de su nota en el examen final o libre.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1ruot6f</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0uzi2is</bpmn2:outgoing>
+    </bpmn2:sendTask>
+    <bpmn2:sequenceFlow id="Flow_1wge3x7" sourceRef="SetEstadoNotaModificadaFinaloLibre" targetRef="Gateway_0q6tbrh" />
+    <bpmn2:scriptTask id="SetEstadoNotaModificadaFinaloLibre" name="SetEstadoNotaModificadaFinaloLibre" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>El estado del trámite se establece como "Nota modificada final o libre".</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0uzi2is</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1wge3x7</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="Flow_1mq6di9" sourceRef="SetEvaluarCambioNotaParcial" targetRef="NotificarAlumnoCambioNotaParcial" />
+    <bpmn2:scriptTask id="SetEvaluarCambioNotaParcial" name="SetEvaluarCambioNotaParcial" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se establece una variable para registrar el cambio de nota en un parcial.</bpmn2:documentation>
+      <bpmn2:incoming>SiExamenParcial</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1mq6di9</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sendTask id="NotificarAlumnoCambioNotaParcial" name="NotificarAlumnoCambioNotaParcial" bizuit:Performers="RVE_AminsProceso" bizuit:emailServiceType="SMTP" bizuit:emailHost="" bizuit:emailPort="25" bizuit:emailUser="" bizuit:emailPassword="" bizuit:emailRequireAuth="true" bizuit:emailDisableSSL="false" bizuit:emailGoogleClientId="" bizuit:emailGoogleClientSecret="" bizuit:emailGoogleRefreshToken="" bizuit:emailFrom="" bizuit:emailTo="" bizuit:emailCc="" bizuit:emailBcc="" bizuit:emailSubject="" bizuit:emailBody="" bizuit:emailBackgroundSend="false" bizuit:emailMultipleExecution="false" bizuit:emailAdvancedSettings="" bizuit:activityTracking="Both" bizuit:selectedInputSources="{&#34;parameters&#34;:[],&#34;variables&#34;:[],&#34;activities&#34;:[]}">
+      <bpmn2:documentation>Se le avisa al alumno por mail que su nota del parcial ha sido cambiada.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1mq6di9</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_019nu1h</bpmn2:outgoing>
+    </bpmn2:sendTask>
+    <bpmn2:sequenceFlow id="Flow_0031crq" sourceRef="SetEstadoNotaModificadaParcial" targetRef="Gateway_0q6tbrh" />
+    <bpmn2:scriptTask id="SetEstadoNotaModificadaParcial" name="SetEstadoNotaModificadaParcial" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>El estado del trámite se establece como "Nota modificada parcial".</bpmn2:documentation>
+      <bpmn2:incoming>Flow_019nu1h</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0031crq</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:exclusiveGateway id="Gateway_0r0hm21">
+      <bpmn2:incoming>NoCorrespondeAnularExamen</bpmn2:incoming>
+      <bpmn2:outgoing>NoHayCambioDeNota</bpmn2:outgoing>
+      <bpmn2:outgoing>SiHayCambioDeNota</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_1iejnv5" sourceRef="SetEvaluiarCambiNota" targetRef="NotificarAlumnoNoHayCambioNota" />
+    <bpmn2:scriptTask id="SetEvaluiarCambiNota" name="SetEvaluiarCambiNota" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se establece una variable para registrar que no hubo cambio de nota.</bpmn2:documentation>
+      <bpmn2:incoming>NoHayCambioDeNota</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1iejnv5</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="Flow_101hjwb" sourceRef="SetEstadoNoHayCambioNota" targetRef="Gateway_0n764bk" />
+    <bpmn2:scriptTask id="SetEstadoNoHayCambioNota" name="SetEstadoNoHayCambioNota" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se registra el estado del trámite como "No hay cambio de nota".</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1llbjkr</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_101hjwb</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sendTask id="NotificarAlumnoNoHayCambioNota" name="NotificarAlumnoNoHayCambioNota" bizuit:Performers="RVE_AminsProceso" bizuit:emailServiceType="SMTP" bizuit:emailHost="" bizuit:emailPort="25" bizuit:emailUser="" bizuit:emailPassword="" bizuit:emailRequireAuth="true" bizuit:emailDisableSSL="false" bizuit:emailGoogleClientId="" bizuit:emailGoogleClientSecret="" bizuit:emailGoogleRefreshToken="" bizuit:emailFrom="" bizuit:emailTo="" bizuit:emailCc="" bizuit:emailBcc="" bizuit:emailSubject="" bizuit:emailBody="" bizuit:emailBackgroundSend="false" bizuit:emailMultipleExecution="false" bizuit:emailAdvancedSettings="" bizuit:activityTracking="Both" bizuit:selectedInputSources="{&#34;parameters&#34;:[],&#34;variables&#34;:[],&#34;activities&#34;:[]}">
+      <bpmn2:documentation>Se le informa al alumno por mail que su nota no fue modificada.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1iejnv5</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1llbjkr</bpmn2:outgoing>
+    </bpmn2:sendTask>
+    <bpmn2:sequenceFlow id="Flow_1fd70d6" sourceRef="SetComentarioContactoAlumno" targetRef="SetEstadoContactoAlumno" />
+    <bpmn2:scriptTask id="SetComentarioContactoAlumno" name="SetComentarioContactoAlumno" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se asigna un comentario que se enviará al alumno explicando el motivo de la anulación.</bpmn2:documentation>
+      <bpmn2:incoming>SiCorrespondeAnularExamen</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1fd70d6</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="Flow_18x44ik" sourceRef="SetEstadoContactoAlumno" targetRef="NotificalAlumnoAnulacionDeExamen" />
+    <bpmn2:scriptTask id="SetEstadoContactoAlumno" name="SetEstadoContactoAlumno" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se establece el estado de la comunicación con el alumno, por ejemplo, "pendiente de notificación".</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1fd70d6</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_18x44ik</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sendTask id="NotificalAlumnoAnulacionDeExamen" name="NotificalAlumnoAnulacionDeExamen" bizuit:Performers="RVE_AminsProceso" bizuit:emailServiceType="SMTP" bizuit:emailHost="" bizuit:emailPort="25" bizuit:emailUser="" bizuit:emailPassword="" bizuit:emailRequireAuth="true" bizuit:emailDisableSSL="false" bizuit:emailGoogleClientId="" bizuit:emailGoogleClientSecret="" bizuit:emailGoogleRefreshToken="" bizuit:emailFrom="" bizuit:emailTo="" bizuit:emailCc="" bizuit:emailBcc="" bizuit:emailSubject="" bizuit:emailBody="" bizuit:emailBackgroundSend="false" bizuit:emailMultipleExecution="false" bizuit:emailAdvancedSettings="" bizuit:activityTracking="Both" bizuit:selectedInputSources="{&#34;parameters&#34;:[],&#34;variables&#34;:[],&#34;activities&#34;:[]}">
+      <bpmn2:documentation>Se le notifica al alumno por mail que su examen ha sido anulado.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_18x44ik</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0jxw58m</bpmn2:outgoing>
+    </bpmn2:sendTask>
+    <bpmn2:userTask id="ExamenesResueltos" name="ExamenesResueltos" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>La actividad &lt;b&gt;"Exámenes resueltos"&lt;/b&gt;&amp;nbsp;indica que un caso de revisión de examen específico ha llegado a su conclusión. Independientemente de si el examen fue anulado, la nota fue modificada, o no se encontró ningún error, cada uno de esos caminos de decisión termina en este punto.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0jbxuc5</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_04ther2</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:serviceTask id="CallAPIStudentRecordGet" name="CallAPIStudentRecordGet" bizuit:serviceTaskType="rest" bizuit:Performers="RVE_AminsProceso" bizuit:restUrl="" bizuit:restVerb="GET" bizuit:restBody="" bizuit:restHeaders="[]" bizuit:restTimeout="30" bizuit:resultVariable="response" bizuit:preservePreviousResults="false" bizuit:clearEmptyOutputNodes="false" bizuit:activityTracking="Both" bizuit:selectedInputSources="{&#34;parameters&#34;:[],&#34;variables&#34;:[],&#34;activities&#34;:[]}" bizuit:selectedOutputTargets="{&#34;parameters&#34;:[],&#34;variables&#34;:[]}">
+      <bpmn2:documentation>Se solicita a la API los datos registrados del alumno.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0at6ucf</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0rhfxv4</bpmn2:outgoing>
+    </bpmn2:serviceTask>
+    <bpmn2:sequenceFlow id="Flow_1m3nwer" sourceRef="SetvSolicitudNroTicket" targetRef="GetTokenRevExamen" />
+    <bpmn2:serviceTask id="GetNextNumerador" name="GetNextNumerador" bizuit:serviceTaskType="sql" bizuit:sqlSource="Actividad" bizuit:sqlConnectionString="" bizuit:sqlIsBigQuery="false" bizuit:sqlBigQueryProjectId="" bizuit:sqlBigQueryCredentials="" bizuit:sqlCommandType="Text" bizuit:sqlCommandText="" bizuit:sqlTimeout="30" bizuit:sqlParameters="[]" bizuit:sqlReturnDataType="Records" bizuit:sqlEnableMultipleExecution="false" bizuit:preservePreviousResults="false" bizuit:clearEmptyOutputNodes="false" bizuit:activityTracking="Both" bizuit:selectedInputSources="{&#34;parameters&#34;:[],&#34;variables&#34;:[],&#34;activities&#34;:[]}" bizuit:selectedOutputTargets="{&#34;parameters&#34;:[],&#34;variables&#34;:[]}" bizuit:Performers="RVE_AminsProceso">
+      <bpmn2:documentation>Se obtiene el numero de indetificación de la instancia generada en base de datos.</bpmn2:documentation>
+      <bpmn2:incoming>SiNoDuplicado</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0s4d44t</bpmn2:outgoing>
+    </bpmn2:serviceTask>
+    <bpmn2:scriptTask id="SetvSolicitudNroTicket" name="SetvSolicitudNroTicket" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se guarda en una variable el numero de ticket generado para la solicitud.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0s4d44t</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1m3nwer</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sendTask id="GetTokenRevExamen" name="GetTokenRevExamen" bizuit:Performers="RVE_AminsProceso">
+      <bpmn2:incoming>Flow_1m3nwer</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0at6ucf</bpmn2:outgoing>
+    </bpmn2:sendTask>
+    <bpmn2:scriptTask id="setvValidationCode" name="setvValidationCode" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se asigna un código de validación a la solucitud.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1pydb83</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1vp7n0r</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:scriptTask id="setvLinkFormulario" name="setvLinkFormulario" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se&amp;nbsp;&lt;b&gt;genera y almacena un enlace a un formulario&lt;/b&gt;.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1vp7n0r</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_17m4osv</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:scriptTask id="SetvReintentoRespuestaDocente1" name="SetvReintentoRespuestaDocente1" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se inicializa un contador de reintentos de respuesta del docente a "1".&amp;nbsp;</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1jsqj8k</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_096e5f0</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:intermediateCatchEvent id="ControlExpiracionDocente20hs" name="ControlExpiracionDocente20hs" bizuit:AttachmentsCollection="[]" bizuit:Performers="RVE_AminsProceso">
+      <bpmn2:documentation>Se establece un tiempo limite de 20hs para que el docente revise la solicitud.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_096e5f0</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_05u9bgv</bpmn2:outgoing>
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_0djiepi" />
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:userTask id="EnEsperaRespuestaDocente" name="EnEsperaRespuestaDocente" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>El sistema está "en espera" de que el docente responda y complete la validación. Este estado se mantiene hasta que se reciba la respuesta del docente o expire el temporizador.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_05u9bgv</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1yjhois</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:exclusiveGateway id="Gateway_1oad2i0">
+      <bpmn2:incoming>Flow_1yjhois</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_168gmgv</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_0wkvcxu</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:scriptTask id="ParsearRespuestaDocente" name="ParsearRespuestaDocente" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>El sistema &lt;b&gt;procesa y extrae la información del formulario&lt;/b&gt; o la respuesta que ha enviado el docente.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_168gmgv</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1pxxlyn</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:scriptTask id="setvObservacionRequiereRevisionDocente" name="setvObservacionRequiereRevisionDocente" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se registra una observación que justifica que la revisión no necesita pasar por un docente.</bpmn2:documentation>
+      <bpmn2:incoming>NoReqRevisionDocente</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1vps4gx</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:scriptTask id="SetvEstadoNoRequiereRevisionDocentec" name="SetvEstadoNoRequiereRevisionDocenteç" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se establece el estado de la solicitud a "No Requiere Revisión Docente".</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0zise8i</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0602fjk</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sendTask id="NotificarAlumnoTramiteFinalizadoSinRevDocente" name="NotificarAlumnoTramiteFinalizadoSinRevDocente" bizuit:Performers="RVE_AminsProceso" bizuit:emailServiceType="SMTP" bizuit:emailHost="" bizuit:emailPort="25" bizuit:emailUser="" bizuit:emailPassword="" bizuit:emailRequireAuth="true" bizuit:emailDisableSSL="false" bizuit:emailGoogleClientId="" bizuit:emailGoogleClientSecret="" bizuit:emailGoogleRefreshToken="" bizuit:emailFrom="" bizuit:emailTo="" bizuit:emailCc="" bizuit:emailBcc="" bizuit:emailSubject="" bizuit:emailBody="" bizuit:emailBackgroundSend="false" bizuit:emailMultipleExecution="false" bizuit:emailAdvancedSettings="" bizuit:activityTracking="Both" bizuit:selectedInputSources="{&#34;parameters&#34;:[],&#34;variables&#34;:[],&#34;activities&#34;:[]}">
+      <bpmn2:documentation>&lt;b&gt;Se envía una notificación al alumno&lt;/b&gt; informándole que el proceso de su revisión ha concluido.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1vps4gx</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0zise8i</bpmn2:outgoing>
+    </bpmn2:sendTask>
+    <bpmn2:scriptTask id="SetvEstadoPendienteDeTratamiento" name="SetvEstadoPendienteDeTratamiento" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>Se e&lt;b&gt;stablece el estado de un elemento como 'Pendiente de Tratamiento'&lt;/b&gt;.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_1xtcsmt</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0p9wrii</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sendTask id="NotificarAlumnoInicial" name="NotificarAlumnoInicial" bizuit:Performers="RVE_AminsProceso" bizuit:emailServiceType="SMTP" bizuit:emailHost="" bizuit:emailPort="25" bizuit:emailUser="" bizuit:emailPassword="" bizuit:emailRequireAuth="true" bizuit:emailDisableSSL="false" bizuit:emailGoogleClientId="" bizuit:emailGoogleClientSecret="" bizuit:emailGoogleRefreshToken="" bizuit:emailFrom="" bizuit:emailTo="" bizuit:emailCc="" bizuit:emailBcc="" bizuit:emailSubject="" bizuit:emailBody="" bizuit:emailBackgroundSend="false" bizuit:emailMultipleExecution="false" bizuit:emailAdvancedSettings="" bizuit:activityTracking="Both" bizuit:selectedInputSources="{&#34;parameters&#34;:[],&#34;variables&#34;:[],&#34;activities&#34;:[]}">
+      <bpmn2:documentation>Se envía a un mail al alumno, notificando que se da incio al proceso de revisión.</bpmn2:documentation>
+      <bpmn2:incoming>SendEmailInicialAlumno</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0ctu2wh</bpmn2:outgoing>
+    </bpmn2:sendTask>
+    <bpmn2:intermediateCatchEvent id="ExceptionCallAPIStudentRecordGet" name="ExceptionCallAPIStudentRecordGet" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]">
+      <bpmn2:documentation>&lt;b&gt;Se registra un error o una excepción al intentar comunicarse con la API para recuperar los datos del registro de un estudiante&lt;/b&gt;.</bpmn2:documentation>
+      <bpmn2:incoming>FalloCallAPIStudentRecordGet</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1ca2dk9</bpmn2:outgoing>
+      <bpmn2:messageEventDefinition id="MessageEventDefinition_0oq8l3s" />
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:sequenceFlow id="Flow_1ca2dk9" sourceRef="ExceptionCallAPIStudentRecordGet" targetRef="Gateway_0yuwr40" />
+    <bpmn2:startEvent id="Inicio" name="Inicio" bizuit:Performers="RVE_AminsProceso" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:documentation>El proceso comienza cuando se recibe una &lt;b&gt;Solicitud de revisión&lt;/b&gt;&amp;nbsp;de examen por parte de un estudiante.</bpmn2:documentation>
+      <bpmn2:outgoing>Flow_0013ufi</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:intermediateCatchEvent id="ForcePersistence" name="ForcePersistence" bizuit:AttachmentsCollection="[]" bizuit:Performers="RVE_AminsProceso">
+      <bpmn2:incoming>Flow_0013ufi</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1amwyyx</bpmn2:outgoing>
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_0fmb98o" />
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:exclusiveGateway id="Gateway_14kpvh2">
+      <bpmn2:incoming>Flow_1d1r2p0</bpmn2:incoming>
+      <bpmn2:outgoing>SiDuplicado</bpmn2:outgoing>
+      <bpmn2:outgoing>SiNoDuplicado</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_19zeea8">
+      <bpmndi:BPMNShape id="Participant_0tvsd1u_di" bpmnElement="RVE_RevisionDeExamen" isHorizontal="true">
+        <dc:Bounds x="-420" y="-200" width="6640" height="900" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1rlu3o1_di" bpmnElement="RVE_AminsProceso" isHorizontal="true">
+        <dc:Bounds x="-390" y="-200" width="6610" height="900" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_14kpvh2_di" bpmnElement="Gateway_14kpvh2" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="385" y="-75" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_10k8c64_di" bpmnElement="Gateway_10k8c64" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="1255" y="35" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0q7zddz_di" bpmnElement="ParsearResultadoAPIStudentRecordGet" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="1440" y="20" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_16fnmcy_di" bpmnElement="_99_Casos_Duplicados" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="2450" y="-170" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1cr86uh_di" bpmnElement="Gateway_1cr86uh" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="2484" y="255" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0q6tbrh_di" bpmnElement="Gateway_0q6tbrh" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="5005" y="251" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0n764bk_di" bpmnElement="Gateway_0n764bk" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="5142" y="251" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1rst56e_di" bpmnElement="Gateway_1rst56e" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="5271" y="251" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_13zei4a_di" bpmnElement="Fin" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="5952" y="258" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="5963" y="301" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_169f2jn_di" bpmnElement="CheckDuplicados" bioc:stroke="#ffb300" bioc:fill="#fff9c4" color:background-color="#fff9c4" color:border-color="#ffb300">
+        <dc:Bounds x="220" y="-90" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_132htv7_di" bpmnElement="SetvSolicitud" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="50" y="-90" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1aa8ntz_di" bpmnElement="Gateway_1aa8ntz" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="2285" y="255" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0z189pq_di" bpmnElement="NuevoCaso" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="2121" y="240" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1b2n2it_di" bpmnElement="SetvLegajo" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="1440" y="180" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0n5guvx_di" bpmnElement="Gateway_0n5guvx" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="1625" y="195" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1ybmlcj_di" bpmnElement="Gateway_1ybmlcj" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="1825" y="255" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_11vpk80_di" bpmnElement="NotificarDocenteAsignado" bioc:stroke="#008b8b" bioc:fill="#e0ffff" color:background-color="#e0ffff" color:border-color="#008b8b">
+        <dc:Bounds x="2740" y="260" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13zl7ci_di" bpmnElement="setvEstadoValidacionDocente" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="2890" y="260" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_09oyl0p_di" bpmnElement="EvaluarRespuestaDocente" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="3730" y="260" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0thalr5_di" bpmnElement="Gateway_0thalr5" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="5375" y="251" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0yuwr40_di" bpmnElement="Gateway_0yuwr40" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="5695" y="251" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ggk3y3_di" bpmnElement="setObservacionEvaluacionAnalista" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="4150" y="416" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0tba0ih_di" bpmnElement="NotificarAlumnoTramiteCerradoNoPoseeError" bioc:stroke="#008b8b" bioc:fill="#e0ffff" color:background-color="#e0ffff" color:border-color="#008b8b">
+        <dc:Bounds x="4340" y="416" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1xtu43c_di" bpmnElement="SetEstadoCerradoNoPoseeError" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="4540" y="416" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1l0r26t_di" bpmnElement="Gateway_1l0r26t" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="3915" y="275" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0iszcbv_di" bpmnElement="Gateway_0iszcbv" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="4065" y="75" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_08flijj_di" bpmnElement="Gateway_08flijj" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="4395" y="235" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1uv5nz0_di" bpmnElement="SetEvaluarcambioNotaFinaloLibre" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="4560" y="290" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_17jo2oy_di" bpmnElement="NotificarAlumnoCambioNotaFinalOLibre" bioc:stroke="#008b8b" bioc:fill="#e0ffff" color:background-color="#e0ffff" color:border-color="#008b8b">
+        <dc:Bounds x="4710" y="290" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0x92bdc_di" bpmnElement="SetEstadoNotaModificadaFinaloLibre" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="4870" y="290" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1j60mq5_di" bpmnElement="SetEvaluarCambioNotaParcial" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="4560" y="170" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_11xgqel_di" bpmnElement="NotificarAlumnoCambioNotaParcial" bioc:stroke="#008b8b" bioc:fill="#e0ffff" color:background-color="#e0ffff" color:border-color="#008b8b">
+        <dc:Bounds x="4710" y="170" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00tmndl_di" bpmnElement="SetEstadoNotaModificadaParcial" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="4870" y="170" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0r0hm21_di" bpmnElement="Gateway_0r0hm21" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="4245" y="155" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1q3ir1c_di" bpmnElement="SetEvaluiarCambiNota" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="4400" y="20" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12w9lwk_di" bpmnElement="SetEstadoNoHayCambioNota" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="4880" y="20" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1gc8ocl_di" bpmnElement="NotificarAlumnoNoHayCambioNota" bioc:stroke="#008b8b" bioc:fill="#e0ffff" color:background-color="#e0ffff" color:border-color="#008b8b">
+        <dc:Bounds x="4650" y="20" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00cf38e_di" bpmnElement="SetComentarioContactoAlumno" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="4300" y="-100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1v7k2t6_di" bpmnElement="SetEstadoContactoAlumno" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="4670" y="-100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_124ncxm_di" bpmnElement="NotificalAlumnoAnulacionDeExamen" bioc:stroke="#008b8b" bioc:fill="#e0ffff" color:background-color="#e0ffff" color:border-color="#008b8b">
+        <dc:Bounds x="5050" y="-100" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1wlj6c4_di" bpmnElement="ExamenesResueltos" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="5519" y="236" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0lwdjtu_di" bpmnElement="CallAPIStudentRecordGet" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
+        <dc:Bounds x="1070" y="20" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0k9uenq_di" bpmnElement="GetNextNumerador" bioc:stroke="#ffb300" bioc:fill="#fff9c4" color:background-color="#fff9c4" color:border-color="#ffb300">
+        <dc:Bounds x="550" y="20" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1fxnx6k_di" bpmnElement="SetvSolicitudNroTicket" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="730" y="20" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_19y07pf_di" bpmnElement="GetTokenRevExamen" bioc:stroke="#008b8b" bioc:fill="#e0ffff" color:background-color="#e0ffff" color:border-color="#008b8b">
+        <dc:Bounds x="900" y="20" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0j79135_di" bpmnElement="setvValidationCode" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="2590" y="60" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_122jgk2_di" bpmnElement="setvLinkFormulario" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="2740" y="60" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_112rj73_di" bpmnElement="SetvReintentoRespuestaDocente1" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="3050" y="58" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_02sjckc_di" bpmnElement="ControlExpiracionDocente20hs">
+        <dc:Bounds x="3082" y="282" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3060" y="325" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0s7lumi_di" bpmnElement="EnEsperaRespuestaDocente" bioc:stroke="#527dad" bioc:fill="#e6f2ff" color:background-color="#e6f2ff" color:border-color="#527dad">
+        <dc:Bounds x="3221" y="260" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1oad2i0_di" bpmnElement="Gateway_1oad2i0" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="3405" y="275" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1klymc8_di" bpmnElement="ParsearRespuestaDocente" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="3530" y="260" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1lf9ry1_di" bpmnElement="setvObservacionRequiereRevisionDocente" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="2459" y="500" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1pp4tnk_di" bpmnElement="SetvEstadoNoRequiereRevisionDocentec" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="3040" y="500" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1cwz9bl_di" bpmnElement="NotificarAlumnoTramiteFinalizadoSinRevDocente" bioc:stroke="#008b8b" bioc:fill="#e0ffff" color:background-color="#e0ffff" color:border-color="#008b8b">
+        <dc:Bounds x="2730" y="500" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1fupgw3_di" bpmnElement="SetvEstadoPendienteDeTratamiento" bioc:stroke="#8b008b" bioc:fill="#dda0dd" color:background-color="#dda0dd" color:border-color="#8b008b">
+        <dc:Bounds x="1930" y="240" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1jj132r_di" bpmnElement="NotificarAlumnoInicial" bioc:stroke="#008b8b" bioc:fill="#e0ffff" color:background-color="#e0ffff" color:border-color="#008b8b">
+        <dc:Bounds x="1800" y="60" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0rh5gtr_di" bpmnElement="ExceptionCallAPIStudentRecordGet" bioc:stroke="#831311" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#831311">
+        <dc:Bounds x="1702" y="602" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1677" y="645" width="87" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="Inicio" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="-228" y="-68" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-223" y="-25" width="27" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1xcoxxq_di" bpmnElement="ForcePersistence">
+        <dc:Bounds x="-88" y="-68" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-113" y="-25" width="87" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0013ufi_di" bpmnElement="Flow_0013ufi">
+        <di:waypoint x="-192" y="-50" />
+        <di:waypoint x="-88" y="-50" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1amwyyx_di" bpmnElement="Flow_1amwyyx">
+        <di:waypoint x="-52" y="-50" />
+        <di:waypoint x="50" y="-50" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1d1r2p0_di" bpmnElement="Flow_1d1r2p0">
+        <di:waypoint x="320" y="-50" />
+        <di:waypoint x="385" y="-50" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lo8pso_di" bpmnElement="SiDuplicado">
+        <di:waypoint x="410" y="-75" />
+        <di:waypoint x="410" y="-130" />
+        <di:waypoint x="2450" y="-130" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1409" y="-148" width="60" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01mr0of_di" bpmnElement="SiNoDuplicado">
+        <di:waypoint x="410" y="-25" />
+        <di:waypoint x="410" y="60" />
+        <di:waypoint x="550" y="60" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="429" y="33" width="75" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0s4d44t_di" bpmnElement="Flow_0s4d44t">
+        <di:waypoint x="650" y="60" />
+        <di:waypoint x="730" y="60" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0at6ucf_di" bpmnElement="Flow_0at6ucf">
+        <di:waypoint x="1000" y="60" />
+        <di:waypoint x="1070" y="60" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0rhfxv4_di" bpmnElement="Flow_0rhfxv4">
+        <di:waypoint x="1170" y="60" />
+        <di:waypoint x="1255" y="60" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gqyiu0_di" bpmnElement="CallAPIStudentRecordGetEsOK">
+        <di:waypoint x="1305" y="60" />
+        <di:waypoint x="1440" y="60" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1332" y="26" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12bui17_di" bpmnElement="Flow_12bui17">
+        <di:waypoint x="1490" y="100" />
+        <di:waypoint x="1490" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06ti9su_di" bpmnElement="SendEmailInicialAlumno">
+        <di:waypoint x="1650" y="195" />
+        <di:waypoint x="1650" y="100" />
+        <di:waypoint x="1800" y="100" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1670" y="63" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0d9rej0_di" bpmnElement="DoNotSendEmailInicial_1">
+        <di:waypoint x="1650" y="245" />
+        <di:waypoint x="1650" y="280" />
+        <di:waypoint x="1825" y="280" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1675" y="242" width="90" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ctu2wh_di" bpmnElement="Flow_0ctu2wh">
+        <di:waypoint x="1850" y="140" />
+        <di:waypoint x="1850" y="255" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xtcsmt_di" bpmnElement="Flow_1xtcsmt">
+        <di:waypoint x="1875" y="280" />
+        <di:waypoint x="1930" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1e7w8lc_di" bpmnElement="FalloCallAPIStudentRecordGet">
+        <di:waypoint x="1280" y="85" />
+        <di:waypoint x="1280" y="620" />
+        <di:waypoint x="1702" y="620" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1337" y="574" width="78" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1607mnk_di" bpmnElement="Flow_1607mnk">
+        <di:waypoint x="2221" y="280" />
+        <di:waypoint x="2285" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0uy8m6g_di" bpmnElement="SiReqRevisionDocente">
+        <di:waypoint x="2335" y="280" />
+        <di:waypoint x="2484" y="280" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2359" y="252" width="86" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gdtm16_di" bpmnElement="NoReqRevisionDocente">
+        <di:waypoint x="2310" y="305" />
+        <di:waypoint x="2310" y="540" />
+        <di:waypoint x="2459" y="540" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2329" y="506" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1pydb83_di" bpmnElement="Flow_1pydb83">
+        <di:waypoint x="2534" y="280" />
+        <di:waypoint x="2640" y="280" />
+        <di:waypoint x="2640" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01zx19t_di" bpmnElement="Flow_01zx19t">
+        <di:waypoint x="2840" y="300" />
+        <di:waypoint x="2890" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05u9bgv_di" bpmnElement="Flow_05u9bgv">
+        <di:waypoint x="3118" y="300" />
+        <di:waypoint x="3221" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wkvcxu_di" bpmnElement="Flow_0wkvcxu">
+        <di:waypoint x="3430" y="275" />
+        <di:waypoint x="3430" y="-30" />
+        <di:waypoint x="2509" y="-30" />
+        <di:waypoint x="2509" y="255" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1yjhois_di" bpmnElement="Flow_1yjhois">
+        <di:waypoint x="3321" y="300" />
+        <di:waypoint x="3405" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1pxxlyn_di" bpmnElement="Flow_1pxxlyn">
+        <di:waypoint x="3630" y="300" />
+        <di:waypoint x="3730" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_168gmgv_di" bpmnElement="Flow_168gmgv">
+        <di:waypoint x="3455" y="300" />
+        <di:waypoint x="3530" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1nkp5f2_di" bpmnElement="Flow_1nkp5f2">
+        <di:waypoint x="3830" y="300" />
+        <di:waypoint x="3915" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0low8dl_di" bpmnElement="SiHayErrorEnExamen">
+        <di:waypoint x="3940" y="275" />
+        <di:waypoint x="3940" y="100" />
+        <di:waypoint x="4065" y="100" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3957" y="66" width="79" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0yr03eq_di" bpmnElement="NoHayErrorEnExamen">
+        <di:waypoint x="3940" y="325" />
+        <di:waypoint x="3940" y="456" />
+        <di:waypoint x="4150" y="456" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4000" y="419" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1yj13v6_di" bpmnElement="SiCorrespondeAnularExamen">
+        <di:waypoint x="4090" y="75" />
+        <di:waypoint x="4090" y="-60" />
+        <di:waypoint x="4300" y="-60" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4115" y="-97" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mgvwuq_di" bpmnElement="NoCorrespondeAnularExamen">
+        <di:waypoint x="4090" y="125" />
+        <di:waypoint x="4090" y="180" />
+        <di:waypoint x="4245" y="180" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4110" y="146" width="88" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1r6u2b4_di" bpmnElement="NoHayCambioDeNota">
+        <di:waypoint x="4270" y="155" />
+        <di:waypoint x="4270" y="60" />
+        <di:waypoint x="4400" y="60" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4275" y="33" width="83" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0v8cy9w_di" bpmnElement="SiHayCambioDeNota">
+        <di:waypoint x="4270" y="205" />
+        <di:waypoint x="4270" y="260" />
+        <di:waypoint x="4395" y="260" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4283" y="265" width="84" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hnfwqb_di" bpmnElement="SiExamenParcial">
+        <di:waypoint x="4420" y="235" />
+        <di:waypoint x="4420" y="210" />
+        <di:waypoint x="4560" y="210" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4423" y="195" width="84" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bs3u53_di" bpmnElement="SiExamenFinalOLibre">
+        <di:waypoint x="4420" y="285" />
+        <di:waypoint x="4420" y="330" />
+        <di:waypoint x="4560" y="330" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4435" y="295" width="88" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_019nu1h_di" bpmnElement="Flow_019nu1h">
+        <di:waypoint x="4810" y="210" />
+        <di:waypoint x="4870" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0uzi2is_di" bpmnElement="Flow_0uzi2is">
+        <di:waypoint x="4810" y="330" />
+        <di:waypoint x="4870" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1h8of4l_di" bpmnElement="Flow_1h8of4l">
+        <di:waypoint x="5055" y="276" />
+        <di:waypoint x="5142" y="276" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1llbjkr_di" bpmnElement="Flow_1llbjkr">
+        <di:waypoint x="4750" y="60" />
+        <di:waypoint x="4880" y="60" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jxw58m_di" bpmnElement="Flow_0jxw58m">
+        <di:waypoint x="5150" y="-60" />
+        <di:waypoint x="5296" y="-60" />
+        <di:waypoint x="5296" y="251" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1m1nmnx_di" bpmnElement="Flow_1m1nmnx">
+        <di:waypoint x="4440" y="456" />
+        <di:waypoint x="4540" y="456" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hu0c58_di" bpmnElement="Flow_0hu0c58">
+        <di:waypoint x="5192" y="276" />
+        <di:waypoint x="5271" y="276" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04snamt_di" bpmnElement="Flow_04snamt">
+        <di:waypoint x="5321" y="276" />
+        <di:waypoint x="5375" y="276" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04ther2_di" bpmnElement="Flow_04ther2">
+        <di:waypoint x="5619" y="276" />
+        <di:waypoint x="5695" y="276" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1g7lt7t_di" bpmnElement="Flow_1g7lt7t">
+        <di:waypoint x="2550" y="-130" />
+        <di:waypoint x="5720" y="-130" />
+        <di:waypoint x="5720" y="251" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jm61li_di" bpmnElement="Flow_0jm61li">
+        <di:waypoint x="5745" y="276" />
+        <di:waypoint x="5952" y="276" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1yklvxi_di" bpmnElement="Flow_1yklvxi">
+        <di:waypoint x="150" y="-50" />
+        <di:waypoint x="220" y="-50" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_019gkug_di" bpmnElement="Flow_019gkug">
+        <di:waypoint x="1540" y="220" />
+        <di:waypoint x="1625" y="220" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0p9wrii_di" bpmnElement="Flow_0p9wrii">
+        <di:waypoint x="2030" y="280" />
+        <di:waypoint x="2121" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vp7n0r_di" bpmnElement="Flow_1vp7n0r">
+        <di:waypoint x="2690" y="100" />
+        <di:waypoint x="2740" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17m4osv_di" bpmnElement="Flow_17m4osv">
+        <di:waypoint x="2790" y="140" />
+        <di:waypoint x="2790" y="260" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jsqj8k_di" bpmnElement="Flow_1jsqj8k">
+        <di:waypoint x="2940" y="260" />
+        <di:waypoint x="2940" y="98" />
+        <di:waypoint x="3050" y="98" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_096e5f0_di" bpmnElement="Flow_096e5f0">
+        <di:waypoint x="3100" y="138" />
+        <di:waypoint x="3100" y="282" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vps4gx_di" bpmnElement="Flow_1vps4gx">
+        <di:waypoint x="2559" y="540" />
+        <di:waypoint x="2730" y="540" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zise8i_di" bpmnElement="Flow_0zise8i">
+        <di:waypoint x="2830" y="540" />
+        <di:waypoint x="3040" y="540" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jbxuc5_di" bpmnElement="Flow_0jbxuc5">
+        <di:waypoint x="5425" y="276" />
+        <di:waypoint x="5519" y="276" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0602fjk_di" bpmnElement="Flow_0602fjk">
+        <di:waypoint x="3140" y="540" />
+        <di:waypoint x="5400" y="540" />
+        <di:waypoint x="5400" y="301" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1h1as6b_di" bpmnElement="Flow_1h1as6b">
+        <di:waypoint x="4250" y="456" />
+        <di:waypoint x="4340" y="456" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1sq9ckr_di" bpmnElement="Flow_1sq9ckr">
+        <di:waypoint x="4640" y="456" />
+        <di:waypoint x="5296" y="456" />
+        <di:waypoint x="5296" y="301" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ruot6f_di" bpmnElement="Flow_1ruot6f">
+        <di:waypoint x="4660" y="330" />
+        <di:waypoint x="4710" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1wge3x7_di" bpmnElement="Flow_1wge3x7">
+        <di:waypoint x="4970" y="330" />
+        <di:waypoint x="5030" y="330" />
+        <di:waypoint x="5030" y="301" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1mq6di9_di" bpmnElement="Flow_1mq6di9">
+        <di:waypoint x="4660" y="210" />
+        <di:waypoint x="4710" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0031crq_di" bpmnElement="Flow_0031crq">
+        <di:waypoint x="4970" y="210" />
+        <di:waypoint x="5030" y="210" />
+        <di:waypoint x="5030" y="251" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1iejnv5_di" bpmnElement="Flow_1iejnv5">
+        <di:waypoint x="4500" y="60" />
+        <di:waypoint x="4650" y="60" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_101hjwb_di" bpmnElement="Flow_101hjwb">
+        <di:waypoint x="4980" y="60" />
+        <di:waypoint x="5167" y="60" />
+        <di:waypoint x="5167" y="251" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fd70d6_di" bpmnElement="Flow_1fd70d6">
+        <di:waypoint x="4400" y="-60" />
+        <di:waypoint x="4670" y="-60" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18x44ik_di" bpmnElement="Flow_18x44ik">
+        <di:waypoint x="4770" y="-60" />
+        <di:waypoint x="5050" y="-60" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1m3nwer_di" bpmnElement="Flow_1m3nwer">
+        <di:waypoint x="830" y="60" />
+        <di:waypoint x="900" y="60" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ca2dk9_di" bpmnElement="Flow_1ca2dk9">
+        <di:waypoint x="1738" y="620" />
+        <di:waypoint x="5720" y="620" />
+        <di:waypoint x="5720" y="301" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

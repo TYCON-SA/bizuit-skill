@@ -1,0 +1,13 @@
+# Generado por bizuit-sdd wizard. Excluido de git.
+active: arielsch
+environments:
+  arielsch:
+    url: "https://test.bizuit.com/arielschBIZUITDashboardAPI/api"
+    bpmn_url: "https://test.bizuit.com/arielschBIZUITBPMNEditorBackEnd/api"
+    user: "admin"
+    org: "arielsch"
+  ues21qa:
+    url: "https://arcb-bdes01.ues21.edu.ar/Bizuitapi-qa/api"
+    user: "admin"
+    org: "UES21QA"
+# password: nunca se guarda — solo por sesión

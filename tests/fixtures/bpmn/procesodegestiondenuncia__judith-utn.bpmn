@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_02e36d4">
+    <bpmn2:participant id="Gestionar_Denuncia_Ambiental" name="Gestionar Denuncia Ambiental" processRef="Process_1" bizuit:AttachmentsCollection="[]" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_1" name="ProcesoDeGestionDenuncia" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="Judith UTN">
+    <bpmn2:laneSet id="LaneSet_1ua7tok">
+      <bpmn2:lane id="RecepcionistaDenuncia" name="RecepcionistaDenuncia" bizuit:Performers="RecepcionistaDenuncia" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Denuncia_Vecino</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Recibir_denuncia</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Validar_Datos_de_Denunciate</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Resultado_validacion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1btu07x</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1cdpusj</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Asentar_Expediente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Expediente_Denuncia</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="JefePolicial" name="JefePolicial" bizuit:Performers="JefePolicial" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Ingresar_nuevo_usuario</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_064sze1</bpmn2:flowNodeRef>
+        <bpmn2:childLaneSet id="LaneSet_027lt1m" />
+      </bpmn2:lane>
+      <bpmn2:lane id="Lane_0hq6lzy">
+        <bpmn2:flowNodeRef>Activity_0dokwx5</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:startEvent id="Denuncia_Vecino" name="Denuncia Vecino" bizuit:Performers="RecepcionistaDenuncia" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:outgoing>Flow_0dwpuwv</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:task id="Recibir_denuncia" name="Recibir denuncia" bizuit:Performers="RecepcionistaDenuncia" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_0dwpuwv</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_016lxn9</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0dwpuwv" sourceRef="Denuncia_Vecino" targetRef="Recibir_denuncia" />
+    <bpmn2:task id="Validar_Datos_de_Denunciate" name="Validar Datos de Denunciate" bizuit:Performers="RecepcionistaDenuncia" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_016lxn9</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_13xt75a</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1iz8c99">
+        <bpmn2:targetRef>Contactos</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_016lxn9" sourceRef="Recibir_denuncia" targetRef="Validar_Datos_de_Denunciate" />
+    <bpmn2:exclusiveGateway id="Resultado_validacion" name="Resultado validación" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_13xt75a</bpmn2:incoming>
+      <bpmn2:outgoing>Ya_esta_registrado</bpmn2:outgoing>
+      <bpmn2:outgoing>Es_usuario_nuevo</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_08i5fqn</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_13xt75a" sourceRef="Validar_Datos_de_Denunciate" targetRef="Resultado_validacion" />
+    <bpmn2:task id="Activity_1btu07x" bizuit:Performers="RecepcionistaDenuncia">
+      <bpmn2:incoming>Ya_esta_registrado</bpmn2:incoming>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Ya_esta_registrado" name="Ya está registrado" sourceRef="Resultado_validacion" targetRef="Activity_1btu07x" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Es_usuario_nuevo" name="Es usuario nuevo" sourceRef="Resultado_validacion" targetRef="Ingresar_nuevo_usuario" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:exclusiveGateway id="Gateway_1cdpusj">
+      <bpmn2:incoming>Flow_05z790q</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0lw6ssg</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_05z790q" sourceRef="Ingresar_nuevo_usuario" targetRef="Gateway_1cdpusj" />
+    <bpmn2:dataStoreReference id="Contactos" name="Contactos" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:task id="Asentar_Expediente" name="Asentar Expediente" bizuit:Performers="RecepcionistaDenuncia">
+      <bpmn2:incoming>Flow_0lw6ssg</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1fyqisw</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_1l69n5o</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0olvfsq">
+        <bpmn2:targetRef>Expedientes</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1haesli">
+        <bpmn2:targetRef>Ficha_Expediente</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0lw6ssg" sourceRef="Gateway_1cdpusj" targetRef="Asentar_Expediente" />
+    <bpmn2:endEvent id="Expediente_Denuncia" name="Expediente Denuncia" bizuit:Performers="RecepcionistaDenuncia" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1fyqisw</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_1fyqisw" sourceRef="Asentar_Expediente" targetRef="Expediente_Denuncia" />
+    <bpmn2:dataStoreReference id="Expedientes" name="Expedientes" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObjectReference id="Ficha_Expediente" name="Ficha Expediente" dataObjectRef="DataObject_1do2p5g" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_1do2p5g" />
+    <bpmn2:task id="Ingresar_nuevo_usuario" name="Ingresar nuevo usuario" bizuit:Performers="JefePolicial" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Es_usuario_nuevo</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_05z790q</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1pqg2s2">
+        <bpmn2:targetRef>Contactos</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1l69n5o" sourceRef="Asentar_Expediente" targetRef="Event_064sze1" />
+    <bpmn2:endEvent id="Event_064sze1" bizuit:Performers="JefePolicial">
+      <bpmn2:incoming>Flow_1l69n5o</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_08i5fqn" sourceRef="Resultado_validacion" targetRef="Activity_0dokwx5" />
+    <bpmn2:transaction id="Activity_0dokwx5">
+      <bpmn2:incoming>Flow_08i5fqn</bpmn2:incoming>
+      <bpmn2:startEvent id="Event_06u2hqf">
+        <bpmn2:outgoing>Flow_0a02bux</bpmn2:outgoing>
+      </bpmn2:startEvent>
+      <bpmn2:task id="Activity_1ypt04q">
+        <bpmn2:incoming>Flow_0a02bux</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0zrpdeb</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0a02bux" sourceRef="Event_06u2hqf" targetRef="Activity_1ypt04q" />
+      <bpmn2:sequenceFlow id="Flow_0zrpdeb" sourceRef="Activity_1ypt04q" targetRef="Event_1md9awy" />
+      <bpmn2:endEvent id="Event_1md9awy">
+        <bpmn2:incoming>Flow_0zrpdeb</bpmn2:incoming>
+        <bpmn2:cancelEventDefinition id="CancelEventDefinition_05krh3r" />
+      </bpmn2:endEvent>
+    </bpmn2:transaction>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_02e36d4">
+      <bpmndi:BPMNShape id="Participant_0hqpfvd_di" bpmnElement="Gestionar_Denuncia_Ambiental" isHorizontal="true">
+        <dc:Bounds x="-132" y="50" width="1420" height="980" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_01eiwrs_di" bpmnElement="JefePolicial" isHorizontal="true">
+        <dc:Bounds x="-102" y="420" width="1390" height="290" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_11vsli2_di" bpmnElement="RecepcionistaDenuncia" isHorizontal="true">
+        <dc:Bounds x="-102" y="50" width="1390" height="370" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0hq6lzy_di" bpmnElement="Lane_0hq6lzy" isHorizontal="true">
+        <dc:Bounds x="-102" y="710" width="1390" height="320" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="Denuncia_Vecino" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="-28" y="112" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-53" y="155" width="86" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13takfa_di" bpmnElement="Recibir_denuncia">
+        <dc:Bounds x="60" y="90" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1lhyfl6_di" bpmnElement="Validar_Datos_de_Denunciate">
+        <dc:Bounds x="220" y="90" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_17p063k_di" bpmnElement="Resultado_validacion" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="385" y="105" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="384" y="67.5" width="52" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1btu07x_di" bpmnElement="Activity_1btu07x">
+        <dc:Bounds x="500" y="90" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1cdpusj_di" bpmnElement="Gateway_1cdpusj" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="845" y="105" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0s2wlt6_di" bpmnElement="Contactos">
+        <dc:Bounds x="245" y="235" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="244" y="292" width="52" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ji5tb6_di" bpmnElement="Asentar_Expediente">
+        <dc:Bounds x="970" y="90" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0u92smd_di" bpmnElement="Expediente_Denuncia" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="1152" y="112" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1142" y="155" width="56" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0udrpe5_di" bpmnElement="Expedientes">
+        <dc:Bounds x="995" y="215" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="989" y="272" width="62" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1s1vdjs_di" bpmnElement="Ficha_Expediente">
+        <dc:Bounds x="1142" y="235" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1117" y="292" width="87" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1h0y0eh_di" bpmnElement="Ingresar_nuevo_usuario">
+        <dc:Bounds x="500" y="430" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_064sze1_di" bpmnElement="Event_064sze1" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="1002" y="452" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0l4ydgf_di" bpmnElement="Activity_0dokwx5" isExpanded="true" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="500" y="740" width="350" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_06u2hqf_di" bpmnElement="Event_06u2hqf" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="540" y="822" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ypt04q_di" bpmnElement="Activity_1ypt04q">
+        <dc:Bounds x="630" y="800" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_09pa8xz_di" bpmnElement="Event_1md9awy" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="792" y="822" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0a02bux_di" bpmnElement="Flow_0a02bux">
+        <di:waypoint x="576" y="840" />
+        <di:waypoint x="630" y="840" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zrpdeb_di" bpmnElement="Flow_0zrpdeb">
+        <di:waypoint x="730" y="840" />
+        <di:waypoint x="792" y="840" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dwpuwv_di" bpmnElement="Flow_0dwpuwv">
+        <di:waypoint x="8" y="130" />
+        <di:waypoint x="60" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_016lxn9_di" bpmnElement="Flow_016lxn9">
+        <di:waypoint x="160" y="130" />
+        <di:waypoint x="220" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13xt75a_di" bpmnElement="Flow_13xt75a">
+        <di:waypoint x="320" y="130" />
+        <di:waypoint x="385" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0o4u7k7_di" bpmnElement="Ya_esta_registrado">
+        <di:waypoint x="435" y="130" />
+        <di:waypoint x="500" y="130" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="441" y="112" width="53" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0oeatje_di" bpmnElement="Es_usuario_nuevo">
+        <di:waypoint x="410" y="155" />
+        <di:waypoint x="410" y="470" />
+        <di:waypoint x="500" y="470" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="382" y="322" width="87" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05z790q_di" bpmnElement="Flow_05z790q">
+        <di:waypoint x="600" y="470" />
+        <di:waypoint x="870" y="470" />
+        <di:waypoint x="870" y="155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lw6ssg_di" bpmnElement="Flow_0lw6ssg">
+        <di:waypoint x="895" y="130" />
+        <di:waypoint x="970" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fyqisw_di" bpmnElement="Flow_1fyqisw">
+        <di:waypoint x="1070" y="130" />
+        <di:waypoint x="1152" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1l69n5o_di" bpmnElement="Flow_1l69n5o">
+        <di:waypoint x="970" y="130" />
+        <di:waypoint x="950" y="130" />
+        <di:waypoint x="950" y="470" />
+        <di:waypoint x="1002" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08i5fqn_di" bpmnElement="Flow_08i5fqn">
+        <di:waypoint x="435" y="130" />
+        <di:waypoint x="468" y="130" />
+        <di:waypoint x="468" y="840" />
+        <di:waypoint x="500" y="840" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1iz8c99_di" bpmnElement="DataOutputAssociation_1iz8c99">
+        <di:waypoint x="272" y="170" />
+        <di:waypoint x="274" y="235" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0olvfsq_di" bpmnElement="DataOutputAssociation_0olvfsq">
+        <di:waypoint x="1020" y="170" />
+        <di:waypoint x="1020" y="215" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1haesli_di" bpmnElement="DataOutputAssociation_1haesli">
+        <di:waypoint x="1064" y="169" />
+        <di:waypoint x="1142" y="237" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1pqg2s2_di" bpmnElement="DataOutputAssociation_1pqg2s2">
+        <di:waypoint x="500" y="478" />
+        <di:waypoint x="290" y="510" />
+        <di:waypoint x="276" y="285" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

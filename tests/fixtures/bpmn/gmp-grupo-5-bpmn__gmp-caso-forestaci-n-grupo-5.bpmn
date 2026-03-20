@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_0thlc23">
+    <bpmn2:participant id="Mantenimiento_de_espacios_verdes" name="Mantenimiento de espacios verdes" processRef="GMP_Grupo_5_BPMN" bizuit:AttachmentsCollection="[]" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="GMP_Grupo_5_BPMN" name="GMP Grupo 5 - BPMN" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="GMP - Caso Forestación (Grupo 5)" bizuit:createdBy="mascuka" bizuit:createdDate="2025-10-02T23:59:26.549Z" bizuit:lastEditedBy="mascuka" bizuit:lastEditedDate="2025-10-02T23:59:26.549Z">
+    <bpmn2:laneSet id="LaneSet_00bwmho">
+      <bpmn2:lane id="Responsable_de_operaciones" name="Responsable de operaciones" bizuit:Performers="Responsable de operaciones" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Inicio_de_mantenimiento_por_licitacion_aprobada</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Visita_y_evaluacion_del_terreno_e_infraestructura</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Definir_plan_de_mantenimiento</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Hay_disponibilidad</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Verificar_disponibilidad_de_recursos</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Compras_y_abastecimiento</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Esperar_pedido_de_compra</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Asignar_recursos_humanos_herramientas_y_materiales</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Mantenimiento_de_espacio_verde_completado</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Informar_trabajo_realizado_para_cobro</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Generar_informe_de_trabajo_realizado</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="Personal_de_mantenimiento" name="Personal de mantenimiento" bizuit:Performers="Personal de mantenimiento" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>Realizar_inspeccion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Realizar_ajustes_de_planificacion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Realizar_tareas_de_mantenimiento</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:sequenceFlow id="Flow_1fmq1k8" sourceRef="Visita_y_evaluacion_del_terreno_e_infraestructura" targetRef="Definir_plan_de_mantenimiento" />
+    <bpmn2:sequenceFlow id="Flow_176toma" sourceRef="Inicio_de_mantenimiento_por_licitacion_aprobada" targetRef="Visita_y_evaluacion_del_terreno_e_infraestructura" />
+    <bpmn2:dataObjectReference id="Evaluacion_del_espacio_verde" name="Evaluación del espacio verde" dataObjectRef="DataObject_1ejugdm" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_1ejugdm" />
+    <bpmn2:startEvent id="Inicio_de_mantenimiento_por_licitacion_aprobada" name="Inicio de mantenimiento por licitación aprobada" bizuit:AttachmentsCollection="[]" bizuit:Performers="Responsable de operaciones" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:outgoing>Flow_176toma</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:task id="Visita_y_evaluacion_del_terreno_e_infraestructura" name="Visita y evaluación del terreno e infraestructura" bizuit:AttachmentsCollection="[]" bizuit:Performers="Responsable de operaciones" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_176toma</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1fmq1k8</bpmn2:outgoing>
+      <bpmn2:property id="Property_0ad0dyc" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_03pa45l">
+        <bpmn2:sourceRef>Licitaciones_de_espacios_verdes</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_0ad0dyc</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_19o8gj4">
+        <bpmn2:targetRef>Evaluacion_del_espacio_verde</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:dataStoreReference id="Licitaciones_de_espacios_verdes" name="Licitaciones de espacios verdes" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:task id="Definir_plan_de_mantenimiento" name="Definir plan de mantenimiento" bizuit:Performers="Responsable de operaciones" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:LoopConditions="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;join&#34;:null,&#34;children&#34;:[{&#34;type&#34;:&#34;condition&#34;,&#34;join&#34;:null,&#34;source&#34;:{&#34;type&#34;:&#34;constant&#34;,&#34;value&#34;:&#34;Plan de mantenimiento&#34;,&#34;subElementPath&#34;:&#34;&#34;},&#34;comparator&#34;:&#34;==&#34;,&#34;target&#34;:{&#34;type&#34;:&#34;constant&#34;,&#34;value&#34;:&#34;Aprobado&#34;,&#34;subElementPath&#34;:&#34;&#34;}}]}]}">
+      <bpmn2:incoming>Flow_1fmq1k8</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1rod2yv</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0y0ckdw">
+        <bpmn2:targetRef>Planes_de_mantenimiento</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_06i46ou">
+        <bpmn2:targetRef>Plan_de_mantenimiento</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:standardLoopCharacteristics />
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1rod2yv" sourceRef="Definir_plan_de_mantenimiento" targetRef="Verificar_disponibilidad_de_recursos" />
+    <bpmn2:dataObjectReference id="Plan_de_mantenimiento" name="Plan de mantenimiento" dataObjectRef="DataObject_0rsmusb" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_0rsmusb" />
+    <bpmn2:dataStoreReference id="Planes_de_mantenimiento" name="Planes de mantenimiento" bizuit:AttachmentsCollection="[]">
+      <bpmn2:documentation>Se define el plan de mantenimiento contemplando todas las actividades involucradas y las fechas de realización.</bpmn2:documentation>
+    </bpmn2:dataStoreReference>
+    <bpmn2:dataStoreReference id="Empleados" name="Empleados" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataStoreReference id="Fertilizantes_y_abonos" name="Fertilizantes y abonos" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataStoreReference id="Herramientas" name="Herramientas" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:exclusiveGateway id="Hay_disponibilidad" name="¿Hay disponibilidad?" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1mgefxn</bpmn2:incoming>
+      <bpmn2:outgoing>NO_1</bpmn2:outgoing>
+      <bpmn2:outgoing>SI</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:task id="Verificar_disponibilidad_de_recursos" name="Verificar disponibilidad de recursos" bizuit:Performers="Responsable de operaciones" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_1rod2yv</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1mgefxn</bpmn2:outgoing>
+      <bpmn2:property id="Property_1194iw4" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_1uqjyqe">
+        <bpmn2:sourceRef>Empleados</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1194iw4</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0u8b30s">
+        <bpmn2:sourceRef>Herramientas</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1194iw4</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_19s7dt0">
+        <bpmn2:sourceRef>Fertilizantes_y_abonos</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1194iw4</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0grrq3c">
+        <bpmn2:targetRef>Pedido_de_compra_de_plantas</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0n87jl1">
+        <bpmn2:targetRef>Pedido_de_alquiler_de_herramientas</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:subProcess id="Compras_y_abastecimiento" name="Compras y abastecimiento" bizuit:Performers="Responsable de operaciones">
+      <bpmn2:incoming>NO_1</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_19o1t98</bpmn2:outgoing>
+      <bpmn2:property id="Property_1u4ugox" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_1cqohex">
+        <bpmn2:sourceRef>Pedido_de_alquiler_de_herramientas</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1u4ugox</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0vkw2m8">
+        <bpmn2:sourceRef>Pedido_de_compra_de_plantas</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1u4ugox</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:subProcess>
+    <bpmn2:dataObjectReference id="Pedido_de_alquiler_de_herramientas" name="Pedido de alquiler de herramientas" dataObjectRef="DataObject_0hak0d7" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_0hak0d7" />
+    <bpmn2:dataObjectReference id="Pedido_de_compra_de_plantas" name="Pedido de compra de plantas" dataObjectRef="DataObject_0zf9n38" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_0zf9n38" />
+    <bpmn2:sequenceFlow id="Flow_09kkahk" sourceRef="Generar_informe_de_trabajo_realizado" targetRef="Informar_trabajo_realizado_para_cobro" />
+    <bpmn2:sequenceFlow id="Flow_0cyd55k" sourceRef="Informar_trabajo_realizado_para_cobro" targetRef="Mantenimiento_de_espacio_verde_completado" />
+    <bpmn2:sequenceFlow id="Flow_19o1t98" sourceRef="Compras_y_abastecimiento" targetRef="Esperar_pedido_de_compra" />
+    <bpmn2:sequenceFlow id="Flow_1mgefxn" sourceRef="Verificar_disponibilidad_de_recursos" targetRef="Hay_disponibilidad" />
+    <bpmn2:sequenceFlow id="NO_1" name="NO" sourceRef="Hay_disponibilidad" targetRef="Compras_y_abastecimiento" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Flow_1twmbte" sourceRef="Realizar_inspeccion" targetRef="Generar_informe_de_trabajo_realizado" />
+    <bpmn2:sequenceFlow id="SI" name="SI" sourceRef="Hay_disponibilidad" targetRef="Asignar_recursos_humanos_herramientas_y_materiales" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:intermediateCatchEvent id="Esperar_pedido_de_compra" name="Esperar pedido de compra" bizuit:Performers="Responsable de operaciones" bizuit:TimerConfiguration="{&#34;type&#34;:&#34;dynamic&#34;}" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_19o1t98</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0h8a2w3</bpmn2:outgoing>
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_1l0nvpr" />
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:sequenceFlow id="Flow_0h8a2w3" sourceRef="Esperar_pedido_de_compra" targetRef="Asignar_recursos_humanos_herramientas_y_materiales" />
+    <bpmn2:task id="Asignar_recursos_humanos_herramientas_y_materiales" name="Asignar recursos humanos, herramientas y materiales" bizuit:Performers="Responsable de operaciones" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>SI</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0h8a2w3</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0xmhti8</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0mtiuq2">
+        <bpmn2:targetRef>Empleados_1</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0k8enu2">
+        <bpmn2:targetRef>Fertilizantes_y_abonos_1</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0a1zrjd">
+        <bpmn2:targetRef>Herramientas_1</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:dataStoreReference id="Herramientas_1" name="Herramientas" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataStoreReference id="Fertilizantes_y_abonos_1" name="Fertilizantes y abonos" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataStoreReference id="Empleados_1" name="Empleados" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:endEvent id="Mantenimiento_de_espacio_verde_completado" name="Mantenimiento de espacio verde completado" bizuit:Performers="Responsable de operaciones" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_0cyd55k</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:task id="Informar_trabajo_realizado_para_cobro" name="Informar trabajo realizado para cobro" bizuit:Performers="Responsable de operaciones" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_09kkahk</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0cyd55k</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="Generar_informe_de_trabajo_realizado" name="Generar informe de trabajo realizado" bizuit:Performers="Responsable de operaciones" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_1twmbte</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_09kkahk</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1rj3a49">
+        <bpmn2:targetRef>Informe_de_mantenimiento_del_espacio_verde</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:dataObjectReference id="Informe_de_mantenimiento_del_espacio_verde" name="Informe de mantenimiento del espacio verde" dataObjectRef="DataObject_1yedy3t" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_1yedy3t" />
+    <bpmn2:task id="Realizar_inspeccion" name="Realizar inspección" bizuit:Performers="Personal de mantenimiento">
+      <bpmn2:incoming>Flow_1l55jm2</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1twmbte</bpmn2:outgoing>
+      <bpmn2:property id="Property_0fwqrhi" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0bvzne9">
+        <bpmn2:sourceRef>Plan_de_mantenimiento_1</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_0fwqrhi</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0xmhti8" sourceRef="Asignar_recursos_humanos_herramientas_y_materiales" targetRef="Realizar_ajustes_de_planificacion" />
+    <bpmn2:task id="Realizar_ajustes_de_planificacion" name="Realizar ajustes de planificación" bizuit:Performers="Personal de mantenimiento" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:LoopConditions="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;join&#34;:null,&#34;children&#34;:[{&#34;type&#34;:&#34;condition&#34;,&#34;join&#34;:null,&#34;source&#34;:{&#34;type&#34;:&#34;constant&#34;,&#34;value&#34;:&#34;Replanificación&#34;,&#34;subElementPath&#34;:&#34;&#34;},&#34;comparator&#34;:&#34;==&#34;,&#34;target&#34;:{&#34;type&#34;:&#34;constant&#34;,&#34;value&#34;:&#34;no se requiera&#34;,&#34;subElementPath&#34;:&#34;&#34;}}]}]}">
+      <bpmn2:documentation>Esta actividad se encarga de planificar de forma más explicita la asignación de personal, recursos y tareas que se van a ejecutar de forma periodica.</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0xmhti8</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0h2u5qp</bpmn2:outgoing>
+      <bpmn2:standardLoopCharacteristics />
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0h2u5qp" sourceRef="Realizar_ajustes_de_planificacion" targetRef="Realizar_tareas_de_mantenimiento" />
+    <bpmn2:task id="Realizar_tareas_de_mantenimiento" name="Realizar tareas de mantenimiento" bizuit:Performers="Personal de mantenimiento" bizuit:AttachmentsCollection="[]" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:ForEachCondition="">
+      <bpmn2:incoming>Flow_0h2u5qp</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1l55jm2</bpmn2:outgoing>
+      <bpmn2:multiInstanceLoopCharacteristics isSequential="true" />
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1l55jm2" sourceRef="Realizar_tareas_de_mantenimiento" targetRef="Realizar_inspeccion" />
+    <bpmn2:dataObjectReference id="Plan_de_mantenimiento_1" name="Plan de mantenimiento" dataObjectRef="DataObject_0qrwyh7" bizuit:AttachmentsCollection="[]">
+      <bpmn2:documentation>Plan de mantenimiento creado en las actividades anteriores</bpmn2:documentation>
+    </bpmn2:dataObjectReference>
+    <bpmn2:dataObject id="DataObject_0qrwyh7" />
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0thlc23">
+      <bpmndi:BPMNShape id="Participant_0fitv31_di" bpmnElement="Mantenimiento_de_espacios_verdes" isHorizontal="true">
+        <dc:Bounds x="510" y="40" width="2400" height="870" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0akg151_di" bpmnElement="Personal_de_mantenimiento" isHorizontal="true">
+        <dc:Bounds x="540" y="485" width="2370" height="425" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0u29ooo_di" bpmnElement="Responsable_de_operaciones" isHorizontal="true">
+        <dc:Bounds x="540" y="40" width="2370" height="445" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0v84oji_di" bpmnElement="Evaluacion_del_espacio_verde">
+        <dc:Bounds x="822" y="285" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="803" y="342" width="74" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="Inicio_de_mantenimiento_por_licitacion_aprobada" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="611" y="195" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="591" y="238" width="77" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0lx6ssy_di" bpmnElement="Visita_y_evaluacion_del_terreno_e_infraestructura">
+        <dc:Bounds x="739" y="173" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_18lcepj_di" bpmnElement="Licitaciones_de_espacios_verdes">
+        <dc:Bounds x="764" y="95" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="748" y="57.5" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0bdamxa_di" bpmnElement="Definir_plan_de_mantenimiento">
+        <dc:Bounds x="1010" y="173" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_112s661_di" bpmnElement="Plan_de_mantenimiento">
+        <dc:Bounds x="1122" y="85" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1101" y="56" width="78" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1obwcno_di" bpmnElement="Planes_de_mantenimiento">
+        <dc:Bounds x="1005" y="85" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="991" y="56" width="78" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_13ewohb_di" bpmnElement="Empleados">
+        <dc:Bounds x="1216" y="85" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1212" y="61" width="57" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0duxmkv_di" bpmnElement="Fertilizantes_y_abonos">
+        <dc:Bounds x="1376" y="85" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1366" y="56" width="71" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0fo3nwt_di" bpmnElement="Herramientas">
+        <dc:Bounds x="1296" y="85" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1286" y="63" width="70" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_07kp1lc_di" bpmnElement="Hay_disponibilidad" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="1425" y="188" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1411" y="151" width="77" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0kdix50_di" bpmnElement="Verificar_disponibilidad_de_recursos">
+        <dc:Bounds x="1240" y="173" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_02pgsdf_di" bpmnElement="Compras_y_abastecimiento" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
+        <dc:Bounds x="1560" y="295" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1mxo3t8_di" bpmnElement="Pedido_de_alquiler_de_herramientas">
+        <dc:Bounds x="1283" y="385" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1267" y="440" width="68" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1ix5wyw_di" bpmnElement="Pedido_de_compra_de_plantas">
+        <dc:Bounds x="1343" y="310" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1333" y="363" width="56" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_08v7gx2_di" bpmnElement="Esperar_pedido_de_compra">
+        <dc:Bounds x="1742" y="317" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1721" y="360" width="78" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_17ugsui_di" bpmnElement="Asignar_recursos_humanos_herramientas_y_materiales">
+        <dc:Bounds x="1710" y="173" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_13o1s0o_di" bpmnElement="Herramientas_1">
+        <dc:Bounds x="1820" y="85" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1810" y="63" width="70" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_154ndb1_di" bpmnElement="Fertilizantes_y_abonos_1">
+        <dc:Bounds x="1733" y="85" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1723" y="56" width="71" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_08vpw1w_di" bpmnElement="Empleados_1">
+        <dc:Bounds x="1655" y="85" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1652" y="63" width="57" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1gzis8y_di" bpmnElement="Mantenimiento_de_espacio_verde_completado" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="2732" y="195" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2712" y="238" width="77" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_078l6tm_di" bpmnElement="Informar_trabajo_realizado_para_cobro">
+        <dc:Bounds x="2560" y="173" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1gp7v0m_di" bpmnElement="Generar_informe_de_trabajo_realizado">
+        <dc:Bounds x="2380" y="173" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0djet4e_di" bpmnElement="Informe_de_mantenimiento_del_espacio_verde">
+        <dc:Bounds x="2409" y="95" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2382" y="50" width="90" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_131hrwa_di" bpmnElement="Realizar_inspeccion">
+        <dc:Bounds x="2240" y="630" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_08m86z8_di" bpmnElement="Realizar_ajustes_de_planificacion">
+        <dc:Bounds x="1880" y="630" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0hmfx2v_di" bpmnElement="Realizar_tareas_de_mantenimiento">
+        <dc:Bounds x="2060" y="630" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1s5s4l3_di" bpmnElement="Plan_de_mantenimiento_1">
+        <dc:Bounds x="2272" y="545" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2251" y="507" width="78" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1fmq1k8_di" bpmnElement="Flow_1fmq1k8">
+        <di:waypoint x="839" y="213" />
+        <di:waypoint x="1010" y="213" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_176toma_di" bpmnElement="Flow_176toma">
+        <di:waypoint x="647" y="213" />
+        <di:waypoint x="739" y="213" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1rod2yv_di" bpmnElement="Flow_1rod2yv">
+        <di:waypoint x="1110" y="213" />
+        <di:waypoint x="1240" y="213" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09kkahk_di" bpmnElement="Flow_09kkahk">
+        <di:waypoint x="2480" y="213" />
+        <di:waypoint x="2560" y="213" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0cyd55k_di" bpmnElement="Flow_0cyd55k">
+        <di:waypoint x="2660" y="213" />
+        <di:waypoint x="2732" y="213" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19o1t98_di" bpmnElement="Flow_19o1t98">
+        <di:waypoint x="1660" y="335" />
+        <di:waypoint x="1742" y="335" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1mgefxn_di" bpmnElement="Flow_1mgefxn">
+        <di:waypoint x="1340" y="213" />
+        <di:waypoint x="1425" y="213" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0s9q6wb_di" bpmnElement="NO_1">
+        <di:waypoint x="1450" y="238" />
+        <di:waypoint x="1450" y="335" />
+        <di:waypoint x="1560" y="335" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1456" y="251" width="18" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1twmbte_di" bpmnElement="Flow_1twmbte">
+        <di:waypoint x="2340" y="670" />
+        <di:waypoint x="2430" y="670" />
+        <di:waypoint x="2430" y="253" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1mfb1fu_di" bpmnElement="SI">
+        <di:waypoint x="1475" y="213" />
+        <di:waypoint x="1710" y="213" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1491" y="195" width="9" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0h8a2w3_di" bpmnElement="Flow_0h8a2w3">
+        <di:waypoint x="1760" y="317" />
+        <di:waypoint x="1760" y="253" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0xmhti8_di" bpmnElement="Flow_0xmhti8">
+        <di:waypoint x="1810" y="213" />
+        <di:waypoint x="1845" y="213" />
+        <di:waypoint x="1845" y="670" />
+        <di:waypoint x="1880" y="670" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0h2u5qp_di" bpmnElement="Flow_0h2u5qp">
+        <di:waypoint x="1980" y="670" />
+        <di:waypoint x="2060" y="670" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1l55jm2_di" bpmnElement="Flow_1l55jm2">
+        <di:waypoint x="2160" y="670" />
+        <di:waypoint x="2240" y="670" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_03pa45l_di" bpmnElement="DataInputAssociation_03pa45l">
+        <di:waypoint x="789" y="145" />
+        <di:waypoint x="789" y="173" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_19o8gj4_di" bpmnElement="DataOutputAssociation_19o8gj4">
+        <di:waypoint x="810" y="253" />
+        <di:waypoint x="827" y="285" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0y0ckdw_di" bpmnElement="DataOutputAssociation_0y0ckdw">
+        <di:waypoint x="1047" y="173" />
+        <di:waypoint x="1036" y="135" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_06i46ou_di" bpmnElement="DataOutputAssociation_06i46ou">
+        <di:waypoint x="1091" y="173" />
+        <di:waypoint x="1122" y="134" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1uqjyqe_di" bpmnElement="DataInputAssociation_1uqjyqe">
+        <di:waypoint x="1243" y="135" />
+        <di:waypoint x="1246" y="174" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0u8b30s_di" bpmnElement="DataInputAssociation_0u8b30s">
+        <di:waypoint x="1315" y="135" />
+        <di:waypoint x="1306" y="173" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_19s7dt0_di" bpmnElement="DataInputAssociation_19s7dt0">
+        <di:waypoint x="1380" y="135" />
+        <di:waypoint x="1341" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0grrq3c_di" bpmnElement="DataOutputAssociation_0grrq3c">
+        <di:waypoint x="1323" y="253" />
+        <di:waypoint x="1361" y="310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0n87jl1_di" bpmnElement="DataOutputAssociation_0n87jl1">
+        <di:waypoint x="1293" y="253" />
+        <di:waypoint x="1301" y="385" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1cqohex_di" bpmnElement="DataInputAssociation_1cqohex">
+        <di:waypoint x="1319" y="410" />
+        <di:waypoint x="1610" y="410" />
+        <di:waypoint x="1610" y="375" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0vkw2m8_di" bpmnElement="DataInputAssociation_0vkw2m8">
+        <di:waypoint x="1379" y="355" />
+        <di:waypoint x="1451" y="355" />
+        <di:waypoint x="1560" y="355" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1rj3a49_di" bpmnElement="DataOutputAssociation_1rj3a49">
+        <di:waypoint x="2430" y="173" />
+        <di:waypoint x="2430" y="145" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0bvzne9_di" bpmnElement="DataInputAssociation_0bvzne9">
+        <di:waypoint x="2290" y="595" />
+        <di:waypoint x="2290" y="630" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0mtiuq2_di" bpmnElement="DataOutputAssociation_0mtiuq2">
+        <di:waypoint x="1725" y="173" />
+        <di:waypoint x="1692" y="135" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0k8enu2_di" bpmnElement="DataOutputAssociation_0k8enu2">
+        <di:waypoint x="1760" y="173" />
+        <di:waypoint x="1760" y="135" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0a1zrjd_di" bpmnElement="DataOutputAssociation_0a1zrjd">
+        <di:waypoint x="1797" y="173" />
+        <di:waypoint x="1832" y="135" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1a2zur4">
+    <bpmndi:BPMNPlane id="BPMNPlane_1d4vmyp" bpmnElement="Compras_y_abastecimiento" />
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

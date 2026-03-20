@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:collaboration id="Collaboration_05aqfi0">
+    <bpmn2:participant id="Proceso_Titulacion" name="Proceso Titulacion" processRef="Process_1" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:textAnnotation id="Legajos_Egresados_Algarrobo">
+      <bpmn2:text>Legajos Egresados Algarrobo</bpmn2:text>
+    </bpmn2:textAnnotation>
+    <bpmn2:association id="Association_1w8dvqu" associationDirection="None" sourceRef="_01_Asignar_Auxiliar" targetRef="Legajos_Egresados_Algarrobo" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="Process_1" name="GestionDeTitulos" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="Siglo21">
+    <bpmn2:extensionElements>
+      <bizuit:processParameters>
+        <bizuit:parameter name="ExceptionParameter" description="System parameter for exception handling" type="XML" direction="Optional">
+          <bizuit:xmlSchemaDefinition>{"name":"Exception","type":"root","children":[{"name":"Message","type":"element","dataType":"string"},{"name":"Type","type":"element","dataType":"string"},{"name":"StackTrace","type":"element","dataType":"string"},{"name":"FaultingActivity","type":"element","dataType":"string"}]}</bizuit:xmlSchemaDefinition>
+        </bizuit:parameter>
+        <bizuit:parameter name="OutputParameter" description="System parameter for workflow output" type="Escalar" direction="Out" scalarDataType="string" defaultValue="" />
+      </bizuit:processParameters>
+      <bizuit:processVariables>
+        <bizuit:variable name="InstanceId" description="System variable for workflow instance ID" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+        <bizuit:variable name="LoggedUser" description="System variable for logged user information" type="Escalar" valueFromConfig="Constante" constantDataType="string" constantDefaultValue="" />
+      </bizuit:processVariables>
+    </bpmn2:extensionElements>
+    <bpmn2:laneSet id="LaneSet_1b505iz">
+      <bpmn2:lane id="Supervisor_de_titulos" name="Supervisor de títulos" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>StartEvent_1</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>_01_Asignar_Auxiliar</bpmn2:flowNodeRef>
+        <bpmn2:childLaneSet id="LaneSet_0eyfkim">
+          <bpmn2:lane id="Lane_1m6yhlr">
+            <bpmn2:flowNodeRef>StartEvent_1</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>_01_Asignar_Auxiliar</bpmn2:flowNodeRef>
+          </bpmn2:lane>
+        </bpmn2:childLaneSet>
+      </bpmn2:lane>
+      <bpmn2:lane id="Asesor_de_Produccion_Expedicion" name="Asesor de  Producción/Expedición " bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>_02_Validar_Datos_del_Alumno</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0if8idg</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>_03_Documentacion_faltante</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_0di6c6h</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>_04_Generacion_de_archivos_sidcer</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>_05_Impresion_Archivo</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1jg9i1m</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>_06_Pendiente_envio_a_Digitalizacion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>_07_En_Espera_de_Digitalizacion</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_001k53o</bpmn2:flowNodeRef>
+        <bpmn2:childLaneSet id="LaneSet_04dsgtr">
+          <bpmn2:lane id="Lane_0de8jih">
+            <bpmn2:flowNodeRef>_02_Validar_Datos_del_Alumno</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Gateway_0if8idg</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>_03_Documentacion_faltante</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Gateway_0di6c6h</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>_04_Generacion_de_archivos_sidcer</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>_05_Impresion_Archivo</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Gateway_1jg9i1m</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>_06_Pendiente_envio_a_Digitalizacion</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>_07_En_Espera_de_Digitalizacion</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Gateway_001k53o</bpmn2:flowNodeRef>
+          </bpmn2:lane>
+        </bpmn2:childLaneSet>
+      </bpmn2:lane>
+      <bpmn2:lane id="Firmantes" name="Firmantes" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>_08_Documento_con_firma_Pendiente</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1whzjgh</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_1xjb260</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Enviar_mail_al_estudiante</bpmn2:flowNodeRef>
+        <bpmn2:childLaneSet id="LaneSet_1o5owt6">
+          <bpmn2:lane id="Lane_1k3xhuv">
+            <bpmn2:flowNodeRef>_08_Documento_con_firma_Pendiente</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Gateway_1whzjgh</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Event_1xjb260</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Enviar_mail_al_estudiante</bpmn2:flowNodeRef>
+          </bpmn2:lane>
+        </bpmn2:childLaneSet>
+      </bpmn2:lane>
+      <bpmn2:lane id="Asesor_de_Postproduccion" name="Asesor de  Postproducción" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+        <bpmn2:flowNodeRef>_09_Envio_de_imagenes_a_SIDCER</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>_10_Pendiente_de_finalizar_en_sidcer</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>_11_Pendiente_de_Archivo</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>_12_Para_Entrega_de_Documento</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_107ev2p</bpmn2:flowNodeRef>
+        <bpmn2:childLaneSet id="LaneSet_1uurruw">
+          <bpmn2:lane id="Lane_18vfqup">
+            <bpmn2:flowNodeRef>_09_Envio_de_imagenes_a_SIDCER</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>_10_Pendiente_de_finalizar_en_sidcer</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>_11_Pendiente_de_Archivo</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>_12_Para_Entrega_de_Documento</bpmn2:flowNodeRef>
+            <bpmn2:flowNodeRef>Event_107ev2p</bpmn2:flowNodeRef>
+          </bpmn2:lane>
+        </bpmn2:childLaneSet>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:sequenceFlow id="Flow_0hfxsl3" sourceRef="StartEvent_1" targetRef="_01_Asignar_Auxiliar" />
+    <bpmn2:startEvent id="StartEvent_1">
+      <bpmn2:outgoing>Flow_0hfxsl3</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:task id="_01_Asignar_Auxiliar" name="01- Asignar Auxiliar" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:documentation>Asignar legajos a cada auxiliar de expedición.&amp;nbsp;&lt;div&gt;Nota: Este paso se nutre del ingreso Automático de 
+Legajos Egresados provisto por el sistema 
+Algarrobo&lt;/div&gt;</bpmn2:documentation>
+      <bpmn2:incoming>Flow_0hfxsl3</bpmn2:incoming>
+      <bpmn2:incoming>Rechazar_Asignacion</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1hf5rzf</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1hf5rzf" sourceRef="_01_Asignar_Auxiliar" targetRef="_02_Validar_Datos_del_Alumno" />
+    <bpmn2:task id="_02_Validar_Datos_del_Alumno" name="02-Validar Datos del Alumno" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1hf5rzf</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1ngoka6</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:exclusiveGateway id="Gateway_0if8idg">
+      <bpmn2:incoming>Flow_1ngoka6</bpmn2:incoming>
+      <bpmn2:incoming>Flow_1qpt51l</bpmn2:incoming>
+      <bpmn2:outgoing>Falta_documentacion</bpmn2:outgoing>
+      <bpmn2:outgoing>Rechazar_Asignacion</bpmn2:outgoing>
+      <bpmn2:outgoing>Documentacion_completa</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_1ngoka6" sourceRef="_02_Validar_Datos_del_Alumno" targetRef="Gateway_0if8idg" />
+    <bpmn2:sequenceFlow id="Falta_documentacion" name="Falta documentacion" sourceRef="Gateway_0if8idg" targetRef="_03_Documentacion_faltante" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Rechazar_Asignacion" name="Rechazar Asignación" sourceRef="Gateway_0if8idg" targetRef="_01_Asignar_Auxiliar" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Flow_1qzli9j" sourceRef="_03_Documentacion_faltante" targetRef="Gateway_0di6c6h" />
+    <bpmn2:sequenceFlow id="No_APLV" name="No APLV" sourceRef="Gateway_0di6c6h" targetRef="_04_Generacion_de_archivos_sidcer" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:sequenceFlow id="Documentacion_completa" name="Documentacion completa" sourceRef="Gateway_0if8idg" targetRef="Gateway_0di6c6h" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:sequenceFlow id="Flow_19ls7bk" sourceRef="_04_Generacion_de_archivos_sidcer" targetRef="_05_Impresion_Archivo" />
+    <bpmn2:sequenceFlow id="Flow_1qpt51l" sourceRef="Gateway_0di6c6h" targetRef="Gateway_0if8idg" />
+    <bpmn2:sequenceFlow id="Flow_0p0m30a" sourceRef="_05_Impresion_Archivo" targetRef="Gateway_1jg9i1m" />
+    <bpmn2:task id="_03_Documentacion_faltante" name="03- Documentación faltante" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Falta_documentacion</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1qzli9j</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:exclusiveGateway id="Gateway_0di6c6h">
+      <bpmn2:incoming>Flow_1qzli9j</bpmn2:incoming>
+      <bpmn2:incoming>Documentacion_completa</bpmn2:incoming>
+      <bpmn2:outgoing>No_APLV</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_1qpt51l</bpmn2:outgoing>
+      <bpmn2:outgoing>APLV</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:task id="_04_Generacion_de_archivos_sidcer" name="04-Generación de archivos sidcer" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>No_APLV</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_19ls7bk</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="_05_Impresion_Archivo" name="05-Impresión Archivo">
+      <bpmn2:incoming>Flow_19ls7bk</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0p0m30a</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:exclusiveGateway id="Gateway_1jg9i1m">
+      <bpmn2:incoming>Flow_0p0m30a</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0urwhn2</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1kj20sx</bpmn2:outgoing>
+      <bpmn2:outgoing>Titulo_intermedio_pregrado_grado</bpmn2:outgoing>
+      <bpmn2:outgoing>Digitalizacion_manual_Titulo_Posgrado</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:task id="_06_Pendiente_envio_a_Digitalizacion" name="06-Pendiente envio a Digitalizacion">
+      <bpmn2:incoming>Flow_1kj20sx</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0urwhn2</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1kj20sx" sourceRef="Gateway_1jg9i1m" targetRef="_06_Pendiente_envio_a_Digitalizacion" />
+    <bpmn2:task id="_07_En_Espera_de_Digitalizacion" name="07-En Espera de Digitalizacion">
+      <bpmn2:incoming>Titulo_intermedio_pregrado_grado</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0a4v792</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Titulo_intermedio_pregrado_grado" name="Titulo intermedio / pregrado / grado" sourceRef="Gateway_1jg9i1m" targetRef="_07_En_Espera_de_Digitalizacion" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:sequenceFlow id="APLV" name="APLV" sourceRef="Gateway_0di6c6h" targetRef="Gateway_001k53o" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:sequenceFlow id="Flow_1xwjzge" sourceRef="Gateway_001k53o" targetRef="_08_Documento_con_firma_Pendiente" />
+    <bpmn2:sequenceFlow id="Digitalizacion_manual_Titulo_Posgrado" name="Digitalización manual / Titulo Posgrado" sourceRef="Gateway_1jg9i1m" targetRef="Gateway_001k53o" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:exclusiveGateway id="Gateway_001k53o">
+      <bpmn2:incoming>APLV</bpmn2:incoming>
+      <bpmn2:incoming>Digitalizacion_manual_Titulo_Posgrado</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0a4v792</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1xwjzge</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_0a4v792" sourceRef="_07_En_Espera_de_Digitalizacion" targetRef="Gateway_001k53o" />
+    <bpmn2:sequenceFlow id="Flow_0urwhn2" sourceRef="_06_Pendiente_envio_a_Digitalizacion" targetRef="Gateway_1jg9i1m" />
+    <bpmn2:task id="_08_Documento_con_firma_Pendiente" name="08-Documento con firma Pendiente" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>Flow_1xwjzge</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1py20tz</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:exclusiveGateway id="Gateway_1whzjgh">
+      <bpmn2:incoming>Flow_1py20tz</bpmn2:incoming>
+      <bpmn2:outgoing>APLV_1</bpmn2:outgoing>
+      <bpmn2:outgoing>No_APLV_1</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="Flow_1py20tz" sourceRef="_08_Documento_con_firma_Pendiente" targetRef="Gateway_1whzjgh" />
+    <bpmn2:sequenceFlow id="APLV_1" name="APLV" sourceRef="Gateway_1whzjgh" targetRef="Enviar_mail_al_estudiante" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:endEvent id="Event_1xjb260">
+      <bpmn2:incoming>Flow_0td8ggg</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="Flow_0td8ggg" sourceRef="Enviar_mail_al_estudiante" targetRef="Event_1xjb260" />
+    <bpmn2:sequenceFlow id="No_APLV_1" name="No APLV" sourceRef="Gateway_1whzjgh" targetRef="_09_Envio_de_imagenes_a_SIDCER" bizuit:conditionConfiguration="{&#34;type&#34;:&#34;group&#34;,&#34;isCollapsed&#34;:false,&#34;children&#34;:[]}" />
+    <bpmn2:serviceTask id="Enviar_mail_al_estudiante" name="Enviar mail al estudiante">
+      <bpmn2:incoming>APLV_1</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0td8ggg</bpmn2:outgoing>
+    </bpmn2:serviceTask>
+    <bpmn2:sequenceFlow id="Flow_1ybj40b" sourceRef="_12_Para_Entrega_de_Documento" targetRef="Event_107ev2p" />
+    <bpmn2:task id="_09_Envio_de_imagenes_a_SIDCER" name="09-Envío de imágenes a SIDCER" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:AttachmentsCollection="[]">
+      <bpmn2:incoming>No_APLV_1</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_07c0wkg</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="_10_Pendiente_de_finalizar_en_sidcer" name="10-Pendiente de finalizar en sidcer">
+      <bpmn2:incoming>Flow_07c0wkg</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1em7x4t</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="_11_Pendiente_de_Archivo" name="11-Pendiente de Archivo">
+      <bpmn2:incoming>Flow_1em7x4t</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_16p1410</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:task id="_12_Para_Entrega_de_Documento" name="12-Para Entrega de Documento">
+      <bpmn2:incoming>Flow_16p1410</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1ybj40b</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_07c0wkg" sourceRef="_09_Envio_de_imagenes_a_SIDCER" targetRef="_10_Pendiente_de_finalizar_en_sidcer" />
+    <bpmn2:sequenceFlow id="Flow_1em7x4t" sourceRef="_10_Pendiente_de_finalizar_en_sidcer" targetRef="_11_Pendiente_de_Archivo" />
+    <bpmn2:sequenceFlow id="Flow_16p1410" sourceRef="_11_Pendiente_de_Archivo" targetRef="_12_Para_Entrega_de_Documento" />
+    <bpmn2:endEvent id="Event_107ev2p">
+      <bpmn2:incoming>Flow_1ybj40b</bpmn2:incoming>
+    </bpmn2:endEvent>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_05aqfi0">
+      <bpmndi:BPMNShape id="Participant_0sni9ji_di" bpmnElement="Proceso_Titulacion" isHorizontal="true">
+        <dc:Bounds x="-250" y="-190" width="2070" height="1080" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0yztdgg_di" bpmnElement="Supervisor_de_titulos" isHorizontal="true">
+        <dc:Bounds x="-220" y="-190" width="2040" height="253" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1m6yhlr_di" bpmnElement="Lane_1m6yhlr" isHorizontal="true">
+        <dc:Bounds x="-190" y="-190" width="2010" height="253" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0pi9c6d_di" bpmnElement="Asesor_de_Produccion_Expedicion" isHorizontal="true">
+        <dc:Bounds x="-220" y="63" width="2040" height="457" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0de8jih_di" bpmnElement="Lane_0de8jih" isHorizontal="true">
+        <dc:Bounds x="-190" y="63" width="2010" height="457" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0c55j96_di" bpmnElement="Firmantes" isHorizontal="true">
+        <dc:Bounds x="-220" y="520" width="2040" height="130" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1k3xhuv_di" bpmnElement="Lane_1k3xhuv" isHorizontal="true">
+        <dc:Bounds x="-190" y="520" width="2010" height="130" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0f0rm14_di" bpmnElement="Asesor_de_Postproduccion" isHorizontal="true">
+        <dc:Bounds x="-220" y="650" width="2040" height="240" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_18vfqup_di" bpmnElement="Lane_18vfqup" isHorizontal="true">
+        <dc:Bounds x="-190" y="650" width="2010" height="240" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="-148" y="-168" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12kkynx_di" bpmnElement="_01_Asignar_Auxiliar">
+        <dc:Bounds x="-180" y="-70" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0zmyk10_di" bpmnElement="_02_Validar_Datos_del_Alumno">
+        <dc:Bounds x="-180" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0if8idg_di" bpmnElement="Gateway_0if8idg" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="-25" y="125" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0858xyb_di" bpmnElement="_03_Documentacion_faltante">
+        <dc:Bounds x="110" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0di6c6h_di" bpmnElement="Gateway_0di6c6h" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="265" y="125" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1n61f6k_di" bpmnElement="_04_Generacion_de_archivos_sidcer">
+        <dc:Bounds x="370" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xzw4om_di" bpmnElement="_05_Impresion_Archivo">
+        <dc:Bounds x="530" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1jg9i1m_di" bpmnElement="Gateway_1jg9i1m" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="685" y="125" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1v745cv_di" bpmnElement="_06_Pendiente_envio_a_Digitalizacion">
+        <dc:Bounds x="790" y="110" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1saudpx_di" bpmnElement="_07_En_Espera_de_Digitalizacion">
+        <dc:Bounds x="790" y="220" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_001k53o_di" bpmnElement="Gateway_001k53o" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="575" y="355" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1r9he4e_di" bpmnElement="_08_Documento_con_firma_Pendiente">
+        <dc:Bounds x="550" y="550" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1whzjgh_di" bpmnElement="Gateway_1whzjgh" isMarkerVisible="true" bioc:stroke="#bdb76b" bioc:fill="#ffffe0" color:background-color="#ffffe0" color:border-color="#bdb76b">
+        <dc:Bounds x="705" y="565" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1xjb260_di" bpmnElement="Event_1xjb260" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="972" y="572" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_10eeviq_di" bpmnElement="Enviar_mail_al_estudiante" bioc:stroke="#ffb300" bioc:fill="#fff9c4" color:background-color="#fff9c4" color:border-color="#ffb300">
+        <dc:Bounds x="810" y="550" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_16skmo1_di" bpmnElement="_09_Envio_de_imagenes_a_SIDCER">
+        <dc:Bounds x="810" y="700" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_070ap7u_di" bpmnElement="_10_Pendiente_de_finalizar_en_sidcer">
+        <dc:Bounds x="970" y="700" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1y998o5_di" bpmnElement="_11_Pendiente_de_Archivo">
+        <dc:Bounds x="1130" y="700" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1dom6wc_di" bpmnElement="_12_Para_Entrega_de_Documento">
+        <dc:Bounds x="1290" y="700" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_107ev2p_di" bpmnElement="Event_107ev2p" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="1452" y="722" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0hfxsl3_di" bpmnElement="Flow_0hfxsl3">
+        <di:waypoint x="-130" y="-132" />
+        <di:waypoint x="-130" y="-70" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1hf5rzf_di" bpmnElement="Flow_1hf5rzf">
+        <di:waypoint x="-130" y="10" />
+        <di:waypoint x="-130" y="110" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ngoka6_di" bpmnElement="Flow_1ngoka6">
+        <di:waypoint x="-80" y="150" />
+        <di:waypoint x="-25" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0y6ya21_di" bpmnElement="Falta_documentacion">
+        <di:waypoint x="25" y="150" />
+        <di:waypoint x="110" y="150" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="29" y="132" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0a2k7it_di" bpmnElement="Rechazar_Asignacion">
+        <di:waypoint x="0" y="125" />
+        <di:waypoint x="0" y="-30" />
+        <di:waypoint x="-80" y="-30" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-13" y="45" width="56" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qzli9j_di" bpmnElement="Flow_1qzli9j">
+        <di:waypoint x="210" y="150" />
+        <di:waypoint x="265" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0km24ag_di" bpmnElement="No_APLV">
+        <di:waypoint x="315" y="150" />
+        <di:waypoint x="370" y="150" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="321" y="132" width="44" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1dal99n_di" bpmnElement="Documentacion_completa">
+        <di:waypoint x="0" y="175" />
+        <di:waypoint x="0" y="240" />
+        <di:waypoint x="290" y="240" />
+        <di:waypoint x="290" y="175" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="105" y="222" width="81" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19ls7bk_di" bpmnElement="Flow_19ls7bk">
+        <di:waypoint x="470" y="150" />
+        <di:waypoint x="530" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qpt51l_di" bpmnElement="Flow_1qpt51l">
+        <di:waypoint x="278" y="138" />
+        <di:waypoint x="230" y="90" />
+        <di:waypoint x="60" y="90" />
+        <di:waypoint x="13" y="138" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0p0m30a_di" bpmnElement="Flow_0p0m30a">
+        <di:waypoint x="630" y="150" />
+        <di:waypoint x="685" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kj20sx_di" bpmnElement="Flow_1kj20sx">
+        <di:waypoint x="735" y="150" />
+        <di:waypoint x="790" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0c7ymk7_di" bpmnElement="Titulo_intermedio_pregrado_grado">
+        <di:waypoint x="710" y="175" />
+        <di:waypoint x="710" y="260" />
+        <di:waypoint x="790" y="260" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="697" y="270" width="86" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jqxuw6_di" bpmnElement="APLV">
+        <di:waypoint x="298" y="167" />
+        <di:waypoint x="400" y="380" />
+        <di:waypoint x="575" y="380" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="335" y="256" width="27" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xwjzge_di" bpmnElement="Flow_1xwjzge">
+        <di:waypoint x="600" y="405" />
+        <di:waypoint x="600" y="550" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hyc1ok_di" bpmnElement="Digitalizacion_manual_Titulo_Posgrado">
+        <di:waypoint x="697" y="162" />
+        <di:waypoint x="600" y="250" />
+        <di:waypoint x="600" y="355" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="520" y="260" width="79" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0a4v792_di" bpmnElement="Flow_0a4v792">
+        <di:waypoint x="840" y="300" />
+        <di:waypoint x="840" y="380" />
+        <di:waypoint x="625" y="380" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0urwhn2_di" bpmnElement="Flow_0urwhn2">
+        <di:waypoint x="840" y="110" />
+        <di:waypoint x="840" y="90" />
+        <di:waypoint x="710" y="90" />
+        <di:waypoint x="710" y="125" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1py20tz_di" bpmnElement="Flow_1py20tz">
+        <di:waypoint x="650" y="590" />
+        <di:waypoint x="705" y="590" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1mc3xae_di" bpmnElement="APLV_1">
+        <di:waypoint x="755" y="590" />
+        <di:waypoint x="810" y="590" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="769" y="572" width="27" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0td8ggg_di" bpmnElement="Flow_0td8ggg">
+        <di:waypoint x="910" y="590" />
+        <di:waypoint x="972" y="590" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1tf7e5s_di" bpmnElement="No_APLV_1">
+        <di:waypoint x="730" y="615" />
+        <di:waypoint x="730" y="740" />
+        <di:waypoint x="810" y="740" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="723" y="677" width="44" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ybj40b_di" bpmnElement="Flow_1ybj40b">
+        <di:waypoint x="1390" y="740" />
+        <di:waypoint x="1452" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07c0wkg_di" bpmnElement="Flow_07c0wkg">
+        <di:waypoint x="910" y="740" />
+        <di:waypoint x="970" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1em7x4t_di" bpmnElement="Flow_1em7x4t">
+        <di:waypoint x="1070" y="740" />
+        <di:waypoint x="1130" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16p1410_di" bpmnElement="Flow_16p1410">
+        <di:waypoint x="1230" y="740" />
+        <di:waypoint x="1290" y="740" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1w8dvqu_di" bpmnElement="Association_1w8dvqu">
+        <di:waypoint x="-92" y="-70" />
+        <di:waypoint x="-63" y="-100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_1f14ik7_di" bpmnElement="Legajos_Egresados_Algarrobo">
+        <dc:Bounds x="-80" y="-150" width="170" height="50" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

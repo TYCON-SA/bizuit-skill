@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bizuit="http://tycon.com/schema/bpmn/bizuit" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:process id="GMP_BPMN" name="GMP BPMN" isExecutable="false" bizuit:ProcessLevel="1" bizuit:OrganizationId="UTN-FRC" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="" bizuit:createdBy="benjavaca001" bizuit:createdDate="2025-10-09T23:51:57.987Z" bizuit:lastEditedBy="benjavaca001" bizuit:lastEditedDate="2025-10-09T23:51:57.987Z">
+    <bpmn2:startEvent id="Generar_distribucion_de_espacios_publicitarios_y_comerciales" name="Generar distribución de espacios publicitarios y comerciales" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:outgoing>Flow_0bwf5vy</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:task id="Definir_Tiers" name="Definir Tiers">
+      <bpmn2:incoming>Flow_0bwf5vy</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1qon9u4</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_01lriqr">
+        <bpmn2:targetRef>Tiers</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0bwf5vy" sourceRef="Generar_distribucion_de_espacios_publicitarios_y_comerciales" targetRef="Definir_Tiers" />
+    <bpmn2:task id="Asignar_espacios_publicitarios_y_comerciales_a_Tiers" name="Asignar espacios publicitarios y comerciales a Tiers">
+      <bpmn2:incoming>Flow_1qon9u4</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0gk5ucz</bpmn2:outgoing>
+      <bpmn2:property id="Property_07nmt9u" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_117qk4u">
+        <bpmn2:sourceRef>Espacios_Publicitarios_y_Comerciales</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_07nmt9u</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0i39nev">
+        <bpmn2:targetRef>Tiers</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1qon9u4" sourceRef="Definir_Tiers" targetRef="Asignar_espacios_publicitarios_y_comerciales_a_Tiers" />
+    <bpmn2:dataStoreReference id="Espacios_Publicitarios_y_Comerciales" name="Espacios Publicitarios y Comerciales" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataStoreReference id="Tiers" name="Tiers" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:task id="Elaborar_catalogos_de_los_Tiers" name="Elaborar catalogos de los Tiers">
+      <bpmn2:incoming>Flow_0gk5ucz</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1ag86b6</bpmn2:outgoing>
+      <bpmn2:property id="Property_1xl237v" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_0wadwcx">
+        <bpmn2:sourceRef>Tiers</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1xl237v</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_18slenq">
+        <bpmn2:targetRef>Catalogos</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0gk5ucz" sourceRef="Asignar_espacios_publicitarios_y_comerciales_a_Tiers" targetRef="Elaborar_catalogos_de_los_Tiers" />
+    <bpmn2:dataObjectReference id="Catalogos" name="Catalogos" dataObjectRef="DataObject_1ilxps0" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_1ilxps0" />
+    <bpmn2:task id="Negociar_con_sponsors" name="Negociar con sponsors">
+      <bpmn2:incoming>Flow_1a9oyya</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0sf5xdw</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1aews1n">
+        <bpmn2:targetRef>Sponsors</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0jichiy">
+        <bpmn2:targetRef>Acuerdos_Preliminares</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:dataStoreReference id="Sponsors" name="Sponsors" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObjectReference id="Acuerdos_Preliminares" name="Acuerdos Preliminares" dataObjectRef="DataObject_1xbeq49" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_1xbeq49" />
+    <bpmn2:task id="Difundir_ofertas_publicitarias" name="Difundir ofertas publicitarias" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_1ag86b6</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1a9oyya</bpmn2:outgoing>
+      <bpmn2:property id="Property_0e6e4o0" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_1le6e8t">
+        <bpmn2:sourceRef>Sponsors</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_0e6e4o0</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1ag86b6" sourceRef="Elaborar_catalogos_de_los_Tiers" targetRef="Difundir_ofertas_publicitarias" />
+    <bpmn2:sequenceFlow id="Flow_1a9oyya" sourceRef="Difundir_ofertas_publicitarias" targetRef="Negociar_con_sponsors" />
+    <bpmn2:task id="Redactar_y_firmar_contratos" name="Redactar y firmar contratos">
+      <bpmn2:incoming>Flow_0akaebv</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1ddxgjp</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0om13r5">
+        <bpmn2:targetRef>Contratos</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0sf5xdw" sourceRef="Negociar_con_sponsors" targetRef="Espera_de_confirmacion_de_sponsor" />
+    <bpmn2:task id="Registrar_reservas_de_espacios_publicitarios_y_comerciales" name="Registrar reservas de espacios publicitarios y comerciales">
+      <bpmn2:incoming>Flow_1ddxgjp</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1g9qr7w</bpmn2:outgoing>
+      <bpmn2:property id="Property_1k4pf6o" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_174gt4l">
+        <bpmn2:sourceRef>Sponsors</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_1k4pf6o</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1t5s4lb">
+        <bpmn2:targetRef>Reservas</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1l7hhhs">
+        <bpmn2:targetRef>Informe_de_asignacion_de_sponsors</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_02xiq8g">
+        <bpmn2:targetRef>Informe_de_asignacion_de_espacios_publicitarios_y_comerciales</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:dataStoreReference id="Reservas" name="Reservas" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:task id="Monitorear_montajes_y_publicidad" name="Monitorear montajes y publicidad" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_1c6vsvc</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_17odo55</bpmn2:outgoing>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_1g9qr7w" sourceRef="Registrar_reservas_de_espacios_publicitarios_y_comerciales" targetRef="Espera_comienzo_de_evento" />
+    <bpmn2:task id="Registrar_y_controlar_ventas_de_los_espacios_comerciales" name="Registrar y controlar ventas de los espacios comerciales" bizuit:AttachmentsCollection="[]" bizuit:Performers="" bizuit:Accountable="" bizuit:Consulted="" bizuit:Informed="">
+      <bpmn2:incoming>Flow_17odo55</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_02aj1am</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_07ocn8j">
+        <bpmn2:targetRef>Ventas</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_17odo55" sourceRef="Monitorear_montajes_y_publicidad" targetRef="Registrar_y_controlar_ventas_de_los_espacios_comerciales" />
+    <bpmn2:task id="Gestionar_cobro" name="Gestionar cobro">
+      <bpmn2:incoming>Flow_0i7bwp5</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0ga2x7a</bpmn2:outgoing>
+      <bpmn2:property id="Property_0s6t3nz" name="__targetRef_placeholder" />
+      <bpmn2:dataInputAssociation id="DataInputAssociation_1cy6crz">
+        <bpmn2:sourceRef>Reservas</bpmn2:sourceRef>
+        <bpmn2:targetRef>Property_0s6t3nz</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_0v3d725">
+        <bpmn2:targetRef>Facturas</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:task id="Elaborar_Informe_Post_Evento" name="Elaborar Informe Post-Evento">
+      <bpmn2:incoming>Flow_0ga2x7a</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0qzrcme</bpmn2:outgoing>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1oor664">
+        <bpmn2:targetRef>Post_Evento</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="Flow_0ga2x7a" sourceRef="Gestionar_cobro" targetRef="Elaborar_Informe_Post_Evento" />
+    <bpmn2:sequenceFlow id="Flow_0qzrcme" sourceRef="Elaborar_Informe_Post_Evento" targetRef="Event_1q1f7wf" />
+    <bpmn2:endEvent id="Event_1q1f7wf">
+      <bpmn2:incoming>Flow_0qzrcme</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:dataObjectReference id="Post_Evento" name="Post-Evento" dataObjectRef="DataObject_0vrscbn" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_0vrscbn" />
+    <bpmn2:dataStoreReference id="Ventas" name="Ventas" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObjectReference id="Facturas" name="Facturas" dataObjectRef="DataObject_1dgjsbl" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_1dgjsbl" />
+    <bpmn2:sequenceFlow id="Flow_02aj1am" sourceRef="Registrar_y_controlar_ventas_de_los_espacios_comerciales" targetRef="Espera_de_calculos_de_comisiones" />
+    <bpmn2:intermediateCatchEvent id="Espera_comienzo_de_evento" name="Espera comienzo de evento" bizuit:AttachmentsCollection="[]" bizuit:TimerConfiguration="{&#34;type&#34;:&#34;fixed&#34;,&#34;delay&#34;:{&#34;days&#34;:0,&#34;hours&#34;:0,&#34;minutes&#34;:0,&#34;seconds&#34;:0}}">
+      <bpmn2:incoming>Flow_1g9qr7w</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1c6vsvc</bpmn2:outgoing>
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_07fvfyd" />
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:sequenceFlow id="Flow_1c6vsvc" sourceRef="Espera_comienzo_de_evento" targetRef="Monitorear_montajes_y_publicidad" />
+    <bpmn2:sequenceFlow id="Flow_0i7bwp5" sourceRef="Espera_de_calculos_de_comisiones" targetRef="Gestionar_cobro" />
+    <bpmn2:intermediateCatchEvent id="Espera_de_calculos_de_comisiones" name="Espera de cálculos de comisiones" bizuit:AttachmentsCollection="[]" bizuit:TimerConfiguration="{&#34;type&#34;:&#34;fixed&#34;,&#34;delay&#34;:{&#34;days&#34;:0,&#34;hours&#34;:0,&#34;minutes&#34;:0,&#34;seconds&#34;:0}}">
+      <bpmn2:incoming>Flow_02aj1am</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0i7bwp5</bpmn2:outgoing>
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_1i6bci0" />
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:dataObjectReference id="Informe_de_asignacion_de_sponsors" name="Informe de asignacion de sponsors" dataObjectRef="DataObject_1gw8iwv" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_1gw8iwv" />
+    <bpmn2:dataObjectReference id="Informe_de_asignacion_de_espacios_publicitarios_y_comerciales" name="Informe de asignacion de espacios publicitarios y comerciales" dataObjectRef="DataObject_0cuo4j7" bizuit:AttachmentsCollection="[]" />
+    <bpmn2:dataObject id="DataObject_0cuo4j7" />
+    <bpmn2:dataObjectReference id="Contratos" name="Contratos" dataObjectRef="DataObject_0pgpo18" />
+    <bpmn2:dataObject id="DataObject_0pgpo18" />
+    <bpmn2:intermediateCatchEvent id="Espera_de_confirmacion_de_sponsor" name="Espera de confirmación de sponsor" bizuit:AttachmentsCollection="[]" bizuit:TimerConfiguration="{&#34;type&#34;:&#34;fixed&#34;,&#34;delay&#34;:{&#34;days&#34;:0,&#34;hours&#34;:0,&#34;minutes&#34;:0,&#34;seconds&#34;:0}}">
+      <bpmn2:incoming>Flow_0sf5xdw</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0akaebv</bpmn2:outgoing>
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_0rs0qgc" />
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:sequenceFlow id="Flow_0akaebv" sourceRef="Espera_de_confirmacion_de_sponsor" targetRef="Redactar_y_firmar_contratos" />
+    <bpmn2:sequenceFlow id="Flow_1ddxgjp" sourceRef="Redactar_y_firmar_contratos" targetRef="Registrar_reservas_de_espacios_publicitarios_y_comerciales" />
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="GMP_BPMN">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="Generar_distribucion_de_espacios_publicitarios_y_comerciales" bioc:stroke="#388e3c" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#388e3c">
+        <dc:Bounds x="412" y="240" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="393" y="283" width="75" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1yzizbv_di" bpmnElement="Definir_Tiers">
+        <dc:Bounds x="500" y="218" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_10y3n3n_di" bpmnElement="Asignar_espacios_publicitarios_y_comerciales_a_Tiers">
+        <dc:Bounds x="690" y="218" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0t4fog3_di" bpmnElement="Espacios_Publicitarios_y_Comerciales">
+        <dc:Bounds x="615" y="45" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="605" y="102" width="71" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_1gk4fyi_di" bpmnElement="Tiers">
+        <dc:Bounds x="805" y="385" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="818" y="442" width="25" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0he3kzk_di" bpmnElement="Elaborar_catalogos_de_los_Tiers">
+        <dc:Bounds x="880" y="218" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_12fmny5_di" bpmnElement="Catalogos">
+        <dc:Bounds x="912" y="45" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="904" y="15" width="52" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1in16lm_di" bpmnElement="Negociar_con_sponsors">
+        <dc:Bounds x="1300" y="218" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0ih21of_di" bpmnElement="Sponsors">
+        <dc:Bounds x="1325" y="45" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1326" y="15" width="48" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0qxjhlf_di" bpmnElement="Acuerdos_Preliminares">
+        <dc:Bounds x="1332" y="385" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1319" y="442" width="63" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1v9ow0t_di" bpmnElement="Difundir_ofertas_publicitarias">
+        <dc:Bounds x="1090" y="218" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1pzsem6_di" bpmnElement="Redactar_y_firmar_contratos">
+        <dc:Bounds x="1510" y="218" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0tb1ccq_di" bpmnElement="Registrar_reservas_de_espacios_publicitarios_y_comerciales">
+        <dc:Bounds x="1720" y="218" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0f9u3is_di" bpmnElement="Reservas">
+        <dc:Bounds x="1745" y="45" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1746" y="15" width="48" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0hmzzv2_di" bpmnElement="Monitorear_montajes_y_publicidad">
+        <dc:Bounds x="1930" y="218" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1pv4fw2_di" bpmnElement="Registrar_y_controlar_ventas_de_los_espacios_comerciales">
+        <dc:Bounds x="2140" y="218" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0te53mr_di" bpmnElement="Gestionar_cobro">
+        <dc:Bounds x="2350" y="218" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_04e2yde_di" bpmnElement="Elaborar_Informe_Post_Evento">
+        <dc:Bounds x="2560" y="218" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1q1f7wf_di" bpmnElement="Event_1q1f7wf" bioc:stroke="#d32f2f" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#d32f2f">
+        <dc:Bounds x="2762" y="240" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0a7l77r_di" bpmnElement="Post_Evento">
+        <dc:Bounds x="2592" y="45" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2579" y="15" width="62" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0jv01cz_di" bpmnElement="Ventas">
+        <dc:Bounds x="2165" y="25" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2172" y="-5" width="36" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1comxsz_di" bpmnElement="Facturas">
+        <dc:Bounds x="2382" y="15" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2378" y="-15" width="45" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_08cdrle_di" bpmnElement="Espera_comienzo_de_evento">
+        <dc:Bounds x="1862" y="240" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1836" y="283" width="88" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_06jkxb8_di" bpmnElement="Espera_de_calculos_de_comisiones">
+        <dc:Bounds x="2272" y="240" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2262" y="283" width="57" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0n53asa_di" bpmnElement="Informe_de_asignacion_de_sponsors">
+        <dc:Bounds x="1752" y="375" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1734" y="432" width="72" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0qihktk_di" bpmnElement="Informe_de_asignacion_de_espacios_publicitarios_y_comerciales">
+        <dc:Bounds x="1882" y="385" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1864" y="447" width="72" height="66" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_055bdpy_di" bpmnElement="Contratos">
+        <dc:Bounds x="1542" y="45" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1535" y="15" width="51" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_08k7f82_di" bpmnElement="Espera_de_confirmacion_de_sponsor">
+        <dc:Bounds x="1432" y="240" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1409" y="283" width="83" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_01lriqr_di" bpmnElement="DataOutputAssociation_01lriqr">
+        <di:waypoint x="600" y="287" />
+        <di:waypoint x="805" y="404" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0bwf5vy_di" bpmnElement="Flow_0bwf5vy">
+        <di:waypoint x="448" y="258" />
+        <di:waypoint x="500" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_117qk4u_di" bpmnElement="DataInputAssociation_117qk4u">
+        <di:waypoint x="656" y="95" />
+        <di:waypoint x="735" y="218" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0i39nev_di" bpmnElement="DataOutputAssociation_0i39nev">
+        <di:waypoint x="740" y="300" />
+        <di:waypoint x="805" y="388" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qon9u4_di" bpmnElement="Flow_1qon9u4">
+        <di:waypoint x="600" y="258" />
+        <di:waypoint x="690" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0wadwcx_di" bpmnElement="DataInputAssociation_0wadwcx">
+        <di:waypoint x="853" y="385" />
+        <di:waypoint x="930" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_18slenq_di" bpmnElement="DataOutputAssociation_18slenq">
+        <di:waypoint x="930" y="218" />
+        <di:waypoint x="932" y="95" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gk5ucz_di" bpmnElement="Flow_0gk5ucz">
+        <di:waypoint x="790" y="258" />
+        <di:waypoint x="880" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1aews1n_di" bpmnElement="DataOutputAssociation_1aews1n">
+        <di:waypoint x="1350" y="218" />
+        <di:waypoint x="1350" y="95" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0jichiy_di" bpmnElement="DataOutputAssociation_0jichiy">
+        <di:waypoint x="1349" y="298" />
+        <di:waypoint x="1348" y="385" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1le6e8t_di" bpmnElement="DataInputAssociation_1le6e8t">
+        <di:waypoint x="1325" y="89" />
+        <di:waypoint x="1153" y="218" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ag86b6_di" bpmnElement="Flow_1ag86b6">
+        <di:waypoint x="980" y="258" />
+        <di:waypoint x="1090" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1a9oyya_di" bpmnElement="Flow_1a9oyya">
+        <di:waypoint x="1190" y="258" />
+        <di:waypoint x="1300" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0om13r5_di" bpmnElement="DataOutputAssociation_0om13r5">
+        <di:waypoint x="1561" y="218" />
+        <di:waypoint x="1564" y="95" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0sf5xdw_di" bpmnElement="Flow_0sf5xdw">
+        <di:waypoint x="1400" y="258" />
+        <di:waypoint x="1432" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_174gt4l_di" bpmnElement="DataInputAssociation_174gt4l">
+        <di:waypoint x="1375" y="81" />
+        <di:waypoint x="1721" y="226" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1t5s4lb_di" bpmnElement="DataOutputAssociation_1t5s4lb">
+        <di:waypoint x="1770" y="218" />
+        <di:waypoint x="1770" y="95" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1l7hhhs_di" bpmnElement="DataOutputAssociation_1l7hhhs">
+        <di:waypoint x="1769" y="298" />
+        <di:waypoint x="1768" y="375" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_02xiq8g_di" bpmnElement="DataOutputAssociation_02xiq8g">
+        <di:waypoint x="1806" y="298" />
+        <di:waypoint x="1884" y="385" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1g9qr7w_di" bpmnElement="Flow_1g9qr7w">
+        <di:waypoint x="1820" y="258" />
+        <di:waypoint x="1862" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_07ocn8j_di" bpmnElement="DataOutputAssociation_07ocn8j">
+        <di:waypoint x="2190" y="218" />
+        <di:waypoint x="2190" y="75" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17odo55_di" bpmnElement="Flow_17odo55">
+        <di:waypoint x="2030" y="258" />
+        <di:waypoint x="2140" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1cy6crz_di" bpmnElement="DataInputAssociation_1cy6crz">
+        <di:waypoint x="1795" y="77" />
+        <di:waypoint x="2351" y="226" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0v3d725_di" bpmnElement="DataOutputAssociation_0v3d725">
+        <di:waypoint x="2400" y="218" />
+        <di:waypoint x="2402" y="65" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1oor664_di" bpmnElement="DataOutputAssociation_1oor664">
+        <di:waypoint x="2610" y="218" />
+        <di:waypoint x="2612" y="95" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ga2x7a_di" bpmnElement="Flow_0ga2x7a">
+        <di:waypoint x="2450" y="258" />
+        <di:waypoint x="2560" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qzrcme_di" bpmnElement="Flow_0qzrcme">
+        <di:waypoint x="2660" y="258" />
+        <di:waypoint x="2762" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02aj1am_di" bpmnElement="Flow_02aj1am">
+        <di:waypoint x="2240" y="258" />
+        <di:waypoint x="2272" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1c6vsvc_di" bpmnElement="Flow_1c6vsvc">
+        <di:waypoint x="1898" y="258" />
+        <di:waypoint x="1930" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0i7bwp5_di" bpmnElement="Flow_0i7bwp5">
+        <di:waypoint x="2308" y="258" />
+        <di:waypoint x="2350" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0akaebv_di" bpmnElement="Flow_0akaebv">
+        <di:waypoint x="1468" y="258" />
+        <di:waypoint x="1510" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ddxgjp_di" bpmnElement="Flow_1ddxgjp">
+        <di:waypoint x="1610" y="258" />
+        <di:waypoint x="1720" y="258" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+
+

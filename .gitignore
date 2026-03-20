@@ -1,0 +1,21 @@
+# bizuit-sdd — Archivos excluidos del repositorio
+# No commitear data de clientes, credenciales, ni artefactos generados
+
+# Data de clientes (specs con queries SQL, nombres de tablas)
+processes/
+
+# Credenciales
+.env
+
+# Estado de sesiones (engram)
+.engram/
+
+# Artefactos generados por build-package.sh
+dist/
+
+# Rules custom del cliente (locales, no se distribuyen)
+rules/custom/*.md
+!rules/custom/README.md
+
+# Resultados de pilotos internos
+docs/pilots/
