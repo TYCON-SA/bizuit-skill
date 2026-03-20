@@ -5,6 +5,16 @@ Todos los cambios notables del skill bizuit-sdd se documentan en este archivo.
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 Versionamiento según [Semantic Versioning](https://semver.org/lang/es/).
 
+## 1.5.1 — Distribution & Maintenance
+
+### Added
+- **update-skill.sh**: script de actualización para usuarios (`--check`, `--force`)
+- **GitHub distribution**: repo público TYCON-SA/bizuit-skill con releases automáticos
+
+### Fixed
+- Eliminados 5 entries `.DS_Store` del MANIFEST
+- Corregido total de archivos en MANIFEST (84 → 79)
+
 ## 1.5.0 — Epic 15: Pools & Lanes Support
 
 ### Added

@@ -7,7 +7,7 @@ description: "Gestiona el ciclo completo de procesos BIZUIT BPM: especificar, ge
 
 > Skill para gestionar el ciclo completo de procesos BIZUIT BPM: especificar, generar BPMN XML con forms embebidos, documentar desde VDW, editar, validar y consultar.
 >
-> **Versión:** 1.5.0
+> **Versión:** 1.5.1
 
 ---
 
