@@ -5,6 +5,11 @@ Todos los cambios notables del skill bizuit-sdd se documentan en este archivo.
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 Versionamiento según [Semantic Versioning](https://semver.org/lang/es/).
 
+## 1.5.2 — Auto-update Notification
+
+### Added
+- **Version check remoto**: al iniciar sesión, el skill verifica si hay nueva versión en GitHub y avisa al usuario
+
 ## 1.5.1 — Distribution & Maintenance
 
 ### Added
