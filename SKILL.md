@@ -278,8 +278,9 @@ Al recibir el **primer mensaje** de una sesión:
 1. Verificar que `VERSION` existe en el directorio del skill. Si no → advertir: "⚠️ VERSION no encontrado — el skill puede estar incompleto."
 2. Leer la versión de `VERSION` y la línea `**Versión:**` de este archivo. Si difieren → advertir: "⚠️ Versión inconsistente: SKILL.md dice {X}, VERSION dice {Y}. Puede que la actualización esté incompleta. Probá: `cd ~/.claude/skills/bizuit-sdd && git pull`"
 3. Si existe `.bizuit-config.yaml` con `environments:` → leer ambiente activo y mostrar en menú: "bizuit-sdd v{version} — Ambiente: {active} ({url})". Si `active: prod` → prefijo `🔴 [PROD]` en outputs. Si `active: qa` → `🟡 [QA]`. Si `dev` → sin prefijo.
-4. Si todo OK → silencioso, proceder al router (sección 1).
-5. Si hay problemas → reportar y continuar (warning, no blocker).
+4. **Version check remoto**: ejecutar `curl -sL --connect-timeout 3 "https://raw.githubusercontent.com/TYCON-SA/bizuit-skill/main/VERSION" 2>/dev/null` para obtener la versión más reciente. Si la versión remota es mayor que la local → mostrar: "⬆️ Nueva versión disponible: v{local} → v{remota}. Actualizá con: `~/.claude/skills/bizuit-sdd/scripts/update-skill.sh`". Si el curl falla (sin internet, timeout) → silencioso, no bloquear.
+5. Si todo OK y versión al día → silencioso, proceder al router (sección 1).
+6. Si hay problemas → reportar y continuar (warning, no blocker).
 
 ### Intent: Health Check (diagnóstico)
 
